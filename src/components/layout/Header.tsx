@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, Menu, X, ChevronDown, User, Users, LogOut, Settings, Award, UserPlus, MessageSquarePlus, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -202,9 +203,20 @@ export default function Header() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center space-x-2 text-sm font-medium text-dungeon-100 hover:text-gold-500 transition-colors"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
-                  {profile.display_name?.[0]?.toUpperCase() || 'U'}
-                </div>
+                {profile.avatar_url ? (
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-dungeon-700">
+                    <Image
+                      src={profile.avatar_url}
+                      alt={profile.display_name || 'Avatar'}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+                    {profile.display_name?.[0]?.toUpperCase() || 'U'}
+                  </div>
+                )}
                 <span className="hidden xl:block">{profile.display_name}</span>
               </button>
 

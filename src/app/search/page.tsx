@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Search, Loader2, Sparkles, Swords, BookOpen } from 'lucide-react';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ import {
   type SearchCountResult
 } from '@/lib/supabase/search';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const queryParam = searchParams.get('q') || '';
 
@@ -301,5 +301,20 @@ export default function SearchPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-16">
+        <div className="animate-pulse space-y-4">
+          <div className="h-12 bg-dungeon-700 rounded w-64"></div>
+          <div className="h-64 bg-dungeon-800 rounded"></div>
+        </div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }

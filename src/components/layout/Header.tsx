@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, Menu, X, ChevronDown, User, LogOut, Settings, Award, UserPlus, MessageSquarePlus } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, User, Users, LogOut, Settings, Award, UserPlus, MessageSquarePlus, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '../ui/Button';
@@ -100,6 +100,7 @@ export default function Header() {
       contributor: 'text-green-500',
       translator: 'text-purple-500',
       reviewer: 'text-orange-500',
+      mod: 'text-pink-500',
       admin: 'text-red-500',
     };
     return colors[tierCode] || 'text-blue-500';
@@ -336,21 +337,49 @@ export default function Header() {
                       <span>Reportes beta</span>
                     </Link>
 
-                    {/* Admin: Invite User */}
-                    {tier?.code === 'admin' && (
+                    {/* Admin/Mod: Panel de administración */}
+                    {(tier?.code === 'admin' || tier?.code === 'mod') && (
                       <>
                         <hr className="my-2 border-dungeon-700" />
-                        <button
-                          onClick={() => {
-                            setAdminInviteModalOpen(true);
-                            setUserMenuOpen(false);
-                          }}
-                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300 w-full"
+                        <Link
+                          href="/admin/tickets"
+                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300"
+                          onClick={() => setUserMenuOpen(false)}
                         >
-                          <UserPlus size={16} />
-                          <span>Invitar usuario</span>
-                        </button>
+                          <MessageSquarePlus size={16} />
+                          <span>Panel de Tickets</span>
+                        </Link>
+                        <Link
+                          href="/admin/reportes"
+                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <FileText size={16} />
+                          <span>Exportar Reportes</span>
+                        </Link>
+                        <Link
+                          href="/admin/usuarios"
+                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <Users size={16} />
+                          <span>Gestionar Usuarios</span>
+                        </Link>
                       </>
+                    )}
+
+                    {/* Admin: Invite User */}
+                    {tier?.code === 'admin' && (
+                      <button
+                        onClick={() => {
+                          setAdminInviteModalOpen(true);
+                          setUserMenuOpen(false);
+                        }}
+                        className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300 w-full"
+                      >
+                        <UserPlus size={16} />
+                        <span>Invitar usuario</span>
+                      </button>
                     )}
 
                     <hr className="my-2 border-dungeon-700" />

@@ -1,6 +1,6 @@
 -- ============================================================================
 -- CONJUROS DEL PLAYER'S HANDBOOK - PARTE 6/7
--- Conjuros 501-600 de 608 totales
+-- Conjuros 501-600 de 605 totales
 -- Datos extraídos de d20srd.org
 -- ============================================================================
 
@@ -14,19 +14,6 @@ INSERT INTO public.spells (
   component_focus, component_divine_focus, component_xp
 )
 VALUES
-  ('spell-resistance', 'Spell Resistance', 'Abjuración', NULL, NULL, '1 standard action', 'Toque', 'Creature touched', NULL, NULL, '1 min./Nivel', 'Voluntad anula (harmless)', 'Sí (harmless)', 'The creature gains spell resistance equal to 12 + your caster level.', NULL, NULL, NULL, true, true, false, false, true, false),
-  ('spellstaff', 'Spellstaff', 'Transmutación', NULL, NULL, '10 minutes', 'Toque', 'Wooden quarterstaff touched', NULL, NULL, 'Permanente until discharged (D)', 'Voluntad anula (object)', 'Sí (object)', 'The staff that stores the spell.', 'You store one spell that you can normally cast in a wooden quarterstaff. Only one such spell can be stored in a staff at a given time, and you cannot have more than one spellstaff at any given time. You can cast a spell stored within a staff just as though it were among those you had prepared, but it does not count against your normal allotment for a given day. You use up any applicable s required to cast the spell when you store it in the spellstaff.', NULL, NULL, true, true, false, true, false, false),
-  ('spell-turning', 'Spell Turning', 'Abjuración', NULL, NULL, '1 standard action', 'Personal', 'You', NULL, NULL, 'Until expended or 10 min./Nivel', NULL, 'No', 'Spells and spell-like effects targeted on you are turned back upon the original caster. The abjuration turns only spells that have you as a target. Effect and area spells are not affected. Spell turning also fails to stop touch range spells.
-
-From seven to ten (1d4+6) spell levels are affected by the turning. The exact number is rolled secretly.
-
-When you are targeted by a spell of higher level than the amount of spell turning you have left, that spell is partially turned. The subtract the amount of spell turning left from the spell level of the incoming spell, then divide the result by the spell level of the incoming spell to see what fraction of the effect gets through. For damaging spells, you and the caster each take a fraction of the damage. For nondamaging spells, each of you has a proportional chance to be affected.
-
-If you and a spellcasting attacker are both warded by spell turning effects in operation, a resonating field is created.
-
-Roll randomly to determine the result.
-
-A small silver mirror.', NULL, NULL, NULL, true, true, false, false, false, false),
   ('spider-climb', 'Spider Climb', 'Transmutación', NULL, NULL, '1 standard action', 'Toque', 'Creature touched', NULL, NULL, '10 min./Nivel', 'Voluntad anula (harmless)', 'Sí (harmless)', 'The subject can climb and travel on vertical surfaces or even traverse ceilings as well as a spider does. The affected creature must have its hands free to climb in this manner. The subject gains a climb speed of 20 feet; furthermore, it need not make Climb checks to traverse a vertical or horizontal surface (even upside down). A spider climbing creature retains its Dexterity bonus to Armor Class (if any) while climbing, and opponents get no special bonus to their attacks against it. It cannot, however, use the run action while climbing.
 
 A drop of bitumen and a live spider, both of which must be eaten by the subject.', NULL, NULL, NULL, true, true, true, false, false, false),
@@ -569,7 +556,28 @@ Any Large or smaller creature that comes in contact with the spell effect must s
 
 You can prepare the spell to bear a message of no more than twenty-five words, cause the spell to deliver other sounds for 1 round, or merely have the whispering wind seem to be a faint stirring of the air. You can likewise cause the whispering wind to move as slowly as 1 mile per hour or as quickly as 1 mile per 10 minutes.
 
-When the spell reaches its objective, it swirls and remains in place until the message is delivered. As with magic mouth, whispering wind cannot speak verbal components, use command words, or activate magical effects.', NULL, NULL, NULL, true, true, false, false, false, false)
+When the spell reaches its objective, it swirls and remains in place until the message is delivered. As with magic mouth, whispering wind cannot speak verbal components, use command words, or activate magical effects.', NULL, NULL, NULL, true, true, false, false, false, false),
+  ('wind-walk', 'Wind Walk', 'Transmutación', NULL, ARRAY['Aire']::TEXT[], '1 standard action', 'Toque', 'You and one touched creature per three levels', NULL, NULL, '1 hour/Nivel (D); see text', 'No and Voluntad anula (harmless)', 'No and Sí (harmless)', 'You alter the substance of your body to a cloudlike vapor (as the gaseous form spell) and move through the air, possibly at great speed. You can take other creatures with you, each of which acts independently.
+
+Normally, a wind walker flies at a speed of 10 feet with perfect maneuverability. If desired by the subject, a magical wind wafts a wind walker along at up to 600 feet per round (60 mph) with poor maneuverability. Wind walkers are not invisible but rather appear misty and translucent. If fully clothed in white, they are 80% likely to be mistaken for clouds, fog, vapors, or the like.
+
+A wind walker can regain its physical form as desired and later resume the cloud form. Each change to and from vaporous form takes 5 rounds, which counts toward the duration of the spell (as does any time spent in physical form). As noted above, you can dismiss the spell, and you can even dismiss it for individual wind walkers and not others.
+
+For the last minute of the spell’s duration, a wind walker in cloud form automatically descends 60 feet per round (for a total of 600 feet), though it may descend faster if it wishes. This descent serves as a warning that the spell is about to end.', NULL, NULL, NULL, true, true, false, false, true, false),
+  ('wind-wall', 'Wind Wall', 'Evocación', NULL, ARRAY['Aire']::TEXT[], '1 standard action', 'Medio (100 ft. + 10 ft./Nivel)', NULL, NULL, 'Wall up to 10 ft./Nivel Largo and 5 ft./Nivel high (S)', '1 round/Nivel', 'Ninguna; see text', 'Sí', 'An invisible vertical curtain of wind appears. It is 2 feet thick and of considerable strength. It is a roaring blast sufficient to blow away any bird smaller than an eagle, or tear papers and similar materials from unsuspecting hands. (A Reflex save allows a creature to maintain its grasp on an object.) Tiny and Small flying creatures cannot pass through the barrier. Loose materials and cloth garments fly upward when caught in a wind wall. Arrows and bolts are deflected upward and miss, while any other normal ranged weapon passing through the wall has a 30% miss chance. (A giant-thrown boulder, a siege engine projectile, and other massive ranged weapons are not affected.) Gases, most gaseous breath weapons, and creatures in gaseous form cannot pass through the wall (although it is no barrier to incorporeal creatures).
+
+While the wall must be vertical, you can shape it in any continuous path along the ground that you like. It is possible to create cylindrical or square wind walls to enclose specific points.
+
+A tiny fan and a feather of exotic origin.', NULL, NULL, NULL, true, true, false, false, false, false),
+  ('wish', 'Wish', 'Universal', NULL, NULL, '1 standard action', 'See text', NULL, NULL, NULL, 'See text', 'See text', 'Sí', 'Wish is the mightiest spell a wizard or sorcerer can cast. By simply speaking aloud, you can alter reality to better suit you.
+
+Even wish, however, has its limits.
+
+A wish can produce any one of the following effects.
+
+You may try to use a wish to produce greater effects than these, but doing so is dangerous. (The wish may pervert your intent into a literal but undesirable fulfillment or only a partial fulfillment.)
+
+Duplicated spells allow saves and spell resistance as normal (but save DCs are for 9th-level spells).', 'When a wish duplicates a spell with a that costs more than 10,000 gp, you must provide that component.', NULL, 'The minimum for casting wish is 5,000 XP. When a wish duplicates a spell that has an XP cost, you must pay 5,000 XP or that cost, whichever is more. When a wish creates or improves a magic item, you must pay twice the normal XP cost for crafting or improving the item, plus an additional 5,000 XP.', true, false, false, false, false, true)
 ON CONFLICT (slug) DO UPDATE
   SET
     name = EXCLUDED.name,

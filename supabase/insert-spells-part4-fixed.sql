@@ -1,6 +1,6 @@
 -- ============================================================================
 -- CONJUROS DEL PLAYER'S HANDBOOK - PARTE 4/7
--- Conjuros 301-400 de 608 totales
+-- Conjuros 301-400 de 605 totales
 -- Datos extraídos de d20srd.org
 -- ============================================================================
 
@@ -14,7 +14,6 @@ INSERT INTO public.spells (
   component_focus, component_divine_focus, component_xp
 )
 VALUES
-  ('knock', 'Knock', 'Transmutación', NULL, NULL, '1 standard action', 'Medio (100 ft. + 10 ft./Nivel)', 'One door, box, or chest with an Área of up to 10 sq. ft./Nivel', NULL, NULL, 'Instantáneo; see text', 'Ninguna', 'No', 'The knock spell opens stuck, barred, locked, held, or arcane locked doors. It opens secret doors, as well as locked or trick-opening boxes or chests. It also loosens welds, shackles, or chains (provided they serve to hold closures shut). If used to open a arcane locked door, the spell does not remove the arcane lock but simply suspends its functioning for 10 minutes. In all other cases, the door does not relock itself or become stuck again on its own. Knock does not raise barred gates or similar impediments (such as a portcullis), nor does it affect ropes, vines, and the like. The effect is limited by the area. Each spell can undo as many as two means of preventing egress.', NULL, NULL, NULL, true, false, false, false, false, false),
   ('know-direction', 'Know Direction', 'Adivinación', NULL, NULL, '1 standard action', 'Personal', 'You', NULL, NULL, 'Instantáneo', NULL, 'No', 'You instantly know the direction of north from your current position. The spell is effective in any environment in which “north” exists, but it may not work in extraplanar settings. Your knowledge of north is correct at the moment of casting, but you can get lost again within moments if you don’t find some external reference point to help you keep track of direction.', NULL, NULL, NULL, true, true, false, false, false, false),
   ('legend-lore', 'Legend Lore', 'Adivinación', NULL, NULL, 'See text', 'Personal', 'You', NULL, NULL, 'See text', NULL, 'No', 'Legend lore brings to your mind legends about an important person, place, or thing. If the person or thing is at hand, or if you are in the place in question, the casting time is only 1d4×10 minutes. If you have only detailed information on the person, place, or thing, the casting time is 1d10 days, and the resulting lore is less complete and specific (though it often provides enough information to help you find the person, place, or thing, thus allowing a better legend lore result next time). If you know only rumors, the casting time is 2d6 weeks, and the resulting lore is vague and incomplete (though it often directs you to more detailed information, thus allowing a better legend lore result next time).
 
@@ -23,7 +22,6 @@ During the casting, you cannot engage in other than routine activities: eating, 
 Incense worth at least 250 gp.
 
 Four strips of ivory (worth 50 gp each) formed into a rectangle.', NULL, NULL, NULL, true, true, true, true, false, false),
-  ('lesser-spell-name', 'Lesser (Spell Name)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'Any spell whose name begins with lesser is alphabetized in this chapter according to the second word of the spell name. Thus, the description of a lesser spell appears near the description of the spell on which it is based. Spell chains that have lesser spells in them include those based on the spells confusion, geas, globe of invulnerability, planar ally, planar binding, and restoration.', NULL, NULL, NULL, false, false, false, false, false, false),
   ('levitate', 'Levitate', 'Transmutación', NULL, NULL, '1 standard action', 'Personal or Cercano (25 ft. + 5 ft./2 levels)', 'You or one willing creature or one object (total weight up to 100 lb./Nivel)', NULL, NULL, '1 min./Nivel (D)', 'Ninguna', 'No', 'Levitate allows you to move yourself, another creature, or an object up and down as you wish. A creature must be willing to be levitated, and an object must be unattended or possessed by a willing creature. You can mentally direct the recipient to move up or down as much as 20 feet each round; doing so is a move action. You cannot move the recipient horizontally, but the recipient could clamber along the face of a cliff, for example, or push against a ceiling to move laterally (generally at half its base land speed).
 
 A levitating creature that attacks with a melee or ranged weapon finds itself increasingly unstable; the first attack has a -1 penalty on attack rolls, the second -2, and so on, to a maximum penalty of -5. A full round spent stabilizing allows the creature to begin again at -1.
@@ -201,7 +199,6 @@ The image disappears when struck by an opponent unless you cause the illusion to
 Since this spell takes 10 minutes to cast and involves writing on the target, you can cast it only on a creature that is willing or restrained.
 
 Like the effect of bestow curse, a mark of justice cannot be dispelled, but it can be removed with a break enchantment, limited wish, miracle, remove curse, or wish spell. Remove curse works only if its caster level is equal to or higher than your mark of justice caster level. These restrictions apply regardless of whether the mark has activated.', NULL, NULL, NULL, true, true, false, false, true, false),
-  ('mass-spell-name', 'Mass (Spell Name)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'Any spell whose name begins with mass is alphabetized in this chapter according to the second word of the spell name. Thus, the description of a mass spell appears near the description of the spell on which it is based. Spell chains that have mass spells in them include those based on the spells bear’s endurance, bull’s strength, cat’s grace, charm monster, cure critical wounds, cure light wounds, cure moderate wounds, cure serious wounds, eagle’s splendor, enlarge person, fox’s cunning, heal, hold monster, hold person, inflict critical wounds, inflict light wounds, inflict moderate wounds, inflict serious wounds, invisibility, owl’s wisdom, reduce person, and suggestion.', NULL, NULL, NULL, false, false, false, false, false, false),
   ('maze', 'Maze', 'Conjuración', 'Teletransportación', NULL, '1 standard action', 'Cercano (25 ft. + 5 ft./2 levels)', 'One creature', NULL, NULL, 'See text', 'Ninguna', 'Sí', 'You banish the subject into an extradimensional labyrinth of force planes. Each round on its turn, it may attempt a DC 20 Intelligence check to escape the labyrinth as a full-round action. If the subject doesn’t escape, the maze disappears after 10 minutes, forcing the subject to leave.
 
 On escaping or leaving the maze, the subject reappears where it had been when the maze spell was cast. If this location is filled with a solid object, the subject appears in the nearest open space. Spells and abilities that move a creature within a plane, such as teleport and dimension door, do not help a creature escape a maze spell, although a plane shift spell allows it to exit to whatever plane is designated in that spell. Minotaurs are not affected by this spell.', NULL, NULL, NULL, true, true, false, false, false, false),
@@ -507,7 +504,22 @@ This spell does not function underwater.', NULL, NULL, NULL, true, true, false, 
 
 You set the triggering condition (which may be a special word) when casting the spell. The event that triggers the illusion can be as general or as specific and detailed as desired but must be based on an audible, tactile, olfactory, or visual trigger. The trigger cannot be based on some quality not normally obvious to the senses, such as alignment. (See magic mouth for more details about such triggers.)
 
-A bit of fleece and jade dust worth 25 gp.', NULL, NULL, NULL, false, false, false, false, false, false)
+A bit of fleece and jade dust worth 25 gp.', NULL, NULL, NULL, false, false, false, false, false, false),
+  ('project-image', 'Project Image', 'Ilusión', 'Sombra', NULL, '1 standard action', 'Medio (100 ft. + 10 ft./Nivel)', NULL, NULL, 'One Sombra duplicate', '1 round/Nivel (D)', 'Voluntad incredulidad (if interacted with)', 'No', 'You tap energy from the Plane of Shadow to create a quasi-real, illusory version of yourself. The projected image looks, sounds, and smells like you but is intangible. The projected image mimics your actions (including speech) unless you direct it to act differently (which is a move action).
+
+You can see through its eyes and hear through its ears as if you were standing where it is, and during your turn you can switch from using its senses to using your own, or back again, as a free action. While you are using its senses, your body is considered blinded and deafened.
+
+If you desire, any spell you cast whose range is touch or greater can originate from the projected image instead of from you. The projected image can’t cast any spells on itself except for illusion spells. The spells affect other targets normally, despite originating from the projected image.
+
+Objects are affected by the projected image as if they had succeeded on their Will save.
+
+You must maintain line of effect to the projected image at all times. If your line of effect is obstructed, the spell ends. If you use dimension door, teleport, plane shift, or a similar spell that breaks your line of effect, even momentarily, the spell ends.
+
+A small replica of you (a doll), which costs 5 gp to create.', NULL, NULL, NULL, true, true, true, false, false, false),
+  ('protection-from-arrows', 'Protection from Arrows', 'Abjuración', NULL, NULL, '1 standard action', 'Toque', 'Creature touched', NULL, NULL, '1 hour/Nivel or until discharged', 'Voluntad anula (harmless)', 'Sí (harmless)', 'The warded creature gains resistance to ranged weapons. The subject gains damage reduction 10/magic against ranged weapons. (This spell doesn’t grant you the ability to damage creatures with similar damage reduction.) Once the spell has prevented a total of 10 points of damage per caster level (maximum 100 points), it is discharged.
+
+A piece of shell from a tortoise or a turtle.', NULL, NULL, NULL, true, true, false, true, false, false),
+  ('protection-from-chaos', 'Protection from Chaos', 'Abjuración', NULL, ARRAY['Legal']::TEXT[], NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks from chaotic creatures, and chaotic summoned creatures cannot touch the subject.', NULL, NULL, NULL, false, false, false, false, false, false)
 ON CONFLICT (slug) DO UPDATE
   SET
     name = EXCLUDED.name,

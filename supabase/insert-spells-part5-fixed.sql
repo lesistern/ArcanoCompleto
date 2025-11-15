@@ -1,6 +1,6 @@
 -- ============================================================================
 -- CONJUROS DEL PLAYER'S HANDBOOK - PARTE 5/7
--- Conjuros 401-500 de 608 totales
+-- Conjuros 401-500 de 605 totales
 -- Datos extraídos de d20srd.org
 -- ============================================================================
 
@@ -14,21 +14,6 @@ INSERT INTO public.spells (
   component_focus, component_divine_focus, component_xp
 )
 VALUES
-  ('project-image', 'Project Image', 'Ilusión', 'Sombra', NULL, '1 standard action', 'Medio (100 ft. + 10 ft./Nivel)', NULL, NULL, 'One Sombra duplicate', '1 round/Nivel (D)', 'Voluntad incredulidad (if interacted with)', 'No', 'You tap energy from the Plane of Shadow to create a quasi-real, illusory version of yourself. The projected image looks, sounds, and smells like you but is intangible. The projected image mimics your actions (including speech) unless you direct it to act differently (which is a move action).
-
-You can see through its eyes and hear through its ears as if you were standing where it is, and during your turn you can switch from using its senses to using your own, or back again, as a free action. While you are using its senses, your body is considered blinded and deafened.
-
-If you desire, any spell you cast whose range is touch or greater can originate from the projected image instead of from you. The projected image can’t cast any spells on itself except for illusion spells. The spells affect other targets normally, despite originating from the projected image.
-
-Objects are affected by the projected image as if they had succeeded on their Will save.
-
-You must maintain line of effect to the projected image at all times. If your line of effect is obstructed, the spell ends. If you use dimension door, teleport, plane shift, or a similar spell that breaks your line of effect, even momentarily, the spell ends.
-
-A small replica of you (a doll), which costs 5 gp to create.', NULL, NULL, NULL, true, true, true, false, false, false),
-  ('protection-from-arrows', 'Protection from Arrows', 'Abjuración', NULL, NULL, '1 standard action', 'Toque', 'Creature touched', NULL, NULL, '1 hour/Nivel or until discharged', 'Voluntad anula (harmless)', 'Sí (harmless)', 'The warded creature gains resistance to ranged weapons. The subject gains damage reduction 10/magic against ranged weapons. (This spell doesn’t grant you the ability to damage creatures with similar damage reduction.) Once the spell has prevented a total of 10 points of damage per caster level (maximum 100 points), it is discharged.
-
-A piece of shell from a tortoise or a turtle.', NULL, NULL, NULL, true, true, false, true, false, false),
-  ('protection-from-chaos', 'Protection from Chaos', 'Abjuración', NULL, ARRAY['Legal']::TEXT[], NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks from chaotic creatures, and chaotic summoned creatures cannot touch the subject.', NULL, NULL, NULL, false, false, false, false, false, false),
   ('protection-from-energy', 'Protection from Energy', 'Abjuración', NULL, NULL, '1 standard action', 'Toque', 'Creature touched', NULL, NULL, '10 min./Nivel or until discharged', 'Fortaleza anula (harmless)', 'Sí (harmless)', 'Protection from energy grants temporary immunity to the type of energy you specify when you cast it (acid, cold, electricity, fire, or sonic). When the spell absorbs 12 points per caster level of energy damage (to a maximum of 120 points at 10th level), it is discharged.
 
 Note: Protection from energy overlaps (and does not stack with) resist energy. If a character is warded by protection from energy and resist energy, the protection spell absorbs damage until its power is exhausted.', NULL, NULL, NULL, true, true, false, false, true, false),
@@ -525,7 +510,20 @@ Only a particular spell can be protected against, not a certain domain or school
 A creature can have only one spell immunity or greater spell immunity spell in effect on it at a time.', NULL, NULL, NULL, true, true, false, false, true, false),
   ('spell-immunity-greater', 'Spell Immunity, Greater', 'Abjuración', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'This spell functions like spell immunity, except the immunity applies to spells of 8th level or lower.
 
-A creature can have only one spell immunity or greater spell immunity spell in effect on it at a time.', NULL, NULL, NULL, false, false, false, false, false, false)
+A creature can have only one spell immunity or greater spell immunity spell in effect on it at a time.', NULL, NULL, NULL, false, false, false, false, false, false),
+  ('spell-resistance', 'Spell Resistance', 'Abjuración', NULL, NULL, '1 standard action', 'Toque', 'Creature touched', NULL, NULL, '1 min./Nivel', 'Voluntad anula (harmless)', 'Sí (harmless)', 'The creature gains spell resistance equal to 12 + your caster level.', NULL, NULL, NULL, true, true, false, false, true, false),
+  ('spellstaff', 'Spellstaff', 'Transmutación', NULL, NULL, '10 minutes', 'Toque', 'Wooden quarterstaff touched', NULL, NULL, 'Permanente until discharged (D)', 'Voluntad anula (object)', 'Sí (object)', 'The staff that stores the spell.', 'You store one spell that you can normally cast in a wooden quarterstaff. Only one such spell can be stored in a staff at a given time, and you cannot have more than one spellstaff at any given time. You can cast a spell stored within a staff just as though it were among those you had prepared, but it does not count against your normal allotment for a given day. You use up any applicable s required to cast the spell when you store it in the spellstaff.', NULL, NULL, true, true, false, true, false, false),
+  ('spell-turning', 'Spell Turning', 'Abjuración', NULL, NULL, '1 standard action', 'Personal', 'You', NULL, NULL, 'Until expended or 10 min./Nivel', NULL, 'No', 'Spells and spell-like effects targeted on you are turned back upon the original caster. The abjuration turns only spells that have you as a target. Effect and area spells are not affected. Spell turning also fails to stop touch range spells.
+
+From seven to ten (1d4+6) spell levels are affected by the turning. The exact number is rolled secretly.
+
+When you are targeted by a spell of higher level than the amount of spell turning you have left, that spell is partially turned. The subtract the amount of spell turning left from the spell level of the incoming spell, then divide the result by the spell level of the incoming spell to see what fraction of the effect gets through. For damaging spells, you and the caster each take a fraction of the damage. For nondamaging spells, each of you has a proportional chance to be affected.
+
+If you and a spellcasting attacker are both warded by spell turning effects in operation, a resonating field is created.
+
+Roll randomly to determine the result.
+
+A small silver mirror.', NULL, NULL, NULL, true, true, false, false, false, false)
 ON CONFLICT (slug) DO UPDATE
   SET
     name = EXCLUDED.name,

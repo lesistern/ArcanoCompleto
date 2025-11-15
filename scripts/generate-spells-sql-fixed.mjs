@@ -109,8 +109,8 @@ function generateSpellInsert(spell) {
 async function generateSql() {
   console.log('📜 Generador de SQL para Conjuros D&D 3.5 (CORREGIDO)\n');
 
-  // Leer JSON de conjuros
-  const inputPath = path.join(__dirname, 'scraper', 'output', 'spells_complete.json');
+  // Leer JSON de conjuros (versión limpia sin placeholders)
+  const inputPath = path.join(__dirname, 'scraper', 'output', 'spells_clean.json');
 
   if (!fs.existsSync(inputPath)) {
     console.error(`❌ Error: No se encontró ${inputPath}`);

@@ -119,12 +119,21 @@ BEGIN
 END;
 $$;
 
--- 6. Trigger para generar slug automáticamente
-DROP TRIGGER IF EXISTS trigger_generate_username_slug ON public.profiles;
-CREATE TRIGGER trigger_generate_username_slug
-  BEFORE INSERT OR UPDATE OF display_name ON public.profiles
+-- 6. Triggers para generar slug automáticamente
+-- Trigger para INSERT: solo si username_slug es NULL
+DROP TRIGGER IF EXISTS trigger_generate_username_slug_insert ON public.profiles;
+CREATE TRIGGER trigger_generate_username_slug_insert
+  BEFORE INSERT ON public.profiles
   FOR EACH ROW
-  WHEN (NEW.username_slug IS NULL OR OLD.display_name IS DISTINCT FROM NEW.display_name)
+  WHEN (NEW.username_slug IS NULL)
+  EXECUTE FUNCTION generate_unique_username_slug();
+
+-- Trigger para UPDATE: solo si display_name cambió
+DROP TRIGGER IF EXISTS trigger_generate_username_slug_update ON public.profiles;
+CREATE TRIGGER trigger_generate_username_slug_update
+  BEFORE UPDATE OF display_name ON public.profiles
+  FOR EACH ROW
+  WHEN (OLD.display_name IS DISTINCT FROM NEW.display_name)
   EXECUTE FUNCTION generate_unique_username_slug();
 
 -- 7. Actualizar RLS para perfiles

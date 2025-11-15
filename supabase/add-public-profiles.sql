@@ -140,31 +140,47 @@ CREATE TRIGGER trigger_generate_username_slug_update
   WHEN (OLD.display_name IS DISTINCT FROM NEW.display_name)
   EXECUTE FUNCTION generate_unique_username_slug();
 
--- 7. Actualizar RLS para perfiles
+-- 7. Función auxiliar para verificar si el usuario es admin/reviewer
+-- (sin recursión en profiles)
+CREATE OR REPLACE FUNCTION is_admin_or_reviewer()
+RETURNS BOOLEAN
+LANGUAGE sql
+SECURITY DEFINER
+STABLE
+AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM profiles
+    WHERE id = auth.uid()
+    AND tier_code IN ('admin', 'reviewer')
+  );
+$$;
+
+-- 8. Actualizar RLS para perfiles
 -- Eliminar políticas antiguas
 DROP POLICY IF EXISTS "Perfiles públicos visibles para todos" ON public.profiles;
 DROP POLICY IF EXISTS "Usuarios pueden ver su propio perfil" ON public.profiles;
 DROP POLICY IF EXISTS "Usuarios pueden actualizar su propio perfil" ON public.profiles;
+DROP POLICY IF EXISTS "Admins pueden ver perfiles ocultos" ON public.profiles;
 
--- Crear nuevas políticas con lógica de perfil oculto
+-- Política 1: Perfiles públicos y propios
 CREATE POLICY "Perfiles públicos visibles para todos"
   ON public.profiles
   FOR SELECT
   USING (
     -- Perfil no oculto - visible para todos
-    profile_hidden = false
+    COALESCE(profile_hidden, false) = false
     OR
-    -- Es el dueño del perfil
+    -- Es el dueño del perfil - SIEMPRE puede ver su propio perfil
     auth.uid() = id
-    OR
-    -- Es admin o reviewer (pueden ver perfiles ocultos)
-    EXISTS (
-      SELECT 1 FROM profiles p
-      WHERE p.id = auth.uid()
-      AND p.tier_code IN ('admin', 'reviewer')
-    )
   );
 
+-- Política 2: Admins y reviewers pueden ver todos los perfiles
+CREATE POLICY "Admins pueden ver perfiles ocultos"
+  ON public.profiles
+  FOR SELECT
+  USING (is_admin_or_reviewer());
+
+-- Política 3: Actualización de perfil propio
 CREATE POLICY "Usuarios pueden actualizar su propio perfil"
   ON public.profiles
   FOR UPDATE
@@ -172,7 +188,7 @@ CREATE POLICY "Usuarios pueden actualizar su propio perfil"
   USING (auth.uid() = id)
   WITH CHECK (auth.uid() = id);
 
--- 8. Vista de perfil público (sin datos sensibles)
+-- 9. Vista de perfil público (sin datos sensibles)
 CREATE OR REPLACE VIEW v_public_profiles AS
 SELECT
   p.id,
@@ -215,7 +231,7 @@ WHERE
     AND admin.tier_code IN ('admin', 'reviewer')
   );
 
--- 9. Función para obtener perfil por username
+-- 10. Función para obtener perfil por username
 CREATE OR REPLACE FUNCTION get_profile_by_username(p_username_slug TEXT)
 RETURNS TABLE(
   id UUID,
@@ -295,7 +311,7 @@ BEGIN
 END;
 $$;
 
--- 10. Vista de reportes del usuario (para página de perfil)
+-- 11. Vista de reportes del usuario (para página de perfil)
 CREATE OR REPLACE VIEW v_user_public_reports AS
 SELECT
   ft.id,
@@ -325,11 +341,11 @@ WHERE
     AND admin.tier_code IN ('admin', 'reviewer')
   );
 
--- 11. Comentarios
+-- 12. Comentarios
 COMMENT ON COLUMN profiles.profile_hidden IS 'Si es true, el perfil solo es visible para el dueño y admins/reviewers';
 COMMENT ON COLUMN profiles.username_slug IS 'Slug único para URL del perfil (/u/username-slug)';
 
--- 12. Función para toggle profile visibility
+-- 13. Función para toggle profile visibility
 CREATE OR REPLACE FUNCTION toggle_profile_visibility()
 RETURNS BOOLEAN
 LANGUAGE plpgsql

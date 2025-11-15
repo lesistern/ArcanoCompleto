@@ -13,7 +13,7 @@ export interface SpellSearchResult {
   school: string;
   description: string;
   casting_time: string;
-  range_text: string;
+  range_info: string;
   duration: string;
   relevance: number;
 }

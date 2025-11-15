@@ -287,6 +287,7 @@ export default function Header() {
                     {/* Menu Items */}
                     <Link
                       href="/profile"
+                      prefetch={false}
                       className="flex items-center space-x-2 px-4 py-2 text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-dungeon-100"
                       onClick={() => setUserMenuOpen(false)}
                     >
@@ -296,6 +297,7 @@ export default function Header() {
 
                     <Link
                       href="/profile/settings"
+                      prefetch={false}
                       className="flex items-center space-x-2 px-4 py-2 text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-dungeon-100"
                       onClick={() => setUserMenuOpen(false)}
                     >
@@ -750,6 +752,7 @@ export default function Header() {
             {/* Menu Items */}
             <Link
               href="/profile"
+              prefetch={false}
               className="flex items-center space-x-2 px-4 py-2 text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-dungeon-100"
               onClick={() => setUserMenuOpen(false)}
             >
@@ -759,6 +762,7 @@ export default function Header() {
 
             <Link
               href="/profile/settings"
+              prefetch={false}
               className="flex items-center space-x-2 px-4 py-2 text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-dungeon-100"
               onClick={() => setUserMenuOpen(false)}
             >

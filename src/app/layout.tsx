@@ -3,9 +3,19 @@ import { Merriweather, Roboto_Flex } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import BackToHome from "@/components/BackToHome";
-import ScrollToTop from "@/components/ScrollToTop";
-import FeedbackButton from "@/components/FeedbackButton";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import dynamic from "next/dynamic";
+
+// Lazy load non-critical floating components (reduce initial bundle size)
+const BackToHome = dynamic(() => import("@/components/BackToHome"), {
+  ssr: false,
+});
+const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"), {
+  ssr: false,
+});
+const FeedbackButton = dynamic(() => import("@/components/FeedbackButton"), {
+  ssr: false,
+});
 
 const merriweather = Merriweather({
   weight: ["700", "900"],
@@ -43,6 +53,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );

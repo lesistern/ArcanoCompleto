@@ -25,7 +25,8 @@ interface UserProfile {
   display_name: string | null;
   tier_code: string;
   tier_codes: string[];
-  karma_points: number;
+  experience_points: number;
+  level: number;
   reports_submitted: number;
   reports_resolved: number;
   total_votes_received: number;
@@ -402,8 +403,9 @@ export default function AdminUsuariosPage() {
                             <div className="flex items-center gap-4 text-xs text-dungeon-400">
                               <span className="flex items-center gap-1">
                                 <Award className="w-3 h-3" />
-                                {user.karma_points} karma
+                                Nivel {user.level}
                               </span>
+                              <span>{user.experience_points.toLocaleString()} EXP</span>
                               <span>{user.reports_submitted} reportes</span>
                               <span>{user.reports_resolved} resueltos</span>
                             </div>

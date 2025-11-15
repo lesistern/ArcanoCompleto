@@ -15,7 +15,8 @@ import {
   FileText,
   Loader2,
   Calendar,
-  Filter
+  Filter,
+  Download
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -100,6 +101,14 @@ export default function AdminReportesPage() {
   const [totalReports, setTotalReports] = useState(0);
   const [totalVotes, setTotalVotes] = useState(0);
 
+  // Estados para el exportador
+  const [exportLoading, setExportLoading] = useState(false);
+  const [exportFilters, setExportFilters] = useState({
+    category: 'all',
+    status: 'all',
+    priority: 'all',
+  });
+
   const supabase = createClient();
 
   useEffect(() => {
@@ -118,11 +127,11 @@ export default function AdminReportesPage() {
       // Verificar si es admin o reviewer
       const { data: profile } = await supabase
         .from('profiles')
-        .select('tier_code')
+        .select('tier')
         .eq('id', user.id)
         .single();
 
-      if (!profile || !['admin', 'reviewer'].includes(profile.tier_code)) {
+      if (!profile || !['admin', 'reviewer'].includes(profile.tier)) {
         router.push('/');
         return;
       }
@@ -215,6 +224,89 @@ export default function AdminReportesPage() {
       console.error('Error loading stats:', err);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function exportToMarkdown() {
+    setExportLoading(true);
+    try {
+      // Construir query con filtros
+      let query = supabase
+        .from('v_feedback_tickets_with_author')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      // Aplicar filtros
+      if (exportFilters.category !== 'all') {
+        query = query.eq('category', exportFilters.category);
+      }
+      if (exportFilters.status !== 'all') {
+        query = query.eq('status', exportFilters.status);
+      }
+      if (exportFilters.priority !== 'all') {
+        query = query.eq('priority', exportFilters.priority);
+      }
+
+      const { data: reports, error } = await query;
+
+      if (error) throw error;
+
+      // Generar contenido Markdown
+      let markdown = `# Reporte de Feedback - Beta Testers\n\n`;
+      markdown += `**Fecha de exportación:** ${new Date().toLocaleString('es-ES')}\n\n`;
+      markdown += `**Filtros aplicados:**\n`;
+      markdown += `- Categoría: ${exportFilters.category === 'all' ? 'Todas' : CATEGORY_LABELS[exportFilters.category]}\n`;
+      markdown += `- Estado: ${exportFilters.status === 'all' ? 'Todos' : STATUS_LABELS[exportFilters.status]}\n`;
+      markdown += `- Prioridad: ${exportFilters.priority === 'all' ? 'Todas' : exportFilters.priority.toUpperCase()}\n\n`;
+      markdown += `**Total de reportes:** ${reports?.length || 0}\n\n`;
+      markdown += `---\n\n`;
+
+      // Agregar cada reporte
+      reports?.forEach((report, index) => {
+        markdown += `## ${index + 1}. ${report.title}\n\n`;
+        markdown += `**ID:** ${report.id}\n`;
+        markdown += `**Categoría:** ${CATEGORY_LABELS[report.category]}\n`;
+        markdown += `**Estado:** ${STATUS_LABELS[report.status]}\n`;
+        markdown += `**Prioridad:** ${report.priority?.toUpperCase() || 'N/A'}\n`;
+        markdown += `**Autor:** ${report.author_display_name || 'Usuario'} (@${report.author_username})\n`;
+        markdown += `**Fecha:** ${new Date(report.created_at).toLocaleString('es-ES')}\n`;
+        markdown += `**Votos:** ${report.vote_count || 0}\n\n`;
+        markdown += `### Descripción\n\n`;
+        markdown += `${report.description || 'Sin descripción'}\n\n`;
+
+        if (report.page_url) {
+          markdown += `**URL de la página:** ${report.page_url}\n\n`;
+        }
+
+        if (report.browser_info) {
+          markdown += `**Información del navegador:** ${report.browser_info}\n\n`;
+        }
+
+        markdown += `---\n\n`;
+      });
+
+      // Crear archivo y descargar
+      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+
+      // Generar nombre de archivo con fecha y filtros
+      const fecha = new Date().toISOString().split('T')[0];
+      const categoryPart = exportFilters.category !== 'all' ? `-${exportFilters.category}` : '';
+      const statusPart = exportFilters.status !== 'all' ? `-${exportFilters.status}` : '';
+      link.download = `reportes-beta-${fecha}${categoryPart}${statusPart}.md`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+    } catch (err) {
+      console.error('Error exportando reportes:', err);
+      alert('Error al exportar reportes. Por favor, intenta de nuevo.');
+    } finally {
+      setExportLoading(false);
     }
   }
 
@@ -425,7 +517,7 @@ export default function AdminReportesPage() {
         </Card>
 
         {/* Recent Reports */}
-        <Card className="bg-dungeon-800 border-dungeon-700">
+        <Card className="bg-dungeon-800 border-dungeon-700 mb-8">
           <CardHeader>
             <CardTitle className="text-gold-400 flex items-center gap-2">
               <Clock className="w-5 h-5" />
@@ -476,6 +568,102 @@ export default function AdminReportesPage() {
                 ))}
               </div>
             )}
+          </CardContent>
+        </Card>
+
+        {/* Exportador de Reportes */}
+        <Card className="bg-gradient-to-br from-gold-900/20 to-dungeon-800 border-gold-500/30">
+          <CardHeader>
+            <CardTitle className="text-gold-400 flex items-center gap-2">
+              <Download className="w-5 h-5" />
+              Exportar Reportes a Markdown
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {/* Filtros */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Filtro de Categoría */}
+                <div>
+                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
+                    Categoría
+                  </label>
+                  <select
+                    value={exportFilters.category}
+                    onChange={(e) => setExportFilters({ ...exportFilters, category: e.target.value })}
+                    className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="all">Todas las categorías</option>
+                    {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
+                      <option key={key} value={key}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Filtro de Estado */}
+                <div>
+                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
+                    Estado
+                  </label>
+                  <select
+                    value={exportFilters.status}
+                    onChange={(e) => setExportFilters({ ...exportFilters, status: e.target.value })}
+                    className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="all">Todos los estados</option>
+                    {Object.entries(STATUS_LABELS).map(([key, label]) => (
+                      <option key={key} value={key}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Filtro de Prioridad */}
+                <div>
+                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
+                    Prioridad
+                  </label>
+                  <select
+                    value={exportFilters.priority}
+                    onChange={(e) => setExportFilters({ ...exportFilters, priority: e.target.value })}
+                    className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="all">Todas las prioridades</option>
+                    <option value="low">Baja (LOW)</option>
+                    <option value="medium">Media (MEDIUM)</option>
+                    <option value="high">Alta (HIGH)</option>
+                    <option value="critical">Crítica (CRITICAL)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Botón de Exportar */}
+              <div className="flex items-center justify-between pt-4 border-t border-dungeon-700">
+                <p className="text-sm text-dungeon-400">
+                  Los reportes se exportarán en formato Markdown (.md) con los filtros seleccionados
+                </p>
+                <button
+                  onClick={exportToMarkdown}
+                  disabled={exportLoading}
+                  className="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-700 hover:from-gold-600 hover:to-gold-800 text-dungeon-950 font-semibold rounded-lg transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {exportLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Exportando...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="w-5 h-5" />
+                      Exportar a .md
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

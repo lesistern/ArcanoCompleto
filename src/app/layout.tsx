@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToHome from "@/components/BackToHome";
 import ScrollToTop from "@/components/ScrollToTop";
+import FeedbackButton from "@/components/FeedbackButton";
 
 const merriweather = Merriweather({
   weight: ["700", "900"],
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Header />
         <BackToHome />
         <ScrollToTop />
+        <FeedbackButton />
         <main className="flex-1">
           {children}
         </main>

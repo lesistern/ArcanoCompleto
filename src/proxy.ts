@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 /**
- * Middleware de Next.js para proteger rutas
+ * Proxy de Next.js para proteger rutas
  *
  * Protege toda la aplicación excepto:
  * - /beta-landing (página pública para no autenticados)
@@ -14,7 +14,7 @@ import { NextResponse, type NextRequest } from 'next/server';
  * 1. Usuario autenticado
  * 2. Usuario con rol 'beta_tester' o 'admin'
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // ========================================================================
@@ -116,7 +116,7 @@ export async function middleware(request: NextRequest) {
 /**
  * Configuración del matcher
  *
- * Define qué rutas pasan por el middleware
+ * Define qué rutas pasan por el proxy
  * - Excluye: api routes, _next/static, _next/image, favicon.ico
  */
 export const config = {

@@ -46,11 +46,11 @@ function objectToJsonb(obj) {
 function generateFeatInsert(feat) {
   const slug = normalizeSlug(feat.name);
 
-  // Categorizar
+  // Categorizar (en español para coincidir con el constraint de la BD)
   let category = 'General';
-  if (feat.is_metamagic) category = 'Metamagic';
-  else if (feat.is_item_creation) category = 'Item Creation';
-  else if (feat.is_fighter_bonus) category = 'Fighter Bonus';
+  if (feat.is_metamagic) category = 'Metamágica';
+  else if (feat.is_item_creation) category = 'Creación de objetos';
+  else if (feat.is_fighter_bonus) category = 'Combate';
 
   // Prerequisites como texto simple
   const prereqText = feat.prerequisites && feat.prerequisites !== 'None' ? feat.prerequisites : 'None';
@@ -155,9 +155,9 @@ ORDER BY count DESC;
   // Estadísticas
   const byCategory = {};
   feats.forEach(feat => {
-    const cat = feat.is_metamagic ? 'Metamagic' :
-                feat.is_item_creation ? 'Item Creation' :
-                feat.is_fighter_bonus ? 'Fighter Bonus' : 'General';
+    const cat = feat.is_metamagic ? 'Metamágica' :
+                feat.is_item_creation ? 'Creación de objetos' :
+                feat.is_fighter_bonus ? 'Combate' : 'General';
     byCategory[cat] = (byCategory[cat] || 0) + 1;
   });
 

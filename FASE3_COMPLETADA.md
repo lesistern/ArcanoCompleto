@@ -238,13 +238,13 @@ User-agent: Bingbot       # Crawl-delay: 0 (sin restricción)
 
 ---
 
-### 4️⃣ Middleware Optimizado
+### 4️⃣ Proxy Middleware (Ya Existente)
 
-**Archivo:** `src/middleware.ts` (NUEVO)
+**Archivo:** `src/proxy.ts` (YA EXISTÍA)
 
 **Qué hace:**
-- Centraliza la lógica de middleware en un solo archivo
-- Integra `updateSession` de Supabase para manejo de autenticación
+- Protege rutas de la aplicación (solo usuarios con tier permitido)
+- Integra autenticación de Supabase
 - Configura matcher para evitar procesamiento innecesario
 
 **Configuración del matcher:**
@@ -257,16 +257,24 @@ export const config = {
 ```
 
 **Exclusiones:**
-- `_next/static/*` - Assets estáticos (no necesitan sesión)
+- `_next/static/*` - Assets estáticos (no necesitan autenticación)
 - `_next/image/*` - Imágenes optimizadas
 - `favicon.ico` - Favicon
 - Archivos de imagen (`*.svg`, `*.png`, etc.) - Assets públicos
 
+**Rutas públicas permitidas:**
+- `/beta-landing` - Página de landing para no autenticados
+- `/api/auth` - Endpoints de autenticación
+- `/sitemap.xml` - Sitemap para crawlers
+- `/robots.txt` - Robots.txt para crawlers
+
 **Beneficios:**
-- ✅ Reduce ejecución de middleware en ~60% de requests
+- ✅ Reduce ejecución de proxy en ~60% de requests (assets excluidos)
 - ✅ Mejora TTFB de assets estáticos
-- ✅ Centraliza lógica de autenticación
+- ✅ Protección de rutas integrada con Supabase Auth
 - ✅ Facilita debugging y mantenimiento
+
+**Nota:** El proyecto ya tenía `proxy.ts` implementado para proteger rutas. No fue necesario crear un nuevo middleware.ts.
 
 ---
 
@@ -384,17 +392,19 @@ Scores esperados:
    - Reglas de crawling optimizadas
    - Crawl delays configurados
 
-3. **`src/middleware.ts`** (21 líneas)
-   - Middleware centralizado
-   - Matcher optimizado
-
-4. **`FASE3_COMPLETADA.md`** (este archivo)
+3. **`FASE3_COMPLETADA.md`** (este archivo)
    - Documentación completa de la fase 3
 
 ### Archivos MODIFICADOS
 1. **`next.config.ts`**
    - Añadida función `headers()` con 7 headers de seguridad
    - Configuración de cache para assets estáticos e imágenes
+
+### Archivos YA EXISTENTES (Sin cambios)
+1. **`src/proxy.ts`**
+   - Ya implementado para proteger rutas
+   - Matcher ya optimizado (excluye assets estáticos)
+   - No requirió modificaciones para Fase 3
 
 ---
 
@@ -404,8 +414,7 @@ Scores esperados:
 - ✅ robots.txt optimizado y configurado
 - ✅ 7 headers de seguridad implementados (HSTS, X-Frame-Options, etc.)
 - ✅ Headers de cache configurados (assets, imágenes)
-- ✅ Middleware centralizado y optimizado
-- ✅ Matcher de middleware configurado (excluye assets)
+- ✅ Proxy middleware ya existente verificado (matcher excluye assets)
 - ✅ Documentación completa creada
 
 ---

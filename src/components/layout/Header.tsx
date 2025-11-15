@@ -10,6 +10,7 @@ import { useAuth } from '@/hooks/useAuth';
 import AuthModal from '@/components/auth/AuthModal';
 import PasswordResetModal from '@/components/auth/PasswordResetModal';
 import AdminInviteModal from '@/components/auth/AdminInviteModal';
+import SearchBar from '@/components/search/SearchBar';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,8 +19,6 @@ export default function Header() {
   const [passwordResetModalOpen, setPasswordResetModalOpen] = useState(false);
   const [adminInviteModalOpen, setAdminInviteModalOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const {
     user,
@@ -33,65 +32,6 @@ export default function Header() {
     sendPasswordReset,
     inviteUserByEmail,
   } = useAuth();
-
-  // Diccionario bilingüe para búsqueda
-  const searchData = {
-    classes: [
-      { es: 'Bárbaro', en: 'Barbarian', slug: 'barbarian' },
-      { es: 'Bardo', en: 'Bard', slug: 'bard' },
-      { es: 'Clérigo', en: 'Cleric', slug: 'cleric' },
-      { es: 'Druida', en: 'Druid', slug: 'druid' },
-      { es: 'Guerrero', en: 'Fighter', slug: 'fighter' },
-      { es: 'Monje', en: 'Monk', slug: 'monk' },
-      { es: 'Paladín', en: 'Paladin', slug: 'paladin' },
-      { es: 'Explorador', en: 'Ranger', slug: 'ranger' },
-      { es: 'Pícaro', en: 'Rogue', slug: 'rogue' },
-      { es: 'Hechicero', en: 'Sorcerer', slug: 'sorcerer' },
-      { es: 'Mago', en: 'Wizard', slug: 'wizard' },
-    ],
-    races: [
-      { es: 'Humano', en: 'Human', slug: 'human' },
-      { es: 'Elfo', en: 'Elf', slug: 'elf' },
-      { es: 'Enano', en: 'Dwarf', slug: 'dwarf' },
-      { es: 'Mediano', en: 'Halfling', slug: 'halfling' },
-      { es: 'Gnomo', en: 'Gnome', slug: 'gnome' },
-      { es: 'Semielfo', en: 'Half-Elf', slug: 'half-elf' },
-      { es: 'Semiorco', en: 'Half-Orc', slug: 'half-orc' },
-    ],
-    spells: [
-      { es: 'Bola de Fuego', en: 'Fireball', slug: 'bola-de-fuego' },
-      { es: 'Rayo', en: 'Lightning Bolt', slug: 'rayo' },
-      { es: 'Curar Heridas Leves', en: 'Cure Light Wounds', slug: 'curar-heridas-leves' },
-      { es: 'Detectar Magia', en: 'Detect Magic', slug: 'detectar-magia' },
-      { es: 'Escudo Arcano', en: 'Shield', slug: 'escudo-arcano' },
-      { es: 'Misil Mágico', en: 'Magic Missile', slug: 'misil-magico' },
-      { es: 'Invisibilidad', en: 'Invisibility', slug: 'invisibilidad' },
-      { es: 'Volar', en: 'Fly', slug: 'volar' },
-    ],
-  };
-
-  // Función de búsqueda bilingüe
-  const searchItems = (category: 'classes' | 'races' | 'spells', query: string) => {
-    const lowerQuery = query.toLowerCase();
-    return searchData[category].filter(item =>
-      item.es.toLowerCase().includes(lowerQuery) ||
-      item.en.toLowerCase().includes(lowerQuery)
-    );
-  };
-
-  // Obtener todas las coincidencias
-  const classResults = searchItems('classes', searchQuery).slice(0, 3);
-  const raceResults = searchItems('races', searchQuery).slice(0, 3);
-  const spellResults = searchItems('spells', searchQuery).slice(0, 3);
-  const hasResults = classResults.length > 0 || raceResults.length > 0 || spellResults.length > 0;
-
-  // Sugerencias populares cuando no hay resultados
-  const popularSuggestions = [
-    { text: 'Guerrero', type: 'clase' },
-    { text: 'Mago', type: 'clase' },
-    { text: 'Elfo', type: 'raza' },
-    { text: 'Bola de Fuego', type: 'conjuro' },
-  ];
 
   const getTierColor = (tierCode: string) => {
     const colors: Record<string, string> = {
@@ -199,17 +139,8 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile: Search and Login buttons */}
+        {/* Mobile: Login button and menu toggle */}
         <div className="flex lg:hidden items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSearchOpen(!searchOpen)}
-            className="text-dungeon-300 p-2"
-          >
-            <Search className="h-5 w-5" />
-          </Button>
-
           {user && profile ? (
             <button
               onClick={() => setUserMenuOpen(!userMenuOpen)}
@@ -261,15 +192,8 @@ export default function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4 lg:items-center">
           <LanguageSelector />
 
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-dungeon-300"
-            onClick={() => setSearchOpen(!searchOpen)}
-          >
-            <Search className="h-4 w-4" />
-            <span className="ml-2 text-sm">Buscar</span>
-          </Button>
+          {/* Full-Text Search Bar */}
+          <SearchBar />
 
           {/* User Menu / Login Button */}
           {user && profile ? (
@@ -410,325 +334,6 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile Search Bar - Expandible */}
-      <div
-        className={`lg:hidden overflow-visible transition-all duration-300 ease-in-out ${
-          searchOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="px-4 py-4">
-          <div className="relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Buscar clases, razas, conjuros..."
-              className="w-full px-4 py-3 pl-10 bg-dungeon-800 border border-gold-500/30 rounded-lg text-dungeon-100 placeholder-dungeon-400 focus:outline-none focus:border-gold-500 focus:shadow-[0_0_0_1px_rgba(234,179,8,0.5)] transition-all"
-              autoFocus={searchOpen}
-            />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-dungeon-400" />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-dungeon-400 hover:text-dungeon-200 transition-colors z-10"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            )}
-
-            {/* Autocomplete Dropdown */}
-            {searchQuery && searchOpen && (
-              <div
-                className="absolute top-full left-0 right-0 mt-2 bg-dungeon-800 border border-gold-500/30 rounded-lg shadow-xl max-h-64 overflow-y-auto z-50"
-                style={{
-                  animation: 'slideDown 200ms ease-out, fadeIn 200ms ease-out',
-                  transformOrigin: 'top'
-                }}
-              >
-                <style jsx>{`
-                  @keyframes slideDown {
-                    from {
-                      opacity: 0;
-                      transform: translateY(-8px);
-                    }
-                    to {
-                      opacity: 1;
-                      transform: translateY(0);
-                    }
-                  }
-                  @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                  }
-                  @keyframes slideInLeft {
-                    from {
-                      opacity: 0;
-                      transform: translateX(-10px);
-                    }
-                    to {
-                      opacity: 1;
-                      transform: translateX(0);
-                    }
-                  }
-                `}</style>
-                {/* Clases */}
-                {classResults.map((item, idx) => (
-                  <Link
-                    key={`class-${idx}`}
-                    href={`/clases/${item.slug}`}
-                    onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                    className="flex items-center px-4 py-2.5 hover:bg-dungeon-700 hover:pl-5 transition-all duration-200 border-b border-dungeon-700 last:border-b-0"
-                    style={{
-                      animation: `slideInLeft 300ms ease-out ${idx * 50}ms backwards`
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center mr-3 transition-all duration-200">
-                      <span className="text-red-400 text-xs font-bold">C</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-dungeon-100">{item.es}</div>
-                      <div className="text-xs text-dungeon-400">Clase · {item.en}</div>
-                    </div>
-                  </Link>
-                ))}
-
-                {/* Razas */}
-                {raceResults.map((item, idx) => (
-                  <Link
-                    key={`race-${idx}`}
-                    href={`/razas/${item.slug}`}
-                    onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                    className="flex items-center px-4 py-2.5 hover:bg-dungeon-700 hover:pl-5 transition-all duration-200 border-b border-dungeon-700 last:border-b-0"
-                    style={{
-                      animation: `slideInLeft 300ms ease-out ${(idx + classResults.length) * 50}ms backwards`
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center mr-3 transition-all duration-200">
-                      <span className="text-green-400 text-xs font-bold">R</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-dungeon-100">{item.es}</div>
-                      <div className="text-xs text-dungeon-400">Raza · {item.en}</div>
-                    </div>
-                  </Link>
-                ))}
-
-                {/* Conjuros */}
-                {spellResults.map((item, idx) => (
-                  <Link
-                    key={`spell-${idx}`}
-                    href={`/hechizos/${item.slug}`}
-                    onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                    className="flex items-center px-4 py-2.5 hover:bg-dungeon-700 hover:pl-5 transition-all duration-200 border-b border-dungeon-700 last:border-b-0"
-                    style={{
-                      animation: `slideInLeft 300ms ease-out ${(idx + classResults.length + raceResults.length) * 50}ms backwards`
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center mr-3 transition-all duration-200">
-                      <span className="text-purple-400 text-xs font-bold">H</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-dungeon-100">{item.es}</div>
-                      <div className="text-xs text-dungeon-400">Conjuro · {item.en}</div>
-                    </div>
-                  </Link>
-                ))}
-
-                {/* No results - Show suggestions */}
-                {!hasResults && (
-                  <div
-                    className="px-4 py-4"
-                    style={{ animation: 'fadeIn 300ms ease-out' }}
-                  >
-                    <p className="text-center text-dungeon-400 text-sm mb-3">
-                      No se encontraron resultados para "{searchQuery}"
-                    </p>
-                    <p className="text-xs text-dungeon-500 text-center mb-2">Búsquedas populares:</p>
-                    <div className="space-y-1">
-                      {popularSuggestions.map((suggestion, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setSearchQuery(suggestion.text)}
-                          className="w-full text-left px-3 py-2 rounded text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-gold-500 transition-colors"
-                          style={{
-                            animation: `slideInLeft 300ms ease-out ${idx * 50}ms backwards`
-                          }}
-                        >
-                          <span className="font-medium">{suggestion.text}</span>
-                          <span className="text-xs text-dungeon-500 ml-2">({suggestion.type})</span>
-                        </button>
-                      ))}
-                    </div>
-                    <p className="text-xs text-dungeon-500 text-center mt-3">
-                      💡 Puedes buscar en inglés o español
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Search Bar - Expandible */}
-      <div
-        className={`hidden lg:block overflow-visible transition-all duration-300 ease-in-out ${
-          searchOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="border-t border-dungeon-700 px-4 py-4 bg-dungeon-900/50">
-          <div className="max-w-2xl mx-auto relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Buscar clases, razas, conjuros..."
-              className="w-full px-4 py-3 pl-10 bg-dungeon-800 border border-gold-500/30 rounded-lg text-dungeon-100 placeholder-dungeon-400 focus:outline-none focus:border-gold-500 focus:shadow-[0_0_0_1px_rgba(234,179,8,0.5)] transition-all"
-              autoFocus={searchOpen}
-            />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-dungeon-400" />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-dungeon-400 hover:text-dungeon-200 transition-colors z-10"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            )}
-
-            {/* Autocomplete Dropdown - Desktop */}
-            {searchQuery && searchOpen && (
-              <div
-                className="absolute top-full left-0 right-0 mt-2 bg-dungeon-800 border border-gold-500/30 rounded-lg shadow-xl max-h-64 overflow-y-auto z-50"
-                style={{
-                  animation: 'slideDown 200ms ease-out, fadeIn 200ms ease-out',
-                  transformOrigin: 'top'
-                }}
-              >
-                <style jsx>{`
-                  @keyframes slideDown {
-                    from {
-                      opacity: 0;
-                      transform: translateY(-8px);
-                    }
-                    to {
-                      opacity: 1;
-                      transform: translateY(0);
-                    }
-                  }
-                  @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                  }
-                  @keyframes slideInLeft {
-                    from {
-                      opacity: 0;
-                      transform: translateX(-10px);
-                    }
-                    to {
-                      opacity: 1;
-                      transform: translateX(0);
-                    }
-                  }
-                `}</style>
-                {/* Clases */}
-                {classResults.map((item, idx) => (
-                  <Link
-                    key={`class-${idx}`}
-                    href={`/clases/${item.slug}`}
-                    onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                    className="flex items-center px-4 py-2.5 hover:bg-dungeon-700 hover:pl-5 transition-all duration-200 border-b border-dungeon-700 last:border-b-0"
-                    style={{
-                      animation: `slideInLeft 300ms ease-out ${idx * 50}ms backwards`
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center mr-3 transition-all duration-200">
-                      <span className="text-red-400 text-xs font-bold">C</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-dungeon-100">{item.es}</div>
-                      <div className="text-xs text-dungeon-400">Clase · {item.en}</div>
-                    </div>
-                  </Link>
-                ))}
-
-                {/* Razas */}
-                {raceResults.map((item, idx) => (
-                  <Link
-                    key={`race-${idx}`}
-                    href={`/razas/${item.slug}`}
-                    onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                    className="flex items-center px-4 py-2.5 hover:bg-dungeon-700 hover:pl-5 transition-all duration-200 border-b border-dungeon-700 last:border-b-0"
-                    style={{
-                      animation: `slideInLeft 300ms ease-out ${(idx + classResults.length) * 50}ms backwards`
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center mr-3 transition-all duration-200">
-                      <span className="text-green-400 text-xs font-bold">R</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-dungeon-100">{item.es}</div>
-                      <div className="text-xs text-dungeon-400">Raza · {item.en}</div>
-                    </div>
-                  </Link>
-                ))}
-
-                {/* Conjuros */}
-                {spellResults.map((item, idx) => (
-                  <Link
-                    key={`spell-${idx}`}
-                    href={`/hechizos/${item.slug}`}
-                    onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                    className="flex items-center px-4 py-2.5 hover:bg-dungeon-700 hover:pl-5 transition-all duration-200 border-b border-dungeon-700 last:border-b-0"
-                    style={{
-                      animation: `slideInLeft 300ms ease-out ${(idx + classResults.length + raceResults.length) * 50}ms backwards`
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center mr-3 transition-all duration-200">
-                      <span className="text-purple-400 text-xs font-bold">H</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-dungeon-100">{item.es}</div>
-                      <div className="text-xs text-dungeon-400">Conjuro · {item.en}</div>
-                    </div>
-                  </Link>
-                ))}
-
-                {/* No results - Show suggestions */}
-                {!hasResults && (
-                  <div
-                    className="px-4 py-4"
-                    style={{ animation: 'fadeIn 300ms ease-out' }}
-                  >
-                    <p className="text-center text-dungeon-400 text-sm mb-3">
-                      No se encontraron resultados para "{searchQuery}"
-                    </p>
-                    <p className="text-xs text-dungeon-500 text-center mb-2">Búsquedas populares:</p>
-                    <div className="space-y-1">
-                      {popularSuggestions.map((suggestion, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setSearchQuery(suggestion.text)}
-                          className="w-full text-left px-3 py-2 rounded text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-gold-500 transition-colors"
-                          style={{
-                            animation: `slideInLeft 300ms ease-out ${idx * 50}ms backwards`
-                          }}
-                        >
-                          <span className="font-medium">{suggestion.text}</span>
-                          <span className="text-xs text-dungeon-500 ml-2">({suggestion.type})</span>
-                        </button>
-                      ))}
-                    </div>
-                    <p className="text-xs text-dungeon-500 text-center mt-3">
-                      💡 Puedes buscar en inglés o español
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
 
       {/* Mobile menu */}
       {mobileMenuOpen && (

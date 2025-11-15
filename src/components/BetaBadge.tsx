@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/ui/Button';
 import { LogOut, Shield, User } from 'lucide-react';
 
 interface Profile {

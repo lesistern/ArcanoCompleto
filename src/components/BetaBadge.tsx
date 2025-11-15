@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createBrowserClient } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { LogOut, Shield, User } from 'lucide-react';
@@ -17,7 +17,7 @@ export function BetaBadge() {
   const [loading, setLoading] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
   const router = useRouter();
-  const supabase = createBrowserClient();
+  const supabase = createClient();
 
   useEffect(() => {
     loadProfile();

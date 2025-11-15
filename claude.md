@@ -2,6 +2,70 @@
 
 Este documento sirve como referencia completa del proyecto para futuras sesiones de desarrollo.
 
+---
+
+## 🚀 ÚLTIMA SESIÓN: Preparación para Deployment en Vercel (2025-01-14)
+
+### ✅ Completado en esta sesión:
+
+**1. Corrección de Errores TypeScript (8 errores)**
+- ✅ Fixed missing properties en DnDClass (`classFeatures`, `levelProgression`, `source`)
+- ✅ Fixed type assertions para `AbilityScore[]` y `SavingThrow[]`
+- ✅ Fixed Button component prop "as" (removido)
+- ✅ Fixed Size y CreatureType type assertions en páginas de razas
+- ✅ Fixed `levelAdjustment` possibly undefined (3 instancias en BasicInfoSection)
+- ✅ Fixed OAuthProvider type mismatch en AuthModal
+- ✅ Fixed `useMergedContent` type assertion
+- ✅ Fixed `getRaceBySlugBrowser` convertido a async/await
+
+**2. Archivos de Deployment Creados**
+- ✅ [.gitignore](d:\CalabozosYDragones\dnd-compendium\.gitignore) - Actualizado con exclusiones de `.env*` y `nul`
+- ✅ [vercel.json](d:\CalabozosYDragones\dnd-compendium\vercel.json) - Configuración de Vercel con env variables
+- ✅ [.env.example](d:\CalabozosYDragones\dnd-compendium\.env.example) - Template de variables de entorno
+- ✅ [DEPLOY_VERCEL.md](d:\CalabozosYDragones\dnd-compendium\DEPLOY_VERCEL.md) - Guía completa paso a paso (400+ líneas)
+
+**3. Build de Producción**
+- ✅ Build exitoso: `npm run build` completa sin errores
+- ✅ 214 páginas generadas (SSG + SSR):
+  - 11 clases dinámicas
+  - 16 razas dinámicas
+  - 47 dotes estáticas
+  - 43 habilidades estáticas
+  - 73 objetos/armas estáticos
+  - Páginas adicionales (home, editor, iconos, etc.)
+
+**4. Git y GitHub**
+- ✅ Repositorio Git inicializado
+- ✅ Eliminados archivos problemáticos (`nul` - nombre reservado Windows)
+- ✅ Configuración de usuario Git (`lesistern@gmail.com`)
+- ✅ Commit inicial realizado (198 archivos, 113k+ insertions)
+- ✅ Subido a GitHub: **https://github.com/lesistern/ArcanoCompleto**
+
+**5. Estado Actual del Proyecto**
+- ✅ **Código:** Listo para deployment
+- ✅ **Build:** Completamente funcional
+- ⏳ **Deployment en Vercel:** Pendiente (usuario configurando)
+- ✅ **Documentación:** Completa y actualizada
+
+### ⏳ Próximos Pasos INMEDIATOS:
+
+1. **Configurar Variables de Entorno en Vercel:**
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+
+2. **Deploy en Vercel:**
+   - Importar desde GitHub: `lesistern/ArcanoCompleto`
+   - Configurar Root Directory: `dnd-compendium`
+   - Deploy y verificar
+
+3. **Post-Deployment:**
+   - Configurar OAuth providers en Supabase (opcional)
+   - Configurar dominio personalizado (opcional)
+   - Monitorear logs y analytics
+
+---
+
 ## 📋 Índice
 1. [Resumen del Proyecto](#resumen-del-proyecto)
 2. [Estructura de Archivos](#estructura-de-archivos)
@@ -18,15 +82,18 @@ Este documento sirve como referencia completa del proyecto para futuras sesiones
 
 ## Resumen del Proyecto
 
-**Nombre:** D&D 3.5 Compendium
+**Nombre:** D&D 3.5 Compendium (ArcanoCompleto)
 **Descripción:** Aplicación web Next.js para consultar reglas, objetos, hechizos y personajes de Dungeons & Dragons 3.5 Edition en español
 **Framework:** Next.js 15 (App Router)
 **Lenguaje:** TypeScript
 **Estilos:** Tailwind CSS
-**Estado:** En desarrollo activo
+**Base de Datos:** Supabase (PostgreSQL)
+**Autenticación:** Supabase Auth (OAuth + Magic Link + Password)
+**Estado:** ✅ **LISTO PARA DEPLOYMENT** (Build completado, código en GitHub)
+**Repositorio:** https://github.com/lesistern/ArcanoCompleto
 
 ### Objetivo
-Crear un compendio digital completo y accesible del SRD (System Reference Document) de D&D 3.5, con interfaz temática medieval/fantasy y funcionalidades de búsqueda y filtrado avanzadas.
+Crear un compendio digital completo y accesible del SRD (System Reference Document) de D&D 3.5, con interfaz temática medieval/fantasy, funcionalidades de búsqueda y filtrado avanzadas, sistema de autenticación completo, y editor de personajes interactivo.
 
 ---
 
@@ -688,7 +755,7 @@ const filteredCategories = Object.entries(iconCategories).reduce((acc, [category
 
 ---
 
-## Limitaciones Conocidas
+## Limitaciones Conocidas (Actualizadas 2025-01-14)
 
 ### 1. Tailwind CSS - Clases Dinámicas
 **Problema:** Tailwind no puede generar clases desde template literals en tiempo de ejecución.
@@ -726,50 +793,103 @@ const andWeapons = ['lucero del alba', 'guadaña'];
 
 **Solución:** Consultar SRD oficial y añadir descripciones completas.
 
-### 5. Sin Backend
-**Limitación:** Aplicación completamente estática, sin base de datos.
+### 5. ~~Sin Backend~~ ✅ **RESUELTO**
+**Solución Implementada:** Backend completo con Supabase PostgreSQL
 
-**Impacto:** No hay persistencia de favoritos, personajes, o preferencias de usuario.
+**Funcionalidades Ahora Disponibles:**
+- ✅ Autenticación completa (OAuth, Magic Link, Password)
+- ✅ Perfiles de usuario con tiers
+- ✅ Sistema de traducciones colaborativo
+- ✅ Row Level Security (RLS)
+- ✅ Base de datos relacional con 13 tablas
+- ✅ API routes para funciones admin
 
-**Consideración futura:** Implementar backend (Supabase, Firebase, etc.) para funcionalidades avanzadas.
+**Pendiente:**
+- ⏳ Persistencia de personajes en Supabase (actualmente localStorage)
+- ⏳ Sistema de favoritos en backend
+- ⏳ Historial de cambios de usuario
 
 ---
 
 ## Roadmap Futuro
 
-### Fase 1: Completar Contenido Base (Corto Plazo)
-- [ ] Añadir descripciones completas a todas las armas
-- [ ] Implementar sección de armaduras (similar a armas)
-- [ ] Añadir objetos mágicos básicos
-- [ ] Implementar razas core (Humano, Elfo, Enano, etc.)
-- [ ] Implementar clases core (Guerrero, Mago, Clérigo, etc.)
+### Fase 1: Completar Contenido Base ✅ **MAYORMENTE COMPLETADO**
+- [x] ✅ Implementar razas core (7 razas del Player's Handbook)
+- [x] ✅ Implementar razas suplementarias (9 razas adicionales con warnings)
+- [x] ✅ Implementar clases core (11 clases base completas)
+- [x] ✅ Integrar iconos temáticos por clase
+- [x] ✅ 73 armas completas con filtros avanzados
+- [x] ✅ 47 dotes completas
+- [x] ✅ 43 habilidades completas
+- [ ] ⏳ Añadir objetos mágicos básicos (en progreso)
+- [ ] ⏳ Implementar sección de armaduras completa
 
-### Fase 2: Expansión de Funcionalidades (Medio Plazo)
-- [ ] Integrar iconos de Game-icons.net (via react-icons)
-- [ ] Asociar iconos a razas, clases, hechizos
+### Fase 2: Autenticación y Backend ✅ **COMPLETADO**
+- [x] ✅ Backend con Supabase PostgreSQL
+- [x] ✅ Sistema de autenticación completo:
+  - [x] ✅ Login con email y contraseña
+  - [x] ✅ Registro de usuarios
+  - [x] ✅ Magic Link (passwordless)
+  - [x] ✅ Password reset
+  - [x] ✅ OAuth con 21 providers (Google, Microsoft, Discord, Apple, GitHub, etc.)
+  - [x] ✅ Admin invite system
+- [x] ✅ Sistema de tiers de usuario (6 niveles: guest → admin)
+- [x] ✅ Row Level Security (RLS) en Supabase
+- [x] ✅ Perfiles de usuario extendidos
+
+### Fase 3: Editor de Personajes ✅ **COMPLETADO**
+- [x] ✅ Editor de personajes interactivo completo:
+  - [x] ✅ Información básica (nombre, raza, alineamiento, deidad)
+  - [x] ✅ Sistema de habilidades (Point Buy, 4d6 drop lowest, Manual)
+  - [x] ✅ Modificadores raciales automáticos
+  - [x] ✅ Estadísticas de combate (AC, Iniciativa, Velocidad)
+  - [x] ✅ Sistema de pericias (44 skills D&D 3.5)
+  - [x] ✅ Persistencia en localStorage
+  - [x] ✅ Import/Export JSON
+- [ ] ⏳ Export a PDF (pendiente)
+- [ ] ⏳ Selector de clase y multiclase (pendiente)
+- [ ] ⏳ Cálculo automático de BAB y salvaciones (requiere clase)
+
+### Fase 4: Sistema de Traducciones Colaborativo ✅ **BACKEND COMPLETADO**
+- [x] ✅ Sistema de traducciones oficiales (554/605 conjuros - 91.6%)
+- [x] ✅ Integración DeepL API para traducción automática
+- [x] ✅ Sistema de ediciones y votación comunitaria
+- [x] ✅ Gamificación con puntos de reputación
+- [ ] ⏳ Frontend de traducción `/contribute/translate` (pendiente)
+- [ ] ⏳ Dashboard de usuario `/profile` (pendiente)
+
+### Fase 5: Deployment y Producción ✅ **CASI COMPLETADO**
+- [x] ✅ Build de producción completamente funcional
+- [x] ✅ 214 páginas generadas (SSG + SSR)
+- [x] ✅ Código subido a GitHub
+- [x] ✅ Configuración de Vercel completa
+- [x] ✅ Variables de entorno documentadas
+- [ ] ⏳ Deploy en Vercel (en progreso por el usuario)
+- [ ] ⏳ Configurar OAuth providers en Supabase
+- [ ] ⏳ Configurar dominio personalizado (opcional)
+
+### Fase 6: Expansión de Funcionalidades (Próximas)
 - [ ] Sistema de búsqueda global
-- [ ] Favoritos con localStorage
+- [ ] Favoritos persistentes (backend con Supabase)
 - [ ] Comparador de armas/objetos
 - [ ] Calculadora de daño
-
-### Fase 3: Funcionalidades Avanzadas (Largo Plazo)
-- [ ] Creador de personajes con PDF export
-- [ ] Gestión de campaña
-- [ ] Generador de encuentros
+- [ ] Generador de encuentros por CR
 - [ ] Tabla de tesoros aleatorios
-- [ ] Backend con autenticación
-- [ ] PWA con offline support
-- [ ] Integración con VTT
+- [ ] Gestión de campaña
 
-### Mejoras Técnicas
-- [ ] Migrar datos a archivos separados
-- [ ] Implementar lazy loading para listas largas
-- [ ] Optimizar bundle size
-- [ ] Añadir tests unitarios
-- [ ] Mejorar SEO y meta tags
-- [ ] Implementar modo oscuro/claro
-- [ ] Añadir breadcrumbs de navegación
-- [ ] Mejorar accesibilidad (ARIA, keyboard nav)
+### Mejoras Técnicas Completadas ✅
+- [x] ✅ Migrar datos a Supabase PostgreSQL
+- [x] ✅ Separar servicios Server/Client para Supabase
+- [x] ✅ Sistema de tipos TypeScript completo
+- [x] ✅ Build de producción optimizado
+- [x] ✅ Documentación completa del proyecto
+- [ ] ⏳ Implementar lazy loading para listas largas
+- [ ] ⏳ Añadir tests unitarios
+- [ ] ⏳ Mejorar SEO y meta tags
+- [ ] ⏳ Implementar modo oscuro/claro
+- [ ] ⏳ Añadir breadcrumbs de navegación
+- [ ] ⏳ Mejorar accesibilidad (ARIA, keyboard nav)
+- [ ] ⏳ PWA con offline support
 
 ---
 
@@ -812,10 +932,20 @@ rm -rf .next             # Elimina caché de Next.js (Windows: rmdir /s /q .next
 - [RPG Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/)
 
 ### Contacto del Proyecto
-- **Última actualización:** 2025-01-14
+- **Última actualización:** 2025-01-14 (Preparación para Deployment)
 - **Versión de Claude:** Sonnet 4.5
-- **Estado:** En desarrollo activo
+- **Estado:** ✅ **LISTO PARA DEPLOYMENT EN VERCEL**
+- **Repositorio GitHub:** https://github.com/lesistern/ArcanoCompleto
+- **Autor:** lesistern@gmail.com
+
+### Estado de Deployment
+- ✅ Build de producción completado (214 páginas)
+- ✅ TypeScript sin errores
+- ✅ Código subido a GitHub
+- ⏳ Deployment en Vercel (en progreso)
 
 ---
 
-**Este documento debe actualizarse cada vez que se añaden nuevas funcionalidades, componentes o cambios significativos al proyecto.**
+**Este documento fue actualizado el 2025-01-14 con toda la información de deployment, autenticación OAuth, editor de personajes, y sistema de traducciones colaborativo.**
+
+**Próxima actualización:** Después del deployment exitoso en Vercel.

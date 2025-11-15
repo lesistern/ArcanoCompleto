@@ -99,7 +99,7 @@ Sistema de votación comunitaria:
 
 1. Abre el SQL Editor en tu proyecto Supabase:
    ```
-   https://supabase.com/dashboard/project/akcuvlanpqpoizconuhm/sql
+   https://supabase.com/dashboard/project/YOUR_PROJECT_ID/sql
    ```
 
 2. Copia el contenido de este archivo:
@@ -131,7 +131,7 @@ Sistema de votación comunitaria:
 Asegúrate de que `.env.local` contiene:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://akcuvlanpqpoizconuhm.supabase.co
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT_ID.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key
 SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
 ```
@@ -528,7 +528,7 @@ $$;
 
 ## 🔗 Enlaces Útiles
 
-- **Supabase Dashboard:** https://supabase.com/dashboard/project/akcuvlanpqpoizconuhm
+- **Supabase Dashboard:** https://supabase.com/dashboard/project/YOUR_PROJECT_ID
 - **Supabase Auth Docs:** https://supabase.com/docs/guides/auth
 - **Next.js Auth:** https://nextjs.org/docs/authentication
 - **RLS Guide:** https://supabase.com/docs/guides/auth/row-level-security

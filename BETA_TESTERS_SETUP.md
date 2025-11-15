@@ -94,7 +94,7 @@ Tier `user` y `guest` **NO** tienen acceso.
 Verifica que `.env.local` tenga:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://akcuvlanpqpoizconuhm.supabase.co
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT_ID.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key
 SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
 ```

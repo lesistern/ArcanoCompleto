@@ -251,7 +251,7 @@ SELECT pg_stat_statements_reset();
 ### Opción 1: Ejecutar SQL (Recomendado)
 
 1. Abrir **Supabase SQL Editor**:
-   - https://supabase.com/dashboard/project/akcuvlanpqpoizconuhm/sql
+   - https://supabase.com/dashboard/project/YOUR_PROJECT_ID/sql
 
 2. Copiar y pegar el contenido de:
    - `supabase/enable-extensions.sql`

@@ -1120,7 +1120,7 @@ Ver lista completa en [DND35_LIBROS_DISPONIBLES.md](dnd-compendium/DND35_LIBROS_
 - **D&D Tools SRD**: https://srd.dndtools.org/
 - **Lista de libros**: https://srd.dndtools.org/srd/meta/bookList.html
 - **Supabase Dashboard**: https://supabase.com/dashboard
-- **Proyecto Supabase**: https://akcuvlanpqpoizconuhm.supabase.co
+- **Proyecto Supabase**: https://YOUR_PROJECT_ID.supabase.co
 
 ### Comandos Útiles
 

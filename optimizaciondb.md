@@ -487,7 +487,7 @@ SELECT calculate_save('poor', 10);   -- 3 (salvación pobre nivel 10)
 
 ### Opción 1: SQL Editor de Supabase (Recomendado)
 
-1. Ir a https://supabase.com/dashboard/project/akcuvlanpqpoizconuhm
+1. Ir a https://supabase.com/dashboard/project/YOUR_PROJECT_ID
 2. Ir a "SQL Editor"
 3. Copiar y pegar el contenido de `supabase-schema-improvements.sql`
 4. Ejecutar

@@ -39,7 +39,7 @@ El proyecto soporta **21 proveedores OAuth** diferentes:
 ### Paso 1: Acceder a la Configuración de Auth
 
 1. Ve a [Supabase Dashboard](https://supabase.com/dashboard)
-2. Selecciona tu proyecto: `akcuvlanpqpoizconuhm`
+2. Selecciona tu proyecto: `YOUR_PROJECT_ID`
 3. Ve a **Authentication** → **Providers**
 
 ### Paso 2: Configurar URL de Callback
@@ -47,7 +47,7 @@ El proyecto soporta **21 proveedores OAuth** diferentes:
 Antes de configurar cualquier proveedor, necesitas configurar el URL de callback en Supabase:
 
 ```
-Redirect URL: https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+Redirect URL: https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
 ```
 
 También añade tus URLs de desarrollo y producción en **URL Configuration**:
@@ -69,7 +69,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 5. Tipo de aplicación: **Web application**
 6. Añade los URIs autorizados:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    http://localhost:3000/auth/callback
    ```
 
@@ -93,7 +93,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 5. Supported account types: **Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts**
 6. Redirect URI:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 7. Registra la aplicación
 
@@ -122,7 +122,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 4. Ve a **OAuth2** → **General**
 5. Añade redirect:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -145,8 +145,8 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 5. Configura Sign in with Apple
 6. Añade domain y redirect URL:
    ```
-   Domain: akcuvlanpqpoizconuhm.supabase.co
-   Redirect URL: https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   Domain: YOUR_PROJECT_ID.supabase.co
+   Redirect URL: https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Generar Key**
@@ -179,7 +179,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
    - Homepage URL: `https://tu-dominio.com`
    - Authorization callback URL:
      ```
-     https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+     https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
      ```
 
 **Paso 2: Configurar en Supabase**
@@ -200,7 +200,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
    - Name: `D&D Compendium`
    - Redirect URI:
      ```
-     https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+     https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
      ```
    - Scopes: `read_user`, `openid`, `profile`, `email`
 
@@ -223,7 +223,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 4. Configura:
    - Valid OAuth Redirect URIs:
      ```
-     https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+     https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
      ```
 
 **Paso 2: Configurar en Supabase**
@@ -245,7 +245,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 4. Tipo: **Web App, Automated App or Bot**
 5. Callback URL:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -266,7 +266,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 3. Ve a **Auth** tab
 4. Añade Redirect URL:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -287,7 +287,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 3. Rellena información
 4. Redirect URI:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -307,7 +307,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 2. Click en **Register Your Application**
 3. OAuth Redirect URL:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -328,7 +328,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 3. Ve a **OAuth & Permissions**
 4. Añade Redirect URL:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 5. Scopes necesarios: `identity.basic`, `identity.email`, `identity.avatar`
 
@@ -350,7 +350,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 3. Tipo: **Public integration**
 4. Redirect URI:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -370,7 +370,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 2. Regístrate para crear una app
 3. Callback URL:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -390,7 +390,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 2. Ve a **OAuth** → **Add consumer**
 3. Callback URL:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 4. Permisos: `Account: Read`, `Email: Read`
 
@@ -412,7 +412,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 3. Tipo: **OAuth**
 4. Redirect URL for OAuth:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -433,7 +433,7 @@ También añade tus URLs de desarrollo y producción en **URL Configuration**:
 3. Ve a **Kakao Login** settings
 4. Redirect URI:
    ```
-   https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+   https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
    ```
 
 **Paso 2: Configurar en Supabase**
@@ -516,7 +516,7 @@ En producción, TODAS las redirect URLs deben usar HTTPS. HTTP solo está permit
 
 **Solución**: Verifica que el redirect URI en el proveedor coincida EXACTAMENTE con:
 ```
-https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
 ```
 
 ### Error: "Invalid client"

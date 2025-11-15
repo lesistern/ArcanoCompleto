@@ -256,7 +256,7 @@ Se ha catalogado exitosamente al usuario **lesistern@gmail.com** como **Administ
 ### Error: "redirect_uri_mismatch"
 **Solución:** Verifica que las redirect URLs en el proveedor OAuth coincidan con:
 ```
-https://akcuvlanpqpoizconuhm.supabase.co/auth/v1/callback
+https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
 ```
 
 ### Error: "User already registered"

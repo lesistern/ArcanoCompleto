@@ -1,0 +1,53 @@
+# robots.txt para D&D 3.5 Compendium
+# Optimizado para SEO y crawling eficiente
+
+# User-agent: * (todos los crawlers)
+User-agent: *
+Allow: /
+
+# Permitir acceso a páginas principales
+Allow: /clases
+Allow: /razas
+Allow: /dotes
+Allow: /habilidades
+Allow: /objetos/armas
+Allow: /editor-personajes
+
+# Bloquear páginas privadas/admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /profile/settings
+
+# Bloquear archivos de autenticación
+Disallow: /auth/
+
+# Permitir crawling de assets estáticos
+Allow: /_next/static/
+Allow: /favicon.ico
+Allow: /sitemap.xml
+
+# Bloquear archivos de build
+Disallow: /_next/data/
+
+# Crawl-delay para bots agresivos
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Googlebot (sin delay, queremos indexación rápida)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot (sin delay)
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://arcanocompleto.vercel.app/sitemap.xml

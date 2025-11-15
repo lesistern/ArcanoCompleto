@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import {
@@ -33,6 +34,9 @@ interface Ticket {
   status: FeedbackStatus;
   page_url: string | null;
   created_at: string;
+  user_email?: string;
+  author_display_name?: string | null;
+  author_username?: string;
 }
 
 const CATEGORIES = [
@@ -99,7 +103,7 @@ export default function FeedbackPage() {
       if (!user) return;
 
       const { data, error } = await supabase
-        .from('feedback_tickets')
+        .from('v_feedback_tickets_with_author')
         .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
@@ -464,7 +468,20 @@ export default function FeedbackPage() {
                         {ticket.description}
                       </p>
                       <p className="text-xs text-dungeon-500">
-                        Reportado el {new Date(ticket.created_at).toLocaleDateString('es-ES', {
+                        Reportado por{' '}
+                        {ticket.author_username ? (
+                          <Link
+                            href={`/u/${ticket.author_username}`}
+                            className="text-dungeon-400 font-medium hover:text-gold-400 transition-colors"
+                          >
+                            {ticket.author_display_name || ticket.user_email?.split('@')[0] || 'Usuario'}
+                          </Link>
+                        ) : (
+                          <span className="text-dungeon-400 font-medium">
+                            {ticket.author_display_name || ticket.user_email?.split('@')[0] || 'Usuario'}
+                          </span>
+                        )}
+                        {' '}el {new Date(ticket.created_at).toLocaleDateString('es-ES', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric',

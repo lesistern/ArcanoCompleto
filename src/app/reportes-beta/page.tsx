@@ -18,7 +18,8 @@ import {
   Loader2,
   Search,
   Filter,
-  X
+  X,
+  ThumbsUp
 } from 'lucide-react';
 
 type FeedbackCategory = 'bug' | 'feature' | 'translation' | 'data' | 'ui' | 'performance' | 'other';
@@ -35,6 +36,8 @@ interface Ticket {
   page_url: string | null;
   created_at: string;
   user_email: string;
+  vote_count?: number;
+  user_has_voted?: boolean;
 }
 
 const CATEGORIES = [
@@ -82,27 +85,76 @@ export default function PublicReportsPage() {
   const [selectedPriority, setSelectedPriority] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [sortBy, setSortBy] = useState<'date' | 'votes'>('votes');
+  const [votingTicketId, setVotingTicketId] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
   const supabase = createClient();
 
   useEffect(() => {
+    checkUser();
     loadTickets();
   }, []);
 
+  async function checkUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+    setCurrentUser(user);
+  }
+
   useEffect(() => {
     filterTickets();
-  }, [tickets, searchTerm, selectedCategory, selectedPriority, selectedStatus]);
+  }, [tickets, searchTerm, selectedCategory, selectedPriority, selectedStatus, sortBy]);
 
   async function loadTickets() {
     try {
-      const { data, error } = await supabase
-        .from('feedback_tickets')
+      // Intentar cargar desde la vista con votos primero
+      const { data: viewData, error: viewError } = await supabase
+        .from('v_feedback_tickets_with_votes')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (!viewError && viewData) {
+        setTickets(viewData);
+      } else {
+        // Fallback: cargar tickets sin votos si la vista no existe
+        console.warn('Vista v_feedback_tickets_with_votes no disponible, usando tabla base');
+        const { data, error } = await supabase
+          .from('feedback_tickets')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-      setTickets(data || []);
+        if (error) throw error;
+
+        // Cargar votos manualmente
+        const ticketsWithVotes = await Promise.all(
+          (data || []).map(async (ticket) => {
+            const { count } = await supabase
+              .from('feedback_votes')
+              .select('*', { count: 'exact', head: true })
+              .eq('ticket_id', ticket.id);
+
+            const { data: { user } } = await supabase.auth.getUser();
+            let userHasVoted = false;
+            if (user) {
+              const { data: voteData } = await supabase
+                .from('feedback_votes')
+                .select('id')
+                .eq('ticket_id', ticket.id)
+                .eq('user_id', user.id)
+                .single();
+              userHasVoted = !!voteData;
+            }
+
+            return {
+              ...ticket,
+              vote_count: count || 0,
+              user_has_voted: userHasVoted,
+            };
+          })
+        );
+
+        setTickets(ticketsWithVotes);
+      }
     } catch (err) {
       console.error('Error loading tickets:', err);
     } finally {
@@ -138,7 +190,52 @@ export default function PublicReportsPage() {
       filtered = filtered.filter((ticket) => ticket.status === selectedStatus);
     }
 
+    // Ordenar
+    if (sortBy === 'votes') {
+      filtered.sort((a, b) => (b.vote_count || 0) - (a.vote_count || 0));
+    } else {
+      filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    }
+
     setFilteredTickets(filtered);
+  }
+
+  async function handleVote(ticketId: string) {
+    if (!currentUser) {
+      alert('Debes iniciar sesión para votar');
+      return;
+    }
+
+    setVotingTicketId(ticketId);
+
+    try {
+      const { data, error } = await supabase.rpc('toggle_feedback_vote', {
+        p_ticket_id: ticketId,
+      });
+
+      if (error) throw error;
+
+      if (data && data.length > 0) {
+        const result = data[0];
+        // Actualizar el ticket localmente
+        setTickets((prevTickets) =>
+          prevTickets.map((ticket) =>
+            ticket.id === ticketId
+              ? {
+                  ...ticket,
+                  vote_count: result.vote_count,
+                  user_has_voted: result.user_has_voted,
+                }
+              : ticket
+          )
+        );
+      }
+    } catch (err: any) {
+      console.error('Error toggling vote:', err);
+      alert(err.message || 'Error al votar. Intenta de nuevo.');
+    } finally {
+      setVotingTicketId(null);
+    }
   }
 
   function clearFilters() {
@@ -274,16 +371,29 @@ export default function PublicReportsPage() {
           </CardContent>
         </Card>
 
-        {/* Results Count */}
-        <div className="mb-4 text-dungeon-400 text-sm">
-          {loading ? (
-            'Cargando reportes...'
-          ) : (
-            <>
-              Mostrando {filteredTickets.length} de {tickets.length} reportes
-              {hasActiveFilters && ' (filtrado)'}
-            </>
-          )}
+        {/* Results Count and Sort */}
+        <div className="mb-4 flex items-center justify-between">
+          <div className="text-dungeon-400 text-sm">
+            {loading ? (
+              'Cargando reportes...'
+            ) : (
+              <>
+                Mostrando {filteredTickets.length} de {tickets.length} reportes
+                {hasActiveFilters && ' (filtrado)'}
+              </>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-dungeon-400 text-sm">Ordenar por:</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'date' | 'votes')}
+              className="px-3 py-1.5 bg-dungeon-800 border border-dungeon-700 rounded-lg text-dungeon-200 text-sm focus:outline-none focus:border-gold-500"
+            >
+              <option value="votes">Más votados</option>
+              <option value="date">Más recientes</option>
+            </select>
+          </div>
         </div>
 
         {/* Tickets List */}
@@ -326,45 +436,73 @@ export default function PublicReportsPage() {
               return (
                 <Card key={ticket.id} className="bg-dungeon-800 border-dungeon-700 hover:border-dungeon-600 transition-colors">
                   <CardContent className="p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-2 flex-1">
-                        <CategoryIcon className={`w-5 h-5 ${categoryInfo?.color} flex-shrink-0`} />
-                        <h3 className="text-lg font-semibold text-dungeon-100">{ticket.title}</h3>
+                    <div className="flex items-start gap-4">
+                      {/* Vote Button */}
+                      <div className="flex flex-col items-center gap-1 pt-1">
+                        <button
+                          onClick={() => handleVote(ticket.id)}
+                          disabled={votingTicketId === ticket.id || !currentUser}
+                          className={`p-2 rounded-lg border transition-all ${
+                            ticket.user_has_voted
+                              ? 'bg-gold-500/20 border-gold-500 text-gold-400'
+                              : 'border-dungeon-700 text-dungeon-400 hover:border-gold-500 hover:text-gold-400'
+                          } disabled:opacity-50 disabled:cursor-not-allowed`}
+                          title={!currentUser ? 'Inicia sesión para votar' : ticket.user_has_voted ? 'Quitar voto' : 'Votar'}
+                        >
+                          {votingTicketId === ticket.id ? (
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                          ) : (
+                            <ThumbsUp className="w-5 h-5" fill={ticket.user_has_voted ? 'currentColor' : 'none'} />
+                          )}
+                        </button>
+                        <span className={`text-sm font-semibold ${ticket.vote_count && ticket.vote_count > 0 ? 'text-gold-400' : 'text-dungeon-500'}`}>
+                          {ticket.vote_count || 0}
+                        </span>
                       </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        {priorityInfo && priorityInfo.value !== 'all' && (
-                          <span className={`px-2 py-0.5 text-xs rounded-full text-white ${priorityInfo.color}`}>
-                            {priorityInfo.label}
+
+                      {/* Ticket Content */}
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center gap-2 flex-1">
+                            <CategoryIcon className={`w-5 h-5 ${categoryInfo?.color} flex-shrink-0`} />
+                            <h3 className="text-lg font-semibold text-dungeon-100">{ticket.title}</h3>
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            {priorityInfo && priorityInfo.value !== 'all' && (
+                              <span className={`px-2 py-0.5 text-xs rounded-full text-white ${priorityInfo.color}`}>
+                                {priorityInfo.label}
+                              </span>
+                            )}
+                            <div className="flex items-center gap-1">
+                              <StatusIcon className={`w-4 h-4 ${statusInfo.color}`} />
+                              <span className={`text-sm ${statusInfo.color}`}>{statusInfo.label}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-dungeon-300 text-sm mb-3 whitespace-pre-line">{ticket.description}</p>
+                        <div className="flex items-center justify-between text-xs text-dungeon-500">
+                          <span>
+                            Reportado por {ticket.user_email.split('@')[0]} el{' '}
+                            {new Date(ticket.created_at).toLocaleDateString('es-ES', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
                           </span>
-                        )}
-                        <div className="flex items-center gap-1">
-                          <StatusIcon className={`w-4 h-4 ${statusInfo.color}`} />
-                          <span className={`text-sm ${statusInfo.color}`}>{statusInfo.label}</span>
+                          {ticket.page_url && (
+                            <a
+                              href={ticket.page_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gold-400 hover:text-gold-300 underline"
+                            >
+                              Ver página
+                            </a>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <p className="text-dungeon-300 text-sm mb-3 whitespace-pre-line">{ticket.description}</p>
-                    <div className="flex items-center justify-between text-xs text-dungeon-500">
-                      <span>
-                        Reportado por {ticket.user_email.split('@')[0]} el{' '}
-                        {new Date(ticket.created_at).toLocaleDateString('es-ES', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </span>
-                      {ticket.page_url && (
-                        <a
-                          href={ticket.page_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gold-400 hover:text-gold-300 underline"
-                        >
-                          Ver página
-                        </a>
-                      )}
                     </div>
                   </CardContent>
                 </Card>

@@ -269,10 +269,7 @@ GENERATED ALWAYS AS (
   setweight(to_tsvector('spanish', coalesce(name, '')), 'A') ||
   setweight(to_tsvector('spanish', coalesce(description, '')), 'B') ||
   setweight(to_tsvector('spanish',
-    coalesce(class_type, '') || ' ' ||
-    coalesce(alignment_restrictions, '') || ' ' ||
-    coalesce(weapon_proficiencies, '') || ' ' ||
-    coalesce(armor_proficiencies, '')
+    coalesce(class_type, '')
   ), 'C')
 ) STORED;
 

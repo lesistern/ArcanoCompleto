@@ -12,12 +12,9 @@ GENERATED ALWAYS AS (
   -- Peso B: Descripción
   setweight(to_tsvector('spanish', coalesce(description, '')), 'B') ||
 
-  -- Peso C: Tipo, alineamiento, competencias
+  -- Peso C: Tipo de clase
   setweight(to_tsvector('spanish',
-    coalesce(class_type, '') || ' ' ||
-    coalesce(alignment_restrictions, '') || ' ' ||
-    coalesce(weapon_proficiencies, '') || ' ' ||
-    coalesce(armor_proficiencies, '')
+    coalesce(class_type, '')
   ), 'C')
 ) STORED;
 

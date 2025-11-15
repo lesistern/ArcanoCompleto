@@ -11,19 +11,22 @@ ADD COLUMN IF NOT EXISTS profile_hidden BOOLEAN DEFAULT false,
 ADD COLUMN IF NOT EXISTS username_slug TEXT;
 
 -- 2. Generar slugs únicos basados en display_name o email
-UPDATE public.profiles
+UPDATE public.profiles p
 SET username_slug = LOWER(
   REGEXP_REPLACE(
     COALESCE(
-      display_name,
-      SPLIT_PART(email, '@', 1)
+      p.display_name,
+      SPLIT_PART(u.email, '@', 1),
+      'user-' || SUBSTR(p.id::TEXT, 1, 8)
     ),
     '[^a-zA-Z0-9]',
     '-',
     'g'
   )
 )
-WHERE username_slug IS NULL;
+FROM auth.users u
+WHERE p.id = u.id
+  AND p.username_slug IS NULL;
 
 -- 3. Asegurar que los slugs sean únicos
 -- Si hay duplicados, agregar números al final
@@ -77,13 +80,20 @@ DECLARE
   base_slug TEXT;
   final_slug TEXT;
   counter INTEGER := 1;
+  user_email TEXT;
 BEGIN
+  -- Obtener email del usuario desde auth.users
+  SELECT email INTO user_email
+  FROM auth.users
+  WHERE id = NEW.id;
+
   -- Generar slug base desde display_name o email
   base_slug := LOWER(
     REGEXP_REPLACE(
       COALESCE(
         NEW.display_name,
-        SPLIT_PART(NEW.email, '@', 1)
+        SPLIT_PART(user_email, '@', 1),
+        'user-' || SUBSTR(NEW.id::TEXT, 1, 8)
       ),
       '[^a-zA-Z0-9]',
       '-',

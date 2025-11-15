@@ -34,204 +34,6 @@ COMMENT ON COLUMN public.class_progression.special_abilities IS 'Habilidades esp
 COMMENT ON COLUMN public.class_progression.spells_per_day IS 'Conjuros por día por nivel de conjuro (JSON)';
 
 
--- Actualizar Bárbaro con información completa
-UPDATE public.classes
-SET
-  name = 'Bárbaro',
-  description = 'Any nonlawful.',
-  hit_die = 'd12',
-  skill_points_per_level = 4,
-  class_skills = ARRAY['The barbarian’s class skills (', 'the key ability for each skill) are Climb (Str)', 'Craft (Int)', 'le Animal (Cha)', 'Intimidate (Cha)', 'Jump (Str)', 'Listen (Wis)', 'Ride (Dex)', 'Survival (Wis)', 'Swim (Str)']::TEXT[],
-  weapon_proficiency = ARRAY['martial']::TEXT[],
-  armor_proficiency = ARRAY['light', 'medium', 'shields']::TEXT[],
-  bab_progression = 'high',
-  fort_save_progression = 'good',
-  ref_save_progression = 'poor',
-  will_save_progression = 'poor',
-  updated_at = NOW()
-WHERE slug = 'barbarian';
-
-
--- Actualizar Bardo con información completa
-UPDATE public.classes
-SET
-  name = 'Bardo',
-  description = 'Any nonlawful.',
-  hit_die = 'd6',
-  skill_points_per_level = 6,
-  class_skills = ARRAY['The bard’s class skills (', 'the key ability for each skill) are Appraise (Int)', 'Balance (Dex)', 'Bluff (Cha)', 'Climb (Str)', 'Concentration (Con)', 'Craft (Int)', 'Decipher Script (Int)', 'Diplomacy (Cha)', 'Disguise (Cha)', 'Escape Artist (Dex)', 'Gather Information (Cha)', 'Hide (Dex)', 'Jump (Str)', 'Knowledge (all skills', 'taken individually) (Int)', 'Listen (Wis)', 'Move Silently (Dex)', 'Perform (Cha)', 'Profession (Wis)', 'Sense Motive (Wis)', 'Sleight of H', '(Dex)', 'Speak Language (None)', 'Spellcraft (Int)', 'Swim (Str)', 'Tumble (Dex)', 'Use Magic Device (Cha)']::TEXT[],
-  weapon_proficiency = ARRAY['simple']::TEXT[],
-  armor_proficiency = ARRAY['light', 'heavy', 'shields']::TEXT[],
-  bab_progression = 'medium',
-  fort_save_progression = 'poor',
-  ref_save_progression = 'good',
-  will_save_progression = 'good',
-  updated_at = NOW()
-WHERE slug = 'bard';
-
-
--- Actualizar Clérigo con información completa
-UPDATE public.classes
-SET
-  name = 'Clérigo',
-  description = 'A cleric’s alignment must be within one step of his deity’s (that is, it may be one step away on either the lawful-chaotic axis or the good-evil axis, but not both). A cleric may not be neutral unless his deity’s alignment is also neutral.',
-  hit_die = 'd8',
-  skill_points_per_level = 2,
-  class_skills = ARRAY['The cleric’s class skills (', 'the key ability for each skill) are Concentration (Con)', 'Craft (Int)', 'Diplomacy (Cha)', 'Heal (Wis)', 'Knowledge (arcana) (Int)', 'Knowledge (history) (Int)', 'Knowledge (religion) (Int)', 'Knowledge (the planes) (Int)', 'Profession (Wis)', 'Spellcraft (Int)']::TEXT[],
-  weapon_proficiency = ARRAY['simple']::TEXT[],
-  armor_proficiency = ARRAY['shields']::TEXT[],
-  bab_progression = 'medium',
-  fort_save_progression = 'good',
-  ref_save_progression = 'poor',
-  will_save_progression = 'good',
-  updated_at = NOW()
-WHERE slug = 'cleric';
-
-
--- Actualizar Druida con información completa
-UPDATE public.classes
-SET
-  name = 'Druida',
-  description = 'Neutral good, lawful neutral, neutral, chaotic neutral, or neutral evil.',
-  hit_die = 'd8',
-  skill_points_per_level = 4,
-  class_skills = ARRAY['The druid’s class skills (', 'the key ability for each skill) are Concentration (Con)', 'Craft (Int)', 'Diplomacy (Cha)', 'le Animal (Cha)', 'Heal (Wis)', 'Knowledge (nature) (Int)', 'Listen (Wis)', 'Profession (Wis)', 'Ride (Dex)', 'Spellcraft (Int)', 'Spot (Wis)', 'Survival (Wis)', 'Swim (Str)']::TEXT[],
-  weapon_proficiency = ARRAY[]::TEXT[],
-  armor_proficiency = ARRAY['medium', 'shields']::TEXT[],
-  bab_progression = 'medium',
-  fort_save_progression = 'good',
-  ref_save_progression = 'poor',
-  will_save_progression = 'good',
-  updated_at = NOW()
-WHERE slug = 'druid';
-
-
--- Actualizar Guerrero con información completa
-UPDATE public.classes
-SET
-  name = 'Guerrero',
-  description = 'Any.',
-  hit_die = 'd10',
-  skill_points_per_level = 2,
-  class_skills = ARRAY['The fighter’s class skills (', 'the key ability for each skill) are Climb (Str)', 'Craft (Int)', 'le Animal (Cha)', 'Intimidate (Cha)', 'Jump (Str)', 'Ride (Dex)', 'Swim (Str)']::TEXT[],
-  weapon_proficiency = ARRAY['martial']::TEXT[],
-  armor_proficiency = ARRAY['shields']::TEXT[],
-  bab_progression = 'high',
-  fort_save_progression = 'good',
-  ref_save_progression = 'poor',
-  will_save_progression = 'poor',
-  updated_at = NOW()
-WHERE slug = 'fighter';
-
-
--- Actualizar Monje con información completa
-UPDATE public.classes
-SET
-  name = 'Monje',
-  description = 'Any lawful.',
-  hit_die = 'd8',
-  skill_points_per_level = 4,
-  class_skills = ARRAY['The monk’s class skills (', 'the key ability for each skill) are Balance (Dex)', 'Climb (Str)', 'Concentration (Con)', 'Craft (Int)', 'Diplomacy (Cha)', 'Escape Artist (Dex)', 'Hide (Dex)', 'Jump (Str)', 'Knowledge (arcana) (Int)', 'Knowledge (religion) (Int)', 'Listen (Wis)', 'Move Silently (Dex)', 'Perform (Cha)', 'Profession (Wis)', 'Sense Motive (Wis)', 'Spot (Wis)', 'Swim (Str)', 'Tumble (Dex)']::TEXT[],
-  weapon_proficiency = ARRAY[]::TEXT[],
-  armor_proficiency = ARRAY['light', 'shields']::TEXT[],
-  bab_progression = 'medium',
-  fort_save_progression = 'good',
-  ref_save_progression = 'good',
-  will_save_progression = 'good',
-  updated_at = NOW()
-WHERE slug = 'monk';
-
-
--- Actualizar Paladín con información completa
-UPDATE public.classes
-SET
-  name = 'Paladín',
-  description = 'Lawful good.',
-  hit_die = 'd10',
-  skill_points_per_level = 2,
-  class_skills = ARRAY['The paladin’s class skills (', 'the key ability for each skill) are Concentration (Con)', 'Craft (Int)', 'Diplomacy (Cha)', 'le Animal (Cha)', 'Heal (Wis)', 'Knowledge (nobility', 'royalty) (Int)', 'Knowledge (religion) (Int)', 'Profession (Wis)', 'Ride (Dex)', 'Sense Motive (Wis)']::TEXT[],
-  weapon_proficiency = ARRAY['martial']::TEXT[],
-  armor_proficiency = ARRAY['shields']::TEXT[],
-  bab_progression = 'high',
-  fort_save_progression = 'good',
-  ref_save_progression = 'poor',
-  will_save_progression = 'poor',
-  updated_at = NOW()
-WHERE slug = 'paladin';
-
-
--- Actualizar Explorador con información completa
-UPDATE public.classes
-SET
-  name = 'Explorador',
-  description = 'Any.',
-  hit_die = 'd8',
-  skill_points_per_level = 6,
-  class_skills = ARRAY['The ranger’s class skills (', 'the key ability for each skill) are Climb (Str)', 'Concentration (Con)', 'Craft (Int)', 'le Animal (Cha)', 'Heal (Wis)', 'Hide (Dex)', 'Jump (Str)', 'Knowledge (dungeoneering) (Int)', 'Knowledge (geography) (Int)', 'Knowledge (nature) (Int)', 'Listen (Wis)', 'Move Silently (Dex)', 'Profession (Wis)', 'Ride (Dex)', 'Search (Int)', 'Spot (Wis)', 'Survival (Wis)', 'Swim (Str)', 'Use Rope (Dex)']::TEXT[],
-  weapon_proficiency = ARRAY['martial']::TEXT[],
-  armor_proficiency = ARRAY['light', 'heavy', 'shields']::TEXT[],
-  bab_progression = 'high',
-  fort_save_progression = 'good',
-  ref_save_progression = 'good',
-  will_save_progression = 'poor',
-  updated_at = NOW()
-WHERE slug = 'ranger';
-
-
--- Actualizar Pícaro con información completa
-UPDATE public.classes
-SET
-  name = 'Pícaro',
-  description = 'Any.',
-  hit_die = 'd6',
-  skill_points_per_level = 8,
-  class_skills = ARRAY['The rogue’s class skills (', 'the key ability for each skill) are Appraise (Int)', 'Balance (Dex)', 'Bluff (Cha)', 'Climb (Str)', 'Craft (Int)', 'Decipher Script (Int)', 'Diplomacy (Cha)', 'Disable Device (Int)', 'Disguise (Cha)', 'Escape Artist (Dex)', 'Forgery (Int)', 'Gather Information (Cha)', 'Hide (Dex)', 'Intimidate (Cha)', 'Jump (Str)', 'Knowledge (local) (Int)', 'Listen (Wis)', 'Move Silently (Dex)', 'Open Lock (Dex)', 'Perform (Cha)', 'Profession (Wis)', 'Search (Int)', 'Sense Motive (Wis)', 'Sleight of H', '(Dex)', 'Spot (Wis)', 'Swim (Str)', 'Tumble (Dex)', 'Use Magic Device (Cha)', 'Use Rope (Dex)']::TEXT[],
-  weapon_proficiency = ARRAY['simple']::TEXT[],
-  armor_proficiency = ARRAY['light', 'shields']::TEXT[],
-  bab_progression = 'medium',
-  fort_save_progression = 'poor',
-  ref_save_progression = 'good',
-  will_save_progression = 'poor',
-  updated_at = NOW()
-WHERE slug = 'rogue';
-
-
--- Actualizar Hechicero con información completa
-UPDATE public.classes
-SET
-  name = 'Hechicero',
-  description = 'Any.',
-  hit_die = 'd4',
-  skill_points_per_level = 2,
-  class_skills = ARRAY['The sorcerer’s class skills (', 'the key ability for each skill) are Bluff (Cha)', 'Concentration (Con)', 'Craft (Int)', 'Knowledge (arcana) (Int)', 'Profession (Wis)', 'Spellcraft (Int)']::TEXT[],
-  weapon_proficiency = ARRAY['simple']::TEXT[],
-  armor_proficiency = ARRAY['light', 'shields']::TEXT[],
-  bab_progression = 'low',
-  fort_save_progression = 'poor',
-  ref_save_progression = 'poor',
-  will_save_progression = 'good',
-  updated_at = NOW()
-WHERE slug = 'sorcerer';
-
-
--- Actualizar Mago con información completa
-UPDATE public.classes
-SET
-  name = 'Mago',
-  description = 'Any.',
-  hit_die = 'd4',
-  skill_points_per_level = 2,
-  class_skills = ARRAY['The sorcerer’s class skills (', 'the key ability for each skill) are Bluff (Cha)', 'Concentration (Con)', 'Craft (Int)', 'Knowledge (arcana) (Int)', 'Profession (Wis)', 'Spellcraft (Int)']::TEXT[],
-  weapon_proficiency = ARRAY['simple']::TEXT[],
-  armor_proficiency = ARRAY['light', 'shields']::TEXT[],
-  bab_progression = 'low',
-  fort_save_progression = 'poor',
-  ref_save_progression = 'poor',
-  will_save_progression = 'good',
-  updated_at = NOW()
-WHERE slug = 'wizard';
-
-
 -- Progresión de Bárbaro (20 niveles)
 INSERT INTO public.class_progression (class_slug, level, base_attack_bonus, fort_save, ref_save, will_save, special_abilities)
 VALUES
@@ -334,7 +136,7 @@ VALUES
   ('druid', 1, '+0', 2, 0, 2, 'Animal companion, nature sense, wild empathy | 3 | 1 | — | — | — | — | — | — | — | —'),
   ('druid', 2, '+1', 3, 0, 3, 'Woodland stride | 4 | 2 | — | — | — | — | — | — | — | —'),
   ('druid', 3, '+2', 3, 1, 3, 'Trackless step | 4 | 2 | 1 | — | — | — | — | — | — | —'),
-  ('druid', 4, '+3', 4, 1, 4, 'Resist nature’s lure | 5 | 3 | 2 | — | — | — | — | — | — | —'),
+  ('druid', 4, '+3', 4, 1, 4, 'Resist nature''s lure | 5 | 3 | 2 | — | — | — | — | — | — | —'),
   ('druid', 5, '+3', 4, 1, 4, 'Wild shape (1/day) | 5 | 3 | 2 | 1 | — | — | — | — | — | —'),
   ('druid', 6, '+4', 5, 2, 5, 'Wild shape (2/day) | 5 | 3 | 3 | 2 | — | — | — | — | — | —'),
   ('druid', 7, '+5', 5, 2, 5, 'Wild shape (3/day) | 6 | 4 | 3 | 2 | 1 | — | — | — | — | —'),
@@ -582,3 +384,11 @@ ON CONFLICT (class_slug, level) DO UPDATE
       will_save = EXCLUDED.will_save,
       special_abilities = EXCLUDED.special_abilities,
       updated_at = NOW();
+
+
+-- Verificación
+SELECT
+  'Tabla class_progression creada exitosamente' AS status,
+  COUNT(*) AS total_levels,
+  COUNT(DISTINCT class_slug) AS total_classes
+FROM public.class_progression;

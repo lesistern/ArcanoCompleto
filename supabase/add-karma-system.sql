@@ -137,6 +137,7 @@ SELECT
   p.id,
   p.email,
   p.display_name,
+  p.username_slug,
   p.tier_code,
   p.karma_points,
   p.reports_submitted,
@@ -164,6 +165,7 @@ CREATE OR REPLACE VIEW v_feedback_tickets_with_author AS
 SELECT
   ft.*,
   p.display_name AS author_display_name,
+  p.username_slug AS author_username,
   p.karma_points AS author_karma,
   p.tier_code AS author_tier,
   COALESCE(vote_counts.vote_count, 0) AS vote_count,

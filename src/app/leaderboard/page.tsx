@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Award, Trophy, Medal, Star, TrendingUp, CheckCircle2 } from 'lucide-react';
@@ -9,6 +10,7 @@ interface LeaderboardEntry {
   id: string;
   email: string;
   display_name: string | null;
+  username_slug: string;
   tier_code: string;
   karma_points: number;
   reports_submitted: number;
@@ -184,9 +186,12 @@ export default function LeaderboardPage() {
                       {/* User Info */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-dungeon-100 font-semibold truncate">
+                          <Link
+                            href={`/u/${entry.username_slug}`}
+                            className="text-dungeon-100 font-semibold truncate hover:text-gold-400 transition-colors"
+                          >
                             {entry.display_name || entry.email.split('@')[0]}
-                          </span>
+                          </Link>
                           {isCurrentUser && (
                             <span className="text-xs text-gold-400 font-semibold">(Tú)</span>
                           )}

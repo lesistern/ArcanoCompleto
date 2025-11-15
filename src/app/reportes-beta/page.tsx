@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -40,6 +41,7 @@ interface Ticket {
   vote_count?: number;
   user_has_voted?: boolean;
   author_display_name?: string | null;
+  author_username?: string;
   author_karma?: number;
   author_tier?: string;
 }
@@ -501,9 +503,18 @@ export default function PublicReportsPage() {
                           <div className="flex items-center gap-3">
                             <span>
                               Reportado por{' '}
-                              <span className="text-dungeon-300 font-medium">
-                                {ticket.author_display_name || ticket.user_email.split('@')[0]}
-                              </span>
+                              {ticket.author_username ? (
+                                <Link
+                                  href={`/u/${ticket.author_username}`}
+                                  className="text-dungeon-300 font-medium hover:text-gold-400 transition-colors"
+                                >
+                                  {ticket.author_display_name || ticket.user_email.split('@')[0]}
+                                </Link>
+                              ) : (
+                                <span className="text-dungeon-300 font-medium">
+                                  {ticket.author_display_name || ticket.user_email.split('@')[0]}
+                                </span>
+                              )}
                               {' '}el{' '}
                               {new Date(ticket.created_at).toLocaleDateString('es-ES', {
                                 year: 'numeric',

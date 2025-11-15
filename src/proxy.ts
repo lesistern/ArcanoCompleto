@@ -86,7 +86,7 @@ export async function proxy(request: NextRequest) {
   // ========================================================================
   const { data: profile, error: profileError } = await supabase
     .from('profiles')
-    .select('tier_code')
+    .select('tier')
     .eq('id', user.id)
     .single();
 
@@ -99,7 +99,7 @@ export async function proxy(request: NextRequest) {
 
   // Verificar si tiene tier permitido (beta_tester o admin)
   const allowedTiers = ['beta_tester', 'admin', 'reviewer', 'translator', 'contributor'];
-  const hasAccess = allowedTiers.includes(profile.tier_code);
+  const hasAccess = allowedTiers.includes(profile.tier);
 
   // Si no tiene acceso, redirigir a beta-landing
   if (!hasAccess) {

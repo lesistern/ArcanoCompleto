@@ -195,7 +195,7 @@ export default function AdminReportesPage() {
 
       // Top contributors (de la tabla de leaderboard)
       const { data: contributors } = await supabase
-        .from('v_karma_leaderboard')
+        .from('v_level_leaderboard')
         .select('*')
         .limit(5);
 
@@ -232,7 +232,7 @@ export default function AdminReportesPage() {
     try {
       // Construir query con filtros
       let query = supabase
-        .from('v_feedback_tickets_with_author')
+        .from('v_feedback_tickets_with_votes')
         .select('*')
         .order('created_at', { ascending: false });
 

@@ -1,35 +1,11 @@
-# Vercel Ignore - Archivos que NO se deployarán en producción
+# Vercel Ignore - Solo excluir archivos que NO son necesarios para build o runtime
 
-# Datos scrapeados y logs
+# Datos scrapeados (no necesarios para la app)
 scraped-data/
-*.log
 
-# Scripts de migración y utilidades
-scripts/
-
-# SQL files de Supabase (ya están en la base de datos)
-supabase/
-*.sql
-
-# Documentación de desarrollo (no necesaria en producción)
-docs/
+# Documentación markdown (no afecta el build)
 *.md
 !README.md
 
-# Archivos de desarrollo
-.env.local.example
-tsconfig.json
-eslint.config.mjs
-
-# PDFs y archivos grandes
+# Archivos grandes que no se usan en la app
 *.pdf
-
-# Test files
-**/*.test.ts
-**/*.test.tsx
-**/*.spec.ts
-**/*.spec.tsx
-
-# Archivos temporales
-.vscode/
-.idea/

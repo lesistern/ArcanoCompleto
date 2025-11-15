@@ -227,6 +227,7 @@ export default function AuthModal({
           setTimeout(() => {
             onClose();
             resetForm();
+            window.location.href = '/';
           }, 1000);
         }
       } else {

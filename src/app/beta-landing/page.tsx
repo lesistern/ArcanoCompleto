@@ -64,8 +64,7 @@ export default function BetaLandingPage() {
 
       // 5. Redirigir a la aplicación después de 1.5 segundos
       setTimeout(() => {
-        router.push('/');
-        router.refresh();
+        window.location.href = '/';
       }, 1500);
 
     } catch (err) {

@@ -121,7 +121,7 @@ export default function Header() {
     // Esperar un momento para mostrar feedback visual
     setTimeout(() => {
       setIsLoggingOut(false);
-      window.location.href = '/';
+      window.location.href = '/beta-landing';
     }, 500);
   };
 

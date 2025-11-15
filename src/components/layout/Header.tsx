@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, Menu, X, ChevronDown, User, LogOut, Settings, Award, UserPlus } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, User, LogOut, Settings, Award, UserPlus, MessageSquarePlus } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '../ui/Button';
@@ -324,6 +324,15 @@ export default function Header() {
                     >
                       <Settings size={16} />
                       <span>Configuración</span>
+                    </Link>
+
+                    <Link
+                      href="/reportes-beta"
+                      className="flex items-center space-x-2 px-4 py-2 text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-dungeon-100"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      <MessageSquarePlus size={16} />
+                      <span>Reportes beta</span>
                     </Link>
 
                     {/* Admin: Invite User */}
@@ -787,6 +796,15 @@ export default function Header() {
             >
               <Settings size={16} />
               <span>Configuración</span>
+            </Link>
+
+            <Link
+              href="/reportes-beta"
+              className="flex items-center space-x-2 px-4 py-2 text-sm text-dungeon-300 hover:bg-dungeon-700 hover:text-dungeon-100"
+              onClick={() => setUserMenuOpen(false)}
+            >
+              <MessageSquarePlus size={16} />
+              <span>Reportes beta</span>
             </Link>
 
             {/* Admin: Invite User (Mobile) */}

@@ -70,6 +70,8 @@ export default function FeedbackPage() {
   const [error, setError] = useState<string | null>(null);
   const [myTickets, setMyTickets] = useState<Ticket[]>([]);
   const [loadingTickets, setLoadingTickets] = useState(true);
+  const [similarTickets, setSimilarTickets] = useState<Ticket[]>([]);
+  const [checkingSimilar, setCheckingSimilar] = useState(false);
 
   const router = useRouter();
   const supabase = createClient();
@@ -77,6 +79,19 @@ export default function FeedbackPage() {
   useEffect(() => {
     loadMyTickets();
   }, []);
+
+  // Buscar tickets similares mientras escribe
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (title.length >= 5) {
+        checkSimilarTickets();
+      } else {
+        setSimilarTickets([]);
+      }
+    }, 500); // Debounce de 500ms
+
+    return () => clearTimeout(timer);
+  }, [title]);
 
   async function loadMyTickets() {
     try {
@@ -96,6 +111,30 @@ export default function FeedbackPage() {
       console.error('Error loading tickets:', err);
     } finally {
       setLoadingTickets(false);
+    }
+  }
+
+  async function checkSimilarTickets() {
+    setCheckingSimilar(true);
+    try {
+      // Buscar tickets con títulos similares usando ILIKE
+      const { data, error } = await supabase
+        .from('feedback_tickets')
+        .select('*')
+        .ilike('title', `%${title}%`)
+        .neq('status', 'closed') // No mostrar tickets cerrados
+        .limit(3);
+
+      if (error) throw error;
+
+      // Filtrar el ticket actual si estamos editando
+      const filtered = (data || []).filter((ticket) => ticket.title !== title);
+
+      setSimilarTickets(filtered);
+    } catch (err) {
+      console.error('Error checking similar tickets:', err);
+    } finally {
+      setCheckingSimilar(false);
     }
   }
 
@@ -217,6 +256,58 @@ export default function FeedbackPage() {
                   className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
                   placeholder="Ej: Error al cargar la página de Clases"
                 />
+
+                {/* Similar Tickets Warning */}
+                {checkingSimilar && (
+                  <div className="mt-2 flex items-center gap-2 text-sm text-dungeon-400">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Buscando reportes similares...
+                  </div>
+                )}
+
+                {!checkingSimilar && similarTickets.length > 0 && (
+                  <div className="mt-3 p-3 bg-yellow-900/20 border border-yellow-500/30 rounded-lg">
+                    <div className="flex items-start gap-2 mb-2">
+                      <AlertTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-yellow-400 font-semibold text-sm">
+                          ⚠️ Encontramos reportes similares
+                        </p>
+                        <p className="text-yellow-300 text-xs mt-1">
+                          Antes de crear un nuevo reporte, verifica si alguno de estos ya describe tu problema:
+                        </p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 mt-3">
+                      {similarTickets.map((ticket) => {
+                        const categoryInfo = CATEGORIES.find(c => c.value === ticket.category);
+                        const CategoryIcon = categoryInfo?.icon || MessageSquare;
+                        const statusInfo = STATUS_LABELS[ticket.status];
+
+                        return (
+                          <div
+                            key={ticket.id}
+                            className="p-2 bg-dungeon-900/50 border border-dungeon-700 rounded text-sm"
+                          >
+                            <div className="flex items-center gap-2 mb-1">
+                              <CategoryIcon className={`w-4 h-4 ${categoryInfo?.color}`} />
+                              <span className="text-dungeon-200 font-medium">{ticket.title}</span>
+                              <span className={`text-xs ${statusInfo.color}`}>
+                                ({statusInfo.label})
+                              </span>
+                            </div>
+                            <p className="text-dungeon-400 text-xs line-clamp-2 ml-6">
+                              {ticket.description}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <p className="text-yellow-200 text-xs mt-2 italic">
+                      💡 Si ninguno de estos reportes describe tu problema, continúa creando uno nuevo.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Category */}

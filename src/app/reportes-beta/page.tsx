@@ -19,7 +19,8 @@ import {
   Search,
   Filter,
   X,
-  ThumbsUp
+  ThumbsUp,
+  Award
 } from 'lucide-react';
 
 type FeedbackCategory = 'bug' | 'feature' | 'translation' | 'data' | 'ui' | 'performance' | 'other';
@@ -38,6 +39,9 @@ interface Ticket {
   user_email: string;
   vote_count?: number;
   user_has_voted?: boolean;
+  author_display_name?: string | null;
+  author_karma?: number;
+  author_tier?: string;
 }
 
 const CATEGORIES = [
@@ -107,14 +111,27 @@ export default function PublicReportsPage() {
 
   async function loadTickets() {
     try {
-      // Intentar cargar desde la vista con votos primero
+      // Intentar cargar desde la vista con autor y votos
       const { data: viewData, error: viewError } = await supabase
-        .from('v_feedback_tickets_with_votes')
+        .from('v_feedback_tickets_with_author')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (!viewError && viewData) {
         setTickets(viewData);
+      } else if (viewError && viewError.message.includes('v_feedback_tickets_with_author')) {
+        // Fallback a vista anterior si la nueva no existe
+        console.warn('Vista v_feedback_tickets_with_author no disponible, intentando v_feedback_tickets_with_votes');
+        const { data: oldViewData, error: oldViewError } = await supabase
+          .from('v_feedback_tickets_with_votes')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!oldViewError && oldViewData) {
+          setTickets(oldViewData);
+        } else {
+          throw oldViewError;
+        }
       } else {
         // Fallback: cargar tickets sin votos si la vista no existe
         console.warn('Vista v_feedback_tickets_with_votes no disponible, usando tabla base');
@@ -481,16 +498,29 @@ export default function PublicReportsPage() {
                         </div>
                         <p className="text-dungeon-300 text-sm mb-3 whitespace-pre-line">{ticket.description}</p>
                         <div className="flex items-center justify-between text-xs text-dungeon-500">
-                          <span>
-                            Reportado por {ticket.user_email.split('@')[0]} el{' '}
-                            {new Date(ticket.created_at).toLocaleDateString('es-ES', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                            })}
-                          </span>
+                          <div className="flex items-center gap-3">
+                            <span>
+                              Reportado por{' '}
+                              <span className="text-dungeon-300 font-medium">
+                                {ticket.author_display_name || ticket.user_email.split('@')[0]}
+                              </span>
+                              {' '}el{' '}
+                              {new Date(ticket.created_at).toLocaleDateString('es-ES', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                              })}
+                            </span>
+                            {ticket.author_karma !== undefined && ticket.author_karma > 0 && (
+                              <span className="flex items-center gap-1 px-2 py-0.5 bg-gold-500/10 border border-gold-500/30 rounded text-gold-400">
+                                <Award className="w-3 h-3" />
+                                <span className="font-semibold">{ticket.author_karma}</span>
+                                <span className="text-dungeon-400">karma</span>
+                              </span>
+                            )}
+                          </div>
                           {ticket.page_url && (
                             <a
                               href={ticket.page_url}

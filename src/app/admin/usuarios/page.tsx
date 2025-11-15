@@ -15,7 +15,7 @@ import {
   X,
   Loader2,
   UserCog,
-  Trash2
+  AlertTriangle
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -24,33 +24,48 @@ interface UserProfile {
   email: string;
   display_name: string | null;
   tier_code: string;
+  tier_codes: string[];
   karma_points: number;
   reports_submitted: number;
   reports_resolved: number;
   total_votes_received: number;
   created_at: string;
+  is_admin: boolean;
+  is_reviewer: boolean;
+  is_translator: boolean;
+  is_contributor: boolean;
+  is_beta_tester: boolean;
 }
 
 const TIER_BADGES = {
-  admin: { label: 'Admin', color: 'text-red-400 border-red-500/30 bg-red-500/10' },
-  reviewer: { label: 'Revisor', color: 'text-orange-400 border-orange-500/30 bg-orange-500/10' },
-  translator: { label: 'Traductor', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10' },
-  contributor: { label: 'Colaborador', color: 'text-green-400 border-green-500/30 bg-green-500/10' },
-  beta_tester: { label: 'Beta Tester', color: 'text-blue-400 border-blue-500/30 bg-blue-500/10' },
-  user: { label: 'Usuario', color: 'text-dungeon-400 border-dungeon-700 bg-dungeon-800' },
+  admin: { label: 'Admin', color: 'text-red-400 border-red-500/30 bg-red-500/10', icon: Shield },
+  reviewer: { label: 'Revisor', color: 'text-orange-400 border-orange-500/30 bg-orange-500/10', icon: ShieldCheck },
+  translator: { label: 'Traductor', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10', icon: ShieldAlert },
+  contributor: { label: 'Colaborador', color: 'text-green-400 border-green-500/30 bg-green-500/10', icon: UserCog },
+  beta_tester: { label: 'Beta Tester', color: 'text-blue-400 border-blue-500/30 bg-blue-500/10', icon: Award },
+  user: { label: 'Usuario', color: 'text-dungeon-400 border-dungeon-700 bg-dungeon-800', icon: Users },
 };
+
+const ALL_TIERS = [
+  { value: 'admin', label: 'Admin', description: 'Acceso total al sistema', protected: true },
+  { value: 'reviewer', label: 'Revisor', description: 'Puede revisar y aprobar contenido', adminOnly: true },
+  { value: 'translator', label: 'Traductor', description: 'Puede traducir y revisar traducciones' },
+  { value: 'contributor', label: 'Colaborador', description: 'Puede contribuir con contenido' },
+  { value: 'beta_tester', label: 'Beta Tester', description: 'Participa en pruebas beta' },
+  { value: 'user', label: 'Usuario', description: 'Usuario estándar' },
+];
 
 export default function AdminUsuariosPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [authorized, setAuthorized] = useState(false);
+  const [currentUserIsAdmin, setCurrentUserIsAdmin] = useState(false);
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<UserProfile[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTier, setFilterTier] = useState<string>('all');
   const [selectedUser, setSelectedUser] = useState<UserProfile | null>(null);
   const [showTierModal, setShowTierModal] = useState(false);
-  const [selectedTierToChange, setSelectedTierToChange] = useState('');
   const [processing, setProcessing] = useState(false);
 
   const supabase = createClient();
@@ -75,15 +90,25 @@ export default function AdminUsuariosPage() {
       // Verificar si es admin o reviewer
       const { data: profile } = await supabase
         .from('profiles')
-        .select('tier_code')
+        .select('tier_code, tier_codes')
         .eq('id', user.id)
         .single();
 
-      if (!profile || !['admin', 'reviewer'].includes(profile.tier_code)) {
+      if (!profile) {
         router.push('/');
         return;
       }
 
+      const tiers = profile.tier_codes || [profile.tier_code];
+      const isAdmin = tiers.includes('admin');
+      const isReviewer = tiers.includes('reviewer');
+
+      if (!isAdmin && !isReviewer) {
+        router.push('/');
+        return;
+      }
+
+      setCurrentUserIsAdmin(isAdmin);
       setAuthorized(true);
       await loadUsers();
     } catch (error) {
@@ -95,7 +120,7 @@ export default function AdminUsuariosPage() {
   async function loadUsers() {
     try {
       const { data, error } = await supabase
-        .from('profiles')
+        .from('v_users_with_tiers')
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -124,33 +149,72 @@ export default function AdminUsuariosPage() {
 
     // Filtrar por tier
     if (filterTier !== 'all') {
-      filtered = filtered.filter((user) => user.tier_code === filterTier);
+      filtered = filtered.filter((user) => user.tier_codes?.includes(filterTier));
     }
 
     setFilteredUsers(filtered);
   }
 
-  async function changeTier(userId: string, newTier: string) {
-    if (!confirm(`¿Estás seguro de cambiar el tier de este usuario a "${newTier}"?`)) {
+  async function addTier(userId: string, tier: string) {
+    setProcessing(true);
+    try {
+      const { data, error } = await supabase.rpc('add_tier_to_user', {
+        target_user_id: userId,
+        new_tier: tier,
+      });
+
+      if (error) throw error;
+
+      if (data) {
+        alert(`Tier "${tier}" agregado exitosamente`);
+        await loadUsers();
+      } else {
+        alert('El usuario ya tiene este tier');
+      }
+    } catch (err: any) {
+      console.error('Error adding tier:', err);
+      alert(err.message || 'Error al agregar tier');
+    } finally {
+      setProcessing(false);
+    }
+  }
+
+  async function removeTier(userId: string, tier: string) {
+    // Validaciones del cliente
+    const tierInfo = ALL_TIERS.find(t => t.value === tier);
+
+    if (tierInfo?.protected) {
+      alert('El tier Admin no puede ser removido por seguridad');
+      return;
+    }
+
+    if (tierInfo?.adminOnly && !currentUserIsAdmin) {
+      alert('Solo los administradores pueden remover el tier Revisor');
+      return;
+    }
+
+    if (!confirm(`¿Estás seguro de remover el tier "${tierInfo?.label || tier}"?`)) {
       return;
     }
 
     setProcessing(true);
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({ tier_code: newTier })
-        .eq('id', userId);
+      const { data, error } = await supabase.rpc('remove_tier_from_user', {
+        target_user_id: userId,
+        tier_to_remove: tier,
+      });
 
       if (error) throw error;
 
-      alert('Tier actualizado exitosamente');
-      await loadUsers();
-      setShowTierModal(false);
-      setSelectedUser(null);
+      if (data) {
+        alert(`Tier "${tier}" removido exitosamente`);
+        await loadUsers();
+      } else {
+        alert('El usuario no tiene este tier');
+      }
     } catch (err: any) {
-      console.error('Error changing tier:', err);
-      alert(err.message || 'Error al cambiar tier');
+      console.error('Error removing tier:', err);
+      alert(err.message || 'Error al remover tier');
     } finally {
       setProcessing(false);
     }
@@ -158,21 +222,19 @@ export default function AdminUsuariosPage() {
 
   function openTierModal(user: UserProfile) {
     setSelectedUser(user);
-    setSelectedTierToChange(user.tier_code);
     setShowTierModal(true);
   }
 
   function closeTierModal() {
     setShowTierModal(false);
     setSelectedUser(null);
-    setSelectedTierToChange('');
   }
 
   const stats = {
     total: users.length,
-    admins: users.filter(u => u.tier_code === 'admin').length,
-    reviewers: users.filter(u => u.tier_code === 'reviewer').length,
-    beta_testers: users.filter(u => u.tier_code === 'beta_tester').length,
+    admins: users.filter(u => u.is_admin).length,
+    reviewers: users.filter(u => u.is_reviewer).length,
+    beta_testers: users.filter(u => u.is_beta_tester).length,
   };
 
   if (loading) {
@@ -197,7 +259,7 @@ export default function AdminUsuariosPage() {
             Gestión de Usuarios
           </h1>
           <p className="text-dungeon-300">
-            Administra usuarios y roles (Solo Admin/Reviewers)
+            Administra usuarios y roles - Los usuarios pueden tener múltiples tiers
           </p>
         </div>
 
@@ -281,7 +343,7 @@ export default function AdminUsuariosPage() {
             ) : (
               <div className="space-y-3">
                 {filteredUsers.map((user) => {
-                  const tierInfo = TIER_BADGES[user.tier_code as keyof typeof TIER_BADGES] || TIER_BADGES.user;
+                  const userTiers = user.tier_codes || [user.tier_code];
 
                   return (
                     <div
@@ -301,11 +363,39 @@ export default function AdminUsuariosPage() {
                               {user.display_name || user.email}
                             </h3>
 
-                            {/* Tier Badge */}
-                            <div className="flex items-center gap-2 mb-2">
-                              <span className={`px-2 py-1 rounded text-xs font-semibold border ${tierInfo.color}`}>
-                                {tierInfo.label}
-                              </span>
+                            {/* Tier Badges */}
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                              {userTiers.map((tier) => {
+                                const tierInfo = TIER_BADGES[tier as keyof typeof TIER_BADGES] || TIER_BADGES.user;
+                                const TierIcon = tierInfo.icon;
+                                const tierConfig = ALL_TIERS.find(t => t.value === tier);
+                                const canRemove = currentUserIsAdmin && tier !== 'admin';
+
+                                return (
+                                  <div
+                                    key={tier}
+                                    className={`px-2 py-1 rounded text-xs font-semibold border ${tierInfo.color} flex items-center gap-1.5`}
+                                  >
+                                    <TierIcon className="w-3 h-3" />
+                                    <span>{tierInfo.label}</span>
+                                    {canRemove && (
+                                      <button
+                                        onClick={() => removeTier(user.id, tier)}
+                                        disabled={processing}
+                                        className="ml-1 hover:text-red-400 transition-colors disabled:opacity-50"
+                                        title={`Remover tier ${tierInfo.label}`}
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </button>
+                                    )}
+                                    {tierConfig?.protected && (
+                                      <span title="Tier protegido">
+                                        <Shield className="w-3 h-3 text-red-400" />
+                                      </span>
+                                    )}
+                                  </div>
+                                );
+                              })}
                             </div>
 
                             {/* Stats */}
@@ -327,8 +417,8 @@ export default function AdminUsuariosPage() {
                             variant="secondary"
                             className="flex items-center gap-2"
                           >
-                            <UserCog className="w-4 h-4" />
-                            Cambiar Tier
+                            <Plus className="w-4 h-4" />
+                            Agregar Tier
                           </Button>
                         </div>
                       </div>
@@ -340,7 +430,7 @@ export default function AdminUsuariosPage() {
           </CardContent>
         </Card>
 
-        {/* Tier Change Modal */}
+        {/* Add Tier Modal */}
         {showTierModal && selectedUser && (
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
             <Card className="max-w-md w-full bg-dungeon-800 border-gold-500">
@@ -348,7 +438,7 @@ export default function AdminUsuariosPage() {
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="text-gold-400">
-                      Cambiar Tier
+                      Agregar Tier
                     </CardTitle>
                     <p className="text-dungeon-400 text-sm mt-1">
                       {selectedUser.display_name || selectedUser.email}
@@ -362,39 +452,66 @@ export default function AdminUsuariosPage() {
                   </button>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
-                    Nuevo Tier
-                  </label>
-                  <select
-                    value={selectedTierToChange}
-                    onChange={(e) => setSelectedTierToChange(e.target.value)}
-                    className="w-full px-3 py-2 bg-dungeon-900 border border-dungeon-700 rounded text-dungeon-100"
-                  >
-                    <option value="user">Usuario</option>
-                    <option value="beta_tester">Beta Tester</option>
-                    <option value="contributor">Colaborador</option>
-                    <option value="translator">Traductor</option>
-                    <option value="reviewer">Revisor</option>
-                    <option value="admin">Administrador</option>
-                  </select>
+              <CardContent className="space-y-3">
+                <div className="text-xs text-dungeon-400 mb-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded">
+                  <div className="flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-blue-300 mb-1">Información importante:</p>
+                      <ul className="space-y-1 text-blue-200">
+                        <li>• El tier <strong>Admin</strong> no puede ser removido (protegido)</li>
+                        <li>• Solo <strong>Admins</strong> pueden remover el tier <strong>Revisor</strong></li>
+                        <li>• Los usuarios pueden tener múltiples tiers simultáneamente</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
-                <Button
-                  onClick={() => selectedUser && changeTier(selectedUser.id, selectedTierToChange)}
-                  disabled={processing || selectedTierToChange === selectedUser.tier_code}
-                  className="w-full bg-gold-600 hover:bg-gold-700 flex items-center justify-center gap-2"
-                >
-                  {processing ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      Procesando...
-                    </>
-                  ) : (
-                    'Cambiar Tier'
-                  )}
-                </Button>
+                {ALL_TIERS.filter(tier => {
+                  const userTiers = selectedUser.tier_codes || [selectedUser.tier_code];
+                  return !userTiers.includes(tier.value);
+                }).map((tier) => {
+                  const tierInfo = TIER_BADGES[tier.value as keyof typeof TIER_BADGES];
+                  const TierIcon = tierInfo?.icon || Users;
+
+                  return (
+                    <Button
+                      key={tier.value}
+                      onClick={() => {
+                        addTier(selectedUser.id, tier.value);
+                        closeTierModal();
+                      }}
+                      disabled={processing}
+                      variant="secondary"
+                      className="w-full justify-start gap-3 p-4 h-auto"
+                    >
+                      <TierIcon className="w-5 h-5 flex-shrink-0" />
+                      <div className="text-left flex-1">
+                        <p className="font-semibold">{tier.label}</p>
+                        <p className="text-xs text-dungeon-400 font-normal">{tier.description}</p>
+                      </div>
+                      {tier.protected && (
+                        <span title="Tier protegido">
+                          <Shield className="w-4 h-4 text-red-400" />
+                        </span>
+                      )}
+                      {tier.adminOnly && (
+                        <span title="Solo admins pueden remover">
+                          <ShieldCheck className="w-4 h-4 text-orange-400" />
+                        </span>
+                      )}
+                    </Button>
+                  );
+                })}
+
+                {ALL_TIERS.filter(tier => {
+                  const userTiers = selectedUser.tier_codes || [selectedUser.tier_code];
+                  return !userTiers.includes(tier.value);
+                }).length === 0 && (
+                  <p className="text-center text-dungeon-400 py-4">
+                    El usuario ya tiene todos los tiers disponibles
+                  </p>
+                )}
               </CardContent>
             </Card>
           </div>

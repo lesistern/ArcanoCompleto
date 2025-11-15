@@ -10,9 +10,6 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
 
   experimental: {
-    // Partial Prerendering - Combina estático + dinámico
-    ppr: 'incremental',
-
     // Optimiza imports de paquetes pesados (solo carga iconos usados)
     optimizePackageImports: ['lucide-react', 'react-icons'],
   },

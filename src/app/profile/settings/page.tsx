@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import Button from '@/components/ui/Button';
+import AvatarUpload from '@/components/profile/AvatarUpload';
 import {
   Save,
   User,
@@ -296,29 +297,25 @@ export default function ProfileSettingsPage() {
                 </div>
               </div>
 
-              {/* Avatar */}
+              {/* Avatar Upload */}
               <div>
-                <label className="block text-sm font-medium text-dungeon-300 mb-2">
-                  Imagen de perfil
-                </label>
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl">
-                    {displayName?.[0]?.toUpperCase() || 'U'}
-                  </div>
-                  <div className="flex-1">
-                    <button
-                      type="button"
-                      className="inline-flex items-center space-x-2 px-4 py-2 bg-dungeon-800 hover:bg-dungeon-700 text-dungeon-100 rounded-md transition-colors text-sm"
-                      disabled
-                    >
-                      <Image size={16} />
-                      <span>Subir imagen (Próximamente)</span>
-                    </button>
-                    <p className="mt-1 text-xs text-dungeon-500">
-                      Por ahora se usa la inicial de tu usuario
-                    </p>
-                  </div>
-                </div>
+                <AvatarUpload
+                  currentAvatarUrl={profile?.avatar_url || undefined}
+                  onUploadSuccess={async (url) => {
+                    // Update profile with new avatar URL
+                    const { error } = await updateProfile({ avatar_url: url });
+                    if (!error) {
+                      setSuccessMessage('¡Avatar actualizado exitosamente!');
+                      setTimeout(() => setSuccessMessage(''), 3000);
+                    } else {
+                      setErrorMessage('Avatar subido pero error al guardar en perfil: ' + error.message);
+                    }
+                  }}
+                  onUploadError={(error) => {
+                    setErrorMessage(error);
+                    setTimeout(() => setErrorMessage(''), 5000);
+                  }}
+                />
               </div>
             </div>
           </div>

@@ -50,7 +50,8 @@ scraped-data/
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+tsconfig.tsbuildinfo
+# Keep next-env.d.ts (required by Next.js)
 
 # ============================================================================
 # RECOMMENDED ADDITIONS

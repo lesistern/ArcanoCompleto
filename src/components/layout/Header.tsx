@@ -134,6 +134,7 @@ export default function Header() {
     { name: 'Conjuros', href: '/conjuros' },
     { name: 'Objetos', href: '/objetos' },
     { name: 'Monstruos', href: '/monstruos' },
+    { name: 'Leaderboard', href: '/leaderboard' },
   ];
 
   const editions = [

@@ -198,11 +198,16 @@ export default async function ClassPage({ params }: ClassPageProps) {
 }
 
 export async function generateStaticParams() {
+  // Skip static generation if env vars not available (use dynamic rendering)
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return [];
+  }
+
   // Usar cliente directo sin cookies para build-time
   const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
   const supabase = createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
 
   const { data: classes } = await supabase

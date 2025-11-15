@@ -64,10 +64,11 @@ yarn-error.log*
 # Scraped data from d20srd.org
 scraped-data/
 
-# Generated output files
-scripts/output/
-scripts/scraper/output/
-scripts/pdf-extractor/output/
+# Population scripts (local use only)
+/scripts/
+
+# SQL migrations (local use only)
+/supabase/
 
 # Duplicate subdirectory (should be in root /supabase/)
 dnd-compendium/

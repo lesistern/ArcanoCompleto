@@ -1,0 +1,35 @@
+# Vercel Ignore - Archivos que NO se deployarán en producción
+
+# Datos scrapeados y logs
+scraped-data/
+*.log
+
+# Scripts de migración y utilidades
+scripts/
+
+# SQL files de Supabase (ya están en la base de datos)
+supabase/
+*.sql
+
+# Documentación de desarrollo (no necesaria en producción)
+docs/
+*.md
+!README.md
+
+# Archivos de desarrollo
+.env.local.example
+tsconfig.json
+eslint.config.mjs
+
+# PDFs y archivos grandes
+*.pdf
+
+# Test files
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Archivos temporales
+.vscode/
+.idea/

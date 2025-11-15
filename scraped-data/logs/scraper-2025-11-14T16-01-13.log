@@ -1,7 +1,0 @@
-Log iniciado: 2025-11-14T16:01:13.722Z
-[2025-11-14T16:01:13.722Z] [INFO] ============================================================
-[2025-11-14T16:01:13.723Z] [INFO] D&D Tools SRD Scraper
-[2025-11-14T16:01:13.723Z] [INFO] ============================================================
-[2025-11-14T16:01:13.727Z] [INFO] Scraping single URL: https://srd.dndtools.org/srd/classes/baseCore
-[2025-11-14T16:01:17.858Z] [ERROR] Failed to fetch URL: Max retries exceeded
-[2025-11-14T16:01:17.858Z] [SUCCESS] Scraping completed successfully

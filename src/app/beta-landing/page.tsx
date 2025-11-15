@@ -12,12 +12,14 @@ export default function BetaLandingPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const router = useRouter();
   const supabase = createClient();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setSuccess(null);
     setLoading(true);
 
     try {
@@ -56,9 +58,15 @@ export default function BetaLandingPage() {
         return;
       }
 
-      // 4. Redirigir a la aplicación
-      router.push('/');
-      router.refresh();
+      // 4. Mostrar mensaje de éxito
+      setSuccess('¡Acceso concedido! Redirigiendo...');
+      setLoading(false);
+
+      // 5. Redirigir a la aplicación después de 1.5 segundos
+      setTimeout(() => {
+        router.push('/');
+        router.refresh();
+      }, 1500);
 
     } catch (err) {
       console.error('Login error:', err);
@@ -196,16 +204,29 @@ export default function BetaLandingPage() {
                   </div>
                 )}
 
+                {/* Success Message */}
+                {success && (
+                  <div className="flex items-start gap-2 p-3 bg-green-500/10 border border-green-500 rounded-lg">
+                    <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-green-400">{success}</p>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || !!success}
                   className="w-full bg-gold-600 hover:bg-gold-700 text-dungeon-950 font-bold"
                 >
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                       Verificando acceso...
+                    </>
+                  ) : success ? (
+                    <>
+                      <Check className="w-4 h-4 mr-2" />
+                      Acceso concedido
                     </>
                   ) : (
                     'Iniciar Sesión'

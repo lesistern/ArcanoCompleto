@@ -20,6 +20,7 @@ export default function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const {
     user,
     profile,
@@ -102,6 +103,26 @@ export default function Header() {
       admin: 'text-red-500',
     };
     return colors[tierCode] || 'text-blue-500';
+  };
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    setUserMenuOpen(false);
+
+    const { error } = await signOut();
+
+    if (error) {
+      console.error('Error al cerrar sesión:', error);
+      setIsLoggingOut(false);
+      alert('Error al cerrar sesión. Por favor, intenta de nuevo.');
+      return;
+    }
+
+    // Esperar un momento para mostrar feedback visual
+    setTimeout(() => {
+      setIsLoggingOut(false);
+      window.location.href = '/';
+    }, 500);
   };
 
   const navigation = [
@@ -325,14 +346,12 @@ export default function Header() {
                     <hr className="my-2 border-dungeon-700" />
 
                     <button
-                      onClick={async () => {
-                        await signOut();
-                        setUserMenuOpen(false);
-                      }}
-                      className="flex items-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-dungeon-700 hover:text-red-300 w-full"
+                      onClick={handleLogout}
+                      disabled={isLoggingOut}
+                      className="flex items-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-dungeon-700 hover:text-red-300 w-full disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <LogOut size={16} />
-                      <span>Cerrar Sesión</span>
+                      <LogOut size={16} className={isLoggingOut ? 'animate-spin' : ''} />
+                      <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar Sesión'}</span>
                     </button>
                   </div>
                 </>
@@ -790,14 +809,12 @@ export default function Header() {
             <hr className="my-2 border-dungeon-700" />
 
             <button
-              onClick={async () => {
-                await signOut();
-                setUserMenuOpen(false);
-              }}
-              className="flex items-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-dungeon-700 hover:text-red-300 w-full"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="flex items-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-dungeon-700 hover:text-red-300 w-full disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <LogOut size={16} />
-              <span>Cerrar Sesión</span>
+              <LogOut size={16} className={isLoggingOut ? 'animate-spin' : ''} />
+              <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar Sesión'}</span>
             </button>
           </div>
         </>

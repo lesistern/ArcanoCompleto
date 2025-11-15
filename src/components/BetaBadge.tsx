@@ -55,12 +55,24 @@ export function BetaBadge() {
   async function handleLogout() {
     setLoggingOut(true);
     try {
-      await supabase.auth.signOut();
-      router.push('/beta-landing');
-      router.refresh();
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.error('Error al cerrar sesión:', error);
+        setLoggingOut(false);
+        alert('Error al cerrar sesión. Por favor, intenta de nuevo.');
+        return;
+      }
+
+      // Esperar un momento para mostrar feedback visual
+      setTimeout(() => {
+        router.push('/beta-landing');
+        router.refresh();
+      }, 500);
     } catch (error) {
       console.error('Error logging out:', error);
       setLoggingOut(false);
+      alert('Error inesperado al cerrar sesión.');
     }
   }
 
@@ -100,11 +112,11 @@ export function BetaBadge() {
         disabled={loggingOut}
         variant="ghost"
         size="sm"
-        className="text-dungeon-400 hover:text-dungeon-100 hover:bg-dungeon-800"
+        className="text-dungeon-400 hover:text-dungeon-100 hover:bg-dungeon-800 disabled:opacity-50"
       >
-        <LogOut className="w-4 h-4 mr-2" />
+        <LogOut className={`w-4 h-4 mr-2 ${loggingOut ? 'animate-spin' : ''}`} />
         <span className="hidden sm:inline">
-          {loggingOut ? 'Saliendo...' : 'Salir'}
+          {loggingOut ? 'Cerrando sesión...' : 'Salir'}
         </span>
       </Button>
     </div>

@@ -155,7 +155,7 @@ export default function AuthModal({
       setError(error.message);
       triggerShake();
     } else {
-      setSuccessMessage('¡Magic Link enviado! Revisa tu email para acceder.');
+      setSuccessMessage('¡Magic link enviado! Revisa tu email para acceder.');
     }
 
     setLoading(false);
@@ -301,7 +301,7 @@ export default function AuthModal({
           <h2 className="text-xl sm:text-2xl font-bold text-gold-500 mb-2 text-center font-heading">
             {mode === 'signin' && 'Iniciar sesión'}
             {mode === 'signup' && 'Crear cuenta'}
-            {mode === 'magiclink' && 'Magic Link'}
+            {mode === 'magiclink' && 'Magic link'}
           </h2>
           <p className="text-dungeon-400 text-xs sm:text-sm text-center mb-4 sm:mb-6">
             {mode === 'signin' && 'Accede a tu compendio de aventuras'}
@@ -332,7 +332,7 @@ export default function AuthModal({
                   : 'text-dungeon-400 hover:text-dungeon-200'
               }`}
             >
-              Iniciar Sesión
+              Iniciar sesión
             </button>
             <button
               onClick={() => switchMode('signup')}
@@ -352,7 +352,7 @@ export default function AuthModal({
                   : 'text-dungeon-400 hover:text-dungeon-200'
               }`}
             >
-              Magic Link
+              Magic link
             </button>
           </div>
 
@@ -443,7 +443,7 @@ export default function AuthModal({
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-gold-600 to-gold-500 text-dungeon-950 py-2 sm:py-3 px-4 rounded-md text-sm sm:text-base font-semibold hover:from-gold-500 hover:to-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dungeon-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
               >
-                {loading ? 'Enviando...' : 'Enviar Magic Link'}
+                {loading ? 'Enviando...' : 'Enviar magic link'}
               </button>
             </form>
           )}
@@ -454,7 +454,7 @@ export default function AuthModal({
               {mode === 'signup' && (
                 <div>
                   <label htmlFor="displayName" className="block text-sm font-medium text-dungeon-300 mb-2">
-                    Nombre de Usuario
+                    Nombre de usuario
                   </label>
                   <input
                     type="text"
@@ -553,7 +553,7 @@ export default function AuthModal({
               {mode === 'signup' && (
                 <div>
                   <label htmlFor="confirmPassword" className="block text-sm font-medium text-dungeon-300 mb-2">
-                    Confirmar Contraseña
+                    Confirmar contraseña
                   </label>
                   <div className="relative">
                     <input
@@ -596,7 +596,7 @@ export default function AuthModal({
                     Procesando...
                   </span>
                 ) : (
-                  mode === 'signin' ? 'Iniciar Sesión' : 'Crear Cuenta'
+                  mode === 'signin' ? 'Iniciar sesión' : 'Crear cuenta'
                 )}
               </button>
 

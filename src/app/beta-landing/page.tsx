@@ -228,7 +228,7 @@ export default function BetaLandingPage() {
                       Acceso concedido
                     </>
                   ) : (
-                    'Iniciar Sesión'
+                    'Iniciar sesión'
                   )}
                 </Button>
               </form>

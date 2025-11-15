@@ -313,7 +313,7 @@ export default function Header() {
                       onClick={() => setUserMenuOpen(false)}
                     >
                       <User size={16} />
-                      <span>Mi Perfil</span>
+                      <span>Mi perfil</span>
                     </Link>
 
                     <Link
@@ -338,7 +338,7 @@ export default function Header() {
                           className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300 w-full"
                         >
                           <UserPlus size={16} />
-                          <span>Invitar Usuario</span>
+                          <span>Invitar usuario</span>
                         </button>
                       </>
                     )}
@@ -351,7 +351,7 @@ export default function Header() {
                       className="flex items-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-dungeon-700 hover:text-red-300 w-full disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <LogOut size={16} className={isLoggingOut ? 'animate-spin' : ''} />
-                      <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar Sesión'}</span>
+                      <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar sesión'}</span>
                     </button>
                   </div>
                 </>
@@ -776,7 +776,7 @@ export default function Header() {
               onClick={() => setUserMenuOpen(false)}
             >
               <User size={16} />
-              <span>Mi Perfil</span>
+              <span>Mi perfil</span>
             </Link>
 
             <Link
@@ -801,7 +801,7 @@ export default function Header() {
                   className="flex items-center space-x-2 px-4 py-2 text-sm text-gold-400 hover:bg-dungeon-700 hover:text-gold-300 w-full"
                 >
                   <UserPlus size={16} />
-                  <span>Invitar Usuario</span>
+                  <span>Invitar usuario</span>
                 </button>
               </>
             )}
@@ -814,7 +814,7 @@ export default function Header() {
               className="flex items-center space-x-2 px-4 py-2 text-sm text-red-400 hover:bg-dungeon-700 hover:text-red-300 w-full disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <LogOut size={16} className={isLoggingOut ? 'animate-spin' : ''} />
-              <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar Sesión'}</span>
+              <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar sesión'}</span>
             </button>
           </div>
         </>

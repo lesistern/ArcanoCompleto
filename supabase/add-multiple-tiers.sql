@@ -192,7 +192,7 @@ $$;
 CREATE OR REPLACE VIEW v_users_with_tiers AS
 SELECT
   p.id,
-  p.email,
+  u.email,
   p.display_name,
   p.username_slug,
   p.tier_code,
@@ -208,7 +208,8 @@ SELECT
   'translator' = ANY(p.tier_codes) AS is_translator,
   'contributor' = ANY(p.tier_codes) AS is_contributor,
   'beta_tester' = ANY(p.tier_codes) AS is_beta_tester
-FROM profiles p;
+FROM profiles p
+JOIN auth.users u ON p.id = u.id;
 
 -- 11. Comentarios
 COMMENT ON COLUMN profiles.tier_codes IS 'Array de tiers asignados al usuario (puede tener múltiples)';

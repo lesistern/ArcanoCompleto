@@ -34,47 +34,38 @@ COMMENT ON INDEX classes_name_trgm_idx IS 'Búsqueda fuzzy en nombres de clases 
 
 -- Tarea 1: Recalcular estadísticas del leaderboard diariamente
 -- Ejecuta cada día a las 3:00 AM UTC
-DO $$
-BEGIN
-  PERFORM cron.schedule(
-    'refresh-leaderboard-stats',
-    '0 3 * * *',
-    $$
-      ANALYZE profiles;
-      ANALYZE feedback_tickets;
-      ANALYZE feedback_votes;
-    $$
-  );
-END $$;
+SELECT cron.schedule(
+  'refresh-leaderboard-stats',
+  '0 3 * * *',
+  $CRON$
+    ANALYZE profiles;
+    ANALYZE feedback_tickets;
+    ANALYZE feedback_votes;
+  $CRON$
+);
 
 -- Tarea 2: Limpiar sesiones expiradas cada hora
-DO $$
-BEGIN
-  PERFORM cron.schedule(
-    'clean-expired-sessions',
-    '0 * * * *',
-    $$
-      DELETE FROM auth.sessions
-      WHERE expires_at < NOW()
-      AND expires_at < NOW() - INTERVAL '7 days';
-    $$
-  );
-END $$;
+SELECT cron.schedule(
+  'clean-expired-sessions',
+  '0 * * * *',
+  $CRON$
+    DELETE FROM auth.sessions
+    WHERE expires_at < NOW()
+    AND expires_at < NOW() - INTERVAL '7 days';
+  $CRON$
+);
 
 -- Tarea 3: Recalcular niveles de usuarios (por si hay desincronización)
 -- Ejecuta cada día a las 4:00 AM UTC
-DO $$
-BEGIN
-  PERFORM cron.schedule(
-    'recalculate-user-levels',
-    '0 4 * * *',
-    $$
-      UPDATE profiles
-      SET level = calculate_level_from_exp(experience_points)
-      WHERE level != calculate_level_from_exp(experience_points);
-    $$
-  );
-END $$;
+SELECT cron.schedule(
+  'recalculate-user-levels',
+  '0 4 * * *',
+  $CRON$
+    UPDATE profiles
+    SET level = calculate_level_from_exp(experience_points)
+    WHERE level != calculate_level_from_exp(experience_points);
+  $CRON$
+);
 
 
 -- ============================================================

@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# ============================================================================
+# DEPENDENCIES
+# ============================================================================
 /node_modules
 /.pnp
 .pnp.*
@@ -10,32 +12,35 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
+# ============================================================================
+# NEXT.JS
+# ============================================================================
 /.next/
 /out/
+*.tsbuildinfo
+tsconfig.tsbuildinfo
 
-# production
+# ============================================================================
+# PRODUCTION
+# ============================================================================
 /build
+/dist
 
-# misc
-.DS_Store
-*.pem
-nul
+# ============================================================================
+# TESTING
+# ============================================================================
+/coverage
+*.lcov
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# ============================================================================
+# VERCEL
+# ============================================================================
+.vercel
+.vercel.json
 
-# scraped data and sensitive files
-scraped-data/
-*.pdf
-
-# env files (can opt-in for committing if needed)
+# ============================================================================
+# ENVIRONMENT VARIABLES
+# ============================================================================
 .env
 .env.local
 .env.development.local
@@ -45,24 +50,55 @@ scraped-data/
 # Allow .env.example to be committed
 !.env.example
 
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-tsconfig.tsbuildinfo
-# Keep next-env.d.ts (required by Next.js)
+# ============================================================================
+# DEBUG
+# ============================================================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # ============================================================================
-# RECOMMENDED ADDITIONS
+# DEVELOPMENT/SCRAPED DATA (NOT NEEDED FOR DEPLOYMENT)
 # ============================================================================
+# Scraped data from d20srd.org
+scraped-data/
 
-# Output directories (generated files - should NOT be in repo)
+# Generated output files
 scripts/output/
 scripts/scraper/output/
 scripts/pdf-extractor/output/
 
-# Temporary and backup files
+# Duplicate subdirectory (should be in root /supabase/)
+dnd-compendium/
+
+# ============================================================================
+# DOCUMENTATION (INTERNAL - NOT FOR PUBLIC REPO)
+# ============================================================================
+# Ignore all .md files except README.md
+*.md
+!README.md
+
+# Keep docs/ folder if it exists for GitHub Pages
+!docs/
+
+# ============================================================================
+# PDF FILES (COPYRIGHTED CONTENT)
+# ============================================================================
+*.pdf
+
+# ============================================================================
+# SQL FILES (OPTIONAL - USEFUL FOR VERSION CONTROL)
+# ============================================================================
+# Uncomment if you want to keep SQL files out of public repo:
+# supabase/*-fixed.sql
+# supabase/*-part*.sql
+# supabase/fix-*.sql
+# supabase/insert-*.sql
+
+# ============================================================================
+# TEMPORARY FILES
+# ============================================================================
 *.tmp
 *.temp
 *.backup
@@ -70,39 +106,42 @@ scripts/pdf-extractor/output/
 *~
 .swp
 .swo
+nul
 
-# Development/Internal documentation
-# Ignore all .md files except README.md
-*.md
-!README.md
-
-# SQL migration files (OPTIONAL - useful for version control)
-# Only ignore if you want to keep them out of public repo:
-# supabase/*-fixed.sql
-# supabase/*-part*.sql
-# supabase/fix-*.sql
-# supabase/insert-*.sql
-
-# Test files (development only)
+# ============================================================================
+# TEST FILES (DEVELOPMENT ONLY)
+# ============================================================================
 src/app/test-*/
 src/app/api/test-*/
 
-# Editor directories and files
+# ============================================================================
+# EDITOR DIRECTORIES AND FILES
+# ============================================================================
 .vscode/
 .idea/
 *.sublime-*
 .project
 .classpath
 .settings/
+*.code-workspace
 
-# OS files
+# ============================================================================
+# OS FILES
+# ============================================================================
+.DS_Store
 Thumbs.db
 Desktop.ini
+*.pem
 
-# Logs
+# ============================================================================
+# LOGS
+# ============================================================================
 logs/
 *.log
 
-# Cache directories
+# ============================================================================
+# CACHE DIRECTORIES
+# ============================================================================
 .cache/
 .parcel-cache/
+.turbo/

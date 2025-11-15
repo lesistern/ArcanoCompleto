@@ -1,14 +1,65 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { createClient } from '@/lib/supabase/server';
 import { getClassIcon } from '@/lib/utils/icons';
 
+// ISR: Revalidar cada 24 horas (contenido estático)
+export const revalidate = 86400;
+
 interface ClassPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+// Metadata dinámica para SEO
+export async function generateMetadata({ params }: ClassPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+
+  const { data: classData } = await supabase
+    .from('classes')
+    .select('name, description, hit_die, skill_points_per_level, bab_progression')
+    .eq('slug', slug)
+    .single();
+
+  if (!classData) {
+    return {
+      title: 'Clase no encontrada - D&D 3.5 Compendium',
+    };
+  }
+
+  const title = `${classData.name} - D&D 3.5 Compendium`;
+  const description = classData.description.slice(0, 160);
+  const babText = classData.bab_progression === 'good' ? 'Bueno' : classData.bab_progression === 'medium' ? 'Medio' : 'Bajo';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      siteName: 'D&D 3.5 Compendium',
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
+    keywords: [
+      classData.name,
+      'D&D 3.5',
+      'Dungeons & Dragons',
+      'clase',
+      'character class',
+      classData.hit_die,
+      `BAB ${babText}`,
+    ],
+  };
 }
 
 export default async function ClassPage({ params }: ClassPageProps) {

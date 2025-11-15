@@ -2,6 +2,9 @@ import ClassCard from '@/components/ClassCard';
 import { createClient } from '@/lib/supabase/server';
 import { DnDClass } from '@/lib/types/class';
 
+// ISR: Revalidar cada hora (contenido casi estático)
+export const revalidate = 3600;
+
 export default async function ClassesPage() {
   const supabase = await createClient();
 

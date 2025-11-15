@@ -1,8 +1,21 @@
 import type { NextConfig } from "next";
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+
+  experimental: {
+    // Optimiza imports de paquetes pesados (solo carga iconos usados)
+    optimizePackageImports: ['lucide-react', 'react-icons'],
+  },
+
+  // Comprimir respuestas
+  compress: true,
 };
 
-export default nextConfig;
+export default bundleAnalyzer(nextConfig);

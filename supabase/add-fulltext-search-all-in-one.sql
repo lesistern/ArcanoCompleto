@@ -362,49 +362,50 @@ RETURNS TABLE (
 ) AS $$
 BEGIN
   RETURN QUERY
-  -- Conjuros
-  SELECT
-    'spell'::TEXT as result_type,
-    s.id,
-    s.name,
-    s.school as category,
-    LEFT(s.description, 200) as description,
-    ts_rank(s.fts_search, websearch_to_tsquery('english', search_query)) as relevance
-  FROM public.spells s
-  WHERE s.fts_search @@ websearch_to_tsquery('english', search_query)
-  ORDER BY relevance DESC
-  LIMIT max_results_per_type
-
+  (
+    -- Conjuros
+    SELECT
+      'spell'::TEXT as result_type,
+      s.id,
+      s.name,
+      s.school as category,
+      LEFT(s.description, 200) as description,
+      ts_rank(s.fts_search, websearch_to_tsquery('english', search_query)) as relevance
+    FROM public.spells s
+    WHERE s.fts_search @@ websearch_to_tsquery('english', search_query)
+    ORDER BY relevance DESC
+    LIMIT max_results_per_type
+  )
   UNION ALL
-
-  -- Dotes
-  SELECT
-    'feat'::TEXT as result_type,
-    f.id,
-    f.name,
-    f.category,
-    LEFT(f.benefit, 200) as description,
-    ts_rank(f.fts_search, websearch_to_tsquery('spanish', search_query)) as relevance
-  FROM public.feats f
-  WHERE f.fts_search @@ websearch_to_tsquery('spanish', search_query)
-  ORDER BY relevance DESC
-  LIMIT max_results_per_type
-
+  (
+    -- Dotes
+    SELECT
+      'feat'::TEXT as result_type,
+      f.id,
+      f.name,
+      f.category,
+      LEFT(f.benefit, 200) as description,
+      ts_rank(f.fts_search, websearch_to_tsquery('spanish', search_query)) as relevance
+    FROM public.feats f
+    WHERE f.fts_search @@ websearch_to_tsquery('spanish', search_query)
+    ORDER BY relevance DESC
+    LIMIT max_results_per_type
+  )
   UNION ALL
-
-  -- Clases
-  SELECT
-    'class'::TEXT as result_type,
-    c.id,
-    c.name,
-    c.class_type as category,
-    LEFT(c.description, 200) as description,
-    ts_rank(c.fts_search, websearch_to_tsquery('spanish', search_query)) as relevance
-  FROM public.classes c
-  WHERE c.fts_search @@ websearch_to_tsquery('spanish', search_query)
-  ORDER BY relevance DESC
-  LIMIT max_results_per_type
-
+  (
+    -- Clases
+    SELECT
+      'class'::TEXT as result_type,
+      c.id,
+      c.name,
+      c.class_type as category,
+      LEFT(c.description, 200) as description,
+      ts_rank(c.fts_search, websearch_to_tsquery('spanish', search_query)) as relevance
+    FROM public.classes c
+    WHERE c.fts_search @@ websearch_to_tsquery('spanish', search_query)
+    ORDER BY relevance DESC
+    LIMIT max_results_per_type
+  )
   ORDER BY relevance DESC;
 END;
 $$ LANGUAGE plpgsql STABLE;

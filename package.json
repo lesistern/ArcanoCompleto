@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -26,6 +27,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

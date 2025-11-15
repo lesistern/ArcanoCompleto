@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  /* Light mode colors */
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Dungeon theme - Light */
+  --dungeon-50: #f5f3f0;
+  --dungeon-100: #e2e8f0;
+  --dungeon-200: #cbd5e0;
+  --dungeon-700: #2d3748;
+  --dungeon-800: #1a202c;
+  --dungeon-900: #0f1419;
+
+  /* Gold accents */
+  --gold-400: #fbbf24;
+  --gold-500: #d69e2e;
+  --gold-600: #b8860b;
+
+  /* Crimson accents */
+  --crimson-500: #dc2626;
+  --crimson-600: #b91c1c;
+
+  /* Content type colors */
+  --spell-blue: #3b82f6;
+  --monster-red: #ef4444;
+  --item-gold: #f59e0b;
+  --class-green: #10b981;
+}
+
+@theme inline {
+  /* Color palette */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Dungeon colors */
+  --color-dungeon-50: var(--dungeon-50);
+  --color-dungeon-100: var(--dungeon-100);
+  --color-dungeon-200: var(--dungeon-200);
+  --color-dungeon-700: var(--dungeon-700);
+  --color-dungeon-800: var(--dungeon-800);
+  --color-dungeon-900: var(--dungeon-900);
+
+  /* Gold colors */
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+
+  /* Crimson colors */
+  --color-crimson-500: var(--crimson-500);
+  --color-crimson-600: var(--crimson-600);
+
+  /* Content type colors */
+  --color-spell-blue: var(--spell-blue);
+  --color-monster-red: var(--monster-red);
+  --color-item-gold: var(--item-gold);
+  --color-class-green: var(--class-green);
+
+  /* Fonts */
+  --font-heading: var(--font-merriweather);
+  --font-body: var(--font-roboto);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a202c;
+    --foreground: #e2e8f0;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+}

@@ -1,0 +1,2360 @@
+[
+  {
+    "id": "abrir-cerraduras",
+    "name": "Abrir Cerraduras",
+    "slug": "abrir-cerraduras",
+    "shortDescription": "Abrir cerraduras sin la llave adecuada",
+    "description": "Puedes abrir cerraduras con herramientas de ladrón. El esfuerzo requiere por lo menos una herramienta simple de algún tipo, incluso si es solo un pedazo de alambre.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción de asalto completa",
+        "description": "Abrir una cerradura muy simple",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Abrir una cerradura media",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Abrir una cerradura buena",
+        "dc": "30",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Abrir una cerradura excelente",
+        "dc": "40",
+        "retry": true
+      }
+    ],
+    "check": "La CD de la tirada depende de la calidad de la cerradura.",
+    "action": "Abrir una cerradura es una acción de asalto completa.",
+    "retry": true,
+    "retryDetails": "Puedes intentar abrir una cerradura repetidamente.",
+    "special": [
+      "Si tienes el dote Manos Hábiles, obtienes bonificador +2 en tiradas de Abrir Cerraduras.",
+      "Una ganzúa da bonificador +2 en las tiradas. Las herramientas de ladrón de obra maestra dan bonificador +2."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Pícaro"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 68
+    }
+  },
+  {
+    "id": "acrobatics",
+    "name": "Acrobacias",
+    "slug": "acrobacias",
+    "shortDescription": "Volteretas, caídas y maniobras acrobáticas",
+    "description": "Puedes realizar volteretas, saltos mortales, caídas rodadas y otras maniobras acrobáticas espectaculares. No puedes usar esta habilidad si tu velocidad se ha reducido por armadura, exceso de equipo o botín.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Evitar ataques de oportunidad al atravesar un área amenazada",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Caer de pie desde una caída",
+        "dc": "15",
+        "retry": false
+      }
+    ],
+    "check": "Puedes aterrizar de pie tras una caída, voltear para evitar ataques o rodar pasando entre las piernas de un oponente.",
+    "action": "No acción. Las tiradas de Acrobacias se hacen como parte de otra acción o como reacción a una situación.",
+    "retry": false,
+    "retryDetails": "No puedes reintentar la misma acción en la misma ronda.",
+    "special": [
+      "Si tienes 5 o más rangos en Acrobacias, obtienes bonificador +2 en tiradas de Equilibrio y Saltar.",
+      "Si tienes el dote Acrobático, obtienes bonificador +2 en tiradas de Acrobacias y Saltar."
+    ],
+    "synergies": [
+      {
+        "skill": "Equilibrio",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Acrobacias"
+      },
+      {
+        "skill": "Saltar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Acrobacias"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 62
+    }
+  },
+  {
+    "id": "artesania",
+    "name": "Artesanía",
+    "slug": "artesania",
+    "shortDescription": "Crear objetos de metal, madera, cuero, etc.",
+    "description": "Eres un artesano experto. Artesanía es en realidad varias habilidades diferentes. Podrías tener varios rangos de Artesanía (alfarería), Artesanía (herrería) y Artesanía (armaduras). Los rangos de cada uno se compran por separado.",
+    "keyAbility": "Inteligencia",
+    "category": "Mental",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Varía",
+        "description": "Crear un objeto común",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Crear un objeto de calidad excepcional",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Crear un objeto complejo o de alta calidad",
+        "dc": "20",
+        "retry": true
+      }
+    ],
+    "check": "Puedes practicar tu oficio y ganarte la vida, ganando cerca de la mitad de tu resultado de tirada en piezas de oro por semana de trabajo dedicado. Sabes cómo usar las herramientas de tu oficio, cómo realizar las tareas diarias del oficio, cómo supervisar ayudantes sin entrenamiento y cómo manejar problemas comunes.",
+    "action": "Varía. Una tirada de Artesanía representa una semana de trabajo.",
+    "retry": true,
+    "retryDetails": "Sí, pero cada vez que fallas una tirada por 5 o más, arruinas la mitad de la materia prima y tienes que pagar la mitad del coste original de nuevo.",
+    "special": [
+      "Puedes trabajar voluntariamente un poco más lentamente y con más cuidado para obtener bonificador +2 en tu tirada de Artesanía.",
+      "Un enano tiene bonificador racial +2 en tiradas de Artesanía relacionadas con piedra o metal."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bárbaro", "Bardo", "Clérigo", "Druida", "Explorador", "Guerrero", "Hechicero", "Mago", "Monje", "Paladín", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 70
+    }
+  },
+  {
+    "id": "averiguar-intenciones",
+    "name": "Averiguar Intenciones",
+    "slug": "averiguar-intenciones",
+    "shortDescription": "Detectar mentiras y comprender comportamientos",
+    "description": "Puedes detectar si alguien está mintiendo percibiendo señales corporales y el comportamiento general. También te permite comprender mensajes sociales no hablados en una conversación o entender cuándo algo ha perturbado a alguien.",
+    "keyAbility": "Sabiduría",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "1 minuto",
+        "description": "Percibir que algo oculto está ocurriendo",
+        "dc": "20",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Determinar si alguien es de confianza",
+        "dc": "Tirada de Engañar del oponente",
+        "retry": false
+      },
+      {
+        "action": "Varía",
+        "description": "Detectar un mensaje secreto",
+        "dc": "Varía",
+        "retry": false
+      }
+    ],
+    "check": "Una tirada exitosa te permite evitar ser engañado por una tirada de Engañar. También puedes usar esta habilidad para determinar cuándo 'algo anda mal' (es decir, algo está ocurriendo que no es obvio).",
+    "action": "Varía. Normalmente toma 1 minuto, y puedes dedicar un minuto completo observando a un objetivo antes de hacer una tirada de Averiguar Intenciones.",
+    "retry": false,
+    "retryDetails": "No. Puedes obtener la sensación de que algo está mal, pero no puedes exactamente decir qué es.",
+    "special": [
+      "Un guardián tiene bonificador +2 en tiradas de Averiguar Intenciones.",
+      "Si tienes el dote Negociador, obtienes bonificador +2 en tiradas de Averiguar Intenciones."
+    ],
+    "synergies": [
+      {
+        "skill": "Diplomacia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Averiguar Intenciones"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo", "Druida", "Monje", "Paladín", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 68
+    }
+  },
+  {
+    "id": "avistar",
+    "name": "Avistar",
+    "slug": "avistar",
+    "shortDescription": "Notar detalles y detectar criaturas",
+    "description": "Avistar se utiliza para notar detalles a distancia o cosas que son fáciles de pasar por alto. Avistar no revela criaturas ocultas, pero puede que notes indicios de que tal criatura está presente.",
+    "keyAbility": "Sabiduría",
+    "category": "Percepción",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción estándar",
+        "description": "Avistar una criatura visible",
+        "dc": "Varía según distancia y tamaño",
+        "retry": false
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Avistar una criatura usando Esconderse",
+        "dc": "Tirada de Esconderse del oponente",
+        "retry": false
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Notar un detalle u objeto pequeño",
+        "dc": "Variable (15-30)",
+        "retry": true
+      }
+    ],
+    "check": "Avistar se usa principalmente para detectar personajes u otras criaturas que se están escondiendo o son difíciles de ver debido a la distancia o las condiciones.",
+    "action": "Varía. Cada vez que tengas oportunidad de avistar algo en una situación reactiva, hace una tirada de Avistar sin usar una acción. Intentar avistar algo que no viste previamente es una acción de movimiento.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes intentar avistar algo que fallaste en avistar previamente en ninguna penalización.",
+    "special": [
+      "Un elfo tiene bonificador racial +2 en tiradas de Avistar y Buscar.",
+      "Un semielfo tiene bonificador racial +1 en tiradas de Avistar, Buscar y Escuchar.",
+      "Si tienes el dote Alerta, obtienes bonificador +2 en tiradas de Avistar y Escuchar."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Druida", "Explorador", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 83
+    }
+  },
+  {
+    "id": "buscar",
+    "name": "Buscar",
+    "slug": "buscar",
+    "shortDescription": "Encontrar puertas secretas, trampas y otros detalles",
+    "description": "Usas Buscar para encontrar puertas secretas, trampas simples, compartimentos ocultos y otros detalles no inmediatamente visibles.",
+    "keyAbility": "Inteligencia",
+    "category": "Percepción",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción de asalto completa",
+        "description": "Buscar en un área de 5 pies por 5 pies o un volumen de bienes de 5 pies por 5 pies por 5 pies",
+        "dc": "Varía",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Encontrar una trampa típica",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Encontrar una puerta secreta o compartimento bien oculto",
+        "dc": "20-30",
+        "retry": true
+      }
+    ],
+    "check": "Por lo general debes estar a 10 pies de distancia o menos del objeto o superficie que estás buscando. Buscar un área de 5 pies por 5 pies o un volumen de bienes de 5 pies por 5 pies por 5 pies toma una acción de asalto completa.",
+    "action": "Una acción de asalto completa.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes buscar repetidamente un área o un objeto.",
+    "special": [
+      "Un elfo tiene bonificador racial +2 en tiradas de Avistar y Buscar.",
+      "Un semielfo tiene bonificador racial +1 en tiradas de Avistar, Buscar y Escuchar.",
+      "Si tienes el dote Investigador, obtienes bonificador +2 en tiradas de Buscar y Descifrar Escritura."
+    ],
+    "synergies": [
+      {
+        "skill": "Supervivencia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Buscar, obtienes bonificador +2 en tiradas de Supervivencia para encontrar o seguir rastros"
+      }
+    ],
+    "classSkillFor": ["Explorador", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 81
+    }
+  },
+  {
+    "id": "concentracion",
+    "name": "Concentración",
+    "slug": "concentracion",
+    "shortDescription": "Mantener la concentración en conjuros y efectos",
+    "description": "Concentración te permite centrarte y evitar distracciones. Es particularmente importante para los lanzadores de conjuros, ya que si pierdes la concentración mientras lanzas un conjuro, pierdes el conjuro.",
+    "keyAbility": "Constitución",
+    "category": "Mental",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Lanzar un conjuro a la defensiva",
+        "dc": "15 + nivel del conjuro",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Mantener concentración cuando se recibe daño",
+        "dc": "10 + daño recibido + nivel del conjuro",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Concentrarse mientras se está afectado por un conjuro",
+        "dc": "CD del conjuro + nivel del conjuro que se lanza",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Lanzar un conjuro en condiciones climáticas severas",
+        "dc": "5 + nivel del conjuro",
+        "retry": false
+      }
+    ],
+    "check": "Debes hacer una tirada de Concentración cuando intentas realizar una tarea que podría ser interrumpida. Una tirada exitosa te permite continuar con la acción normalmente.",
+    "action": "Ninguna. Hacer una tirada de Concentración no requiere una acción; es en respuesta a otra circunstancia o como parte de otra acción.",
+    "retry": false,
+    "retryDetails": "Sí, aunque un fallo significa que la acción que intentabas completar se ha perdido.",
+    "special": [
+      "Si tienes el dote Lanzar Combate, obtienes bonificador +4 en tiradas de Concentración hechas para lanzar un conjuro o usar una habilidad de conjuración mientras estás a la defensiva o mientras estás agarrado o inmovilizado."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bardo", "Clérigo", "Druida", "Hechicero", "Mago", "Monje", "Paladín", "Explorador"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 69
+    }
+  },
+  {
+    "id": "conocimiento-conjuros",
+    "name": "Conocimiento de Conjuros",
+    "slug": "conocimiento-conjuros",
+    "shortDescription": "Identificar conjuros y efectos mágicos",
+    "description": "Usas Conocimiento de Conjuros para identificar conjuros a medida que se lanzan, o conjuros ya en funcionamiento. También puedes usar esta habilidad para identificar las propiedades de objetos mágicos.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Identificar un conjuro mientras se lanza",
+        "dc": "15 + nivel del conjuro",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Aprender un conjuro de un libro de conjuros o pergamino",
+        "dc": "15 + nivel del conjuro",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Identificar las propiedades de un objeto mágico usando detectar magia",
+        "dc": "15 + nivel de lanzador",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Trazar un círculo mágico",
+        "dc": "20",
+        "retry": false
+      },
+      {
+        "action": "Varía",
+        "description": "Identificar un glifo, runa o símbolo",
+        "dc": "13 (glifo menor) a 20 (símbolo)",
+        "retry": false
+      }
+    ],
+    "check": "Puedes identificar conjuros y efectos mágicos. La CD de la tirada varía según la tarea.",
+    "action": "Varía, como se indica arriba.",
+    "retry": false,
+    "retryDetails": "No puedes volver a intentar tiradas para identificar un conjuro. Si tienes acceso al conjuro, puedes tomar 10 o tomar 20 (sólo si es posible tomar la cantidad de tiempo requerida).",
+    "special": [
+      "Si tienes el dote Afinidad Mágica, obtienes bonificador +2 en tiradas de Conocimiento de Conjuros y Usar Objeto Mágico.",
+      "Un mago obtiene bonificador +2 en tiradas de Conocimiento de Conjuros para descifrar nuevos conjuros en un libro de conjuros ajeno."
+    ],
+    "synergies": [
+      {
+        "skill": "Usar Objeto Mágico",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento de Conjuros"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo", "Druida", "Hechicero", "Mago"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 82
+    }
+  },
+  {
+    "id": "conocimiento-arcano",
+    "name": "Conocimiento (Arcano)",
+    "slug": "conocimiento-arcano",
+    "shortDescription": "Conocimiento sobre magia, magos y criaturas mágicas",
+    "description": "Conocimiento (Arcano) incluye información sobre magia antigua, tradiciones mágicas, símbolos arcanos, construcciones, dragones y bestias mágicas.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Responder una pregunta de dificultad media",
+        "dc": "10-15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Responder una pregunta difícil",
+        "dc": "16-25",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Responder una pregunta muy difícil",
+        "dc": "26+",
+        "retry": false
+      }
+    ],
+    "check": "Responder una pregunta sobre magia, magos, construcciones, dragones u otras bestias mágicas. La CD está determinada por la oscuridad del conocimiento.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción, simplemente sabes la respuesta o no.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes, y pensar en un tema por segunda vez no te dejará saber algo que nunca supiste en primer lugar.",
+    "special": [
+      "Un mago obtiene bonificador +2 en tiradas de Conocimiento (Arcano)."
+    ],
+    "synergies": [
+      {
+        "skill": "Conocimiento de Conjuros",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Arcano)"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo", "Hechicero", "Mago", "Monje"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 76
+    }
+  },
+  {
+    "id": "conocimiento-arquitectura",
+    "name": "Conocimiento (Arquitectura e ingeniería)",
+    "slug": "conocimiento-arquitectura",
+    "shortDescription": "Conocimiento sobre edificios, acueductos, puentes y fortificaciones",
+    "description": "Conocimiento (Arquitectura e ingeniería) abarca edificios, acueductos, puentes, fortificaciones y otras construcciones.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Identificar un estilo arquitectónico común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Determinar la estabilidad estructural de un edificio",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Localizar puntos débiles en una estructura",
+        "dc": "20",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre la construcción de edificios y otras estructuras. También puedes determinar la estabilidad o localizar puntos débiles.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [
+      "Un enano tiene bonificador racial +2 en tiradas de Buscar para notar corredizos inusuales en mampostería, y puede detectar automáticamente si pasa a 10 pies de tales características."
+    ],
+    "synergies": [
+      {
+        "skill": "Buscar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Arquitectura e ingeniería), obtienes bonificador +2 en tiradas de Buscar relacionadas con puertas secretas y compartimentos ocultos"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Mago"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 76
+    }
+  },
+  {
+    "id": "conocimiento-dungeons",
+    "name": "Conocimiento (Dungeons)",
+    "slug": "conocimiento-dungeons",
+    "shortDescription": "Conocimiento sobre aberraciones, cavernas y cieno",
+    "description": "Conocimiento (Dungeons) incluye información sobre aberraciones, cavernas, cieno, y criaturas que habitan bajo tierra.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Identificar una aberración común",
+        "dc": "10-15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Reconocer las tácticas de cieno y gelatinas",
+        "dc": "15-20",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Conocer peligros de mazmorras antiguas",
+        "dc": "20+",
+        "retry": false
+      }
+    ],
+    "check": "Responder preguntas sobre aberraciones, cavernas, cieno y habitantes de mazmorras.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [],
+    "synergies": [
+      {
+        "skill": "Supervivencia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Dungeons), obtienes bonificador +2 en tiradas de Supervivencia mientras estés bajo tierra"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Explorador"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 76
+    }
+  },
+  {
+    "id": "conocimiento-geografia",
+    "name": "Conocimiento (Geografía)",
+    "slug": "conocimiento-geografia",
+    "shortDescription": "Conocimiento sobre tierras, terrenos, climas y pueblos",
+    "description": "Conocimiento (Geografía) abarca tierras, terrenos, climas, pueblos y habitantes de una región.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Reconocer un accidente geográfico común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Conocer la ubicación de una ciudad o reino conocido",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Identificar características de terrenos exóticos",
+        "dc": "20+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre tierras, terrenos, climas y la geografía de una región.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [],
+    "synergies": [
+      {
+        "skill": "Supervivencia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Geografía), obtienes bonificador +2 en tiradas de Supervivencia para evitar perderte o evitar peligros naturales"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Explorador"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 76
+    }
+  },
+  {
+    "id": "conocimiento-historia",
+    "name": "Conocimiento (Historia)",
+    "slug": "conocimiento-historia",
+    "shortDescription": "Conocimiento sobre eventos, guerras, colonias y migraciones",
+    "description": "Conocimiento (Historia) cubre eventos históricos, guerras, colonias, migraciones, fundaciones de ciudades y otras cuestiones históricas.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Recordar un evento histórico común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Conocer detalles de una guerra o evento importante",
+        "dc": "15-20",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Recordar eventos históricos oscuros o antiguos",
+        "dc": "25+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre eventos pasados, guerras, migraciones y la historia de reinos y civilizaciones.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [],
+    "synergies": [
+      {
+        "skill": "Tasación",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Historia), obtienes bonificador +2 en tiradas de Tasación para objetos antiguos"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 77
+    }
+  },
+  {
+    "id": "conocimiento-local",
+    "name": "Conocimiento (Local)",
+    "slug": "conocimiento-local",
+    "shortDescription": "Conocimiento sobre leyendas, personalidades, habitantes y costumbres",
+    "description": "Conocimiento (Local) abarca leyendas locales, personalidades, habitantes, leyes y costumbres de una región.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Conocer leyes y costumbres locales comunes",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Identificar una personalidad local importante",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Recordar rumores o leyendas oscuras",
+        "dc": "20+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre personalidades locales, leyendas, organizaciones, leyes y costumbres.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [],
+    "synergies": [
+      {
+        "skill": "Reunir Información",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Local)"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 77
+    }
+  },
+  {
+    "id": "conocimiento-naturaleza",
+    "name": "Conocimiento (Naturaleza)",
+    "slug": "conocimiento-naturaleza",
+    "shortDescription": "Conocimiento sobre animales, fey, gigantes, plantas y clima",
+    "description": "Conocimiento (Naturaleza) incluye información sobre animales, fey, gigantes, monstruosidades, plantas, estaciones y ciclos, clima y ambiente natural.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Identificar un animal o planta común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Predecir el clima con 24 horas de anticipación",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Identificar criaturas fey o bestias raras",
+        "dc": "20+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre el mundo natural, incluyendo animales, plantas, fey, gigantes y clima.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [
+      "Un druida obtiene bonificador +2 en tiradas de Conocimiento (Naturaleza).",
+      "Un explorador obtiene bonificador +2 en tiradas de Conocimiento (Naturaleza)."
+    ],
+    "synergies": [
+      {
+        "skill": "Supervivencia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Naturaleza)"
+      }
+    ],
+    "classSkillFor": ["Bárbaro", "Bardo", "Druida", "Explorador"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 77
+    }
+  },
+  {
+    "id": "conocimiento-nobleza",
+    "name": "Conocimiento (Nobleza y realeza)",
+    "slug": "conocimiento-nobleza",
+    "shortDescription": "Conocimiento sobre linajes, heráldica, personalidades y etiqueta",
+    "description": "Conocimiento (Nobleza y realeza) cubre linajes, heráldica, genealogías, la familia real y personalidades nobles, etiqueta y protocolos.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Reconocer un escudo de armas común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Conocer la etiqueta apropiada para la corte",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Identificar linajes oscuros o antiguos",
+        "dc": "20+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre linajes nobles, heráldica, personalidades de la corte y etiqueta.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [],
+    "synergies": [
+      {
+        "skill": "Diplomacia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Nobleza y realeza)"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Paladín"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 77
+    }
+  },
+  {
+    "id": "conocimiento-planos",
+    "name": "Conocimiento (Planos)",
+    "slug": "conocimiento-planos",
+    "shortDescription": "Conocimiento sobre planos de existencia y sus habitantes",
+    "description": "Conocimiento (Planos) abarca los Planos Internos, Planos Externos, el Plano Astral, el Plano Etéreo, forasteros, elementales y criaturas mágicas nativas de otros planos.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Identificar un plano común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Reconocer un forastero o elemental",
+        "dc": "15-20",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Conocer las propiedades de planos exóticos",
+        "dc": "25+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre los planos de existencia y sus habitantes.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [],
+    "synergies": [
+      {
+        "skill": "Supervivencia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Planos), obtienes bonificador +2 en tiradas de Supervivencia mientras estés en otros planos"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo", "Mago"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 77
+    }
+  },
+  {
+    "id": "conocimiento-religion",
+    "name": "Conocimiento (Religión)",
+    "slug": "conocimiento-religion",
+    "shortDescription": "Conocimiento sobre dioses, mitos, rituales y muertos vivientes",
+    "description": "Conocimiento (Religión) cubre dioses y diosas, historia eclesiástica, tradiciones sagradas, símbolos sagrados y los no-muertos.",
+    "keyAbility": "Inteligencia",
+    "category": "Conocimiento",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Reconocer un símbolo religioso común",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Identificar un no-muerto o conocer sus debilidades",
+        "dc": "15-20",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Recordar mitos antiguos o rituales oscuros",
+        "dc": "25+",
+        "retry": false
+      }
+    ],
+    "check": "Puedes responder preguntas sobre deidades, tradiciones religiosas, símbolos sagrados y los no-muertos.",
+    "action": "Por lo general ninguna. En la mayoría de los casos, hacer una tirada de Conocimiento no requiere acción.",
+    "retry": false,
+    "retryDetails": "No. La tirada representa lo que sabes.",
+    "special": [
+      "Un clérigo obtiene bonificador +2 en tiradas de Conocimiento (Religión).",
+      "Un paladín obtiene bonificador +2 en tiradas de Conocimiento (Religión)."
+    ],
+    "synergies": [
+      {
+        "skill": "Expulsar Muertos Vivientes",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Conocimiento (Religión)"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo", "Monje", "Paladín"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 78
+    }
+  },
+  {
+    "id": "descifrar-escritura",
+    "name": "Descifrar Escritura",
+    "slug": "descifrar-escritura",
+    "shortDescription": "Entender textos poco familiares o mensajes incompletos",
+    "description": "Usas Descifrar Escritura para entender un texto escrito en un idioma poco familiar o bajo condiciones difíciles, o para descifrar mensajes incompletos o arcaicos.",
+    "keyAbility": "Inteligencia",
+    "category": "Mental",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "1 minuto",
+        "description": "Descifrar un escrito simple",
+        "dc": "20",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Descifrar un escrito complejo o parcialmente dañado",
+        "dc": "25",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Descifrar un escrito muy antiguo o en un lenguaje desconocido",
+        "dc": "30",
+        "retry": false
+      }
+    ],
+    "check": "Puedes descifrar escritura en un idioma poco familiar o bajo condiciones difíciles. Se necesita aproximadamente un minuto para descifrar alrededor de una página de texto.",
+    "action": "Descifrar una página de escritura toma 1 minuto (diez acciones de asalto consecutivas).",
+    "retry": false,
+    "retryDetails": "No. Si fallas una tirada, debes esperar 1 día antes de intentar nuevamente descifrar ese mismo texto.",
+    "special": [
+      "Si tienes el dote Investigador, obtienes bonificador +2 en tiradas de Buscar y Descifrar Escritura."
+    ],
+    "synergies": [
+      {
+        "skill": "Usar Objeto Mágico",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Descifrar Escritura"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro", "Mago"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 71
+    }
+  },
+  {
+    "id": "diplomacia",
+    "name": "Diplomacia",
+    "slug": "diplomacia",
+    "shortDescription": "Influenciar otros mediante negociación y persuasión",
+    "description": "Puedes cambiar las actitudes de otros mediante negociación y persuasión. En negociaciones, los participantes hacen tiradas opuestas para ver quién gana la ventaja.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "1 minuto",
+        "description": "Cambiar actitud de hostil a antipático",
+        "dc": "25",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Cambiar actitud de antipático a indiferente",
+        "dc": "20",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Cambiar actitud de indiferente a amistoso",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Cambiar actitud de amistoso a servicial",
+        "dc": "10",
+        "retry": false
+      }
+    ],
+    "check": "Puedes cambiar las actitudes de los PNJ con una tirada de Diplomacia exitosa. La actitud inicial del PNJ hacia ti determina la CD.",
+    "action": "Cambiar la actitud de otros con Diplomacia generalmente toma 1 minuto completo (10 acciones de asalto consecutivas).",
+    "retry": false,
+    "retryDetails": "No. Incluso si la tirada inicial fue exitosa, no puedes revertir más la actitud de una persona en el mismo día.",
+    "special": [
+      "Un semielfo tiene bonificador racial +2 en tiradas de Diplomacia y Reunir Información.",
+      "Si tienes el dote Negociador, obtienes bonificador +2 en tiradas de Diplomacia y Averiguar Intenciones."
+    ],
+    "synergies": [
+      {
+        "skill": "Engañar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Diplomacia"
+      },
+      {
+        "skill": "Trato con Animales",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Diplomacia"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Clérigo", "Druida", "Monje", "Paladín", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 72
+    }
+  },
+  {
+    "id": "disfrazarse",
+    "name": "Disfrazarse",
+    "slug": "disfrazarse",
+    "shortDescription": "Cambiar tu apariencia",
+    "description": "Usas Disfrazarse para cambiar tu apariencia con maquillaje, ropa y otros accesorios.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "1d3 × 10 minutos",
+        "description": "Disfrazarse para parecer diferente (mismo género, raza y edad)",
+        "dc": "10 + modificadores",
+        "retry": true
+      },
+      {
+        "action": "1d3 × 10 minutos",
+        "description": "Disfrazarse como diferente género (-2 penalización)",
+        "dc": "10 + modificadores",
+        "retry": true
+      },
+      {
+        "action": "1d3 × 10 minutos",
+        "description": "Disfrazarse como diferente raza (-2 penalización)",
+        "dc": "10 + modificadores",
+        "retry": true
+      },
+      {
+        "action": "1d3 × 10 minutos",
+        "description": "Disfrazarse como diferente categoría de edad (-2 penalización por categoría)",
+        "dc": "10 + modificadores",
+        "retry": true
+      }
+    ],
+    "check": "Tu tirada de Disfrazarse determina cuán bueno es el disfraz, y es opuesta por la tirada de Avistar de otros. Si no llamas la atención, otros no hacen tiradas de Avistar. Si llamas la atención (como un guardia), pueden hacer tiradas de Avistar.",
+    "action": "Crear un disfraz requiere 1d3 × 10 minutos de trabajo.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes volver a intentar crear un disfraz, pero una vez que otros han visto el disfraz, tirarán automáticamente contra el nuevo disfraz incluso si no sospecharían normalmente.",
+    "special": [
+      "Si tienes el dote Engañoso, obtienes bonificador +2 en tiradas de Disfrazarse y Falsificar.",
+      "La magia que altera tu forma, como disfrazarse a sí mismo, da bonificador +10 en tiradas de Disfrazarse."
+    ],
+    "synergies": [
+      {
+        "skill": "Engañar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Disfrazarse"
+      },
+      {
+        "skill": "Intimidar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Disfrazarse"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 72
+    }
+  },
+  {
+    "id": "enganar",
+    "name": "Engañar",
+    "slug": "enganar",
+    "shortDescription": "Mentir convincentemente y confundir enemigos",
+    "description": "Usas Engañar para hacer que la falsedad parezca verdadera. La habilidad incluye actuar con malicia, realizar una finta en combate, o comunicar un mensaje secreto.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción de asalto",
+        "description": "Finta en combate",
+        "dc": "Tirada de Averiguar Intenciones del oponente",
+        "retry": true
+      },
+      {
+        "action": "1 minuto a 10 minutos",
+        "description": "Crear una distracción para esconderse",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "Varía",
+        "description": "Decir una mentira convincente",
+        "dc": "Tirada de Averiguar Intenciones del oponente",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Transmitir un mensaje secreto",
+        "dc": "15",
+        "retry": false
+      }
+    ],
+    "check": "Una tirada de Engañar es opuesta por la tirada de Averiguar Intenciones del objetivo. Modificadores favorables o desfavorables aplican a la tirada dependiendo de cuán plausible sea la mentira.",
+    "action": "Varía. Una finta en combate es una acción estándar. Engañar como parte de una interacción social general toma al menos 1 minuto pero puede tomar más si intentas algo elaborado.",
+    "retry": true,
+    "retryDetails": "Generalmente, un intento de Engañar fallido hace que el objetivo se vuelva demasiado suspicaz para que vuelvas a intentar en la misma situación. Para fintas en combate, puedes volver a intentar libremente.",
+    "special": [
+      "Si tienes el dote Engañoso, obtienes bonificador +2 en tiradas de Disfrazarse y Falsificar.",
+      "Si tienes 5 o más rangos en Engañar, obtienes bonificador +2 en tiradas de Diplomacia, Intimidar y Esconderse."
+    ],
+    "synergies": [
+      {
+        "skill": "Diplomacia",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Engañar"
+      },
+      {
+        "skill": "Intimidar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Engañar"
+      },
+      {
+        "skill": "Esconderse",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Engañar, obtienes bonificador +2 cuando creas una distracción para esconderte"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro", "Hechicero"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 67
+    }
+  },
+  {
+    "id": "equilibrio",
+    "name": "Equilibrio",
+    "slug": "equilibrio",
+    "shortDescription": "Mantener el equilibrio en superficies precarias",
+    "description": "Puedes mantener tu equilibrio caminando sobre una superficie estrecha o precaria. Una tirada exitosa te permite moverte a la mitad de tu velocidad como una acción de movimiento.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "Acción de movimiento",
+        "description": "Caminar sobre una superficie de 7-12 pulgadas de ancho",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Caminar sobre una superficie de 2-6 pulgadas de ancho",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Caminar sobre una superficie de menos de 2 pulgadas de ancho",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Caminar sobre una superficie inclinada o resbaladiza",
+        "dc": "+5 a la CD",
+        "retry": true
+      }
+    ],
+    "check": "Puedes caminar sobre una superficie precaria. Una tirada exitosa te permite moverte a la mitad de tu velocidad a lo largo de la superficie por 1 asalto. Una falla significa que no puedes moverte por 1 asalto. Una falla por 5 o más significa que caes.",
+    "action": "Ninguna. Una tirada de Equilibrio no requiere acción; se hace como parte de otra acción o como una reacción a una situación.",
+    "retry": true,
+    "retryDetails": "Puedes intentar caminar sobre una superficie en cada asalto.",
+    "special": [
+      "Si tienes 5 o más rangos en Acrobacias, obtienes bonificador +2 en tiradas de Equilibrio.",
+      "Si tienes el dote Ágil, obtienes bonificador +2 en tiradas de Equilibrio y Escapismo."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bardo", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 63
+    }
+  },
+  {
+    "id": "escalar",
+    "name": "Escalar",
+    "slug": "escalar",
+    "shortDescription": "Trepar paredes, acantilados y otras superficies verticales",
+    "description": "Con una tirada de Escalar exitosa, puedes avanzar hacia arriba, abajo o a través de una pendiente, pared u otra superficie empinada (o incluso un techo con asideros). Por lo general, avanzas a un cuarto de tu velocidad normal, pero puedes moverte a la mitad de tu velocidad si aceptas una penalización de -5 en tu tirada.",
+    "keyAbility": "Fuerza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar una pendiente, pared con asideros, o una cuerda anudada",
+        "dc": "0",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar una cuerda sin nudos con manos y pies",
+        "dc": "5",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar una superficie rugosa con algunos asideros",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar una superficie áspera con asideros inadecuados",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar una superficie rugosa con pocos asideros",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar una pared lisa",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Escalar un techo con asideros",
+        "dc": "30",
+        "retry": true
+      }
+    ],
+    "check": "Con cada tirada de Escalar exitosa, puedes avanzar hacia arriba, abajo o a través de la pendiente una distancia igual a un cuarto de tu velocidad normal como acción de asalto completa. Una tirada fallada significa que no haces progreso, y una falla por 5 o más significa que caes desde tu posición actual.",
+    "action": "Escalar es parte de movimiento, por lo que generalmente es parte de una acción de movimiento (y puede ser combinado con otro movimiento en una acción de asalto completa).",
+    "retry": true,
+    "retryDetails": "Sí, pero después de fallar por 5 o más debes comenzar de nuevo desde el fondo de la pared o la pendiente.",
+    "special": [
+      "Alguien escalando (incluyéndote a ti mismo) puede ser ayudado de abajo con una cuerda tensionada. Si estás siendo ayudado, sumas +2 a tu tirada de Escalar.",
+      "Una velocidad de escalada te da bonificador +8 en todas las tiradas de Escalar."
+    ],
+    "synergies": [
+      {
+        "skill": "Usar Cuerda",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Escalar, obtienes bonificador +2 en tiradas de Usar Cuerda para atar nudos"
+      }
+    ],
+    "classSkillFor": ["Bárbaro", "Bardo", "Explorador", "Guerrero", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 69
+    }
+  },
+  {
+    "id": "escapismo",
+    "name": "Escapismo",
+    "slug": "escapismo",
+    "shortDescription": "Escapar de cuerdas, esposas y agarres",
+    "description": "Usas Escapismo para deslizarte fuera de cuerdas, grilletes u otras restricciones. También puedes usarlo para deslizarte a través de espacios estrechos.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "1 minuto",
+        "description": "Escapar de cuerdas",
+        "dc": "Tirada de Usar Cuerda del que ató +10",
+        "retry": true
+      },
+      {
+        "action": "1 minuto",
+        "description": "Escapar de una red o enredo",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "1 minuto",
+        "description": "Escapar de esposas de obra maestra",
+        "dc": "35",
+        "retry": true
+      },
+      {
+        "action": "1 minuto",
+        "description": "Apretarse a través de un espacio estrecho",
+        "dc": "30",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Escapar de un agarrón o inmovilización",
+        "dc": "Tirada de agarrar del oponente",
+        "retry": true
+      }
+    ],
+    "check": "Hacer una tirada de Escapismo para escapar de cuerdas u otras ataduras (además de una red o enredo) requiere 1 minuto de trabajo. Escapar de una red o enredo es una acción de asalto completa. Escapar de un agarrón o inmovilización es una acción estándar.",
+    "action": "Hacer una tirada de Escapismo para escapar de cuerdas, grilletes u otras restricciones (excepto una red o enredo) requiere 1 minuto. Escapar de una red o enredo es una acción de asalto completa. Apretarse a través de un espacio estrecho tarda al menos 1 minuto, tal vez más dependiendo de cuán largo sea el espacio.",
+    "retry": true,
+    "retryDetails": "Varía. Puedes hacer otro intento de escapar de cuerdas u otras ataduras, pero hacerlo es una acción de asalto completa. No puedes volver a intentar apretarte a través de un espacio si fallas en el intento inicial.",
+    "special": [
+      "Si tienes el dote Ágil, obtienes bonificador +2 en tiradas de Equilibrio y Escapismo."
+    ],
+    "synergies": [
+      {
+        "skill": "Usar Cuerda",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Escapismo, obtienes bonificador +2 en tiradas de Usar Cuerda para atar cuerdas"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 73
+    }
+  },
+  {
+    "id": "esconderse",
+    "name": "Esconderse",
+    "slug": "esconderse",
+    "shortDescription": "Ocultarse de la vista",
+    "description": "Usas Esconderse para sumirte en las sombras y acercarte a enemigos sin ser visto. Tu tirada de Esconderse es opuesta por la tirada de Avistar de alguien que pueda verte.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "Acción estándar",
+        "description": "Esconderse de enemigos cercanos",
+        "dc": "Tirada de Avistar del oponente",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Mantener oculto mientras te mueves a la mitad de velocidad",
+        "dc": "Tirada de Avistar del oponente",
+        "retry": true
+      },
+      {
+        "action": "Penalización -20",
+        "description": "Esconderse mientras se es observado",
+        "dc": "Tirada de Avistar del oponente",
+        "retry": false
+      },
+      {
+        "action": "Penalización -5",
+        "description": "Esconderse mientras corres o cargas",
+        "dc": "Tirada de Avistar del oponente",
+        "retry": true
+      }
+    ],
+    "check": "Tu tirada de Esconderse es opuesta por la tirada de Avistar de todos los que tengan la oportunidad de verte. Puedes moverte a la mitad de tu velocidad normal y esconderte sin penalización. Cuando te mueves a más de la mitad de tu velocidad y hasta tu velocidad completa, sufres una penalización de -5. Es prácticamente imposible (-20 de penalización) esconderte mientras corres o cargas.",
+    "action": "Normalmente ninguna. Normalmente, haces una tirada de Esconderse como parte del movimiento, por lo que no requiere una acción separada.",
+    "retry": true,
+    "retryDetails": "Normalmente, puedes volver a intentar esconderte si fallas, siempre que todavía estés fuera de la vista y no hayas sido visto.",
+    "special": [
+      "Si tienes 5 o más rangos en Esconderse, obtienes bonificador +2 en tiradas de Moverse Sigilosamente.",
+      "Un mediano tiene bonificador racial +2 en tiradas de Esconderse."
+    ],
+    "synergies": [
+      {
+        "skill": "Moverse Sigilosamente",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Esconderse"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Explorador", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 76
+    }
+  },
+  {
+    "id": "escuchar",
+    "name": "Escuchar",
+    "slug": "escuchar",
+    "shortDescription": "Oír ruidos lejanos o débiles",
+    "description": "Usas Escuchar para oír criaturas acercándose, escuchar conversaciones a través de puertas cerradas, o detectar peligros antes de que te ataquen.",
+    "keyAbility": "Sabiduría",
+    "category": "Percepción",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción estándar",
+        "description": "Escuchar un sonido (personas hablando, una criatura moviéndose)",
+        "dc": "Variable (0-15)",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Escuchar detalles de una conversación",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Oír a través de una puerta",
+        "dc": "+5 a la CD",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Oír a través de una pared de piedra",
+        "dc": "+15 a la CD",
+        "retry": true
+      }
+    ],
+    "check": "Tu tirada de Escuchar se opone por la tirada de Moverse Sigilosamente del que hace ruido, o es CD 0 si la persona no intenta ser silenciosa. Sonidos débiles (como un susurro) tienen una CD de 19, y cada 10 pies de distancia agregan +1 a la CD.",
+    "action": "Varía. Cada vez que tengas la oportunidad de escuchar algo en una situación reactiva (como cuando alguien hace un ruido o intenta usar Moverse Sigilosamente), puedes hacer una tirada de Escuchar sin usar una acción.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes intentar escuchar algo que fallaste en oír previamente sin penalización.",
+    "special": [
+      "Un elfo, gnomo o mediano tiene bonificador racial +2 en tiradas de Escuchar.",
+      "Un semielfo tiene bonificador racial +1 en tiradas de Avistar, Buscar y Escuchar.",
+      "Si tienes el dote Alerta, obtienes bonificador +2 en tiradas de Avistar y Escuchar."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bárbaro", "Bardo", "Druida", "Explorador", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 78
+    }
+  },
+  {
+    "id": "falsificar",
+    "name": "Falsificar",
+    "slug": "falsificar",
+    "shortDescription": "Crear documentos falsos y detectar falsificaciones",
+    "description": "Falsificar te permite crear documentos falsos. Para falsificar un documento más que un documento en blanco, necesitas haber visto un documento similar antes, y la calidad de tu falsificación determina cuán bien engañará a otros.",
+    "keyAbility": "Inteligencia",
+    "category": "Mental",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Varía",
+        "description": "Falsificar un documento simple",
+        "dc": "Variable",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Detectar una falsificación",
+        "dc": "Tirada de Falsificar del falsificador",
+        "retry": false
+      }
+    ],
+    "check": "Falsificar requiere materiales de escritura apropiados para el documento que se está falsificando, suficiente luz, cera de sellar si es apropiado, y así sucesivamente. La tirada de Falsificar se hace secretamente, por lo que no estás seguro de cuán buena es tu falsificación. Como con Disfrazarse, no haces una tirada hasta que alguien examina el trabajo.",
+    "action": "Falsificar un documento muy corto y simple toma aproximadamente 1 minuto. Documentos más largos o complejos toman 1d4 minutos por página.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes volver a intentar falsificar un documento, aunque simplemente hacer múltiples intentos no mejorará tu habilidad.",
+    "special": [
+      "Si tienes el dote Engañoso, obtienes bonificador +2 en tiradas de Disfrazarse y Falsificar.",
+      "Un lector debe hacer una tirada de Falsificar opuesta para detectar la falsificación."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 74
+    }
+  },
+  {
+    "id": "inutilizar-mecanismo",
+    "name": "Inutilizar Mecanismo",
+    "slug": "inutilizar-mecanismo",
+    "shortDescription": "Desactivar trampas y sabotear objetos mecánicos",
+    "description": "La habilidad Inutilizar Mecanismo te permite desactivar una trampa u otro dispositivo mecánico. También puedes sabotear una rueda de un carro, trabar una catapulta, o destruir sutilmente un mecanismo.",
+    "keyAbility": "Inteligencia",
+    "category": "Mental",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "1 asalto o más",
+        "description": "Desactivar un mecanismo simple",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "1d4 asaltos",
+        "description": "Desactivar un mecanismo difícil",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "2d4 asaltos",
+        "description": "Desactivar una trampa compleja",
+        "dc": "20 + nivel de la trampa",
+        "retry": true
+      },
+      {
+        "action": "1 asalto",
+        "description": "Sabotear un mecanismo para que funcione normalmente por un tiempo y luego falle",
+        "dc": "20",
+        "retry": true
+      }
+    ],
+    "check": "La CD de Inutilizar Mecanismo depende de cuán complicado sea el dispositivo. Desactivar (o volver a activar) una trampa simple tiene una CD de 20. Trampas más intrínsecas o difíciles tienen CDs más altas.",
+    "action": "El tiempo que se requiere para hacer una tirada de Inutilizar Mecanismo depende de la tarea. Desactivar una trampa simple toma 1 asalto y es una acción de asalto completa. Trampas más complejas toman 1d4 o 2d4 asaltos.",
+    "retry": true,
+    "retryDetails": "Varía. Puedes volver a intentar si has fallado la tirada por 4 o menos, aunque debes ser consciente de que has fallado para volver a intentar. Si fallas por 5 o más, algo sale mal. Si es una trampa, la disparas. Si es algún tipo de sabotaje, piensas que el dispositivo está desactivado, pero aún funciona normalmente.",
+    "special": [
+      "Si tienes el dote Manos Hábiles, obtienes bonificador +2 en tiradas de Inutilizar Mecanismo.",
+      "Un pícaro (o un personaje con la habilidad de clase de evasión del trapero) puede usar la habilidad Inutilizar Mecanismo para desarmar trampas mágicas."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Pícaro"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 72
+    }
+  },
+  {
+    "id": "interpretar",
+    "name": "Interpretar",
+    "slug": "interpretar",
+    "shortDescription": "Actuar, cantar, bailar o tocar un instrumento",
+    "description": "Como Artesanía y Profesión, Interpretar es en realidad varias habilidades diferentes. Podrías tener varios rangos de Interpretar (canto), Interpretar (instrumentos de cuerda) e Interpretar (comedia). Cada uno se compra por separado.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Varía",
+        "description": "Rutina de actuación de aficionado",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Rutina de actuación competente",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Gran actuación",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Actuación memorable",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Actuación magistral",
+        "dc": "30",
+        "retry": true
+      }
+    ],
+    "check": "Puedes impresionar a las audiencias con tu talento e ingenio. Las CDs determinan cuán exitosa es tu actuación.",
+    "action": "Varía. Intentar ganarse la vida interpretando requiere entre una velada (unas pocas horas) y una semana completa de actuación.",
+    "retry": true,
+    "retryDetails": "Sí. Los reintentos están permitidos, pero no niegan intentos anteriores, y una audiencia que ha sido desagradada en el pasado probablemente será más difícil de impresionar en el futuro.",
+    "special": [
+      "Un bardo debe tener al menos 3 rangos en una habilidad de Interpretar para inspirar valor en sus aliados, u 6 rangos en una habilidad de Interpretar para inspirar competencia, sugestión o grandeza."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bardo", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 80
+    }
+  },
+  {
+    "id": "intimidar",
+    "name": "Intimidar",
+    "slug": "intimidar",
+    "shortDescription": "Asustar oponentes o forzar acciones",
+    "description": "Puedes cambiar el comportamiento de otros con una amenaza exitosa.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción estándar",
+        "description": "Cambiar la actitud de un oponente de hostil a asustado",
+        "dc": "10 + HD del objetivo + modificador de Sabiduría del objetivo",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Desmoralizar a un oponente (sacudido por 1 asalto)",
+        "dc": "10 + HD del objetivo + modificador de Sabiduría del objetivo",
+        "retry": false
+      },
+      {
+        "action": "1 minuto",
+        "description": "Forzar una acción con amenazas prolongadas",
+        "dc": "15 + modificador de Sabiduría del objetivo",
+        "retry": true
+      }
+    ],
+    "check": "Puedes cambiar el comportamiento de otro con una amenaza exitosa. Tu tirada de Intimidar se opone por el nivel de personaje modificado del objetivo, es decir, 1d20 + nivel de personaje o Dados de Golpe + modificador de bonificador de Sabiduría del objetivo (si existe) + modificadores del objetivo sobre salvaciones contra miedo.",
+    "action": "Varía. Cambiar el comportamiento de otro requiere 1 minuto de interacción. Intimidar a un oponente en combate es una acción estándar.",
+    "retry": true,
+    "retryDetails": "Sí, pero cada intento adicional aumenta la CD en +5, ya que el objetivo se vuelve más resistente a la intimidación.",
+    "special": [
+      "Tienes bonificador +4 en tu tirada si eres más grande que tu objetivo, y una penalización de -4 si eres más pequeño.",
+      "Si tienes el dote Persuasivo, obtienes bonificador +2 en tiradas de Intimidar y Engañar."
+    ],
+    "synergies": [
+      {
+        "skill": "Engañar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Intimidar"
+      }
+    ],
+    "classSkillFor": ["Bárbaro", "Guerrero", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 76
+    }
+  },
+  {
+    "id": "montar",
+    "name": "Montar",
+    "slug": "montar",
+    "shortDescription": "Cabalgar monturas y dirigirlas en combate",
+    "description": "Si tienes rangos en Montar, puedes intentar maniobras complejas en una montura. Las tareas típicas no requieren tiradas. Puedes ensillar, montar, cabalgar y desmontar de una montura sin problema.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Guiar con las rodillas (montar sin manos)",
+        "dc": "5",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Quedarse en la silla cuando la montura se encabrita o se asusta",
+        "dc": "5",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Caer suavemente cuando la montura cae o es derribada",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Espolear montura (velocidad extra)",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Saltar (hacer que la montura salte un obstáculo)",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Cubrir (obtener cobertura del cuerpo de la montura)",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Montar o desmontar rápidamente",
+        "dc": "20",
+        "retry": false
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Ataque desde la montura (atacar y guiar)",
+        "dc": "10",
+        "retry": true
+      }
+    ],
+    "check": "Las tareas típicas de montar, como ensillar una montura o montar y cabalgar, no requieren tiradas. Puedes realizarlas automáticamente.",
+    "action": "Varía. Montar o desmontar normalmente es una acción de movimiento. Otras tareas varían.",
+    "retry": true,
+    "retryDetails": "Varía. Puedes volver a intentar tiradas para guiar con las rodillas, quedarte en la silla, etc.",
+    "special": [
+      "Si usas una silla de montar militar, obtienes bonificador +2 en tiradas de Montar para quedarte en la silla.",
+      "Si estás montado sin silla de montar, sufres una penalización de -5 en tiradas de Montar."
+    ],
+    "synergies": [
+      {
+        "skill": "Trato con Animales",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Montar"
+      }
+    ],
+    "classSkillFor": ["Bárbaro", "Druida", "Explorador", "Guerrero", "Paladín"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 80
+    }
+  },
+  {
+    "id": "moverse-sigilosamente",
+    "name": "Moverse Sigilosamente",
+    "slug": "moverse-sigilosamente",
+    "shortDescription": "Moverte en silencio",
+    "description": "Puedes usar esta habilidad para moverte en silencio y evitar ser oído.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Moverte sigilosamente a velocidad normal",
+        "dc": "Tirada de Escuchar del oponente",
+        "retry": true
+      },
+      {
+        "action": "Penalización -5",
+        "description": "Moverte sigilosamente a más de la mitad de velocidad",
+        "dc": "Tirada de Escuchar del oponente",
+        "retry": true
+      }
+    ],
+    "check": "Tu tirada de Moverse Sigilosamente se opone por las tiradas de Escuchar de aquellos que puedan oírte. Puedes moverte a la mitad de tu velocidad normal sin penalización. Cuando te mueves a tu velocidad normal o más rápido, sufres una penalización de -5.",
+    "action": "Ninguna. Una tirada de Moverse Sigilosamente se incluye en tu movimiento u otra actividad, por lo que es parte de otra acción.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes moverte lentamente y con cuidado para intentar de nuevo.",
+    "special": [
+      "Si tienes 5 o más rangos en Esconderse, obtienes bonificador +2 en tiradas de Moverse Sigilosamente.",
+      "Un mediano tiene bonificador racial +2 en tiradas de Moverse Sigilosamente."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bardo", "Explorador", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 79
+    }
+  },
+  {
+    "id": "nadar",
+    "name": "Nadar",
+    "slug": "nadar",
+    "shortDescription": "Nadar y bucear en agua",
+    "description": "Puedes nadar en agua agitada o bajo la superficie.",
+    "keyAbility": "Fuerza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "Acción de asalto completa",
+        "description": "Nadar en aguas tranquilas",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Nadar en aguas agitadas",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Nadar en aguas tormentosas",
+        "dc": "20",
+        "retry": true
+      }
+    ],
+    "check": "Haz una tirada de Nadar una vez por asalto mientras estés en el agua. El éxito significa que puedes nadar hasta un cuarto de tu velocidad (como una acción de asalto completa) o a la mitad de tu velocidad (como una acción de movimiento). Si fallas por 4 o menos, no avanzas. Si fallas por 5 o más, te hundes bajo la superficie si estabas flotando en la superficie cuando hiciste la tirada.",
+    "action": "Una tirada exitosa de Nadar te permite nadar un cuarto de tu velocidad como una acción de asalto completa o la mitad de tu velocidad como una acción de movimiento.",
+    "retry": true,
+    "retryDetails": "Sí. Se hace una nueva tirada cada asalto.",
+    "special": [
+      "Nadar incurre en una penalización de -1 por cada 5 libras de equipaje, armadura o botín que lleves.",
+      "Una velocidad de natación te da bonificador +8 en todas las tiradas de Nadar."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bárbaro", "Bardo", "Druida", "Explorador", "Guerrero", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 84
+    }
+  },
+  {
+    "id": "profesion",
+    "name": "Profesión",
+    "slug": "profesion",
+    "shortDescription": "Ganarse la vida con una profesión",
+    "description": "Como Artesanía e Interpretar, Profesión es en realidad varias habilidades diferentes. Podrías tener varios rangos en Profesión (herbolario), Profesión (arquitecto) y Profesión (panadero). Cada uno se compra por separado.",
+    "keyAbility": "Sabiduría",
+    "category": "Mental",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Varía",
+        "description": "Ganarse la vida en tu profesión",
+        "dc": "Variable",
+        "retry": true
+      }
+    ],
+    "check": "Puedes practicar tu profesión y ganarte la vida, ganando cerca de la mitad de tu resultado de tirada en piezas de oro por semana de trabajo dedicado.",
+    "action": "No aplica. Una sola tirada representa generalmente una semana de trabajo.",
+    "retry": true,
+    "retryDetails": "Varía. Un intento de usar una habilidad de Profesión representa una semana de esfuerzo. En circunstancias bajo las cuales tu habilidad de Profesión no genera una ganancia, puedes usar la habilidad una vez por día.",
+    "special": [
+      "Sin entrenamiento, simplemente realizas trabajos poco cualificados, ganando sólo 1 pp por día."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bardo", "Clérigo", "Druida", "Explorador", "Guerrero", "Hechicero", "Mago", "Monje", "Paladín", "Pícaro"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 80
+    }
+  },
+  {
+    "id": "reunir-informacion",
+    "name": "Reunir Información",
+    "slug": "reunir-informacion",
+    "shortDescription": "Recopilar rumores e información en comunidades",
+    "description": "Haciendo una tirada de Reunir Información, puedes recopilar información sobre un tema específico o individuo. Esta información podría provenir de rumores de bar, contactos en las calles o chismes locales.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "1d4+1 horas",
+        "description": "Reunir información general",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "1d4+1 horas",
+        "description": "Reunir información específica",
+        "dc": "15-25",
+        "retry": true
+      }
+    ],
+    "check": "Una tirada exitosa de Reunir Información obtiene información general sobre un tema. Con una CD de 10 o más, puedes encontrar rumores comunes. CDs más altas producen información más específica o secreta.",
+    "action": "Reunir Información toma 1d4+1 horas.",
+    "retry": true,
+    "retryDetails": "Sí, pero toma tiempo para cada intento. Además, puedes llamar la atención si haces demasiadas preguntas.",
+    "special": [
+      "Un semielfo tiene bonificador racial +2 en tiradas de Diplomacia y Reunir Información.",
+      "Si tienes el dote Investigador, obtienes bonificador +2 en tiradas de Reunir Información y Buscar."
+    ],
+    "synergies": [
+      {
+        "skill": "Conocimiento (Local)",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Reunir Información, obtienes bonificador +2 en tiradas de Conocimiento (Local)"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 74
+    }
+  },
+  {
+    "id": "saltar",
+    "name": "Saltar",
+    "slug": "saltar",
+    "shortDescription": "Saltar a distancia o altura",
+    "description": "La habilidad Saltar te permite saltar distancias largas o alcanzar alturas que normalmente estarían fuera de tu alcance.",
+    "keyAbility": "Fuerza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": true,
+    "uses": [
+      {
+        "action": "Acción de movimiento",
+        "description": "Salto de longitud con carrerilla",
+        "dc": "Distancia en pies",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Salto de longitud sin carrerilla",
+        "dc": "Distancia en pies × 2",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Salto de altura con carrerilla",
+        "dc": "Altura en pies × 4",
+        "retry": true
+      },
+      {
+        "action": "Acción de movimiento",
+        "description": "Salto de altura sin carrerilla",
+        "dc": "Altura en pies × 8",
+        "retry": true
+      }
+    ],
+    "check": "La CD de una tirada de Saltar es igual a la distancia saltada (en pies). Si tienes al menos 20 pies de carrera, la CD es solo la distancia en pies. Sin carrerilla, la CD se duplica. Por ejemplo, un salto de 10 pies requiere una CD de 10 con carrerilla, o una CD de 20 sin ella.",
+    "action": "Ninguna. Una tirada de Saltar se incluye en tu movimiento, por lo que es parte de una acción de movimiento.",
+    "retry": true,
+    "retryDetails": "Sí. Si fallas en tu primer intento, puedes intentar de nuevo, siempre que tengas suficiente movimiento restante.",
+    "special": [
+      "Los efectos que aumentan tu velocidad de movimiento también te ayudan a saltar más lejos. Tu modificador de velocidad se agrega como bonificador en tiradas de Saltar.",
+      "Si tienes 5 o más rangos en Acrobacias, obtienes bonificador +2 en tiradas de Saltar."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bárbaro", "Bardo", "Explorador", "Guerrero", "Monje", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 77
+    }
+  },
+  {
+    "id": "sanar",
+    "name": "Sanar",
+    "slug": "sanar",
+    "shortDescription": "Proporcionar primeros auxilios y curación a largo plazo",
+    "description": "Sanar te permite mantener a un personaje moribundo estable, tratar heridas y venenos, cuidar enfermedades y ayudar en la recuperación natural.",
+    "keyAbility": "Sabiduría",
+    "category": "Mental",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción estándar",
+        "description": "Primeros auxilios (estabilizar a un personaje moribundo)",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Cuidado a largo plazo (recuperación acelerada)",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "10 minutos",
+        "description": "Tratar una herida de flecha, daga u otro proyectil",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Tratar veneno (ayudar a un personaje envenenado)",
+        "dc": "CD del veneno",
+        "retry": true
+      },
+      {
+        "action": "10 minutos",
+        "description": "Tratar enfermedad (ayudar a un personaje enfermo)",
+        "dc": "CD de la enfermedad",
+        "retry": true
+      }
+    ],
+    "check": "La CD y el efecto varían según la tarea que intentes.",
+    "action": "Proporcionar primeros auxilios, tratar una herida o tratar veneno es una acción estándar. Tratar una enfermedad o tender a un personaje envenenado para que descanse cómodamente requiere 10 minutos de trabajo. Proporcionar cuidado a largo plazo requiere 8 horas de trabajo ligero.",
+    "retry": true,
+    "retryDetails": "Varía. Generalmente, no puedes volver a intentar una tirada de Sanar sin testigo de tu primer intento.",
+    "special": [
+      "Un kit de sanador da bonificador +2 en tiradas de Sanar.",
+      "Si tienes el dote Auto-suficiente, obtienes bonificador +2 en tiradas de Sanar y Supervivencia."
+    ],
+    "synergies": [
+      {
+        "skill": "Artesanía (Alquimia)",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Sanar, obtienes bonificador +2 en tiradas de Artesanía (Alquimia)"
+      }
+    ],
+    "classSkillFor": ["Clérigo", "Druida", "Paladín", "Explorador"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 75
+    }
+  },
+  {
+    "id": "supervivencia",
+    "name": "Supervivencia",
+    "slug": "supervivencia",
+    "shortDescription": "Sobrevivir en la naturaleza y seguir rastros",
+    "description": "Puedes mantenerte vivo en la naturaleza y guiar a otros de manera segura a través de áreas silvestres. También puedes seguir rastros y signos de criaturas.",
+    "keyAbility": "Sabiduría",
+    "category": "Mental",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Varía",
+        "description": "Sobrevivir en la naturaleza (encontrar comida y agua)",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Acción de asalto completa",
+        "description": "Evitar perderse o evitar peligros naturales",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "1 acción de asalto completa",
+        "description": "Seguir rastros (terreno suave)",
+        "dc": "5",
+        "retry": false
+      },
+      {
+        "action": "1 acción de asalto completa",
+        "description": "Seguir rastros (terreno firme)",
+        "dc": "10",
+        "retry": false
+      },
+      {
+        "action": "1 acción de asalto completa",
+        "description": "Seguir rastros (terreno duro)",
+        "dc": "15",
+        "retry": false
+      },
+      {
+        "action": "Varía",
+        "description": "Predecir el clima con 24 horas de anticipación",
+        "dc": "15",
+        "retry": false
+      }
+    ],
+    "check": "Puedes mantenerte vivo y saludable en áreas silvestres al cazar y forrajear sin necesidad de kits de provisiones u otros suministros.",
+    "action": "Varía. Una sola tirada de Supervivencia puede representar actividad a lo largo de horas o un día completo. Una tirada de Supervivencia hecha para encontrar rastros es al menos una acción de asalto completa, y puede tomar aún más.",
+    "retry": true,
+    "retryDetails": "Varía. Para sobrevivir en la naturaleza o para evitar perderse, haces una tirada una vez cada 24 horas. El resultado de esa tirada se aplica hasta la próxima tirada. Para evitar perderte en un área que ya has visitado, o para encontrar rastros, puedes volver a intentar tras 1 hora (al aire libre) o 10 minutos (en interiores) de búsqueda.",
+    "special": [
+      "Si tienes 5 o más rangos en Supervivencia, puedes automáticamente determinar dónde está el norte desde tu ubicación.",
+      "Si tienes el dote Auto-suficiente, obtienes bonificador +2 en tiradas de Sanar y Supervivencia.",
+      "Si tienes el dote Rastrear, puedes usar Supervivencia para seguir rastros."
+    ],
+    "synergies": [
+      {
+        "skill": "Conocimiento (Naturaleza)",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Supervivencia"
+      }
+    ],
+    "classSkillFor": ["Bárbaro", "Druida", "Explorador"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 83
+    }
+  },
+  {
+    "id": "tasacion",
+    "name": "Tasación",
+    "slug": "tasacion",
+    "shortDescription": "Estimar el valor de objetos",
+    "description": "Puedes evaluar el valor monetario de un objeto.",
+    "keyAbility": "Inteligencia",
+    "category": "Mental",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción estándar",
+        "description": "Tasar un objeto común",
+        "dc": "12",
+        "retry": false
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Tasar un objeto raro o exótico",
+        "dc": "15-20",
+        "retry": false
+      }
+    ],
+    "check": "Puedes evaluar objetos comunes o exóticos. Una tirada exitosa revela el valor típico del objeto. Si fallas, estimas el valor en 50% a 150% (2d6+3 decenas de por ciento) del valor real. Un éxito particular (superar la CD por 5 o más) significa que estimas el valor correctamente.",
+    "action": "Tasar un objeto toma 1 minuto (diez acciones de asalto consecutivas).",
+    "retry": false,
+    "retryDetails": "No. No puedes volver a intentar en el mismo objeto, independientemente del resultado.",
+    "special": [
+      "Un enano tiene bonificador racial +2 en tiradas de Tasación relacionadas con objetos de piedra o metal.",
+      "Si tienes 5 o más rangos en una habilidad de Artesanía relevante, obtienes bonificador +2 en tiradas de Tasación relacionadas con objetos de ese tipo."
+    ],
+    "synergies": [
+      {
+        "skill": "Artesanía",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Tasación relacionada con el tipo de objeto que estás creando"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 63
+    }
+  },
+  {
+    "id": "trato-con-animales",
+    "name": "Trato con Animales",
+    "slug": "trato-con-animales",
+    "shortDescription": "Manejar y entrenar animales",
+    "description": "Usas esta habilidad para conducir un equipo de animales tirando de un vehículo, enseñar trucos a un animal, entrenar un animal para un propósito general, o domesticar una bestia salvaje.",
+    "keyAbility": "Carisma",
+    "category": "Social",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Acción de movimiento",
+        "description": "Manejar un animal (empujar para realizar una tarea)",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "1 semana",
+        "description": "Enseñar un truco a un animal",
+        "dc": "15 o 20",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Entrenar un animal para un propósito general",
+        "dc": "15 o 20",
+        "retry": false
+      },
+      {
+        "action": "1 semana",
+        "description": "Criar un animal salvaje",
+        "dc": "15 + HD del animal",
+        "retry": false
+      },
+      {
+        "action": "1 mes",
+        "description": "Domesticar una criatura salvaje",
+        "dc": "25 + HD de la criatura",
+        "retry": false
+      }
+    ],
+    "check": "La CD varía según lo que intentes hacer.",
+    "action": "Varía. Manejar un animal es una acción de movimiento. Para tareas con una CD de 15, necesitas dos semanas de trabajo. Para tareas con una CD de 20 o superior, necesitas más tiempo (mínimo 1 mes).",
+    "retry": true,
+    "retryDetails": "Sí, para manejar un animal y enseñar un truco, pero no para entrenar un animal para un propósito general o para criar un animal salvaje.",
+    "special": [
+      "Puedes usar esta habilidad en una criatura con Inteligencia 1 o 2 que no sea un animal, pero la CD aumenta en 5.",
+      "Un druida o explorador gana bonificador +4 en tiradas de Trato con Animales involucrando su compañero animal.",
+      "Si tienes el dote Afinidad Animal, obtienes bonificador +2 en tiradas de Trato con Animales y Montar."
+    ],
+    "synergies": [],
+    "classSkillFor": ["Bárbaro", "Druida", "Explorador", "Guerrero", "Paladín"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 74
+    }
+  },
+  {
+    "id": "usar-cuerda",
+    "name": "Usar Cuerda",
+    "slug": "usar-cuerda",
+    "shortDescription": "Atar nudos y asegurar cuerdas",
+    "description": "Usas Usar Cuerda para atar cuerdas firmemente, incluyendo nudos especiales, atar un prisionero firmemente y hacer nudos que se deslizan.",
+    "keyAbility": "Destreza",
+    "category": "Física",
+    "trainedOnly": false,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "Varía",
+        "description": "Atar un nudo firme",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Asegurar un gancho de agarre",
+        "dc": "10",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Atar un nudo especial, como uno que se desliza o se desata rápidamente",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "1 minuto",
+        "description": "Atar a un prisionero",
+        "dc": "15",
+        "retry": true
+      },
+      {
+        "action": "Varía",
+        "description": "Atar cuerdas juntas",
+        "dc": "15",
+        "retry": true
+      }
+    ],
+    "check": "La mayoría de las tareas con una cuerda son relativamente simples. Las CDs dadas asumen condiciones favorables. Condiciones desfavorables pueden aumentar la CD.",
+    "action": "Varía. Atar un nudo firme o asegurar un gancho de agarre es una acción de asalto completa. Atar un nudo especial o atar cuerdas juntas toma 1 minuto. Atar a un prisionero toma 1 minuto.",
+    "retry": true,
+    "retryDetails": "Sí. Puedes volver a intentar sin penalización.",
+    "special": [
+      "Si lanzas una cuerda con un gancho de agarre atado, hacer una tirada de ataque para engancharlo en el objetivo. Es una tirada de ataque a distancia con incremento de alcance de 10 pies. No sufres penalizaciones por tirar un arma improvisada.",
+      "Si tienes 5 o más rangos en Usar Cuerda, obtienes bonificador +2 en tiradas de Escalar cuando uses una cuerda.",
+      "Si tienes 5 o más rangos en Usar Cuerda, obtienes bonificador +2 en tiradas de Escapismo al escapar de cuerdas.",
+      "Si tienes 5 o más rangos en Escalar, obtienes bonificador +2 en tiradas de Usar Cuerda para atar nudos.",
+      "Si tienes 5 o más rangos en Escapismo, obtienes bonificador +2 en tiradas de Usar Cuerda para atar a un prisionero."
+    ],
+    "synergies": [
+      {
+        "skill": "Escalar",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Usar Cuerda, obtienes bonificador +2 en tiradas de Escalar cuando uses una cuerda"
+      },
+      {
+        "skill": "Escapismo",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Usar Cuerda, obtienes bonificador +2 en tiradas de Escapismo al escapar de cuerdas"
+      }
+    ],
+    "classSkillFor": ["Explorador", "Pícaro"],
+    "untrainedUse": "Puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 86
+    }
+  },
+  {
+    "id": "usar-objeto-magico",
+    "name": "Usar Objeto Mágico",
+    "slug": "usar-objeto-magico",
+    "shortDescription": "Activar objetos mágicos que normalmente no podrías usar",
+    "description": "Usas esta habilidad para activar objetos mágicos, incluyendo pergaminos y varitas, que de otro modo no podrías activar. Usar Objeto Mágico te permite usar un objeto mágico como si tuvieras la habilidad de lanzar conjuros de una clase particular, como si fueras de una raza particular, o como si fueras de un alineamiento particular.",
+    "keyAbility": "Carisma",
+    "category": "Mental",
+    "trainedOnly": true,
+    "armorCheckPenalty": false,
+    "uses": [
+      {
+        "action": "No acción",
+        "description": "Activar a ciegas (adivinar cómo activar)",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Descifrar un pergamino escrito",
+        "dc": "25 + nivel del conjuro",
+        "retry": false
+      },
+      {
+        "action": "No acción",
+        "description": "Emular una puntuación de habilidad",
+        "dc": "Ver descripción",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Emular un alineamiento",
+        "dc": "30",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Emular una característica de raza",
+        "dc": "25",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Emular una característica de clase",
+        "dc": "20",
+        "retry": true
+      },
+      {
+        "action": "No acción",
+        "description": "Usar un pergamino",
+        "dc": "20 + nivel de lanzador",
+        "retry": true
+      },
+      {
+        "action": "Acción estándar",
+        "description": "Usar una varita",
+        "dc": "20",
+        "retry": true
+      }
+    ],
+    "check": "Puedes usar esta habilidad para leer un pergamino o activar un objeto mágico. Usar Objeto Mágico es una tirada realizada cada vez que activas un dispositivo como una varita. Si usas la tirada para emular un alineamiento o algún otro aspecto de calidad en un intento continuo, necesitas hacer las tiradas relevantes de Usar Objeto Mágico una vez por hora.",
+    "action": "Ninguna. Usar Objeto Mágico es parte de la acción (si existe) requerida para activar el objeto mágico.",
+    "retry": true,
+    "retryDetails": "Sí, pero si fallas por 10 o más en un intento de activar un objeto que contiene un conjuro, sufres un percance. Un percance significa que la energía mágica se libera pero no hace lo que pretendías.",
+    "special": [
+      "No puedes tomar 10 con esta habilidad.",
+      "No puedes ayudar a otro personaje con Usar Objeto Mágico.",
+      "Solo un pícaro de nivel alto (con la habilidad de clase de usar objetos mágicos) y bardo pueden usar esta habilidad."
+    ],
+    "synergies": [
+      {
+        "skill": "Descifrar Escritura",
+        "bonus": 2,
+        "condition": "Si tienes 5 o más rangos en Usar Objeto Mágico, obtienes bonificador +2 en tiradas de Descifrar Escritura para descifrar pergaminos"
+      }
+    ],
+    "classSkillFor": ["Bardo", "Pícaro"],
+    "untrainedUse": "No puedes usar esta habilidad sin entrenamiento",
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 85
+    }
+  }
+]

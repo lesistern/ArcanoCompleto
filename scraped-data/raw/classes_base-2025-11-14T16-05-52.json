@@ -1,0 +1,12 @@
+[
+  {
+    "success": true,
+    "url": "https://srd.dndtools.org/srd/classes/baseCore",
+    "title": "Forbidden",
+    "content": "",
+    "tables": [],
+    "lists": [],
+    "links": [],
+    "html": "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head>\n<title>403 Forbidden</title>\n</head><body>\n<h1>Forbidden</h1>\n<p>You don't have permission to access this resource.</p>\n<script defer=\"\" src=\"https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015\" integrity=\"sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==\" data-cf-beacon=\"{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;a04ccb9f381c48809e7ec0dc1c4f36ea&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}\" crossorigin=\"anonymous\"></script>\n\n</body></html>"
+  }
+]

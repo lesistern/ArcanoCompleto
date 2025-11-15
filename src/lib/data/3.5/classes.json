@@ -1,0 +1,3513 @@
+[
+  {
+    "id": "barbarian",
+    "name": "Bárbaro",
+    "slug": "barbaro",
+    "shortDescription": "Guerrero feroz que entra en furia en combate",
+    "description": "Desde las tierras heladas del norte y las junglas ardientes del sur llegan bravos guerreros, brutales y no civilizados. Los bárbaros no tienen el entrenamiento de un guerrero ni la disciplina de un monje, pero pueden entrar en una furia salvaje en batalla que les hace más fuertes y resistentes.",
+    "hitDie": "d12",
+    "skillPointsPerLevel": 4,
+    "alignment": [
+      "cualquiera no legal"
+    ],
+    "weaponProficiencies": {
+      "simple": true,
+      "martial": true
+    },
+    "armorProficiencies": {
+      "light": true,
+      "medium": true,
+      "shields": true
+    },
+    "classSkills": [
+      "Artesanía",
+      "Escuchar",
+      "Intimidar",
+      "Montar",
+      "Nadar",
+      "Saltar",
+      "Supervivencia",
+      "Trepar"
+    ],
+    "classFeatures": [
+      {
+        "name": "Furia",
+        "level": 1,
+        "description": "Un bárbaro puede entrar en furia un cierto número de veces por día. En furia, gana bonificadores a Fuerza y Constitución, pero sufre una penalización a la CA. La furia dura varios asaltos y deja exhausto al bárbaro.",
+        "shortDescription": "+4 Fue, +4 Con, -2 CA, no puede usar habilidades basadas en Int, Des o Car"
+      },
+      {
+        "name": "Analfabetismo",
+        "level": 1,
+        "description": "Los bárbaros son los únicos personajes que no empiezan el juego sabiendo leer y escribir. Puede gastar 2 puntos de habilidad para aprender a leer y escribir todos los idiomas que pueda hablar.",
+        "shortDescription": "Empieza analfabeto, puede aprender por 2 puntos de habilidad"
+      },
+      {
+        "name": "Movimiento rápido",
+        "level": 1,
+        "description": "La velocidad base del bárbaro es más rápida de lo normal para su raza en +10 pies. Esta bonificación se aplica solo cuando no lleva armadura o lleva armadura ligera o media, y no lleva carga pesada.",
+        "shortDescription": "+10 pies de velocidad sin armadura pesada"
+      },
+      {
+        "name": "Sentido del peligro",
+        "level": 2,
+        "description": "Gana bonificador +1 a las salvaciones de Reflejos contra trampas y esquiva +1 CA contra ataques de trampas. La bonificación aumenta +1 cada 3 niveles.",
+        "shortDescription": "+1 Reflejos vs trampas, +1 CA vs trampas (mejora cada 3 niveles)"
+      },
+      {
+        "name": "Esquiva asombrosa",
+        "level": 2,
+        "description": "El bárbaro puede reaccionar al peligro antes de que sus sentidos normales se lo permitan. Conserva su bonificador de Destreza a la CA incluso estando desprevenido.",
+        "shortDescription": "Conserva bonificador de Des a la CA cuando está desprevenido"
+      },
+      {
+        "name": "Esquiva asombrosa mejorada",
+        "level": 5,
+        "description": "El bárbaro no puede ser flanqueado. Solo puede ser flanqueado por un pícaro de al menos 4 niveles más que él.",
+        "shortDescription": "No puede ser flanqueado (excepto por pícaros de nivel superior)"
+      },
+      {
+        "name": "Reducción de daño",
+        "level": 7,
+        "description": "Gana reducción de daño 1/—. La reducción de daño aumenta en 1 punto cada 3 niveles posteriores.",
+        "shortDescription": "RD 1/— (aumenta cada 3 niveles)"
+      },
+      {
+        "name": "Furia mayor",
+        "level": 11,
+        "description": "Los bonificadores de furia aumentan a +6 Fuerza y +6 Constitución, y el bonificador de moral a las salvaciones de Voluntad aumenta a +3.",
+        "shortDescription": "+6 Fue, +6 Con, +3 salvaciones de Voluntad durante la furia"
+      },
+      {
+        "name": "Voluntad indomable",
+        "level": 14,
+        "description": "Si falla una salvación de Voluntad, puede repetirla una vez (debe quedarse con el segundo resultado).",
+        "shortDescription": "Puede repetir salvaciones de Voluntad fallidas 1/intento"
+      },
+      {
+        "name": "Furia incansable",
+        "level": 17,
+        "description": "El bárbaro ya no queda exhausto al final de su furia.",
+        "shortDescription": "No queda exhausto tras la furia"
+      },
+      {
+        "name": "Furia poderosa",
+        "level": 20,
+        "description": "Los bonificadores de furia aumentan a +8 Fuerza y +8 Constitución, y el bonificador de moral a las salvaciones de Voluntad aumenta a +4.",
+        "shortDescription": "+8 Fue, +8 Con, +4 salvaciones de Voluntad durante la furia"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 2,
+        "reflexSave": 0,
+        "willSave": 0,
+        "special": [
+          "Furia 1/día",
+          "Movimiento rápido",
+          "Analfabetismo"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 0,
+        "willSave": 0,
+        "special": [
+          "Sentido del peligro +1",
+          "Esquiva asombrosa"
+        ]
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 3,
+        "reflexSave": 1,
+        "willSave": 1,
+        "special": [
+          "Furia 2/día"
+        ]
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 1
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 1,
+        "special": [
+          "Sentido del peligro +2",
+          "Esquiva asombrosa mejorada"
+        ]
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Furia 3/día"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Reducción de daño 1/—"
+        ]
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 6,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Sentido del peligro +3"
+        ]
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Furia 4/día"
+        ]
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Reducción de daño 2/—"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Sentido del peligro +4",
+          "Furia mayor"
+        ]
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Furia 5/día"
+        ]
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Reducción de daño 3/—"
+        ]
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 9,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Sentido del peligro +5",
+          "Voluntad indomable"
+        ]
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Furia 6/día"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+16/+11/+6/+1",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Reducción de daño 4/—"
+        ]
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+17/+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Sentido del peligro +6",
+          "Furia incansable"
+        ]
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+18/+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Furia 7/día"
+        ]
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+19/+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Reducción de daño 5/—"
+        ]
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+20/+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Furia poderosa"
+        ]
+      }
+    ],
+    "primaryAbility": [
+      "Fuerza"
+    ],
+    "goodSaves": [
+      "Fortaleza"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 25
+    }
+  },
+  {
+    "id": "bard",
+    "name": "Bardo",
+    "slug": "bardo",
+    "shortDescription": "Músico y mago versátil con poderes de inspiración",
+    "description": "Un bardo lleva una vida de viajero, recopilando cuentos, difundiendo noticias y viviendo de las habilidades de interpretación de la gente. Los bardos son versátiles, capaces de especializarse en muchas áreas, desde el combate hasta las artes arcanas.",
+    "hitDie": "d6",
+    "skillPointsPerLevel": 6,
+    "weaponProficiencies": {
+      "simple": true,
+      "specific": [
+        "espada larga",
+        "estoque",
+        "sable",
+        "espada corta",
+        "arco corto"
+      ]
+    },
+    "armorProficiencies": {
+      "light": true,
+      "shields": true
+    },
+    "classSkills": [
+      "Actuar",
+      "Averiguar intenciones",
+      "Artesanía",
+      "Concentración",
+      "Conocimiento de conjuros",
+      "Descifrar escritura",
+      "Diplomacia",
+      "Disfrazarse",
+      "Engañar",
+      "Esconderse",
+      "Escuchar",
+      "Moverse sigilosamente",
+      "Nadar",
+      "Saber",
+      "Saltar",
+      "Tasación",
+      "Trepar",
+      "Trato con animales",
+      "Uso de cuerdas"
+    ],
+    "classFeatures": [
+      {
+        "name": "Música de bardo",
+        "level": 1,
+        "description": "Puede usar su música o poesía para crear efectos mágicos en quienes le rodean. Incluye contracanto, fascinar, inspirar valor, inspirar competencia, sugerencia e inspirar grandeza.",
+        "shortDescription": "Efectos mágicos mediante música/poesía (contracanto, fascinar, inspirar)"
+      },
+      {
+        "name": "Conocimiento bardico",
+        "level": 1,
+        "description": "El bardo puede hacer una prueba especial de conocimiento bardico (1d20 + nivel + mod. Int) para saber información sobre criaturas, objetos mágicos, lugares notables, etc.",
+        "shortDescription": "Prueba de conocimiento especial sobre leyendas y tradiciones"
+      },
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 1,
+        "description": "Lanza conjuros arcanos de la lista de conjuros de bardo. No necesita preparar conjuros por adelantado.",
+        "shortDescription": "Lanza conjuros arcanos sin preparación previa"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 0,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Música de bardo",
+          "Conocimiento bardico",
+          "Contracanto",
+          "Fascinar",
+          "Inspirar valor +1"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 0,
+        "reflexSave": 3,
+        "willSave": 3
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 1,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Inspirar competencia"
+        ]
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 1,
+        "reflexSave": 4,
+        "willSave": 4
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 1,
+        "reflexSave": 4,
+        "willSave": 4
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 2,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Sugerencia",
+          "Inspirar valor +2"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 2,
+        "reflexSave": 5,
+        "willSave": 5
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 2,
+        "reflexSave": 6,
+        "willSave": 6
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 3,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Inspirar grandeza"
+        ]
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 3,
+        "reflexSave": 7,
+        "willSave": 7
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 3,
+        "reflexSave": 7,
+        "willSave": 7
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 4,
+        "reflexSave": 8,
+        "willSave": 8,
+        "special": [
+          "Canción de libertad",
+          "Inspirar valor +3"
+        ]
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 4,
+        "reflexSave": 8,
+        "willSave": 8
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 4,
+        "reflexSave": 9,
+        "willSave": 9
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 5,
+        "reflexSave": 9,
+        "willSave": 9,
+        "special": [
+          "Inspirar heroísmo"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 10,
+        "willSave": 10
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 10,
+        "willSave": 10
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 6,
+        "reflexSave": 11,
+        "willSave": 11,
+        "special": [
+          "Sugerencia en masa",
+          "Inspirar valor +4"
+        ]
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 11,
+        "willSave": 11
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 6,
+        "reflexSave": 12,
+        "willSave": 12
+      }
+    ],
+    "spellcasting": {
+      "ability": "Carisma",
+      "spellType": "arcanos",
+      "spellProgression": [
+        {
+          "level": 1,
+          "spellsPerDay": {
+            "level0": 2
+          },
+          "spellsKnown": {
+            "level0": 4
+          }
+        },
+        {
+          "level": 2,
+          "spellsPerDay": {
+            "level0": 3,
+            "level1": 0
+          },
+          "spellsKnown": {
+            "level0": 5,
+            "level1": 2
+          }
+        },
+        {
+          "level": 3,
+          "spellsPerDay": {
+            "level0": 3,
+            "level1": 1
+          },
+          "spellsKnown": {
+            "level0": 6,
+            "level1": 3
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Carisma"
+    ],
+    "goodSaves": [
+      "Reflejos",
+      "Voluntad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 28
+    }
+  },
+  {
+    "id": "cleric",
+    "name": "Clérigo",
+    "slug": "clerigo",
+    "shortDescription": "Maestro de magia divina y canalización de energía",
+    "description": "Los clérigos son maestros de la magia divina, útil tanto para sanar a los aliados como para dañar a los enemigos. Pueden canalizar energía divina para herir muertos vivientes o para curarlos, según su tendencia.",
+    "hitDie": "d8",
+    "skillPointsPerLevel": 2,
+    "weaponProficiencies": {
+      "simple": true
+    },
+    "armorProficiencies": {
+      "light": true,
+      "medium": true,
+      "heavy": true,
+      "shields": true
+    },
+    "classSkills": [
+      "Concentración",
+      "Artesanía",
+      "Diplomacia",
+      "Sanar",
+      "Saber (arcano)",
+      "Saber (historia)",
+      "Saber (planos)",
+      "Saber (religión)",
+      "Profesión",
+      "Conocimiento de conjuros"
+    ],
+    "classFeatures": [
+      {
+        "name": "Expulsar o reprender muertos vivientes",
+        "level": 1,
+        "description": "Un clérigo de tendencia buena (o neutral que venere a una deidad buena) puede canalizar energía positiva para expulsar o destruir muertos vivientes. Un clérigo malvado puede reprender o controlar muertos vivientes.",
+        "shortDescription": "Canalizar energía para expulsar/reprender muertos vivientes"
+      },
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 1,
+        "description": "Lanza conjuros divinos de la lista de conjuros de clérigo. Debe elegir y preparar conjuros por adelantado.",
+        "shortDescription": "Lanza conjuros divinos (requiere preparación)"
+      },
+      {
+        "name": "Dominios",
+        "level": 1,
+        "description": "Elige dos dominios asociados con su deidad. Cada dominio otorga un poder especial y acceso a conjuros adicionales.",
+        "shortDescription": "Dos dominios que otorgan poderes y conjuros especiales"
+      },
+      {
+        "name": "Conversión espontánea",
+        "level": 1,
+        "description": "Un clérigo bueno puede convertir conjuros preparados en conjuros de curar heridas. Un clérigo malvado puede convertir conjuros en infligir heridas.",
+        "shortDescription": "Convertir conjuros en curar/infligir heridas espontáneamente"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 2,
+        "reflexSave": 0,
+        "willSave": 2,
+        "special": [
+          "Expulsar/reprender muertos vivientes"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 3,
+        "reflexSave": 0,
+        "willSave": 3
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 1,
+        "willSave": 3
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 4
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 4
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 5
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 5
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 6,
+        "reflexSave": 2,
+        "willSave": 6
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 6,
+        "reflexSave": 3,
+        "willSave": 6
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 7
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 7
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 8
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 8
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 4,
+        "willSave": 9
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 9,
+        "reflexSave": 5,
+        "willSave": 9
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 6,
+        "willSave": 12
+      }
+    ],
+    "spellcasting": {
+      "ability": "Sabiduría",
+      "spellType": "divinos",
+      "spellProgression": [
+        {
+          "level": 1,
+          "spellsPerDay": {
+            "level0": 3,
+            "level1": 1
+          }
+        },
+        {
+          "level": 2,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 2
+          }
+        },
+        {
+          "level": 3,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 2,
+            "level2": 1
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Sabiduría"
+    ],
+    "goodSaves": [
+      "Fortaleza",
+      "Voluntad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 32
+    }
+  },
+  {
+    "id": "druid",
+    "name": "Druida",
+    "slug": "druida",
+    "shortDescription": "Guardián de la naturaleza con magia divina y forma salvaje",
+    "description": "Los druidas son guardianes de lo salvaje, maestros de la magia divina que protegen la naturaleza y mantienen el equilibrio. Pueden transformarse en animales, convocar aliados naturales y lanzar poderosos conjuros divinos relacionados con la naturaleza.",
+    "hitDie": "d8",
+    "skillPointsPerLevel": 4,
+    "weaponProficiencies": {
+      "specific": [
+        "garrote",
+        "daga",
+        "dardo",
+        "lanza",
+        "maza pesada",
+        "maza ligera",
+        "bastón",
+        "cimitarra",
+        "hoz",
+        "honda",
+        "lanza corta"
+      ]
+    },
+    "armorProficiencies": {
+      "light": true,
+      "medium": true,
+      "shields": true,
+      "note": "No pueden usar armaduras o escudos de metal"
+    },
+    "classSkills": [
+      "Concentración",
+      "Artesanía",
+      "Diplomacia",
+      "Trato con animales",
+      "Sanar",
+      "Saber (naturaleza)",
+      "Escuchar",
+      "Profesión",
+      "Montar",
+      "Conocimiento de conjuros",
+      "Avistar",
+      "Supervivencia",
+      "Nadar"
+    ],
+    "classFeatures": [
+      {
+        "name": "Empatía salvaje",
+        "level": 1,
+        "description": "Un druida puede mejorar la actitud de un animal (como lobo, oso, etc.). Funciona como Diplomacia para influenciar a la gente. Tira 1d20 + nivel de druida + mod. Carisma.",
+        "shortDescription": "Influenciar actitud de animales (como Diplomacia)"
+      },
+      {
+        "name": "Lenguaje druídico",
+        "level": 1,
+        "description": "Los druidas conocen un lenguaje secreto llamado druídico. Aprenderlo a no druidas está prohibido.",
+        "shortDescription": "Conoce el lenguaje secreto druídico"
+      },
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 1,
+        "description": "Lanza conjuros divinos de la lista de conjuros de druida. Debe elegir y preparar conjuros por adelantado.",
+        "shortDescription": "Lanza conjuros divinos (requiere preparación)"
+      },
+      {
+        "name": "Conversión espontánea",
+        "level": 1,
+        "description": "Un druida puede convertir conjuros preparados en conjuros de convocar aliado natural del mismo nivel.",
+        "shortDescription": "Convertir conjuros en convocar aliado natural espontáneamente"
+      },
+      {
+        "name": "Compañero animal",
+        "level": 1,
+        "description": "Un druida puede tener un compañero animal que lo acompaña en sus aventuras. El compañero mejora según el nivel del druida.",
+        "shortDescription": "Compañero animal leal que mejora con el nivel"
+      },
+      {
+        "name": "Andar sin rastro",
+        "level": 2,
+        "description": "El druida deja rastro solo si así lo desea en terrenos naturales.",
+        "shortDescription": "No deja rastro en terreno natural si no lo desea"
+      },
+      {
+        "name": "Resistencia a la llamada de la naturaleza",
+        "level": 4,
+        "description": "Gana bonificador +4 a las salvaciones contra los conjuros de tipo hechizo de hadas y las habilidades sobrenaturales de las hadas.",
+        "shortDescription": "+4 salvaciones vs conjuros y habilidades de hadas"
+      },
+      {
+        "name": "Forma salvaje",
+        "level": 5,
+        "description": "Un druida puede transformarse en un animal pequeño o mediano y volver a su forma normal. Puede usar esta habilidad más veces por día según sube de nivel. Gana formas más grandes y elementales en niveles superiores.",
+        "shortDescription": "Transformarse en animal (más usos y formas con el nivel)"
+      },
+      {
+        "name": "Inmunidad al veneno",
+        "level": 9,
+        "description": "El druida es inmune a todos los venenos.",
+        "shortDescription": "Inmunidad a todo tipo de veneno"
+      },
+      {
+        "name": "Mil caras",
+        "level": 13,
+        "description": "El druida puede usar alterar apariencia a voluntad, pero solo para parecer un humanoide Pequeño o Mediano.",
+        "shortDescription": "Alterar apariencia a voluntad (humanoides Pequeños/Medianos)"
+      },
+      {
+        "name": "Forma salvaje de elemental",
+        "level": 16,
+        "description": "El druida puede usar forma salvaje para transformarse en un elemental (Pequeño, Mediano, Grande o Enorme según el nivel).",
+        "shortDescription": "Transformarse en elemental usando forma salvaje"
+      },
+      {
+        "name": "Criatura atemporal",
+        "level": 15,
+        "description": "El druida no sufre penalizadores por envejecimiento y no puede envejecer mágicamente, pero aún muere de vejez.",
+        "shortDescription": "Sin penalizadores por envejecimiento"
+      },
+      {
+        "name": "Forma salvaje a voluntad",
+        "level": 20,
+        "description": "El druida puede usar forma salvaje cualquier número de veces al día.",
+        "shortDescription": "Forma salvaje ilimitada"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 2,
+        "reflexSave": 0,
+        "willSave": 2,
+        "special": [
+          "Empatía salvaje",
+          "Lenguaje druídico",
+          "Compañero animal"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 3,
+        "reflexSave": 0,
+        "willSave": 3,
+        "special": [
+          "Andar sin rastro"
+        ]
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 1,
+        "willSave": 3
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 4,
+        "special": [
+          "Resistencia a la llamada de la naturaleza"
+        ]
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 4,
+        "special": [
+          "Forma salvaje 1/día (Pequeño o Mediano)"
+        ]
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 5,
+        "special": [
+          "Forma salvaje 2/día (Grande)"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 5,
+        "special": [
+          "Forma salvaje 3/día (Diminuto)"
+        ]
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 6,
+        "reflexSave": 2,
+        "willSave": 6,
+        "special": [
+          "Forma salvaje 4/día (planta)"
+        ]
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 6,
+        "reflexSave": 3,
+        "willSave": 6,
+        "special": [
+          "Inmunidad al veneno"
+        ]
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 7,
+        "special": [
+          "Forma salvaje 5/día (Enorme)"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 7
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 8,
+        "special": [
+          "Forma salvaje 6/día (elemental 1/día)"
+        ]
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 8,
+        "special": [
+          "Mil caras"
+        ]
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 4,
+        "willSave": 9,
+        "special": [
+          "Forma salvaje 7/día (elemental 2/día)"
+        ]
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 9,
+        "reflexSave": 5,
+        "willSave": 9,
+        "special": [
+          "Criatura atemporal"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 10,
+        "special": [
+          "Forma salvaje 8/día (elemental 3/día, Enorme)"
+        ]
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 11,
+        "special": [
+          "Forma salvaje 9/día (elemental 4/día)"
+        ]
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 6,
+        "willSave": 12,
+        "special": [
+          "Forma salvaje a voluntad (elemental ∞/día)"
+        ]
+      }
+    ],
+    "spellcasting": {
+      "ability": "Sabiduría",
+      "spellType": "divinos",
+      "spellProgression": [
+        {
+          "level": 1,
+          "spellsPerDay": {
+            "level0": 3,
+            "level1": 1
+          }
+        },
+        {
+          "level": 2,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 2
+          }
+        },
+        {
+          "level": 3,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 2,
+            "level2": 1
+          }
+        },
+        {
+          "level": 4,
+          "spellsPerDay": {
+            "level0": 5,
+            "level1": 3,
+            "level2": 2
+          }
+        },
+        {
+          "level": 5,
+          "spellsPerDay": {
+            "level0": 5,
+            "level1": 3,
+            "level2": 2,
+            "level3": 1
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Sabiduría"
+    ],
+    "goodSaves": [
+      "Fortaleza",
+      "Voluntad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 35
+    }
+  },
+  {
+    "id": "fighter",
+    "name": "Guerrero",
+    "slug": "guerrero",
+    "shortDescription": "Maestro del combate con armas y armaduras",
+    "description": "Los guerreros son expertos en combate, hábiles con una amplia variedad de armas y armaduras. No tienen el carisma sobrenatural de un paladín ni la maestría en artes marciales de un monje, pero son soldados bien entrenados, expertos con todo tipo de armas.",
+    "hitDie": "d10",
+    "skillPointsPerLevel": 2,
+    "weaponProficiencies": {
+      "simple": true,
+      "martial": true
+    },
+    "armorProficiencies": {
+      "light": true,
+      "medium": true,
+      "heavy": true,
+      "shields": true,
+      "towerShield": true
+    },
+    "classSkills": [
+      "Trepar",
+      "Artesanía",
+      "Trato con animales",
+      "Intimidar",
+      "Saltar",
+      "Montar",
+      "Nadar"
+    ],
+    "classFeatures": [
+      {
+        "name": "Dote adicional",
+        "level": 1,
+        "description": "Un guerrero obtiene una dote adicional en el nivel 1 (además de la dote que obtiene cualquier personaje de nivel 1 y la dote adicional de humano si corresponde). Obtiene dotes adicionales en niveles 2, 4, 6, 8, 10, 12, 14, 16, 18 y 20.",
+        "shortDescription": "Dote adicional al empezar y cada 2 niveles"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 2,
+        "reflexSave": 0,
+        "willSave": 0,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 0,
+        "willSave": 0,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 3,
+        "reflexSave": 1,
+        "willSave": 1
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 1,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 1
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 2
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 6,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 3,
+        "willSave": 3
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 3
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 4
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 9,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 5,
+        "willSave": 5
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+16/+11/+6/+1",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+17/+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 5
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+18/+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+19/+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 6
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+20/+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Dote adicional"
+        ]
+      }
+    ],
+    "primaryAbility": [
+      "Fuerza"
+    ],
+    "goodSaves": [
+      "Fortaleza"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 38
+    }
+  },
+  {
+    "id": "sorcerer",
+    "name": "Hechicero",
+    "slug": "hechicero",
+    "shortDescription": "Lanzador arcano espontáneo con magia innata",
+    "description": "Los hechiceros crean magia de forma natural, sin necesidad de estudio. Su magia es intuitiva más que lógica. Lanzan pocos conjuros pero los lanzan con más frecuencia que los magos, y no necesitan preparar conjuros por adelantado.",
+    "hitDie": "d4",
+    "skillPointsPerLevel": 2,
+    "weaponProficiencies": {
+      "specific": [
+        "ballesta ligera",
+        "ballesta pesada",
+        "daga",
+        "bastón",
+        "maza ligera",
+        "maza pesada"
+      ]
+    },
+    "armorProficiencies": {
+      "note": "Sin competencia con armaduras ni escudos (las armaduras interfieren con conjuros)"
+    },
+    "classSkills": [
+      "Engañar",
+      "Concentración",
+      "Artesanía",
+      "Saber (arcano)",
+      "Profesión",
+      "Conocimiento de conjuros"
+    ],
+    "classFeatures": [
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 1,
+        "description": "Lanza conjuros arcanos de la lista de conjuros de hechicero/mago. No necesita preparar conjuros por adelantado, pero solo conoce un número limitado de conjuros.",
+        "shortDescription": "Lanza conjuros arcanos sin preparación previa (espontáneo)"
+      },
+      {
+        "name": "Conjuros conocidos",
+        "level": 1,
+        "description": "A diferencia del mago, el hechicero no necesita libro de conjuros. Conoce un número fijo de conjuros. Al subir de nivel puede reemplazar conjuros conocidos.",
+        "shortDescription": "Repertorio fijo de conjuros conocidos (puede cambiar al subir de nivel)"
+      },
+      {
+        "name": "Familiar",
+        "level": 1,
+        "description": "El hechicero puede obtener un familiar de la misma manera que un mago (requiere la dote Familiar mejorado o la habilidad de clase correspondiente).",
+        "shortDescription": "Puede obtener un familiar"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 0,
+        "reflexSave": 0,
+        "willSave": 2
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 0,
+        "reflexSave": 0,
+        "willSave": 3
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 1,
+        "reflexSave": 1,
+        "willSave": 3
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 1,
+        "reflexSave": 1,
+        "willSave": 4
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 1,
+        "reflexSave": 1,
+        "willSave": 4
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 5
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 5
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 6
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 6
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 7
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 7
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 8
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 8
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 9
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 9
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 12
+      }
+    ],
+    "spellcasting": {
+      "ability": "Carisma",
+      "spellType": "arcanos",
+      "spellProgression": [
+        {
+          "level": 1,
+          "spellsPerDay": {
+            "level0": 5,
+            "level1": 3
+          },
+          "spellsKnown": {
+            "level0": 4,
+            "level1": 2
+          }
+        },
+        {
+          "level": 2,
+          "spellsPerDay": {
+            "level0": 6,
+            "level1": 4
+          },
+          "spellsKnown": {
+            "level0": 5,
+            "level1": 2
+          }
+        },
+        {
+          "level": 3,
+          "spellsPerDay": {
+            "level0": 6,
+            "level1": 5
+          },
+          "spellsKnown": {
+            "level0": 5,
+            "level1": 3
+          }
+        },
+        {
+          "level": 4,
+          "spellsPerDay": {
+            "level0": 6,
+            "level1": 6,
+            "level2": 3
+          },
+          "spellsKnown": {
+            "level0": 6,
+            "level1": 3,
+            "level2": 1
+          }
+        },
+        {
+          "level": 5,
+          "spellsPerDay": {
+            "level0": 6,
+            "level1": 6,
+            "level2": 4
+          },
+          "spellsKnown": {
+            "level0": 6,
+            "level1": 4,
+            "level2": 2
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Carisma"
+    ],
+    "goodSaves": [
+      "Voluntad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 52
+    }
+  },
+  {
+    "id": "wizard",
+    "name": "Mago",
+    "slug": "mago",
+    "shortDescription": "Maestro de la magia arcana mediante estudio",
+    "description": "Los magos son lanzadores de conjuros arcanos que dependen del estudio intensivo para crear su magia. Para un mago, la magia no es un talento sino un arte difícil y gratificante. Cuando un nuevo mago alcanza un nivel, obtiene nuevos conjuros mediante experimentación y estudio.",
+    "hitDie": "d4",
+    "skillPointsPerLevel": 2,
+    "weaponProficiencies": {
+      "specific": [
+        "garrote",
+        "daga",
+        "ballesta pesada",
+        "ballesta ligera",
+        "bastón"
+      ]
+    },
+    "armorProficiencies": {
+      "note": "Sin competencia con armaduras ni escudos (las armaduras interfieren con conjuros)"
+    },
+    "classSkills": [
+      "Concentración",
+      "Artesanía",
+      "Descifrar escritura",
+      "Saber (todos, elegidos individualmente)",
+      "Profesión",
+      "Conocimiento de conjuros"
+    ],
+    "classFeatures": [
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 1,
+        "description": "Lanza conjuros arcanos de la lista de conjuros de hechicero/mago. Debe elegir y preparar conjuros por adelantado estudiando su libro de conjuros.",
+        "shortDescription": "Lanza conjuros arcanos (requiere preparación desde libro de conjuros)"
+      },
+      {
+        "name": "Dote adicional",
+        "level": 1,
+        "description": "Un mago obtiene Escribir pergamino como dote adicional en nivel 1. Obtiene también dotes adicionales de metamagia, creación de objetos o Soltura con un arma en los niveles 5, 10, 15 y 20.",
+        "shortDescription": "Escribir pergamino gratis al nivel 1, dote adicional cada 5 niveles"
+      },
+      {
+        "name": "Libro de conjuros",
+        "level": 1,
+        "description": "Un mago debe estudiar su libro de conjuros cada día para preparar conjuros. No puede preparar conjuros que no estén en su libro (excepto leer magia, que todos los magos pueden preparar de memoria).",
+        "shortDescription": "Requiere libro de conjuros para preparar conjuros"
+      },
+      {
+        "name": "Familiar",
+        "level": 1,
+        "description": "Un mago puede obtener un familiar (un animal mágico especialmente ligado al mago). Obtener un familiar requiere 24 horas y el gasto de materiales por 100 po.",
+        "shortDescription": "Puede obtener un familiar mágico"
+      },
+      {
+        "name": "Escuela especializada",
+        "level": 1,
+        "description": "Un mago puede especializarse en una escuela de magia. Gana un conjuro adicional por nivel de conjuro, pero debe elegir dos escuelas prohibidas de las que no puede lanzar conjuros.",
+        "shortDescription": "Opcional: especializarse en una escuela (+1 conjuro/nivel, 2 escuelas prohibidas)"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 0,
+        "reflexSave": 0,
+        "willSave": 2,
+        "special": [
+          "Escribir pergamino",
+          "Convocar familiar"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 0,
+        "reflexSave": 0,
+        "willSave": 3
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 1,
+        "reflexSave": 1,
+        "willSave": 3
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 1,
+        "reflexSave": 1,
+        "willSave": 4
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 1,
+        "reflexSave": 1,
+        "willSave": 4,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 5
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 5
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 6
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 6
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 7,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 7
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 8
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 8
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 9
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 9,
+        "special": [
+          "Dote adicional"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 10
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 11
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 12,
+        "special": [
+          "Dote adicional"
+        ]
+      }
+    ],
+    "spellcasting": {
+      "ability": "Inteligencia",
+      "spellType": "arcanos",
+      "spellProgression": [
+        {
+          "level": 1,
+          "spellsPerDay": {
+            "level0": 3,
+            "level1": 1
+          }
+        },
+        {
+          "level": 2,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 2
+          }
+        },
+        {
+          "level": 3,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 2,
+            "level2": 1
+          }
+        },
+        {
+          "level": 4,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 3,
+            "level2": 2
+          }
+        },
+        {
+          "level": 5,
+          "spellsPerDay": {
+            "level0": 4,
+            "level1": 3,
+            "level2": 2,
+            "level3": 1
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Inteligencia"
+    ],
+    "goodSaves": [
+      "Voluntad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 57
+    }
+  },
+  {
+    "id": "monk",
+    "name": "Monje",
+    "slug": "monje",
+    "shortDescription": "Maestro marcial con poderes místicos y disciplina interior",
+    "description": "Los monjes son guerreros que perfeccionan su cuerpo mediante entrenamiento y disciplina mental. Maestros del combate sin armas, canalizan un poder místico llamado ki para realizar hazañas asombrosas.",
+    "hitDie": "d8",
+    "skillPointsPerLevel": 4,
+    "alignment": [
+      "cualquiera legal"
+    ],
+    "weaponProficiencies": {
+      "specific": [
+        "garrote",
+        "ballesta ligera",
+        "ballesta pesada",
+        "daga",
+        "handaxe",
+        "jabalina",
+        "kama",
+        "nunchaku",
+        "bastón",
+        "sai",
+        "shuriken",
+        "siangham",
+        "honda"
+      ]
+    },
+    "armorProficiencies": {
+      "note": "Sin competencia con armaduras ni escudos (las armaduras interfieren con habilidades de monje)"
+    },
+    "classSkills": [
+      "Equilibrio",
+      "Trepar",
+      "Concentración",
+      "Artesanía",
+      "Diplomacia",
+      "Escapismo",
+      "Esconderse",
+      "Saltar",
+      "Saber (arcano)",
+      "Saber (religión)",
+      "Escuchar",
+      "Moverse sigilosamente",
+      "Actuar",
+      "Profesión",
+      "Avistar",
+      "Nadar",
+      "Voltereta"
+    ],
+    "classFeatures": [
+      {
+        "name": "Ataque sin armas",
+        "level": 1,
+        "description": "Los monjes son muy hábiles en el combate sin armas. A nivel 1, un monje gana Perfeccionar ataque sin armas como dote adicional. El daño sin armas de un monje es mayor que el normal y aumenta con el nivel.",
+        "shortDescription": "Daño sin armas mejorado que aumenta con el nivel"
+      },
+      {
+        "name": "Ráfaga de golpes",
+        "level": 1,
+        "description": "Al hacer un ataque completo, un monje puede hacer un ataque adicional con un penalizador de -2 a todos los ataques. Debe usar ataque sin armas o armas especiales de monje.",
+        "shortDescription": "Ataque adicional con penalizador -2 (sin armas o armas de monje)"
+      },
+      {
+        "name": "Bonificador de CA",
+        "level": 1,
+        "description": "Un monje sin armadura ni carga añade su bonificador de Sabiduría a su CA y CA de toque. Pierde este bonificador cuando está inmovilizado o indefenso, lleva armadura, escudo o carga media/pesada.",
+        "shortDescription": "Bonificador de Sabiduría a la CA sin armadura"
+      },
+      {
+        "name": "Movimiento rápido",
+        "level": 3,
+        "description": "La velocidad base del monje es más rápida de lo normal (+10 pies a nivel 3, aumenta cada 3 niveles). Solo funciona sin armadura y sin carga media o pesada.",
+        "shortDescription": "+10 pies de velocidad sin armadura (mejora cada 3 niveles)"
+      },
+      {
+        "name": "Quietud mental",
+        "level": 3,
+        "description": "El monje gana bonificador +2 a las salvaciones contra conjuros y efectos de las escuelas de encantamiento.",
+        "shortDescription": "+2 salvaciones vs encantamientos"
+      },
+      {
+        "name": "Caída lenta",
+        "level": 4,
+        "description": "Un monje a 4 pies de una pared puede usarla para ralentizar su caída. A nivel 4 el monje sufre daño como si la caída fuera 20 pies más corta. La distancia aumenta cada 2 niveles.",
+        "shortDescription": "Reducir daño de caída cerca de una pared (-20 pies, mejora cada 2 niveles)"
+      },
+      {
+        "name": "Pureza corporal",
+        "level": 5,
+        "description": "El monje gana inmunidad a todas las enfermedades excepto las sobrenaturales y mágicas.",
+        "shortDescription": "Inmunidad a enfermedades (excepto sobrenaturales/mágicas)"
+      },
+      {
+        "name": "Salto abundante",
+        "level": 3,
+        "description": "Un monje de nivel 3 o superior puede usar Salto como si siempre tuviera carrerilla.",
+        "shortDescription": "Saltar como si tuviera carrerilla"
+      },
+      {
+        "name": "Golpe aturdidor",
+        "level": 1,
+        "description": "El monje puede aturdir oponentes. Puede usar esta habilidad una vez por día cada 4 niveles (1/día al nivel 1, 2/día al nivel 5, etc.). El oponente debe hacer una salvación de Fortaleza o queda aturdido 1 asalto.",
+        "shortDescription": "Aturdir oponente con golpe sin armas (Fort niega, 1/día cada 4 niveles)"
+      },
+      {
+        "name": "Esquiva asombrosa",
+        "level": 2,
+        "description": "El monje puede reaccionar al peligro antes de que sus sentidos normales se lo permitan. Conserva su bonificador de Destreza a la CA incluso estando desprevenido.",
+        "shortDescription": "Conserva bonificador de Des a la CA cuando está desprevenido"
+      },
+      {
+        "name": "Esquiva asombrosa mejorada",
+        "level": 5,
+        "description": "El monje no puede ser flanqueado. Solo puede ser flanqueado por un pícaro de al menos 4 niveles más que él.",
+        "shortDescription": "No puede ser flanqueado (excepto por pícaros de nivel superior)"
+      },
+      {
+        "name": "Golpe ki",
+        "level": 4,
+        "description": "El ataque sin armas del monje se considera mágico (+1 a nivel 4, +2 a nivel 10, +3 a nivel 16) a efectos de superar reducción de daño.",
+        "shortDescription": "Ataques sin armas son mágicos (+1, luego +2, +3)"
+      },
+      {
+        "name": "Cuerpo atemporal",
+        "level": 17,
+        "description": "El monje no sufre penalizadores por envejecimiento y no puede envejecer mágicamente, pero aún muere de vejez.",
+        "shortDescription": "Sin penalizadores por envejecimiento"
+      },
+      {
+        "name": "Mente en blanco",
+        "level": 11,
+        "description": "El monje gana un bonificador +2 a todas las salvaciones.",
+        "shortDescription": "+2 a todas las salvaciones"
+      },
+      {
+        "name": "Cuerpo diamantino",
+        "level": 11,
+        "description": "El monje gana reducción de daño 10/magia.",
+        "shortDescription": "Reducción de daño 10/magia"
+      },
+      {
+        "name": "Alma diamantina",
+        "level": 13,
+        "description": "El monje gana inmunidad a conjuros (como el conjuro inmunidad a conjuros).",
+        "shortDescription": "Inmunidad a conjuros"
+      },
+      {
+        "name": "Golpe vibrante",
+        "level": 15,
+        "description": "El monje puede establecer vibraciones letales en el cuerpo del oponente. Si el oponente falla una salvación de Fortaleza, muere. El monje debe anunciar el golpe vibrante antes de atacar.",
+        "shortDescription": "Golpe mortal mediante vibraciones (Fort niega, 1/semana)"
+      },
+      {
+        "name": "Cuerpo vacío",
+        "level": 19,
+        "description": "El monje puede volverse etéreo durante 1 asalto por nivel, como el conjuro etéreo. Usar esta habilidad es una acción de movimiento que no provoca ataques de oportunidad.",
+        "shortDescription": "Volverse etéreo 1 asalto/nivel (1/día)"
+      },
+      {
+        "name": "Ser perfecto",
+        "level": 20,
+        "description": "El monje se vuelve una criatura externa en lugar de humanoide. Gana reducción de daño 10/magia (que se acumula con la anterior para 20/magia) y resistencia 10 a un tipo de energía.",
+        "shortDescription": "Criatura externa, RD 20/magia total, resistencia 10 a energía"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Golpe aturdidor 1/día",
+          "Golpe sin armas mejorado"
+        ],
+        "flurryOfBlows": "-2/-2",
+        "unarmedDamageSmall": "1d4",
+        "unarmedDamageMedium": "1d6",
+        "unarmedDamageLarge": "1d8",
+        "acBonus": 0,
+        "speedBonus": 0
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Dote adicional",
+          "Esquiva asombrosa",
+          "Evasión"
+        ],
+        "flurryOfBlows": "-1/-1",
+        "unarmedDamageSmall": "1d4",
+        "unarmedDamageMedium": "1d6",
+        "unarmedDamageLarge": "1d8",
+        "acBonus": 0,
+        "speedBonus": 0
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Quietud mental",
+          "Salto abundante",
+          "Mente serena"
+        ],
+        "flurryOfBlows": "+0/+0",
+        "unarmedDamageSmall": "1d4",
+        "unarmedDamageMedium": "1d6",
+        "unarmedDamageLarge": "1d8",
+        "acBonus": 0,
+        "speedBonus": 10
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Golpe ki (mágico)",
+          "Caída lenta 20 pies",
+          "Caída lenta 6 m"
+        ],
+        "flurryOfBlows": "+1/+1",
+        "unarmedDamageSmall": "1d6",
+        "unarmedDamageMedium": "1d8",
+        "unarmedDamageLarge": "2d6",
+        "acBonus": 0,
+        "speedBonus": 10
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Pureza corporal",
+          "Golpe aturdidor 2/día",
+          "Esquiva asombrosa mejorada"
+        ],
+        "flurryOfBlows": "+2/+2",
+        "unarmedDamageSmall": "1d6",
+        "unarmedDamageMedium": "1d8",
+        "unarmedDamageLarge": "2d6",
+        "acBonus": 1,
+        "speedBonus": 10
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Dote adicional",
+          "Caída lenta 30 pies",
+          "Caída lenta 9 m"
+        ],
+        "flurryOfBlows": "+3/+3",
+        "unarmedDamageSmall": "1d6",
+        "unarmedDamageMedium": "1d8",
+        "unarmedDamageLarge": "2d6",
+        "acBonus": 1,
+        "speedBonus": 20
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Cuerpo íntegro",
+          "Plenitud física"
+        ],
+        "flurryOfBlows": "+4/+4",
+        "unarmedDamageSmall": "1d6",
+        "unarmedDamageMedium": "1d8",
+        "unarmedDamageLarge": "2d6",
+        "acBonus": 1,
+        "speedBonus": 20
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Caída lenta 40 pies",
+          "Caída lenta 12 m"
+        ],
+        "flurryOfBlows": "+5/+5/+0",
+        "unarmedDamageSmall": "1d8",
+        "unarmedDamageMedium": "1d10",
+        "unarmedDamageLarge": "2d8",
+        "acBonus": 1,
+        "speedBonus": 20
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Golpe aturdidor 3/día",
+          "Esquiva asombrosa mejorada",
+          "Evasión mejorada"
+        ],
+        "flurryOfBlows": "+6/+6/+1",
+        "unarmedDamageSmall": "1d8",
+        "unarmedDamageMedium": "1d10",
+        "unarmedDamageLarge": "2d8",
+        "acBonus": 1,
+        "speedBonus": 30
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 7,
+        "reflexSave": 7,
+        "willSave": 7,
+        "special": [
+          "Golpe ki (legal)",
+          "Caída lenta 50 pies",
+          "Dote adicional",
+          "Caída lenta 15 m"
+        ],
+        "flurryOfBlows": "+7/+7/+2",
+        "unarmedDamageSmall": "1d8",
+        "unarmedDamageMedium": "1d10",
+        "unarmedDamageLarge": "2d8",
+        "acBonus": 2,
+        "speedBonus": 30
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 7,
+        "reflexSave": 7,
+        "willSave": 7,
+        "special": [
+          "Cuerpo diamantino",
+          "Mente en blanco",
+          "Cuerpo de diamante"
+        ],
+        "flurryOfBlows": "+8/+8/+8/+3",
+        "unarmedDamageSmall": "1d8",
+        "unarmedDamageMedium": "1d10",
+        "unarmedDamageLarge": "2d8",
+        "acBonus": 2,
+        "speedBonus": 30
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 8,
+        "reflexSave": 8,
+        "willSave": 8,
+        "special": [
+          "Caída lenta 60 pies",
+          "Paso abundante",
+          "Caída lenta 18 m"
+        ],
+        "flurryOfBlows": "+9/+9/+9/+4",
+        "unarmedDamageSmall": "1d10",
+        "unarmedDamageMedium": "2d6",
+        "unarmedDamageLarge": "3d6",
+        "acBonus": 2,
+        "speedBonus": 40
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 8,
+        "reflexSave": 8,
+        "willSave": 8,
+        "special": [
+          "Golpe aturdidor 4/día",
+          "Alma diamantina",
+          "Alma de diamante"
+        ],
+        "flurryOfBlows": "+9/+9/+9/+4",
+        "unarmedDamageSmall": "1d10",
+        "unarmedDamageMedium": "2d6",
+        "unarmedDamageLarge": "3d6",
+        "acBonus": 2,
+        "speedBonus": 40
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 9,
+        "willSave": 9,
+        "special": [
+          "Caída lenta 70 pies",
+          "Dote adicional",
+          "Caída lenta 21 m"
+        ],
+        "flurryOfBlows": "+10/+10/+10/+5",
+        "unarmedDamageSmall": "1d10",
+        "unarmedDamageMedium": "2d6",
+        "unarmedDamageLarge": "3d6",
+        "acBonus": 2,
+        "speedBonus": 40
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 9,
+        "reflexSave": 9,
+        "willSave": 9,
+        "special": [
+          "Golpe vibrante",
+          "Palma temblorosa"
+        ],
+        "flurryOfBlows": "+11/+11/+11/+6/+1",
+        "unarmedDamageSmall": "1d10",
+        "unarmedDamageMedium": "2d6",
+        "unarmedDamageLarge": "3d6",
+        "acBonus": 3,
+        "speedBonus": 50
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 10,
+        "willSave": 10,
+        "special": [
+          "Golpe ki (adamantino)",
+          "Caída lenta 80 pies",
+          "Caída lenta 24 m",
+          "Dote adicional"
+        ],
+        "flurryOfBlows": "+12/+12/+12/+7/+2",
+        "unarmedDamageSmall": "2d6",
+        "unarmedDamageMedium": "2d8",
+        "unarmedDamageLarge": "3d8",
+        "acBonus": 3,
+        "speedBonus": 50
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 10,
+        "willSave": 10,
+        "special": [
+          "Golpe aturdidor 5/día",
+          "Cuerpo atemporal",
+          "Lengua del sol y la luna"
+        ],
+        "flurryOfBlows": "+12/+12/+12/+7/+2",
+        "unarmedDamageSmall": "2d6",
+        "unarmedDamageMedium": "2d8",
+        "unarmedDamageLarge": "3d8",
+        "acBonus": 3,
+        "speedBonus": 50
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 11,
+        "willSave": 11,
+        "special": [
+          "Caída lenta (cualquier distancia)"
+        ],
+        "flurryOfBlows": "+13/+13/+13/+8/+3",
+        "unarmedDamageSmall": "2d6",
+        "unarmedDamageMedium": "2d8",
+        "unarmedDamageLarge": "3d8",
+        "acBonus": 3,
+        "speedBonus": 60
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 11,
+        "willSave": 11,
+        "special": [
+          "Cuerpo vacío"
+        ],
+        "flurryOfBlows": "+14/+14/+14/+9/+4",
+        "unarmedDamageSmall": "2d6",
+        "unarmedDamageMedium": "2d8",
+        "unarmedDamageLarge": "3d8",
+        "acBonus": 3,
+        "speedBonus": 60
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 12,
+        "willSave": 12,
+        "special": [
+          "Ser perfecto"
+        ],
+        "flurryOfBlows": "+15/+15/+15/+10/+5",
+        "unarmedDamageSmall": "2d8",
+        "unarmedDamageMedium": "2d10",
+        "unarmedDamageLarge": "4d8",
+        "acBonus": 4,
+        "speedBonus": 60
+      }
+    ],
+    "primaryAbility": [
+      "Sabiduría",
+      "Destreza"
+    ],
+    "goodSaves": [
+      "Fortaleza",
+      "Reflejos",
+      "Voluntad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 41
+    }
+  },
+  {
+    "id": "paladin",
+    "name": "Paladín",
+    "slug": "paladin",
+    "shortDescription": "Campeón sagrado con poderes divinos y código de honor",
+    "description": "El paladín es un campeón sagrado, un guerrero imbuido con poder divino. Los paladines son defensores valientes de lo que es bueno y verdadero. Deben ser legales buenos y pierden sus poderes si violan ese código.",
+    "hitDie": "d10",
+    "skillPointsPerLevel": 2,
+    "alignment": [
+      "legal bueno"
+    ],
+    "weaponProficiencies": {
+      "simple": true,
+      "martial": true
+    },
+    "armorProficiencies": {
+      "light": true,
+      "medium": true,
+      "heavy": true,
+      "shields": true
+    },
+    "classSkills": [
+      "Concentración",
+      "Artesanía",
+      "Diplomacia",
+      "Trato con animales",
+      "Sanar",
+      "Saber (nobleza y realeza)",
+      "Saber (religión)",
+      "Profesión",
+      "Montar",
+      "Averiguar intenciones"
+    ],
+    "classFeatures": [
+      {
+        "name": "Aura de bien",
+        "level": 1,
+        "description": "El poder del aura de bien de un paladín es igual a su nivel de paladín (detectado mediante el conjuro detectar el bien).",
+        "shortDescription": "Aura de bien detectable por magia"
+      },
+      {
+        "name": "Detectar el mal",
+        "level": 1,
+        "description": "A voluntad, el paladín puede usar detectar el mal como habilidad sortílega.",
+        "shortDescription": "Detectar el mal a voluntad"
+      },
+      {
+        "name": "Castigar el mal",
+        "level": 1,
+        "description": "Una vez por día, el paladín puede intentar castigar el mal. Añade su bonificador de Carisma a la tirada de ataque y su nivel de paladín al daño contra una criatura malvada. Usos adicionales en niveles 5, 10, 15 y 20.",
+        "shortDescription": "+Car al ataque, +nivel al daño vs el mal (1/día, mejora cada 5 niveles)"
+      },
+      {
+        "name": "Gracia divina",
+        "level": 2,
+        "description": "El paladín aplica su bonificador de Carisma (si es positivo) a todas sus salvaciones.",
+        "shortDescription": "Bonificador de Car a todas las salvaciones"
+      },
+      {
+        "name": "Imposición de manos",
+        "level": 2,
+        "description": "El paladín puede curar heridas (las suyas o de otros) mediante toque. Cada día puede curar un total de puntos de golpe igual a su nivel de paladín × su bonificador de Carisma.",
+        "shortDescription": "Curar nivel × bonif. Car puntos de golpe al día mediante toque"
+      },
+      {
+        "name": "Aura de valor",
+        "level": 3,
+        "description": "El paladín es inmune al miedo (mágico o de otro tipo). Los aliados a 10 pies ganan bonificador +4 moral contra miedo.",
+        "shortDescription": "Inmune al miedo, aliados cercanos +4 vs miedo"
+      },
+      {
+        "name": "Salud divina",
+        "level": 3,
+        "description": "El paladín es inmune a todas las enfermedades, incluyendo enfermedades sobrenaturales y mágicas.",
+        "shortDescription": "Inmunidad a todas las enfermedades"
+      },
+      {
+        "name": "Expulsar muertos vivientes",
+        "level": 4,
+        "description": "Cuando alcanza el nivel 4, un paladín gana la habilidad sobrenatural de expulsar muertos vivientes. Usa esta habilidad como un clérigo de 3 niveles inferior.",
+        "shortDescription": "Expulsar muertos vivientes como clérigo de nivel -3"
+      },
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 4,
+        "description": "A partir del nivel 4, el paladín gana la habilidad de lanzar un pequeño número de conjuros divinos. Debe elegir y preparar conjuros por adelantado.",
+        "shortDescription": "Lanza conjuros divinos desde nivel 4 (requiere preparación)"
+      },
+      {
+        "name": "Montura especial",
+        "level": 5,
+        "description": "El paladín puede convocar un corcel de guerra especialmente inteligente, fuerte y leal. La montura mejora según el nivel del paladín.",
+        "shortDescription": "Convocar corcel especial que mejora con el nivel"
+      },
+      {
+        "name": "Eliminar enfermedad",
+        "level": 6,
+        "description": "A nivel 6 y superior, el paladín puede eliminar enfermedad como el conjuro. Puede usar esta habilidad una vez por semana (2/semana a nivel 9, 3/semana a nivel 12, etc.).",
+        "shortDescription": "Eliminar enfermedad 1/semana (aumenta cada 3 niveles)"
+      },
+      {
+        "name": "Código de conducta",
+        "level": 1,
+        "description": "El paladín debe ser legal bueno y perder sus habilidades de clase si comete un acto malvado o viola el código. Puede arrepentirse mediante expiación.",
+        "shortDescription": "Debe ser legal bueno o perder poderes"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 2,
+        "reflexSave": 0,
+        "willSave": 0,
+        "special": [
+          "Aura de bien",
+          "Detectar el mal",
+          "Castigar el mal 1/día"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 0,
+        "willSave": 0,
+        "special": [
+          "Gracia divina",
+          "Imposición de manos"
+        ]
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 3,
+        "reflexSave": 1,
+        "willSave": 1,
+        "special": [
+          "Aura de valor",
+          "Salud divina"
+        ]
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 1,
+        "special": [
+          "Expulsar muertos vivientes"
+        ]
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 4,
+        "reflexSave": 1,
+        "willSave": 1,
+        "special": [
+          "Castigar el mal 2/día",
+          "Montura especial"
+        ]
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 2,
+        "special": [
+          "Eliminar enfermedad 1/semana"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 2,
+        "willSave": 2
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 6,
+        "reflexSave": 2,
+        "willSave": 2
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Eliminar enfermedad 2/semana"
+        ]
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 3,
+        "special": [
+          "Castigar el mal 3/día"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 7,
+        "reflexSave": 3,
+        "willSave": 3
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 4,
+        "special": [
+          "Eliminar enfermedad 3/semana"
+        ]
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 8,
+        "reflexSave": 4,
+        "willSave": 4
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 9,
+        "reflexSave": 4,
+        "willSave": 4
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 5,
+        "willSave": 5,
+        "special": [
+          "Castigar el mal 4/día",
+          "Eliminar enfermedad 4/semana"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+16/+11/+6/+1",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 5
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+17/+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 5,
+        "willSave": 5
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+18/+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Eliminar enfermedad 5/semana"
+        ]
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+19/+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 6,
+        "willSave": 6
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+20/+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 6,
+        "willSave": 6,
+        "special": [
+          "Castigar el mal 5/día"
+        ]
+      }
+    ],
+    "spellcasting": {
+      "ability": "Sabiduría",
+      "spellType": "divinos",
+      "spellProgression": [
+        {
+          "level": 4,
+          "spellsPerDay": {
+            "level1": 0
+          }
+        },
+        {
+          "level": 5,
+          "spellsPerDay": {
+            "level1": 0
+          }
+        },
+        {
+          "level": 6,
+          "spellsPerDay": {
+            "level1": 1
+          }
+        },
+        {
+          "level": 7,
+          "spellsPerDay": {
+            "level1": 1
+          }
+        },
+        {
+          "level": 8,
+          "spellsPerDay": {
+            "level1": 1,
+            "level2": 0
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Carisma"
+    ],
+    "goodSaves": [
+      "Fortaleza"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 44
+    }
+  },
+  {
+    "id": "rogue",
+    "name": "Pícaro",
+    "slug": "picaro",
+    "shortDescription": "Experto en sigilo, trampas y ataques furtivos",
+    "description": "Los pícaros tienen pocas habilidades de combate directo, pero son maestros del sigilo, el engaño y las habilidades. Su ataque furtivo puede ser devastador cuando toman a un enemigo desprevenido.",
+    "hitDie": "d6",
+    "skillPointsPerLevel": 8,
+    "weaponProficiencies": {
+      "specific": [
+        "ballesta de mano",
+        "ballesta ligera",
+        "garrote",
+        "daga",
+        "dardo",
+        "maza ligera",
+        "maza pesada",
+        "arco corto",
+        "sable",
+        "estoque",
+        "espada corta"
+      ]
+    },
+    "armorProficiencies": {
+      "light": true
+    },
+    "classSkills": [
+      "Tasación",
+      "Equilibrio",
+      "Engañar",
+      "Trepar",
+      "Artesanía",
+      "Descifrar escritura",
+      "Diplomacia",
+      "Inutilizar mecanismo",
+      "Disfrazarse",
+      "Escapismo",
+      "Falsificar",
+      "Recoger información",
+      "Esconderse",
+      "Intimidar",
+      "Saltar",
+      "Saber (local)",
+      "Escuchar",
+      "Moverse sigilosamente",
+      "Abrir cerraduras",
+      "Actuar",
+      "Profesión",
+      "Averiguar intenciones",
+      "Buscar",
+      "Avistar",
+      "Juego de manos",
+      "Nadar",
+      "Voltereta",
+      "Uso de cuerdas"
+    ],
+    "classFeatures": [
+      {
+        "name": "Ataque furtivo",
+        "level": 1,
+        "description": "Si el pícaro puede coger a un oponente incapaz de defenderse efectivamente, puede atacar un punto vital para infligir daño adicional. El daño extra es +1d6 al nivel 1 y aumenta +1d6 cada dos niveles.",
+        "shortDescription": "+1d6 daño extra vs enemigos desprevenidos/flanqueados (aumenta cada 2 niveles)"
+      },
+      {
+        "name": "Buscar trampas",
+        "level": 1,
+        "description": "Los pícaros pueden usar Buscar para localizar trampas con CD superior a 20. Encontrar una trampa no mágica tiene CD al menos 20, más alta si está bien escondida.",
+        "shortDescription": "Puede encontrar trampas con CD 20+ mediante Buscar"
+      },
+      {
+        "name": "Evasión",
+        "level": 2,
+        "description": "Si el pícaro hace una salvación de Reflejos contra un ataque que normalmente causa mitad de daño con salvación exitosa, no sufre daño alguno. Evasión solo funciona con armadura ligera o sin armadura.",
+        "shortDescription": "Sin daño con salvación de Reflejos exitosa (armadura ligera o nula)"
+      },
+      {
+        "name": "Esquiva asombrosa",
+        "level": 4,
+        "description": "El pícaro puede reaccionar al peligro antes de que sus sentidos normales se lo permitan. Conserva su bonificador de Destreza a la CA incluso estando desprevenido.",
+        "shortDescription": "Conserva bonificador de Des a la CA cuando está desprevenido"
+      },
+      {
+        "name": "Esquiva asombrosa mejorada",
+        "level": 8,
+        "description": "El pícaro no puede ser flanqueado. Solo puede ser flanqueado por un pícaro de al menos 4 niveles más que él.",
+        "shortDescription": "No puede ser flanqueado (excepto por pícaros de nivel superior)"
+      },
+      {
+        "name": "Sentido de las trampas",
+        "level": 3,
+        "description": "A partir del nivel 3, el pícaro gana bonificador +1 a las salvaciones de Reflejos contra trampas y esquiva +1 CA contra ataques de trampas. La bonificación aumenta +1 cada 3 niveles.",
+        "shortDescription": "+1 Reflejos vs trampas, +1 CA vs trampas (mejora cada 3 niveles)"
+      },
+      {
+        "name": "Habilidad especial",
+        "level": 10,
+        "description": "A nivel 10, 13, 16 y 19, el pícaro gana una habilidad especial de su elección entre varias opciones (como ataque incapacitante, habilidad de pícaro mejorada, dote especial, etc.).",
+        "shortDescription": "Habilidad especial a elegir (nivel 10, 13, 16, 19)"
+      },
+      {
+        "name": "Evasión mejorada",
+        "level": 0,
+        "description": "Funciona como evasión, excepto que aunque falle la salvación solo sufre mitad de daño. Disponible como habilidad especial.",
+        "shortDescription": "Mitad de daño si falla Reflejos, nada si tiene éxito (habilidad especial)"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+0",
+        "fortitudeSave": 0,
+        "reflexSave": 2,
+        "willSave": 0,
+        "special": [
+          "Ataque furtivo +1d6",
+          "Buscar trampas"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 0,
+        "reflexSave": 3,
+        "willSave": 0,
+        "special": [
+          "Evasión"
+        ]
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 1,
+        "reflexSave": 3,
+        "willSave": 1,
+        "special": [
+          "Ataque furtivo +2d6",
+          "Sentido de las trampas +1"
+        ]
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 1,
+        "reflexSave": 4,
+        "willSave": 1,
+        "special": [
+          "Esquiva asombrosa"
+        ]
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 1,
+        "reflexSave": 4,
+        "willSave": 1,
+        "special": [
+          "Ataque furtivo +3d6"
+        ]
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 2,
+        "reflexSave": 5,
+        "willSave": 2,
+        "special": [
+          "Sentido de las trampas +2"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 2,
+        "reflexSave": 5,
+        "willSave": 2,
+        "special": [
+          "Ataque furtivo +4d6"
+        ]
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 2,
+        "reflexSave": 6,
+        "willSave": 2,
+        "special": [
+          "Esquiva asombrosa mejorada"
+        ]
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 3,
+        "reflexSave": 6,
+        "willSave": 3,
+        "special": [
+          "Ataque furtivo +5d6",
+          "Sentido de las trampas +3"
+        ]
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 3,
+        "reflexSave": 7,
+        "willSave": 3,
+        "special": [
+          "Habilidad especial"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 3,
+        "reflexSave": 7,
+        "willSave": 3,
+        "special": [
+          "Ataque furtivo +6d6"
+        ]
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 4,
+        "reflexSave": 8,
+        "willSave": 4,
+        "special": [
+          "Sentido de las trampas +4"
+        ]
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 4,
+        "reflexSave": 8,
+        "willSave": 4,
+        "special": [
+          "Ataque furtivo +7d6",
+          "Habilidad especial"
+        ]
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 4,
+        "reflexSave": 9,
+        "willSave": 4
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 5,
+        "reflexSave": 9,
+        "willSave": 5,
+        "special": [
+          "Ataque furtivo +8d6",
+          "Sentido de las trampas +5"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 10,
+        "willSave": 5,
+        "special": [
+          "Habilidad especial"
+        ]
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 10,
+        "willSave": 5,
+        "special": [
+          "Ataque furtivo +9d6"
+        ]
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 6,
+        "reflexSave": 11,
+        "willSave": 6,
+        "special": [
+          "Sentido de las trampas +6"
+        ]
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 11,
+        "willSave": 6,
+        "special": [
+          "Ataque furtivo +10d6",
+          "Habilidad especial"
+        ]
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 6,
+        "reflexSave": 12,
+        "willSave": 6
+      }
+    ],
+    "primaryAbility": [
+      "Destreza"
+    ],
+    "goodSaves": [
+      "Reflejos"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 50
+    }
+  },
+  {
+    "id": "ranger",
+    "name": "Explorador",
+    "slug": "explorador",
+    "shortDescription": "Rastreador y cazador con magia natural",
+    "description": "Los exploradores son cazadores hábiles, rastreadores y guías salvajes. Son guerreros especializados en luchar contra ciertos tipos de enemigos. Dominan el terreno salvaje y ganan conjuros divinos a niveles altos.",
+    "hitDie": "d8",
+    "skillPointsPerLevel": 6,
+    "weaponProficiencies": {
+      "simple": true,
+      "martial": true
+    },
+    "armorProficiencies": {
+      "light": true,
+      "medium": true,
+      "shields": true
+    },
+    "classSkills": [
+      "Trepar",
+      "Concentración",
+      "Artesanía",
+      "Trato con animales",
+      "Sanar",
+      "Esconderse",
+      "Saltar",
+      "Saber (mazmorra)",
+      "Saber (geografía)",
+      "Saber (naturaleza)",
+      "Escuchar",
+      "Moverse sigilosamente",
+      "Profesión",
+      "Montar",
+      "Buscar",
+      "Avistar",
+      "Conocimiento de conjuros",
+      "Supervivencia",
+      "Nadar",
+      "Uso de cuerdas"
+    ],
+    "classFeatures": [
+      {
+        "name": "Enemigo predilecto",
+        "level": 1,
+        "description": "El explorador puede seleccionar un tipo de criatura como enemigo predilecto. Gana bonificador +2 a Engañar, Escuchar, Averiguar intenciones, Avistar y Supervivencia cuando usa estas habilidades contra ese tipo. Mismo bonificador al daño con arma. Gana enemigos predilectos adicionales a niveles 5, 10, 15 y 20.",
+        "shortDescription": "+2 a habilidades y daño vs enemigo predilecto (adicionales cada 5 niveles)"
+      },
+      {
+        "name": "Rastrear",
+        "level": 1,
+        "description": "El explorador gana Rastrear como dote adicional.",
+        "shortDescription": "Dote Rastrear gratis"
+      },
+      {
+        "name": "Empatía salvaje",
+        "level": 1,
+        "description": "El explorador puede mejorar la actitud de un animal. Funciona como Diplomacia. Tira 1d20 + nivel de explorador + mod. Carisma.",
+        "shortDescription": "Influenciar actitud de animales (como Diplomacia)"
+      },
+      {
+        "name": "Estilo de combate",
+        "level": 2,
+        "description": "El explorador debe elegir entre dos estilos de combate: Tiro con arco (obtiene Disparo rápido) o Combate con dos armas (obtiene Combatir con dos armas). Mejora el estilo en niveles 6 y 11.",
+        "shortDescription": "Elegir: Tiro con arco o Combate con dos armas (mejora en niveles 6 y 11)"
+      },
+      {
+        "name": "Resistencia",
+        "level": 3,
+        "description": "El explorador gana Resistencia como dote adicional.",
+        "shortDescription": "Dote Resistencia gratis"
+      },
+      {
+        "name": "Compañero animal",
+        "level": 4,
+        "description": "El explorador puede tener un compañero animal que lo acompaña en sus aventuras. El compañero mejora según el nivel del explorador.",
+        "shortDescription": "Compañero animal leal que mejora con el nivel"
+      },
+      {
+        "name": "Lanzamiento de conjuros",
+        "level": 4,
+        "description": "A partir del nivel 4, el explorador gana la habilidad de lanzar un pequeño número de conjuros divinos. Debe elegir y preparar conjuros por adelantado.",
+        "shortDescription": "Lanza conjuros divinos desde nivel 4 (requiere preparación)"
+      },
+      {
+        "name": "Evasión",
+        "level": 9,
+        "description": "Si el explorador hace una salvación de Reflejos contra un ataque que normalmente causa mitad de daño con salvación exitosa, no sufre daño alguno. Evasión solo funciona con armadura ligera o media.",
+        "shortDescription": "Sin daño con salvación de Reflejos exitosa (armadura ligera o media)"
+      },
+      {
+        "name": "Movimiento rápido",
+        "level": 8,
+        "description": "La velocidad base del explorador es más rápida de lo normal en +10 pies. Esta bonificación se aplica solo cuando no lleva armadura o lleva armadura ligera, y no lleva carga media o pesada.",
+        "shortDescription": "+10 pies de velocidad con armadura ligera o sin armadura"
+      },
+      {
+        "name": "Camuflaje",
+        "level": 13,
+        "description": "El explorador puede usar Esconderse en cualquier tipo de terreno natural, incluso si no tiene cobertura o ocultamiento.",
+        "shortDescription": "Esconderse en cualquier terreno natural sin cobertura"
+      },
+      {
+        "name": "Ocultarse a plena vista",
+        "level": 17,
+        "description": "El explorador puede usar Esconderse incluso mientras es observado en terreno natural.",
+        "shortDescription": "Esconderse mientras es observado en terreno natural"
+      }
+    ],
+    "levelProgression": [
+      {
+        "level": 1,
+        "baseAttackBonus": "+1",
+        "fortitudeSave": 2,
+        "reflexSave": 2,
+        "willSave": 0,
+        "special": [
+          "Enemigo predilecto 1",
+          "Rastrear",
+          "Empatía salvaje"
+        ]
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": "+2",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 0,
+        "special": [
+          "Estilo de combate"
+        ]
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": "+3",
+        "fortitudeSave": 3,
+        "reflexSave": 3,
+        "willSave": 1,
+        "special": [
+          "Resistencia"
+        ]
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": "+4",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 1,
+        "special": [
+          "Compañero animal"
+        ]
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": "+5",
+        "fortitudeSave": 4,
+        "reflexSave": 4,
+        "willSave": 1,
+        "special": [
+          "Enemigo predilecto 2"
+        ]
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": "+6/+1",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 2,
+        "special": [
+          "Estilo de combate mejorado"
+        ]
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": "+7/+2",
+        "fortitudeSave": 5,
+        "reflexSave": 5,
+        "willSave": 2,
+        "special": [
+          "Andar sin rastro"
+        ]
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": "+8/+3",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 2,
+        "special": [
+          "Movimiento rápido"
+        ]
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": "+9/+4",
+        "fortitudeSave": 6,
+        "reflexSave": 6,
+        "willSave": 3,
+        "special": [
+          "Evasión"
+        ]
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": "+10/+5",
+        "fortitudeSave": 7,
+        "reflexSave": 7,
+        "willSave": 3,
+        "special": [
+          "Enemigo predilecto 3"
+        ]
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": "+11/+6/+1",
+        "fortitudeSave": 7,
+        "reflexSave": 7,
+        "willSave": 3,
+        "special": [
+          "Estilo de combate superior"
+        ]
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": "+12/+7/+2",
+        "fortitudeSave": 8,
+        "reflexSave": 8,
+        "willSave": 4
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": "+13/+8/+3",
+        "fortitudeSave": 8,
+        "reflexSave": 8,
+        "willSave": 4,
+        "special": [
+          "Camuflaje"
+        ]
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": "+14/+9/+4",
+        "fortitudeSave": 9,
+        "reflexSave": 9,
+        "willSave": 4
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": "+15/+10/+5",
+        "fortitudeSave": 9,
+        "reflexSave": 9,
+        "willSave": 5,
+        "special": [
+          "Enemigo predilecto 4"
+        ]
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": "+16/+11/+6/+1",
+        "fortitudeSave": 10,
+        "reflexSave": 10,
+        "willSave": 5
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": "+17/+12/+7/+2",
+        "fortitudeSave": 10,
+        "reflexSave": 10,
+        "willSave": 5,
+        "special": [
+          "Ocultarse a plena vista"
+        ]
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": "+18/+13/+8/+3",
+        "fortitudeSave": 11,
+        "reflexSave": 11,
+        "willSave": 6
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": "+19/+14/+9/+4",
+        "fortitudeSave": 11,
+        "reflexSave": 11,
+        "willSave": 6
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": "+20/+15/+10/+5",
+        "fortitudeSave": 12,
+        "reflexSave": 12,
+        "willSave": 6,
+        "special": [
+          "Enemigo predilecto 5"
+        ]
+      }
+    ],
+    "spellcasting": {
+      "ability": "Sabiduría",
+      "spellType": "divinos",
+      "spellProgression": [
+        {
+          "level": 4,
+          "spellsPerDay": {
+            "level1": 0
+          }
+        },
+        {
+          "level": 5,
+          "spellsPerDay": {
+            "level1": 0
+          }
+        },
+        {
+          "level": 6,
+          "spellsPerDay": {
+            "level1": 1
+          }
+        },
+        {
+          "level": 7,
+          "spellsPerDay": {
+            "level1": 1
+          }
+        },
+        {
+          "level": 8,
+          "spellsPerDay": {
+            "level1": 1,
+            "level2": 0
+          }
+        }
+      ]
+    },
+    "primaryAbility": [
+      "Destreza",
+      "Sabiduría"
+    ],
+    "goodSaves": [
+      "Fortaleza",
+      "Reflejos"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 47
+    }
+  }
+]

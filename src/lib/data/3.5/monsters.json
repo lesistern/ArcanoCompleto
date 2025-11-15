@@ -1,0 +1,372 @@
+[
+  {
+    "id": "goblin",
+    "name": "Goblin",
+    "type": "humanoide",
+    "subtypes": ["goblinoide"],
+    "size": "Small",
+    "hit_dice": "1d8+1",
+    "hp": 5,
+    "initiative": 1,
+    "speed": {
+      "base": 30
+    },
+    "armor_class": {
+      "total": 15,
+      "touch": 12,
+      "flat_footed": 14,
+      "breakdown": "10 +1 tamaño +1 Des +3 armadura de cuero +1 escudo ligero"
+    },
+    "base_attack": 1,
+    "grapple": -3,
+    "attacks": [
+      {
+        "name": "Maza de armas",
+        "type": "melee",
+        "bonus": 2,
+        "damage": "1d6",
+        "critical": "×2"
+      },
+      {
+        "name": "Jabalina",
+        "type": "ranged",
+        "bonus": 3,
+        "damage": "1d4",
+        "critical": "×2",
+        "range": 30
+      }
+    ],
+    "abilities": {
+      "str": 11,
+      "dex": 13,
+      "con": 12,
+      "int": 10,
+      "wis": 9,
+      "cha": 6
+    },
+    "saves": {
+      "fort": 3,
+      "ref": 1,
+      "will": -1
+    },
+    "skills": [
+      { "name": "Esconderse", "bonus": 5 },
+      { "name": "Escuchar", "bonus": 3 },
+      { "name": "Moverse Sigilosamente", "bonus": 5 },
+      { "name": "Montar", "bonus": 5 },
+      { "name": "Avistar", "bonus": 3 }
+    ],
+    "feats": ["Alerta"],
+    "environment": "Llanuras templadas",
+    "organization": "Pandilla (4-9), banda (10-100 más 100% no combatientes más 1 sargento de nivel 3 por cada 20 adultos y 1 líder de nivel 4-6), partida de guerra (10-24 con monturas wargo), o tribu (40-400 más 100% no combatientes más 1 sargento de nivel 3 por cada 20 adultos, 1 o 2 tenientes de nivel 4 o 5, 1 líder de nivel 6-8, 10-24 wargos montados, y 2-4 lobos terribles)",
+    "challenge_rating": "1/3",
+    "treasure": "Estándar",
+    "alignment": "Usualmente neutral malvado",
+    "advancement": "Por clase de personaje",
+    "level_adjustment": 0,
+    "sources": [
+      {
+        "book": "Manual de Monstruos",
+        "abbreviation": "MM",
+        "page": 133
+      }
+    ],
+    "tags": ["común", "bajo-nivel", "goblinoide"],
+    "description": "Los goblins son humanoides pequeños y astutos que disfrutan atormentando a otras criaturas. Son cobardes y prefieren superar en número a sus enemigos."
+  },
+  {
+    "id": "orco",
+    "name": "Orco",
+    "type": "humanoide",
+    "subtypes": ["orco"],
+    "size": "Medium",
+    "hit_dice": "1d8+1",
+    "hp": 5,
+    "initiative": 0,
+    "speed": {
+      "base": 30
+    },
+    "armor_class": {
+      "total": 13,
+      "touch": 10,
+      "flat_footed": 13,
+      "breakdown": "10 +3 armadura de cuero tachonado"
+    },
+    "base_attack": 1,
+    "grapple": 4,
+    "attacks": [
+      {
+        "name": "Hacha grande",
+        "type": "melee",
+        "bonus": 4,
+        "damage": "1d12+4",
+        "critical": "×3"
+      },
+      {
+        "name": "Jabalina",
+        "type": "ranged",
+        "bonus": 1,
+        "damage": "1d6+3",
+        "critical": "×2",
+        "range": 30
+      }
+    ],
+    "special_qualities": ["Visión en la oscuridad 60 pies", "Sensibilidad a la luz"],
+    "abilities": {
+      "str": 17,
+      "dex": 11,
+      "con": 12,
+      "int": 9,
+      "wis": 10,
+      "cha": 8
+    },
+    "saves": {
+      "fort": 3,
+      "ref": 0,
+      "will": -1
+    },
+    "skills": [
+      { "name": "Escuchar", "bonus": 2 },
+      { "name": "Avistar", "bonus": 1 }
+    ],
+    "feats": ["Soltura con un arma (hacha grande)"],
+    "environment": "Llanuras, montañas y subterráneo templados",
+    "organization": "Pandilla (2-4), escuadra (11-20 más 2 sargentos de nivel 3 y 1 líder de nivel 3-6), o banda (30-100 más 150% no combatientes más 1 sargento de nivel 3 por cada 10 adultos, 5 tenientes de nivel 5, y 3 capitanes de nivel 7)",
+    "challenge_rating": "1/2",
+    "treasure": "Estándar",
+    "alignment": "A menudo caótico malvado",
+    "advancement": "Por clase de personaje; Clase predilecta: Bárbaro",
+    "level_adjustment": 0,
+    "sources": [
+      {
+        "book": "Manual de Monstruos",
+        "abbreviation": "MM",
+        "page": 203
+      }
+    ],
+    "tags": ["común", "bajo-nivel", "orco", "sensible-luz"],
+    "description": "Los orcos son guerreros salvajes y brutales que viven para la batalla. Son más fuertes que los humanos promedio pero menos inteligentes."
+  },
+  {
+    "id": "kobold",
+    "name": "Kobold",
+    "type": "humanoide",
+    "subtypes": ["reptil"],
+    "size": "Small",
+    "hit_dice": "1d8",
+    "hp": 4,
+    "initiative": 1,
+    "speed": {
+      "base": 30
+    },
+    "armor_class": {
+      "total": 15,
+      "touch": 12,
+      "flat_footed": 14,
+      "breakdown": "10 +1 tamaño +1 Des +1 armadura de cuero natural +2 escudo ligero de madera"
+    },
+    "base_attack": 1,
+    "grapple": -4,
+    "attacks": [
+      {
+        "name": "Lanza",
+        "type": "melee",
+        "bonus": 1,
+        "damage": "1d6-1",
+        "critical": "×3"
+      },
+      {
+        "name": "Honda",
+        "type": "ranged",
+        "bonus": 3,
+        "damage": "1d3",
+        "critical": "×2",
+        "range": 50
+      }
+    ],
+    "special_qualities": ["Visión en la oscuridad 60 pies", "Sensibilidad a la luz"],
+    "abilities": {
+      "str": 9,
+      "dex": 13,
+      "con": 10,
+      "int": 10,
+      "wis": 9,
+      "cha": 8
+    },
+    "saves": {
+      "fort": 2,
+      "ref": 1,
+      "will": -1
+    },
+    "skills": [
+      { "name": "Arte de la Búsqueda", "bonus": 1 },
+      { "name": "Escuchar", "bonus": 1 },
+      { "name": "Avistar", "bonus": 1 },
+      { "name": "Oficio (trampas)", "bonus": 2 },
+      { "name": "Buscar", "bonus": 1 }
+    ],
+    "feats": ["Alerta"],
+    "environment": "Bosques, llanuras y montañas cálidos",
+    "organization": "Pandilla (4-9), partida de guerra (10-40 más 100% no combatientes más 1 sargento de nivel 3 por cada 20 adultos y 1 líder de nivel 4-6), tribu (40-400 más 1 sargento de nivel 3 por cada 20 adultos, 1 o 2 tenientes de nivel 4 o 5, 1 líder de nivel 6-8, y 5-8 lobos terribles)",
+    "challenge_rating": "1/4",
+    "treasure": "Estándar",
+    "alignment": "Usualmente legal malvado",
+    "advancement": "Por clase de personaje",
+    "level_adjustment": 0,
+    "sources": [
+      {
+        "book": "Manual de Monstruos",
+        "abbreviation": "MM",
+        "page": 161
+      }
+    ],
+    "tags": ["común", "bajo-nivel", "reptil", "trampa"],
+    "description": "Los kobolds son criaturas reptilianas cobardes que confían en la superioridad numérica y las trampas para vencer a sus enemigos."
+  },
+  {
+    "id": "esqueleto-humano",
+    "name": "Esqueleto Humano",
+    "type": "no-muerto",
+    "subtypes": [],
+    "size": "Medium",
+    "hit_dice": "1d12",
+    "hp": 6,
+    "initiative": 5,
+    "speed": {
+      "base": 30
+    },
+    "armor_class": {
+      "total": 13,
+      "touch": 11,
+      "flat_footed": 12,
+      "breakdown": "10 +1 Des +2 armadura natural"
+    },
+    "base_attack": 0,
+    "grapple": 1,
+    "attacks": [
+      {
+        "name": "Cimitarra",
+        "type": "melee",
+        "bonus": 1,
+        "damage": "1d6+1",
+        "critical": "18-20/×2"
+      },
+      {
+        "name": "Garra",
+        "type": "melee",
+        "bonus": 1,
+        "damage": "1d4+1",
+        "critical": "×2"
+      }
+    ],
+    "special_qualities": [
+      "Inmunidad al frío",
+      "Visión en la oscuridad 60 pies",
+      "Rasgos de no-muerto"
+    ],
+    "abilities": {
+      "str": 13,
+      "dex": 13,
+      "con": 0,
+      "int": 0,
+      "wis": 10,
+      "cha": 1
+    },
+    "saves": {
+      "fort": 0,
+      "ref": 1,
+      "will": 2
+    },
+    "skills": [],
+    "feats": ["Iniciativa mejorada"],
+    "environment": "Cualquiera",
+    "organization": "Cualquiera",
+    "challenge_rating": "1/3",
+    "treasure": "Ninguno",
+    "alignment": "Siempre neutral",
+    "advancement": "—",
+    "sources": [
+      {
+        "book": "Manual de Monstruos",
+        "abbreviation": "MM",
+        "page": 225
+      }
+    ],
+    "tags": ["no-muerto", "común", "bajo-nivel", "sin-mente"],
+    "description": "Los esqueletos son los restos animados de los muertos, creados mediante magia nigromántica. No tienen mente propia y obedecen las órdenes de su creador."
+  },
+  {
+    "id": "lobo",
+    "name": "Lobo",
+    "type": "animal",
+    "subtypes": [],
+    "size": "Medium",
+    "hit_dice": "2d8+4",
+    "hp": 13,
+    "initiative": 2,
+    "speed": {
+      "base": 50
+    },
+    "armor_class": {
+      "total": 14,
+      "touch": 12,
+      "flat_footed": 12,
+      "breakdown": "10 +2 Des +2 armadura natural"
+    },
+    "base_attack": 1,
+    "grapple": 2,
+    "attacks": [
+      {
+        "name": "Mordisco",
+        "type": "melee",
+        "bonus": 3,
+        "damage": "1d6+1",
+        "critical": "×2"
+      }
+    ],
+    "special_attacks": ["Derribo"],
+    "special_abilities": [
+      {
+        "name": "Derribo",
+        "description": "Un lobo que golpee con un ataque de mordisco puede intentar derribar al oponente como acción gratuita sin provocar un ataque de oportunidad. Si el intento falla, el oponente no puede reaccionar para derribar al lobo."
+      }
+    ],
+    "special_qualities": ["Olfato agudo", "Visión en la oscuridad 60 pies", "Visión con poca luz"],
+    "abilities": {
+      "str": 13,
+      "dex": 15,
+      "con": 15,
+      "int": 2,
+      "wis": 12,
+      "cha": 6
+    },
+    "saves": {
+      "fort": 5,
+      "ref": 5,
+      "will": 1
+    },
+    "skills": [
+      { "name": "Esconderse", "bonus": 2 },
+      { "name": "Escuchar", "bonus": 3 },
+      { "name": "Moverse Sigilosamente", "bonus": 3 },
+      { "name": "Avistar", "bonus": 3 },
+      { "name": "Supervivencia", "bonus": 1 }
+    ],
+    "feats": ["Soltura con un arma (mordisco)", "Rastrear"],
+    "environment": "Bosques y llanuras templados",
+    "organization": "Solitario, pareja, o manada (7-16)",
+    "challenge_rating": "1",
+    "treasure": "Ninguno",
+    "alignment": "Siempre neutral",
+    "advancement": "3 DG (Medium); 4-5 DG (Large)",
+    "sources": [
+      {
+        "book": "Manual de Monstruos",
+        "abbreviation": "MM",
+        "page": 283
+      }
+    ],
+    "tags": ["animal", "común", "depredador", "manada"],
+    "description": "Los lobos son depredadores sociales que cazan en manadas. Son astutos cazadores que trabajan juntos para derribar presas más grandes que ellos."
+  }
+]

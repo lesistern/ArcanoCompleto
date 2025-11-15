@@ -1,0 +1,1441 @@
+[
+  {
+    "id": "power-attack",
+    "name": "Poder de Ataque",
+    "slug": "poder-de-ataque",
+    "shortDescription": "Sacrifica precisión por daño adicional en ataques cuerpo a cuerpo",
+    "description": "En tu acción, antes de hacer tiradas de ataque, puedes elegir restar un número de tu tirada de ataque cuerpo a cuerpo y sumar el mismo número a tu daño cuerpo a cuerpo.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Fuerza",
+        "value": 13,
+        "description": "Fue 13+"
+      }
+    ],
+    "benefit": "En tu acción, antes de hacer tiradas de ataque, puedes elegir restar un número de tu tirada de ataque cuerpo a cuerpo y sumar el mismo número a tu daño cuerpo a cuerpo. Este número no puede exceder tu bonificador de ataque base. Los cambios en el ataque y el daño duran hasta tu siguiente turno.",
+    "normal": "Sin esta dote, no puedes intercambiar precisión por daño.",
+    "special": [
+      "Si empuñas un arma a dos manos (no una mano y media), o un arma a una mano mientras usas la otra solo para el escudo, añades el doble del número a tu daño.",
+      "Un guerrero puede seleccionar Poder de Ataque como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Hendidura",
+      "Ataque Poderoso Mejorado",
+      "Hendidura Mayor"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 98
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "cleave",
+    "name": "Hendidura",
+    "slug": "hendidura",
+    "shortDescription": "Ataque adicional gratuito si derribas a un enemigo",
+    "description": "Si derribas a un oponente, puedes hacer un ataque cuerpo a cuerpo adicional inmediato contra otro enemigo a tu alcance.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Fuerza",
+        "value": 13,
+        "description": "Fue 13+"
+      },
+      {
+        "type": "feat",
+        "name": "Poder de Ataque",
+        "description": "Dote Poder de Ataque"
+      }
+    ],
+    "benefit": "Si derribas a un oponente, puedes hacer un ataque cuerpo a cuerpo adicional inmediato contra otro enemigo a tu alcance. No puedes dar más de un paso de 1,5 metros antes de hacer este ataque adicional. El ataque adicional se hace con el mismo arma y con el mismo bonificador que el ataque que derribó al oponente anterior.",
+    "normal": "Sin esta dote, solo puedes atacar a un oponente por acción.",
+    "special": [
+      "Un guerrero puede seleccionar Hendidura como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Poder de Ataque",
+      "Hendidura Mayor"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 90
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "great-cleave",
+    "name": "Hendidura Mayor",
+    "slug": "hendidura-mayor",
+    "shortDescription": "Ataques adicionales ilimitados si derribas enemigos",
+    "description": "Funciona como Hendidura, excepto que no hay límite al número de veces que puedes usarla por asalto.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Fuerza",
+        "value": 13,
+        "description": "Fue 13+"
+      },
+      {
+        "type": "feat",
+        "name": "Poder de Ataque",
+        "description": "Dote Poder de Ataque"
+      },
+      {
+        "type": "feat",
+        "name": "Hendidura",
+        "description": "Dote Hendidura"
+      },
+      {
+        "type": "bab",
+        "value": 4,
+        "description": "Bonificador de ataque base +4"
+      }
+    ],
+    "benefit": "Funciona como Hendidura, excepto que no hay límite al número de veces que puedes usarla por asalto.",
+    "normal": "Sin esta dote, estás limitado por Hendidura a un ataque adicional por asalto.",
+    "special": [
+      "Un guerrero puede seleccionar Hendidura Mayor como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Poder de Ataque",
+      "Hendidura"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 90
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "improved-initiative",
+    "name": "Iniciativa Mejorada",
+    "slug": "iniciativa-mejorada",
+    "shortDescription": "+4 de bonificación a las tiradas de iniciativa",
+    "description": "Obtienes un bonificador +4 en las tiradas de iniciativa.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +4 en las tiradas de iniciativa.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [
+      "Un guerrero puede seleccionar Iniciativa Mejorada como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 93
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "combat-reflexes",
+    "name": "Reflejos de Combate",
+    "slug": "reflejos-de-combate",
+    "shortDescription": "Ataques de oportunidad adicionales",
+    "description": "Puedes hacer ataques de oportunidad adicionales basados en tu modificador de Destreza.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [],
+    "benefit": "Puedes hacer un número de ataques de oportunidad adicionales por asalto igual a tu bonificador de Destreza. Con esta dote, también puedes hacer ataques de oportunidad incluso cuando estés sorprendido.",
+    "normal": "Un personaje sin esta dote puede hacer solo un ataque de oportunidad por asalto y no puede hacer ataques de oportunidad mientras está sorprendido.",
+    "special": [
+      "Un guerrero puede seleccionar Reflejos de Combate como una de sus dotes adicionales de guerrero.",
+      "El dote Reflejos de Combate no te da más ataques de oportunidad por asalto que tu bonificador de Destreza."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 92
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "dodge",
+    "name": "Esquiva",
+    "slug": "esquiva",
+    "shortDescription": "+1 de bonificación a la CA contra un oponente designado",
+    "description": "Durante tu acción, designas un oponente y recibes un bonificador +1 de esquiva a la Clase de Armadura contra ataques de ese oponente.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 13,
+        "description": "Des 13+"
+      }
+    ],
+    "benefit": "Durante tu acción, designas un oponente y recibes un bonificador +1 de esquiva a la Clase de Armadura contra ataques de ese oponente. Puedes seleccionar un nuevo oponente en cualquier acción.",
+    "normal": "Sin esta dote, no obtienes el bonificador de esquiva.",
+    "special": [
+      "Un guerrero puede seleccionar Esquiva como una de sus dotes adicionales de guerrero.",
+      "Una condición que te haga perder tu bonificador de Destreza a la CA también te hace perder los beneficios de esquiva."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Movilidad",
+      "Ataque a la Carrera"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 89
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "mobility",
+    "name": "Movilidad",
+    "slug": "movilidad",
+    "shortDescription": "+4 de bonificación a la CA contra ataques de oportunidad",
+    "description": "Obtienes un bonificador +4 de esquiva a la Clase de Armadura contra ataques de oportunidad provocados cuando te mueves fuera de un área amenazada.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 13,
+        "description": "Des 13+"
+      },
+      {
+        "type": "feat",
+        "name": "Esquiva",
+        "description": "Dote Esquiva"
+      }
+    ],
+    "benefit": "Obtienes un bonificador +4 de esquiva a la Clase de Armadura contra ataques de oportunidad provocados cuando te mueves fuera de un área amenazada o a través de ella. Una condición que te haga perder tu bonificador de Destreza a la CA también te hace perder los beneficios de Movilidad.",
+    "normal": "Sin esta dote, no obtienes el bonificador adicional.",
+    "special": [
+      "Un guerrero puede seleccionar Movilidad como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Esquiva",
+      "Ataque a la Carrera"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 96
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "spring-attack",
+    "name": "Ataque a la Carrera",
+    "slug": "ataque-a-la-carrera",
+    "shortDescription": "Muévete antes y después de atacar",
+    "description": "Cuando uses la acción de ataque con un arma cuerpo a cuerpo, puedes moverte antes y después del ataque, siempre que tu distancia total de movimiento no sea mayor que tu velocidad.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 13,
+        "description": "Des 13+"
+      },
+      {
+        "type": "feat",
+        "name": "Esquiva",
+        "description": "Dote Esquiva"
+      },
+      {
+        "type": "feat",
+        "name": "Movilidad",
+        "description": "Dote Movilidad"
+      },
+      {
+        "type": "bab",
+        "value": 4,
+        "description": "Bonificador de ataque base +4"
+      }
+    ],
+    "benefit": "Cuando uses la acción de ataque con un arma cuerpo a cuerpo, puedes moverte antes y después del ataque, siempre que tu distancia total de movimiento no sea mayor que tu velocidad. Moverte de esta manera no provoca un ataque de oportunidad del oponente que atacas, aunque podría provocar ataques de oportunidad de otros oponentes.",
+    "normal": "Sin esta dote, no puedes moverte antes y después de un ataque.",
+    "special": [
+      "Un guerrero puede seleccionar Ataque a la Carrera como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Esquiva",
+      "Movilidad"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 87
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "weapon-focus",
+    "name": "Pericia con un Arma",
+    "slug": "pericia-con-un-arma",
+    "shortDescription": "+1 de bonificación al ataque con un arma seleccionada",
+    "description": "Eliges un tipo de arma. Obtienes un bonificador +1 en todas las tiradas de ataque que hagas usando el arma seleccionada.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "bab",
+        "value": 1,
+        "description": "Bonificador de ataque base +1"
+      },
+      {
+        "type": "proficiency",
+        "description": "Competencia con el arma seleccionada"
+      }
+    ],
+    "benefit": "Obtienes un bonificador +1 en todas las tiradas de ataque que hagas usando el arma seleccionada.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [
+      "Puedes obtener esta dote múltiples veces. Sus efectos no se acumulan. Cada vez que la obtienes, se aplica a un arma diferente.",
+      "Un guerrero puede seleccionar Pericia con un Arma como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": true,
+    "relatedFeats": [
+      "Especialización con Arma",
+      "Pericia con un Arma Mayor"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 97
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "weapon-specialization",
+    "name": "Especialización con Arma",
+    "slug": "especializacion-con-arma",
+    "shortDescription": "+2 de bonificación al daño con un arma seleccionada",
+    "description": "Eliges un tipo de arma para el que ya tengas Pericia con un Arma. Obtienes un bonificador +2 en todas las tiradas de daño que hagas usando el arma seleccionada.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "feat",
+        "name": "Pericia con un Arma",
+        "description": "Pericia con el arma seleccionada"
+      },
+      {
+        "type": "class",
+        "name": "Guerrero",
+        "value": 4,
+        "description": "Guerrero nivel 4"
+      }
+    ],
+    "benefit": "Obtienes un bonificador +2 en todas las tiradas de daño que hagas usando el arma seleccionada.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [
+      "Puedes obtener esta dote múltiples veces. Sus efectos no se acumulan. Cada vez que la obtienes, se aplica a un arma diferente.",
+      "Un guerrero puede seleccionar Especialización con Arma como una de sus dotes adicionales de guerrero.",
+      "Solo los guerreros pueden obtener esta dote."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": true,
+    "relatedFeats": [
+      "Pericia con un Arma",
+      "Especialización con Arma Mayor"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 89
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero",
+        "level": 4
+      }
+    ]
+  },
+  {
+    "id": "weapon-finesse",
+    "name": "Soltura con un Arma",
+    "slug": "soltura-con-un-arma",
+    "shortDescription": "Usa Destreza en lugar de Fuerza para ataques con armas ligeras",
+    "description": "Con un arma ligera, estoque, látigo o cadena con pinchos, puedes usar tu modificador de Destreza en lugar de tu modificador de Fuerza en las tiradas de ataque.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "bab",
+        "value": 1,
+        "description": "Bonificador de ataque base +1"
+      }
+    ],
+    "benefit": "Con un arma ligera, estoque, látigo o cadena con pinchos (hechas para una criatura de tu tamaño), puedes usar tu modificador de Destreza en lugar de tu modificador de Fuerza en las tiradas de ataque. Si llevas un escudo, su penalizador por armadura se aplica a las tiradas de ataque.",
+    "normal": "Sin esta dote, usas tu modificador de Fuerza en las tiradas de ataque.",
+    "special": [
+      "Un guerrero puede seleccionar Soltura con un Arma como una de sus dotes adicionales de guerrero.",
+      "Un monje puede usar esta dote con cualquier arma monje."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 102
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "two-weapon-fighting",
+    "name": "Combatir con Dos Armas",
+    "slug": "combatir-con-dos-armas",
+    "shortDescription": "Reduce penalizadores cuando luchas con dos armas",
+    "description": "Tu penalizador por combatir con dos armas se reduce.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 15,
+        "description": "Des 15+"
+      }
+    ],
+    "benefit": "Tus penalizadores en las tiradas de ataque por combatir con dos armas se reducen. El penalizador por tu ataque primario se reduce en 2 y el penalizador por tu ataque secundario se reduce en 6.",
+    "normal": "Sin esta dote, si empuñas una segunda arma en tu mano libre, puedes realizar un ataque adicional con ella cada asalto a tu bonificador de ataque base más alto, pero ambos ataques (con cada mano) sufren un penalizador -6. Si tu arma secundaria es ligera, el penalizador se reduce en 2 para cada arma.",
+    "special": [
+      "Un guerrero puede seleccionar Combatir con Dos Armas como una de sus dotes adicionales de guerrero.",
+      "Un explorador que selecciona el estilo de combate con dos armas recibe los beneficios de esta dote incluso si no tiene los prerrequisitos normales, pero solo cuando lleva armadura ligera o no lleva armadura."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Combatir con Dos Armas Mejorado",
+      "Combatir con Dos Armas Superior"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      },
+      {
+        "className": "Explorador",
+        "level": 2,
+        "condition": "estilo de combate con dos armas"
+      }
+    ]
+  },
+  {
+    "id": "improved-two-weapon-fighting",
+    "name": "Combatir con Dos Armas Mejorado",
+    "slug": "combatir-con-dos-armas-mejorado",
+    "shortDescription": "Obtienes un segundo ataque con tu arma secundaria",
+    "description": "Obtienes un segundo ataque con tu arma secundaria, aunque con un penalizador de -5.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 17,
+        "description": "Des 17+"
+      },
+      {
+        "type": "feat",
+        "name": "Combatir con Dos Armas",
+        "description": "Dote Combatir con Dos Armas"
+      },
+      {
+        "type": "bab",
+        "value": 6,
+        "description": "Bonificador de ataque base +6"
+      }
+    ],
+    "benefit": "Además del ataque adicional estándar con tu arma secundaria, obtienes un segundo ataque con ella, aunque con un penalizador de -5.",
+    "normal": "Sin esta dote, solo puedes obtener un ataque adicional con un arma secundaria.",
+    "special": [
+      "Un guerrero puede seleccionar Combatir con Dos Armas Mejorado como una de sus dotes adicionales de guerrero.",
+      "Un explorador que selecciona el estilo de combate con dos armas recibe los beneficios de esta dote incluso si no tiene los prerrequisitos normales, pero solo cuando lleva armadura ligera o no lleva armadura."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Combatir con Dos Armas",
+      "Combatir con Dos Armas Superior"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      },
+      {
+        "className": "Explorador",
+        "level": 6,
+        "condition": "estilo de combate con dos armas"
+      }
+    ]
+  },
+  {
+    "id": "point-blank-shot",
+    "name": "Disparo a Bocajarro",
+    "slug": "disparo-a-bocajarro",
+    "shortDescription": "+1 al ataque y daño con armas a distancia a corta distancia",
+    "description": "Obtienes un bonificador +1 en las tiradas de ataque y daño con armas a distancia a distancias de hasta 9 metros.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +1 en las tiradas de ataque y daño con armas a distancia a distancias de hasta 9 metros (30 pies).",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [
+      "Un guerrero puede seleccionar Disparo a Bocajarro como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Tiro Preciso",
+      "Tiro Rápido",
+      "Tiro Lejano"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "precise-shot",
+    "name": "Tiro Preciso",
+    "slug": "tiro-preciso",
+    "shortDescription": "No sufres penalizador por disparar a combate cuerpo a cuerpo",
+    "description": "Puedes disparar o lanzar armas a distancia a un oponente envuelto en combate cuerpo a cuerpo sin sufrir el penalizador estándar de -4.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "feat",
+        "name": "Disparo a Bocajarro",
+        "description": "Dote Disparo a Bocajarro"
+      }
+    ],
+    "benefit": "Puedes disparar o lanzar armas a distancia a un oponente envuelto en combate cuerpo a cuerpo sin sufrir el penalizador estándar de -4 en la tirada de ataque.",
+    "normal": "Sin esta dote, sufres un penalizador de -4 por disparar a un objetivo envuelto en combate cuerpo a cuerpo.",
+    "special": [
+      "Un guerrero puede seleccionar Tiro Preciso como una de sus dotes adicionales de guerrero."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Disparo a Bocajarro",
+      "Tiro Preciso Mejorado"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 103
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "rapid-shot",
+    "name": "Tiro Rápido",
+    "slug": "tiro-rapido",
+    "shortDescription": "Ataque adicional con arma a distancia con penalizador de -2",
+    "description": "Puedes obtener un ataque adicional por asalto con un arma a distancia a cambio de un penalizador de -2 en todas las tiradas de ataque.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 13,
+        "description": "Des 13+"
+      },
+      {
+        "type": "feat",
+        "name": "Disparo a Bocajarro",
+        "description": "Dote Disparo a Bocajarro"
+      }
+    ],
+    "benefit": "Puedes obtener un ataque adicional por asalto con un arma a distancia. El ataque se hace usando tu bonificador de ataque base más alto, pero cada ataque que hagas ese asalto (tanto el adicional como los normales) sufre un penalizador de -2. Debes usar la acción de ataque completo para usar esta dote.",
+    "normal": "Sin esta dote, no obtienes el ataque adicional.",
+    "special": [
+      "Un guerrero puede seleccionar Tiro Rápido como una de sus dotes adicionales de guerrero.",
+      "Un explorador que selecciona el estilo de combate con arco recibe los beneficios de esta dote incluso si no tiene los prerrequisitos normales, pero solo cuando lleva armadura ligera o no lleva armadura."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Disparo a Bocajarro",
+      "Ráfaga de Flechas"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 103
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      },
+      {
+        "className": "Explorador",
+        "level": 2,
+        "condition": "estilo de combate con arco"
+      }
+    ]
+  },
+  {
+    "id": "improved-critical",
+    "name": "Golpe Crítico Mejorado",
+    "slug": "golpe-critico-mejorado",
+    "shortDescription": "Duplica el rango de amenaza de crítico de un arma",
+    "description": "Al usar el arma seleccionada, tu rango de amenaza se duplica.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "bab",
+        "value": 8,
+        "description": "Bonificador de ataque base +8"
+      },
+      {
+        "type": "proficiency",
+        "description": "Competencia con el arma seleccionada"
+      }
+    ],
+    "benefit": "Al usar el arma que seleccionaste, tu rango de amenaza se duplica. Por ejemplo, un arma que amenaza un crítico con un 20 natural ahora amenaza con un 19-20.",
+    "normal": "Sin esta dote, el rango de amenaza del arma no se modifica.",
+    "special": [
+      "Puedes obtener esta dote múltiples veces. Sus efectos no se acumulan. Cada vez que la obtienes, se aplica a un arma diferente.",
+      "Un guerrero puede seleccionar Golpe Crítico Mejorado como una de sus dotes adicionales de guerrero.",
+      "Este efecto no se acumula con ningún otro efecto que expanda el rango de amenaza de un arma."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": true,
+    "relatedFeats": [
+      "Pericia con un Arma"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 90
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      }
+    ]
+  },
+  {
+    "id": "deflect-arrows",
+    "name": "Desviar Proyectiles",
+    "slug": "desviar-proyectiles",
+    "shortDescription": "Desvía un ataque a distancia por asalto",
+    "description": "Debes tener al menos una mano libre para usar esta dote. Una vez por asalto cuando serías golpeado por un arma a distancia, puedes desviar el proyectil para que no te dañe.",
+    "type": "Combate",
+    "category": "Combate",
+    "prerequisites": [
+      {
+        "type": "ability",
+        "name": "Destreza",
+        "value": 13,
+        "description": "Des 13+"
+      },
+      {
+        "type": "feat",
+        "name": "Iniciativa Mejorada",
+        "description": "Dote Iniciativa Mejorada"
+      }
+    ],
+    "benefit": "Debes tener al menos una mano libre (sin sostener nada) para usar esta dote. Una vez por asalto cuando serías golpeado normalmente por un arma a distancia, puedes desviar el proyectil para que no te dañe. Debes estar consciente del ataque y no estar indefenso. Intentar desviar un proyectil no cuenta como una acción. Los proyectiles inusualmente masivos y los ataques de armas a distancia generados por conjuros no pueden ser desviados.",
+    "normal": "Sin esta dote, no puedes desviar proyectiles.",
+    "special": [
+      "Un guerrero puede seleccionar Desviar Proyectiles como una de sus dotes adicionales de guerrero.",
+      "Un monje recibe Desviar Proyectiles como dote adicional al nivel 2, incluso si no cumple los prerrequisitos."
+    ],
+    "fighterBonus": true,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Atrapar Proyectiles"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Guerrero"
+      },
+      {
+        "className": "Monje",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "enlarge-spell",
+    "name": "Agrandar Conjuro",
+    "slug": "agrandar-conjuro",
+    "shortDescription": "Duplica el alcance del conjuro",
+    "description": "Puedes lanzar conjuros a mayor distancia de lo normal.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Puedes alterar un conjuro con un alcance de cerca, medio o largo para duplicar su alcance. Un conjuro agrandado usa un espacio de conjuro un nivel superior al nivel real del conjuro.",
+    "normal": "Un conjuro tiene el alcance indicado en su descripción.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 86
+    }
+  },
+  {
+    "id": "extend-spell",
+    "name": "Alargar Conjuro",
+    "slug": "alargar-conjuro",
+    "shortDescription": "Duplica la duración del conjuro",
+    "description": "Puedes hacer que tus conjuros duren el doble de lo normal.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Un conjuro alargado dura el doble de lo normal. Un conjuro con una duración de concentración, instantánea o permanente no se ve afectado por esta dote. Un conjuro alargado usa un espacio de conjuro un nivel superior al nivel real del conjuro.",
+    "normal": "Un conjuro dura el tiempo indicado en su descripción.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 86
+    }
+  },
+  {
+    "id": "quicken-spell",
+    "name": "Acelerar Conjuro",
+    "slug": "acelerar-conjuro",
+    "shortDescription": "Lanza un conjuro como acción rápida",
+    "description": "Lanzar un conjuro acelerado es una acción rápida.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Lanzar un conjuro acelerado es una acción rápida. Puedes realizar otra acción, incluso lanzar otro conjuro, en el mismo asalto en que lanzas un conjuro acelerado. Solo puedes lanzar un conjuro acelerado por asalto. Un conjuro cuyo tiempo de lanzamiento sea mayor que 1 acción completa no puede ser acelerado. Un conjuro acelerado usa un espacio de conjuro cuatro niveles superior al nivel real del conjuro. Lanzar un conjuro acelerado no provoca un ataque de oportunidad.",
+    "normal": "Lanzar un conjuro es una acción estándar.",
+    "special": [
+      "Esta dote no puede aplicarse a ningún conjuro lanzado espontáneamente (incluyendo los conjuros de hechicero y los conjuros de dominio de clérigo espontáneos), ya que aplicar una dote metamágica a un conjuro espontáneo requiere que el conjuro tenga un tiempo de lanzamiento de una acción completa."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 85
+    }
+  },
+  {
+    "id": "maximize-spell",
+    "name": "Maximizar Conjuro",
+    "slug": "maximizar-conjuro",
+    "shortDescription": "Todas las variables numéricas del conjuro son máximas",
+    "description": "Todas las variables numéricas de un conjuro se maximizan.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Todas las variables numéricas, aleatorias de un conjuro se maximizan. Una bola de fuego maximizada inflige siempre 6 puntos de daño por nivel del lanzador (hasta un máximo de 60 puntos de daño a nivel 10). Los salvamientos y las tiradas de ataque opuestas no se ven afectados, así como los conjuros sin variables aleatorias. Un conjuro maximizado usa un espacio de conjuro tres niveles superior al nivel real del conjuro.",
+    "normal": "Las variables numéricas de un conjuro se determinan aleatoriamente dentro de los límites indicados.",
+    "special": [
+      "Un hechicero o bardo puede lanzar un conjuro maximizado en lugar de un conjuro normal. La aplicación de una dote metamágica a un conjuro espontáneo requiere un tiempo de lanzamiento de una acción completa."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Potenciar Conjuro"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 95
+    }
+  },
+  {
+    "id": "empower-spell",
+    "name": "Potenciar Conjuro",
+    "slug": "potenciar-conjuro",
+    "shortDescription": "Aumenta las variables del conjuro en un 50%",
+    "description": "Todas las variables numéricas de un conjuro potenciado aumentan en la mitad.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Todas las variables numéricas, aleatorias de un conjuro potenciado aumentan en la mitad. Los salvamientos y las tiradas de ataque opuestas no se ven afectados, así como los conjuros sin variables aleatorias. Un conjuro potenciado usa un espacio de conjuro dos niveles superior al nivel real del conjuro.",
+    "normal": "Las variables numéricas de un conjuro se determinan normalmente.",
+    "special": [
+      "Un hechicero o bardo puede lanzar un conjuro potenciado en lugar de un conjuro normal. La aplicación de una dote metamágica a un conjuro espontáneo requiere un tiempo de lanzamiento de una acción completa."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Maximizar Conjuro"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 98
+    }
+  },
+  {
+    "id": "widen-spell",
+    "name": "Ensanchar Conjuro",
+    "slug": "ensanchar-conjuro",
+    "shortDescription": "Duplica el área del conjuro",
+    "description": "Puedes alterar un conjuro de efecto de estallido, emanación o extensión para aumentar su área.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Puedes alterar un conjuro de efecto de estallido, emanación o extensión para duplicar su radio. Un conjuro ensanchado usa un espacio de conjuro tres niveles superior al nivel real del conjuro.",
+    "normal": "Un conjuro tiene el área indicada en su descripción.",
+    "special": [
+      "Un hechicero o bardo puede lanzar un conjuro ensanchado en lugar de un conjuro normal. La aplicación de una dote metamágica a un conjuro espontáneo requiere un tiempo de lanzamiento de una acción completa."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 89
+    }
+  },
+  {
+    "id": "silent-spell",
+    "name": "Lanzar en Silencio",
+    "slug": "lanzar-en-silencio",
+    "shortDescription": "Lanza conjuros sin componentes verbales",
+    "description": "Puedes lanzar conjuros sin componentes verbales.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Un conjuro silencioso puede ser lanzado sin componentes verbales. Los conjuros sin componentes verbales no se ven afectados. Un conjuro silencioso usa un espacio de conjuro un nivel superior al nivel real del conjuro.",
+    "normal": "Un conjuro requiere los componentes indicados en su descripción.",
+    "special": [
+      "Un hechicero o bardo puede lanzar un conjuro silencioso en lugar de un conjuro normal. La aplicación de una dote metamágica a un conjuro espontáneo requiere un tiempo de lanzamiento de una acción completa."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Lanzar sin Gestos"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 95
+    }
+  },
+  {
+    "id": "still-spell",
+    "name": "Lanzar sin Gestos",
+    "slug": "lanzar-sin-gestos",
+    "shortDescription": "Lanza conjuros sin componentes somáticos",
+    "description": "Puedes lanzar conjuros sin componentes somáticos.",
+    "type": "Metamagia",
+    "category": "Metamagia",
+    "prerequisites": [],
+    "benefit": "Un conjuro sin gestos puede ser lanzado sin componentes somáticos. Los conjuros sin componentes somáticos no se ven afectados. Un conjuro sin gestos usa un espacio de conjuro un nivel superior al nivel real del conjuro.",
+    "normal": "Un conjuro requiere los componentes indicados en su descripción.",
+    "special": [
+      "Un hechicero o bardo puede lanzar un conjuro sin gestos en lugar de un conjuro normal. La aplicación de una dote metamágica a un conjuro espontáeo requiere un tiempo de lanzamiento de una acción completa."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Lanzar en Silencio"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 95
+    }
+  },
+  {
+    "id": "craft-wondrous-item",
+    "name": "Crear Objetos Maravillosos",
+    "slug": "crear-objetos-maravillosos",
+    "shortDescription": "Crea objetos mágicos maravillosos",
+    "description": "Puedes crear una amplia variedad de objetos mágicos maravillosos.",
+    "type": "Creación de Objetos",
+    "category": "Creación de Objetos",
+    "prerequisites": [
+      {
+        "type": "caster_level",
+        "value": 3,
+        "description": "Nivel de lanzador 3"
+      }
+    ],
+    "benefit": "Puedes crear cualquier objeto mágico maravilloso cuyo prerrequisito cumplas. Crear un objeto maravilloso requiere 1 día por cada 1,000 po del precio base del objeto. Para crear un objeto maravilloso, debes gastar 1/25 del precio base del objeto en PX y usar materias primas que cuestan la mitad del precio base del objeto.",
+    "normal": "Sin esta dote, no puedes crear objetos mágicos maravillosos.",
+    "special": [
+      "Puedes crear también un objeto maravilloso que sea inferior a sus especificaciones estándar. Para hacerlo, creas el objeto como si fuera de nivel más bajo (hasta un mínimo de la mitad del nivel del lanzador del objeto)."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Forjar Armas y Armaduras",
+      "Crear Varita Mágica",
+      "Crear Bastón Mágico"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    }
+  },
+  {
+    "id": "brew-potion",
+    "name": "Preparar Pociones",
+    "slug": "preparar-pociones",
+    "shortDescription": "Crea pociones mágicas",
+    "description": "Puedes crear pociones mágicas.",
+    "type": "Creación de Objetos",
+    "category": "Creación de Objetos",
+    "prerequisites": [
+      {
+        "type": "caster_level",
+        "value": 3,
+        "description": "Nivel de lanzador 3"
+      }
+    ],
+    "benefit": "Puedes crear una poción de cualquier conjuro de nivel 3 o inferior que conozcas y que afecte a una o más criaturas. Preparar una poción requiere 1 día. Cuando creas una poción, estableces el nivel de lanzador, que debe ser suficiente para lanzar el conjuro en cuestión y no puede ser superior a tu propio nivel. Para preparar una poción, debes gastar 1/25 del precio base de la poción en PX y usar materias primas que cuestan la mitad del precio base de la poción.",
+    "normal": "Sin esta dote, no puedes crear pociones.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Crear Pergaminos"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 98
+    }
+  },
+  {
+    "id": "scribe-scroll",
+    "name": "Crear Pergaminos",
+    "slug": "crear-pergaminos",
+    "shortDescription": "Crea pergaminos mágicos",
+    "description": "Puedes crear pergaminos mágicos.",
+    "type": "Creación de Objetos",
+    "category": "Creación de Objetos",
+    "prerequisites": [
+      {
+        "type": "caster_level",
+        "value": 1,
+        "description": "Nivel de lanzador 1"
+      }
+    ],
+    "benefit": "Puedes crear un pergamino de cualquier conjuro que conozcas. Escribir un pergamino requiere 1 día por cada 1,000 po del precio base del pergamino. Para escribir un pergamino, debes gastar 1/25 del precio base del pergamino en PX y usar materias primas que cuestan la mitad del precio base del pergamino.",
+    "normal": "Sin esta dote, no puedes crear pergaminos.",
+    "special": [
+      "Los magos y hechiceros reciben Crear Pergaminos como dote adicional al nivel 1."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Preparar Pociones"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    },
+    "bonusFeatClasses": [
+      {
+        "className": "Mago",
+        "level": 1
+      },
+      {
+        "className": "Hechicero",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "craft-magic-arms-and-armor",
+    "name": "Forjar Armas y Armaduras",
+    "slug": "forjar-armas-y-armaduras",
+    "shortDescription": "Crea armas y armaduras mágicas",
+    "description": "Puedes crear armas, armaduras y escudos mágicos.",
+    "type": "Creación de Objetos",
+    "category": "Creación de Objetos",
+    "prerequisites": [
+      {
+        "type": "caster_level",
+        "value": 5,
+        "description": "Nivel de lanzador 5"
+      }
+    ],
+    "benefit": "Puedes crear cualquier arma, armadura o escudo mágico cuyo prerrequisito cumplas. Mejorar armas, armaduras y escudos requiere 1 día por cada 1,000 po del precio del objeto. Para mejorar armas, armaduras o escudos, debes gastar 1/25 del precio del objeto en PX y usar materias primas que cuestan la mitad del precio del objeto.",
+    "normal": "Sin esta dote, no puedes crear armas, armaduras o escudos mágicos.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Crear Objetos Maravillosos"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 89
+    }
+  },
+  {
+    "id": "craft-wand",
+    "name": "Crear Varita Mágica",
+    "slug": "crear-varita-magica",
+    "shortDescription": "Crea varitas mágicas",
+    "description": "Puedes crear varitas mágicas.",
+    "type": "Creación de Objetos",
+    "category": "Creación de Objetos",
+    "prerequisites": [
+      {
+        "type": "caster_level",
+        "value": 5,
+        "description": "Nivel de lanzador 5"
+      }
+    ],
+    "benefit": "Puedes crear una varita de cualquier conjuro de nivel 4 o inferior que conozcas. Crear una varita requiere 1 día por cada 1,000 po del precio base de la varita. Para crear una varita, debes gastar 1/25 del precio base de la varita en PX y usar materias primas que cuestan la mitad del precio base de la varita. Una varita recién creada tiene 50 cargas.",
+    "normal": "Sin esta dote, no puedes crear varitas.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Crear Objetos Maravillosos",
+      "Crear Bastón Mágico"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    }
+  },
+  {
+    "id": "toughness",
+    "name": "Duro de Pelar",
+    "slug": "duro-de-pelar",
+    "shortDescription": "+3 puntos de golpe",
+    "description": "Ganas puntos de golpe adicionales.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Ganas +3 puntos de golpe.",
+    "normal": "Sin esta dote, no obtienes puntos de golpe adicionales.",
+    "special": [
+      "Un personaje puede obtener esta dote múltiples veces. Sus efectos se acumulan."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": true,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    }
+  },
+  {
+    "id": "endurance",
+    "name": "Dureza",
+    "slug": "dureza",
+    "shortDescription": "+4 de bonificación en ciertas pruebas de resistencia",
+    "description": "Obtienes un bonificador +4 en las siguientes pruebas y salvamientos: pruebas de Nadar para evitar daño no letal, pruebas de Constitución para continuar corriendo, Constitución para aguantar la respiración, Constitución para evitar daño no letal por inanición o sed, salvamientos de Fortaleza para evitar daño no letal por ambientes cálidos o fríos, y salvamientos de Fortaleza para resistir sofocación o ahogamiento.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +4 en las siguientes pruebas y salvamientos: pruebas de Nadar para evitar daño no letal, pruebas de Constitución para continuar corriendo, Constitución para aguantar la respiración, Constitución para evitar daño no letal por inanición o sed, salvamientos de Fortaleza para evitar daño no letal por ambientes cálidos o fríos, y salvamientos de Fortaleza para resistir sofocación o ahogamiento. También puedes dormir con armadura ligera o media sin fatigarte.",
+    "normal": "Sin esta dote, un personaje que duerme con armadura se fatiga al día siguiente.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Correr",
+      "Diestro"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    }
+  },
+  {
+    "id": "run",
+    "name": "Correr",
+    "slug": "correr",
+    "shortDescription": "Corres más rápido y con mejor equilibrio",
+    "description": "Cuando corres, te mueves cinco veces tu velocidad normal en lugar de cuatro veces.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Cuando corres, te mueves cinco veces tu velocidad normal (si llevas armadura ligera, media o no llevas armadura y no llevas una carga media o pesada) o cuatro veces tu velocidad (si llevas armadura pesada o una carga media o pesada). Si haces un salto tras una carrera, ganas un bonificador +4 en tu prueba de Saltar. Mientras corres, retienes tu bonificador de Destreza a la CA.",
+    "normal": "Sin esta dote, te mueves cuatro veces tu velocidad cuando corres (si llevas armadura ligera, media o no llevas armadura y no llevas carga) o tres veces tu velocidad (si llevas armadura pesada o carga media o pesada), y pierdes tu bonificador de Destreza a la CA.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Dureza"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    }
+  },
+  {
+    "id": "athletic",
+    "name": "Atletismo",
+    "slug": "atletismo",
+    "shortDescription": "+2 de bonificación en Escalar y Nadar",
+    "description": "Obtienes un bonificador +2 en todas las pruebas de Escalar y Nadar.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las pruebas de Escalar y Nadar.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Acrobático"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 87
+    }
+  },
+  {
+    "id": "track",
+    "name": "Rastrear",
+    "slug": "rastrear",
+    "shortDescription": "Puedes seguir rastros",
+    "description": "Puedes usar la habilidad Supervivencia para rastrear.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Para encontrar rastros o seguir un rastro durante 1,6 km (1 milla) o menos, puedes hacer una prueba de Supervivencia. Debes hacer otra prueba de Supervivencia cada vez que los rastros se vuelven difíciles de seguir. Te mueves a la mitad de tu velocidad normal mientras sigues un rastro (o a tu velocidad normal con un penalizador de -5 en la prueba, o a hasta el doble de tu velocidad normal con un penalizador de -20 en la prueba). La CD depende de la superficie y de las condiciones predominantes.",
+    "normal": "Sin esta dote, puedes usar la habilidad Supervivencia para encontrar rastros, pero solo puedes seguir rastros durante 1,6 km o menos mientras te mueves a la mitad de tu velocidad normal.",
+    "special": [
+      "Un explorador recibe Rastrear como dote adicional al nivel 1."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 101
+    }
+  },
+  {
+    "id": "alertness",
+    "name": "Perspicaz",
+    "slug": "perspicaz",
+    "shortDescription": "+2 de bonificación en Avistar y Escuchar",
+    "description": "Obtienes un bonificador +2 en todas las pruebas de Avistar y Escuchar.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las pruebas de Avistar y Escuchar.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [
+      "El amo de un familiar con esta dote gana los beneficios de Perspicaz siempre que el familiar está a 1,5 metros o menos."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 97
+    }
+  },
+  {
+    "id": "deft-hands",
+    "name": "Diestro",
+    "slug": "diestro",
+    "shortDescription": "+2 de bonificación en Juego de Manos y Abrir Cerraduras",
+    "description": "Obtienes un bonificador +2 en todas las pruebas de Juego de Manos y Abrir Cerraduras.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las pruebas de Juego de Manos y Abrir Cerraduras.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Ágil"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 88
+    }
+  },
+  {
+    "id": "negotiator",
+    "name": "Negociador",
+    "slug": "negociador",
+    "shortDescription": "+2 de bonificación en Diplomacia y Averiguar Intenciones",
+    "description": "Obtienes un bonificador +2 en todas las pruebas de Diplomacia y Averiguar Intenciones.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las pruebas de Diplomacia y Averiguar Intenciones.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Persuasivo"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 96
+    }
+  },
+  {
+    "id": "persuasive",
+    "name": "Persuasivo",
+    "slug": "persuasivo",
+    "shortDescription": "+2 de bonificación en Engañar e Intimidar",
+    "description": "Obtienes un bonificador +2 en todas las pruebas de Engañar e Intimidar.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las pruebas de Engañar e Intimidar.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Negociador"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 97
+    }
+  },
+  {
+    "id": "stealthy",
+    "name": "Sigilo",
+    "slug": "sigilo",
+    "shortDescription": "+2 de bonificación en Esconderse y Moverse Sigilosamente",
+    "description": "Obtienes un bonificador +2 en todas las pruebas de Esconderse y Moverse Sigilosamente.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las pruebas de Esconderse y Moverse Sigilosamente.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 102
+    }
+  },
+  {
+    "id": "spell-focus",
+    "name": "Capacidad Mágica",
+    "slug": "capacidad-magica",
+    "shortDescription": "+1 a la CD de salvación contra una escuela de magia",
+    "description": "Eliges una escuela de magia. Añade +1 a la CD de salvación para todos los conjuros que lances de esa escuela.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Añade +1 a la Clase de Dificultad para todos los salvamientos contra conjuros de la escuela de magia que selecciones.",
+    "normal": "Sin esta dote, la CD de salvación de tus conjuros no se modifica.",
+    "special": [
+      "Puedes obtener esta dote múltiples veces. Sus efectos no se acumulan. Cada vez que la obtienes, se aplica a una escuela de magia diferente."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": true,
+    "relatedFeats": [
+      "Capacidad Mágica Mayor"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 86
+    }
+  },
+  {
+    "id": "greater-spell-focus",
+    "name": "Capacidad Mágica Mayor",
+    "slug": "capacidad-magica-mayor",
+    "shortDescription": "+1 adicional a la CD de salvación contra una escuela de magia",
+    "description": "Eliges una escuela de magia para la que ya tengas la dote Capacidad Mágica. Añade +1 adicional a la CD de salvación para todos los conjuros que lances de esa escuela.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [
+      {
+        "type": "feat",
+        "name": "Capacidad Mágica",
+        "description": "Capacidad Mágica en la escuela seleccionada"
+      }
+    ],
+    "benefit": "Añade +1 a la Clase de Dificultad para todos los salvamientos contra conjuros de la escuela de magia que selecciones. Este bonificador se acumula con el bonificador de Capacidad Mágica.",
+    "normal": "Sin esta dote, tus conjuros tienen solo el bonificador de Capacidad Mágica a la CD de salvación.",
+    "special": [
+      "Puedes obtener esta dote múltiples veces. Sus efectos no se acumulan. Cada vez que la obtienes, se aplica a una escuela de magia diferente para la que ya tengas Capacidad Mágica."
+    ],
+    "fighterBonus": false,
+    "multipleAllowed": true,
+    "relatedFeats": [
+      "Capacidad Mágica"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 86
+    }
+  },
+  {
+    "id": "spell-penetration",
+    "name": "Soltura con Hechizos",
+    "slug": "soltura-con-hechizos",
+    "shortDescription": "+2 de bonificación en pruebas de nivel de lanzador para superar resistencia a conjuros",
+    "description": "Obtienes un bonificador +2 en las pruebas de nivel de lanzador hechas para superar la resistencia a conjuros de una criatura.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en las pruebas de nivel de lanzador (1d20 + nivel de lanzador) hechas para superar la resistencia a conjuros de una criatura.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Soltura con Hechizos Mayor"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 102
+    }
+  },
+  {
+    "id": "lightning-reflexes",
+    "name": "Relámpago de Reflejos",
+    "slug": "relampago-de-reflejos",
+    "shortDescription": "+2 de bonificación en salvamientos de Reflejos",
+    "description": "Obtienes un bonificador +2 en todas las tiradas de salvamento de Reflejos.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las tiradas de salvamento de Reflejos.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Voluntad de Hierro",
+      "Gran Fortaleza"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 101
+    }
+  },
+  {
+    "id": "iron-will",
+    "name": "Voluntad de Hierro",
+    "slug": "voluntad-de-hierro",
+    "shortDescription": "+2 de bonificación en salvamientos de Voluntad",
+    "description": "Obtienes un bonificador +2 en todas las tiradas de salvamento de Voluntad.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las tiradas de salvamento de Voluntad.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Relámpago de Reflejos",
+      "Gran Fortaleza"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 104
+    }
+  },
+  {
+    "id": "great-fortitude",
+    "name": "Gran Fortaleza",
+    "slug": "gran-fortaleza",
+    "shortDescription": "+2 de bonificación en salvamientos de Fortaleza",
+    "description": "Obtienes un bonificador +2 en todas las tiradas de salvamento de Fortaleza.",
+    "type": "General",
+    "category": "General",
+    "prerequisites": [],
+    "benefit": "Obtienes un bonificador +2 en todas las tiradas de salvamento de Fortaleza.",
+    "normal": "Sin esta dote, no obtienes el bonificador.",
+    "special": [],
+    "fighterBonus": false,
+    "multipleAllowed": false,
+    "relatedFeats": [
+      "Relámpago de Reflejos",
+      "Voluntad de Hierro"
+    ],
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 90
+    }
+  }
+]

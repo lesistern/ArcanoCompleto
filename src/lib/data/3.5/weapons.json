@@ -1,0 +1,2191 @@
+[
+  {
+    "id": "gauntlet",
+    "name": "Guantelete",
+    "slug": "guantelete",
+    "shortDescription": "Guante de metal que permite golpear causando daño letal",
+    "description": "El guantelete es un guante de metal que permite realizar ataques sin arma que causan daño letal. También permite agarrar objetos normalmente.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Diminuta",
+    "stats": {
+      "damage": {
+        "small": "1d2",
+        "medium": "1d3",
+        "large": "1d4"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 1
+    },
+    "cost": {
+      "gold": 2
+    },
+    "properties": [],
+    "special": "Este ataque no se considera armado. Un ataque con un guantelete se considera un ataque armado.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "unarmed-strike",
+    "name": "Impacto sin Arma",
+    "slug": "impacto-sin-arma",
+    "shortDescription": "Ataque de puño, codo, rodilla, cabezazo o patada",
+    "description": "Un golpe sin arma incluye puñetazos, patadas, cabezazos y otros ataques con el cuerpo. Por defecto causa daño no letal.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Diminuta",
+    "stats": {
+      "damage": {
+        "small": "1d2",
+        "medium": "1d3",
+        "large": "1d4"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 0
+    },
+    "cost": {
+      "silver": 0
+    },
+    "properties": [],
+    "special": "Un ataque sin arma provoca ataques de oportunidad. Los monjes pueden usar su daño de monje con este ataque y no provocan ataques de oportunidad.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "punching-dagger",
+    "name": "Puñal",
+    "slug": "punal",
+    "shortDescription": "Daga diseñada para golpear con el puño",
+    "description": "El puñal es una daga con un mango diseñado para ser sostenido en el puño, permitiendo golpes penetrantes con gran fuerza.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x3",
+      "damageType": ["Perforante"],
+      "weight": 1
+    },
+    "cost": {
+      "gold": 2
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "spiked-gauntlet",
+    "name": "Guantelete Armado",
+    "slug": "guantelete-armado",
+    "shortDescription": "Guantelete con púas metálicas",
+    "description": "Un guantelete armado tiene pequeñas púas de metal que permiten causar daño perforante. No puedes ser desarmado de esta arma y puedes agarrar objetos normalmente.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Diminuta",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "damageType": ["Perforante"],
+      "weight": 1
+    },
+    "cost": {
+      "gold": 5
+    },
+    "properties": [],
+    "special": "No puedes ser desarmado de esta arma. Puedes agarrar objetos normalmente.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "spiked-armor",
+    "name": "Armadura con Púas",
+    "slug": "armadura-con-puas",
+    "shortDescription": "Armadura modificada con púas para ataques y agarres",
+    "description": "Las púas añadidas a la armadura permiten atacar con ellas y causan daño adicional en agarres.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Perforante"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 50
+    },
+    "properties": [],
+    "special": "Cuando haces un agarre exitoso, las púas causan daño. No puedes ser desarmado de las púas.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "sap",
+    "name": "Cachiporra",
+    "slug": "cachiporra",
+    "shortDescription": "Arma contundente pequeña para causar daño no letal",
+    "description": "La cachiporra es un pequeño mazo flexible diseñado para dejar inconscientes a los enemigos sin matarlos.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Ligera"],
+    "special": "Siempre causa daño no letal.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "light-shield",
+    "name": "Escudo Ligero",
+    "slug": "escudo-ligero",
+    "shortDescription": "Escudo ligero que puede usarse como arma",
+    "description": "Un escudo ligero puede ser usado como arma ofensiva además de su función defensiva.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d2",
+        "medium": "1d3",
+        "large": "1d4"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 0
+    },
+    "cost": {
+      "gold": 0
+    },
+    "properties": [],
+    "special": "Si golpeas con un escudo, pierdes su bonificador de CA hasta tu próximo turno. Un ataque con escudo es un ataque armado.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "spiked-light-shield",
+    "name": "Escudo con Púas Ligero",
+    "slug": "escudo-con-puas-ligero",
+    "shortDescription": "Escudo ligero con púas para ataque",
+    "description": "Este escudo ligero tiene púas que permiten causar daño perforante al golpear.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "damageType": ["Perforante"],
+      "weight": 0
+    },
+    "cost": {
+      "gold": 9
+    },
+    "properties": [],
+    "special": "Si golpeas con un escudo, pierdes su bonificador de CA hasta tu próximo turno. Un ataque con escudo es un ataque armado.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "kukri",
+    "name": "Kukri",
+    "slug": "kukri",
+    "shortDescription": "Cuchillo curvo con excelente rango de crítico",
+    "description": "El kukri es un cuchillo curvo pesado con un filo afilado en el interior de la curva.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "18-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 8
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "light-hammer",
+    "name": "Martillo Ligero",
+    "slug": "martillo-ligero",
+    "shortDescription": "Martillo pequeño que puede ser arrojado",
+    "description": "El martillo ligero es una versión más pequeña del martillo de guerra que puede ser lanzada.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "range": 20,
+      "damageType": ["Contundente"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Ligera", "Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "heavy-shield",
+    "name": "Escudo Pesado",
+    "slug": "escudo-pesado",
+    "shortDescription": "Escudo pesado que puede usarse como arma",
+    "description": "Un escudo pesado puede ser usado como arma ofensiva además de su función defensiva.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 0
+    },
+    "cost": {
+      "gold": 0
+    },
+    "properties": [],
+    "special": "Si golpeas con un escudo, pierdes su bonificador de CA hasta tu próximo turno. Un ataque con escudo es un ataque armado.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "spiked-heavy-shield",
+    "name": "Escudo con Púas Pesado",
+    "slug": "escudo-con-puas-pesado",
+    "shortDescription": "Escudo pesado con púas para ataque",
+    "description": "Este escudo pesado tiene púas que permiten causar daño perforante al golpear.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Perforante"],
+      "weight": 0
+    },
+    "cost": {
+      "gold": 19
+    },
+    "properties": [],
+    "special": "Si golpeas con un escudo, pierdes su bonificador de CA hasta tu próximo turno. Un ataque con escudo es un ataque armado.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "shortbow-composite",
+    "name": "Arco Corto Compuesto",
+    "slug": "arco-corto-compuesto",
+    "shortDescription": "Arco corto reforzado que usa la fuerza del arquero",
+    "description": "El arco corto compuesto está reforzado para poder usar el modificador de Fuerza al daño.",
+    "category": "Arma",
+    "weaponType": "Arma marcial a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x3",
+      "range": 70,
+      "damageType": ["Perforante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 75
+    },
+    "properties": ["A dos manos"],
+    "special": "Puedes aplicar tu bonificador de Fuerza (si es positivo) al daño. El arco puede estar hecho para diferentes bonificadores de Fuerza (cada +1 cuesta 75 po adicionales). Requiere munición (flechas).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "longbow-composite",
+    "name": "Arco Largo Compuesto",
+    "slug": "arco-largo-compuesto",
+    "shortDescription": "Arco largo reforzado que usa la fuerza del arquero",
+    "description": "El arco largo compuesto está reforzado para poder usar el modificador de Fuerza al daño.",
+    "category": "Arma",
+    "weaponType": "Arma marcial a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "x3",
+      "range": 110,
+      "damageType": ["Perforante"],
+      "weight": 3
+    },
+    "cost": {
+      "gold": 100
+    },
+    "properties": ["A dos manos"],
+    "special": "Puedes aplicar tu bonificador de Fuerza (si es positivo) al daño. El arco puede estar hecho para diferentes bonificadores de Fuerza (cada +1 cuesta 100 po adicionales). No puede ser usada mientras se está montado. Requiere munición (flechas).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "halfling-siangham",
+    "name": "Siangham",
+    "slug": "siangham",
+    "shortDescription": "Arma exótica pequeña diseñada para perforar",
+    "description": "El siangham es una daga corta con puntas afiladas en cada extremo. Arma tradicional de los halflings.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Perforante"],
+      "weight": 1
+    },
+    "cost": {
+      "gold": 3
+    },
+    "properties": ["Ligera"],
+    "special": "Arma especial de monje. Los halflings la consideran arma marcial.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "hand-crossbow",
+    "name": "Ballesta de Mano",
+    "slug": "ballesta-de-mano",
+    "shortDescription": "Ballesta diminuta que se sostiene con una mano",
+    "description": "La ballesta de mano es una ballesta miniatura que puede dispararse con una mano.",
+    "category": "Arma",
+    "weaponType": "Arma exótica a distancia",
+    "size": "Diminuta",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "19-20/x2",
+      "range": 30,
+      "damageType": ["Perforante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 100
+    },
+    "properties": [],
+    "special": "Recargar una ballesta de mano es una acción de movimiento que provoca ataques de oportunidad. Requiere munición (virotes).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "repeating-light-crossbow",
+    "name": "Ballesta de Repetición Ligera",
+    "slug": "ballesta-de-repeticion-ligera",
+    "shortDescription": "Ballesta ligera con cargador de 5 virotes",
+    "description": "Esta ballesta tiene un cargador que contiene 5 virotes. Puede dispararse múltiples veces antes de necesitar ser recargada.",
+    "category": "Arma",
+    "weaponType": "Arma exótica a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "19-20/x2",
+      "range": 80,
+      "damageType": ["Perforante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 250
+    },
+    "properties": [],
+    "special": "Recargar un virote es una acción gratuita. Recargar el cargador completo es una acción completa que provoca ataques de oportunidad. Requiere munición (virotes).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "repeating-heavy-crossbow",
+    "name": "Ballesta de Repetición Pesada",
+    "slug": "ballesta-de-repeticion-pesada",
+    "shortDescription": "Ballesta pesada con cargador de 5 virotes",
+    "description": "Esta ballesta pesada tiene un cargador que contiene 5 virotes. Puede dispararse múltiples veces antes de necesitar ser recargada.",
+    "category": "Arma",
+    "weaponType": "Arma exótica a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "19-20/x2",
+      "range": 120,
+      "damageType": ["Perforante"],
+      "weight": 12
+    },
+    "cost": {
+      "gold": 400
+    },
+    "properties": [],
+    "special": "Recargar un virote es una acción gratuita. Recargar el cargador completo es una acción completa que provoca ataques de oportunidad. Requiere munición (virotes).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "bolas",
+    "name": "Bolas",
+    "slug": "bolas",
+    "shortDescription": "Arma arrojadiza para enredar enemigos",
+    "description": "Las bolas consisten en dos o tres bolas de peso conectadas por cordeles. Están diseñadas para enredar las piernas del enemigo.",
+    "category": "Arma",
+    "weaponType": "Arma exótica a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "range": 10,
+      "damageType": ["Contundente"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 5
+    },
+    "properties": ["Arrojadiza"],
+    "special": "Si golpeas, el objetivo debe hacer una salvación de Reflejos (CD 10) o quedar enredado durante 1 minuto. El objetivo puede escaparse con una acción completa (CD 10 de Escapismo o CD 20 de Fuerza).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "net",
+    "name": "Red",
+    "slug": "red",
+    "shortDescription": "Red para atrapar enemigos",
+    "description": "Una red está hecha de cuerdas entrelazadas. Se diseñó para enredar a los enemigos.",
+    "category": "Arma",
+    "weaponType": "Arma exótica a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "0",
+        "medium": "0",
+        "large": "0"
+      },
+      "critical": "-",
+      "range": 10,
+      "damageType": ["-"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 20
+    },
+    "properties": ["Arrojadiza"],
+    "special": "Una red atrapa a criaturas de tamaño Grande o menor. Si golpeas, el objetivo queda enredado. El enemigo puede escapar con una acción completa (CD 20 de Escapismo o CD 25 de romper la red con Fuerza). La red tiene 5 de CA, 5 puntos de golpe y dureza 0. Solo puedes hacer un ataque al asalto con una red. Debes tener el talento Soltura con Armas Exóticas (Red) o sufres -4 en el ataque.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "gnome-hooked-hammer",
+    "name": "Martillo Ganchudo Gnomo",
+    "slug": "martillo-ganchudo-gnomo",
+    "shortDescription": "Arma exótica doble gnoma con martillo y gancho",
+    "description": "Esta arma tiene una cabeza de martillo en un extremo y un gancho afilado en el otro. Es el arma tradicional de los gnomos.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6/1d4",
+        "medium": "1d8/1d6",
+        "large": "1d10/1d8"
+      },
+      "critical": "x3/x4",
+      "damageType": ["Contundente", "Perforante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 20
+    },
+    "properties": ["A dos manos", "Doble"],
+    "special": "Puedes atacar con ambos extremos como si estuvieras luchando con dos armas, pero si lo haces, ninguno cuenta como arma ligera. El martillo causa daño contundente y el gancho daño perforante. Los gnomos tratan esta arma como marcial en lugar de exótica.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "longsword",
+    "name": "Espada Larga",
+    "slug": "espada-larga",
+    "shortDescription": "Arma marcial de una mano versátil y equilibrada",
+    "description": "La espada larga es el arma estándar de la mayoría de los guerreros profesionales. Es un arma versátil que puede ser usada con una o dos manos, proporcionando un balance perfecto entre alcance, daño y velocidad.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 4
+    },
+    "cost": {
+      "gold": 15
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "greatsword",
+    "name": "Espadón",
+    "slug": "espadon",
+    "shortDescription": "Arma marcial de dos manos con gran poder de daño",
+    "description": "El espadón es un arma de dos manos que sacrifica movilidad por un tremendo poder de ataque. Es el arma favorita de bárbaros y guerreros que prefieren golpes devastadores.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d10",
+        "medium": "2d6",
+        "large": "3d6"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 8
+    },
+    "cost": {
+      "gold": 50
+    },
+    "properties": ["A dos manos"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "dagger",
+    "name": "Daga",
+    "slug": "daga",
+    "shortDescription": "Arma simple ligera y versátil, útil como herramienta",
+    "description": "La daga es un arma pequeña y versátil que puede ser usada tanto en combate cuerpo a cuerpo como lanzada. Es el arma de respaldo preferida de muchos aventureros.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "19-20/x2",
+      "range": 10,
+      "damageType": ["Perforante", "Cortante"],
+      "weight": 1
+    },
+    "cost": {
+      "gold": 2
+    },
+    "properties": ["Arrojadiza", "Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "rapier",
+    "name": "Estoque",
+    "slug": "estoque",
+    "shortDescription": "Arma marcial elegante ideal para combate con finura",
+    "description": "El estoque es un arma delgada y elegante diseñada para el combate de estocada. Es perfecta para personajes que dependen de la Destreza más que de la Fuerza.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "18-20/x2",
+      "damageType": ["Perforante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 20
+    },
+    "properties": [],
+    "special": "Puede usarse con la dote Soltura con un Arma para usar Destreza en lugar de Fuerza en tiradas de ataque.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "battleaxe",
+    "name": "Hacha de Batalla",
+    "slug": "hacha-de-batalla",
+    "shortDescription": "Arma marcial de una mano con gran potencial de daño",
+    "description": "El hacha de batalla es un arma de una mano común entre enanos y bárbaros. Puede ser usada con ambas manos para mayor daño.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 10
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "longbow",
+    "name": "Arco Largo",
+    "slug": "arco-largo",
+    "shortDescription": "Arma marcial a distancia de gran alcance y precisión",
+    "description": "El arco largo es el arma a distancia preferida de exploradores y elfos. Requiere dos manos para ser usado y proporciona excelente alcance y daño.",
+    "category": "Arma",
+    "weaponType": "Arma marcial a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "x3",
+      "range": 100,
+      "damageType": ["Perforante"],
+      "weight": 3
+    },
+    "cost": {
+      "gold": 75
+    },
+    "properties": ["A dos manos"],
+    "special": "No puede ser usada mientras se está montado. Requiere munición (flechas).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "crossbow-light",
+    "name": "Ballesta Ligera",
+    "slug": "ballesta-ligera",
+    "shortDescription": "Arma simple a distancia fácil de usar",
+    "description": "La ballesta ligera es un arma a distancia simple que puede ser usada por cualquiera sin entrenamiento especial. Es más lenta que un arco pero más fácil de dominar.",
+    "category": "Arma",
+    "weaponType": "Arma simple a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "19-20/x2",
+      "range": 80,
+      "damageType": ["Perforante"],
+      "weight": 4
+    },
+    "cost": {
+      "gold": 35
+    },
+    "properties": [],
+    "special": "Recargar una ballesta ligera es una acción de movimiento que provoca ataques de oportunidad. Requiere munición (virotes).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "warhammer",
+    "name": "Martillo de Guerra",
+    "slug": "martillo-de-guerra",
+    "shortDescription": "Arma marcial de una mano efectiva contra armaduras",
+    "description": "El martillo de guerra es un arma de una mano popular entre clérigos y enanos. Su daño contundente lo hace efectivo contra enemigos con armadura.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "x3",
+      "damageType": ["Contundente"],
+      "weight": 5
+    },
+    "cost": {
+      "gold": 12
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "quarterstaff",
+    "name": "Bastón",
+    "slug": "baston",
+    "shortDescription": "Arma simple de dos manos, favorita de magos y monjes",
+    "description": "El bastón es un arma simple de dos manos que puede atacar con ambos extremos. Es el arma tradicional de magos y monjes.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Grande",
+    "stats": {
+      "damage": {
+        "small": "1d4/1d4",
+        "medium": "1d6/1d6",
+        "large": "1d8/1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 4
+    },
+    "cost": {
+      "silver": 0
+    },
+    "properties": ["A dos manos", "Doble"],
+    "special": "Puedes atacar con ambos extremos como si estuvieras luchando con dos armas, pero si lo haces, ninguno cuenta como arma ligera.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "shortsword",
+    "name": "Espada Corta",
+    "slug": "espada-corta",
+    "shortDescription": "Arma marcial ligera ideal para combate ágil",
+    "description": "La espada corta es un arma ligera perfecta para combate rápido y estilos de dos armas. Es popular entre pícaros y luchadores ágiles.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Perforante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 10
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "scimitar",
+    "name": "Cimitarra",
+    "slug": "cimitarra",
+    "shortDescription": "Espada curva con excelente capacidad de crítico",
+    "description": "La cimitarra es una espada curva con un filo mortalmente afilado. Su diseño favorece cortes devastadores.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "18-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 4
+    },
+    "cost": {
+      "gold": 15
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "greataxe",
+    "name": "Hacha Grande",
+    "slug": "hacha-grande",
+    "shortDescription": "Arma de dos manos con daño devastador",
+    "description": "El hacha grande es un arma masiva de dos manos capaz de partir a un enemigo por la mitad. Es el arma favorita de los bárbaros.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d10",
+        "medium": "1d12",
+        "large": "3d6"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 12
+    },
+    "cost": {
+      "gold": 20
+    },
+    "properties": ["A dos manos"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "handaxe",
+    "name": "Hacha de Mano",
+    "slug": "hacha-de-mano",
+    "shortDescription": "Hacha ligera que puede ser lanzada",
+    "description": "El hacha de mano es un arma versátil que funciona tanto en combate cuerpo a cuerpo como arrojada.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 3
+    },
+    "cost": {
+      "gold": 6
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "flail",
+    "name": "Mangual",
+    "slug": "mangual",
+    "shortDescription": "Arma marcial con cadena y peso",
+    "description": "El mangual consiste en un mango con una cadena y bola de metal. Es efectivo contra escudos y armaduras.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 5
+    },
+    "cost": {
+      "gold": 8
+    },
+    "properties": [],
+    "special": "+2 de bonificador en intentos de desarme.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "heavy-flail",
+    "name": "Mangual Pesado",
+    "slug": "mangual-pesado",
+    "shortDescription": "Versión de dos manos del mangual",
+    "description": "El mangual pesado es una versión más grande que requiere dos manos pero causa mucho más daño.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Contundente"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 15
+    },
+    "properties": ["A dos manos"],
+    "special": "+2 de bonificador en intentos de desarme.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "morningstar",
+    "name": "Lucero del Alba",
+    "slug": "lucero-del-alba",
+    "shortDescription": "Maza con púas metálicas",
+    "description": "El lucero del alba es una maza con púas de metal que causa daño tanto contundente como perforante.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente", "Perforante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 8
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "club",
+    "name": "Garrote",
+    "slug": "garrote",
+    "shortDescription": "Arma simple básica de madera",
+    "description": "El garrote es un simple palo pesado. Es barato y fácil de conseguir.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "range": 10,
+      "damageType": ["Contundente"],
+      "weight": 3
+    },
+    "cost": {
+      "silver": 0
+    },
+    "properties": ["Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "mace",
+    "name": "Maza Pesada",
+    "slug": "maza-pesada",
+    "shortDescription": "Arma simple contundente de metal",
+    "description": "La maza pesada es una versión más grande y causa más daño que la maza ligera.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "1d10"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 8
+    },
+    "cost": {
+      "gold": 12
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "shortbow",
+    "name": "Arco Corto",
+    "slug": "arco-corto",
+    "shortDescription": "Arma marcial a distancia más pequeña que el arco largo",
+    "description": "El arco corto es más fácil de manejar que el arco largo pero con menos alcance.",
+    "category": "Arma",
+    "weaponType": "Arma marcial a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x3",
+      "range": 60,
+      "damageType": ["Perforante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 30
+    },
+    "properties": ["A dos manos"],
+    "special": "Requiere munición (flechas).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "crossbow-heavy",
+    "name": "Ballesta Pesada",
+    "slug": "ballesta-pesada",
+    "shortDescription": "Ballesta poderosa que requiere más tiempo para recargar",
+    "description": "La ballesta pesada causa más daño que la ligera pero es más lenta de recargar.",
+    "category": "Arma",
+    "weaponType": "Arma simple a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "19-20/x2",
+      "range": 120,
+      "damageType": ["Perforante"],
+      "weight": 8
+    },
+    "cost": {
+      "gold": 50
+    },
+    "properties": [],
+    "special": "Recargar una ballesta pesada es una acción completa que provoca ataques de oportunidad. Requiere munición (virotes).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "spear",
+    "name": "Lanza Larga",
+    "slug": "lanza-larga",
+    "shortDescription": "Arma simple versátil de alcance",
+    "description": "La lanza larga puede ser usada tanto en cuerpo a cuerpo como arrojada. Es un arma básica pero efectiva con alcance de 10 pies.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "x3",
+      "damageType": ["Perforante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 5
+    },
+    "properties": ["A dos manos", "Alcance"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "javelin",
+    "name": "Jabalina",
+    "slug": "jabalina",
+    "shortDescription": "Lanza ligera diseñada para ser arrojada",
+    "description": "La jabalina es una lanza ligera optimizada para ser lanzada a distancia.",
+    "category": "Arma",
+    "weaponType": "Arma simple a distancia",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "range": 30,
+      "damageType": ["Perforante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "sling",
+    "name": "Honda",
+    "slug": "honda",
+    "shortDescription": "Arma simple a distancia que lanza piedras",
+    "description": "La honda es un arma económica que lanza piedras u otro proyectiles pequeños.",
+    "category": "Arma",
+    "weaponType": "Arma simple a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "range": 50,
+      "damageType": ["Contundente"],
+      "weight": 0
+    },
+    "cost": {
+      "silver": 0
+    },
+    "properties": [],
+    "special": "Requiere munición (balas de honda).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "throwing-axe",
+    "name": "Hacha Arrojadiza",
+    "slug": "hacha-arrojadiza",
+    "shortDescription": "Hacha pequeña diseñada para lanzar",
+    "description": "Estas hachas pequeñas están balanceadas específicamente para ser lanzadas.",
+    "category": "Arma",
+    "weaponType": "Arma marcial a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "range": 10,
+      "damageType": ["Cortante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 8
+    },
+    "properties": ["Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "dart",
+    "name": "Dardo",
+    "slug": "dardo",
+    "shortDescription": "Proyectil pequeño arrojadizo",
+    "description": "El dardo es un proyectil pequeño y afilado que puede ser lanzado con precisión.",
+    "category": "Arma",
+    "weaponType": "Arma simple a distancia",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "range": 20,
+      "damageType": ["Perforante"],
+      "weight": 0.5
+    },
+    "cost": {
+      "silver": 5
+    },
+    "properties": ["Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "scythe",
+    "name": "Guadaña",
+    "slug": "guadana",
+    "shortDescription": "Arma marcial de dos manos con crítico x4",
+    "description": "La guadaña es un arma de dos manos temible por su capacidad de causar heridas mortales. Su diseño curvo permite ataques devastadores.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "2d4",
+        "large": "2d6"
+      },
+      "critical": "x4",
+      "damageType": ["Perforante", "Cortante"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 18
+    },
+    "properties": ["A dos manos", "Disparo de tropel"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "trident",
+    "name": "Tridente",
+    "slug": "tridente",
+    "shortDescription": "Arma marcial de tres puntas que puede ser lanzada",
+    "description": "El tridente tiene tres puntas afiladas y puede ser usado tanto en combate cuerpo a cuerpo como arrojado.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "x2",
+      "range": 10,
+      "damageType": ["Perforante"],
+      "weight": 4
+    },
+    "cost": {
+      "gold": 15
+    },
+    "properties": ["Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "bastard-sword",
+    "name": "Espada Bastarda",
+    "slug": "espada-bastarda",
+    "shortDescription": "Arma exótica que puede usarse con una o dos manos",
+    "description": "La espada bastarda es más grande que una espada larga pero puede ser usada con una mano con el entrenamiento adecuado. Con dos manos causa más daño.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 35
+    },
+    "properties": [],
+    "special": "Puede ser usada como arma marcial si se empuña con dos manos (1d10 de daño).",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "dwarven-waraxe",
+    "name": "Hacha Enana de Guerra",
+    "slug": "hacha-enana-de-guerra",
+    "shortDescription": "Arma exótica favorita de los enanos",
+    "description": "Esta hacha está diseñada específicamente para ser empuñada por enanos. Para otras razas es un arma exótica, pero los enanos la tratan como marcial.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 8
+    },
+    "cost": {
+      "gold": 30
+    },
+    "properties": [],
+    "special": "Los enanos tratan esta arma como marcial en lugar de exótica.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "whip",
+    "name": "Látigo",
+    "slug": "latigo",
+    "shortDescription": "Arma exótica de alcance que causa daño no letal",
+    "description": "El látigo es un arma única que permite atacar a distancia y hacer maniobras de desarme. Por defecto causa daño no letal.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d2",
+        "medium": "1d3",
+        "large": "1d4"
+      },
+      "critical": "x2",
+      "range": 15,
+      "damageType": ["Cortante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Alcance"],
+    "special": "Causa daño no letal. Puede ser usado para hacer maniobras de desarme. No puede causar daño a criaturas con bonificador de armadura +1 o mayor.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "spiked-chain",
+    "name": "Cadena con Púas",
+    "slug": "cadena-con-puas",
+    "shortDescription": "Arma exótica de alcance con múltiples usos tácticos",
+    "description": "Esta cadena larga tiene púas de metal a lo largo de toda su longitud. Es un arma versátil para maniobras de combate.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "2d4",
+        "large": "2d6"
+      },
+      "critical": "x2",
+      "damageType": ["Perforante"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 25
+    },
+    "properties": ["A dos manos", "Alcance"],
+    "special": "Puedes atacar enemigos a 10 pies de distancia con ella, y también puedes atacar enemigos adyacentes.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "two-bladed-sword",
+    "name": "Espada de Dos Hojas",
+    "slug": "espada-de-dos-hojas",
+    "shortDescription": "Arma exótica doble con una hoja en cada extremo",
+    "description": "Esta espada tiene una hoja afilada en cada extremo del mango, permitiendo luchar con dos armas. Es el arma preferida de los drow.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6/1d6",
+        "medium": "1d8/1d8",
+        "large": "1d10/1d10"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 100
+    },
+    "properties": ["A dos manos", "Doble"],
+    "special": "Puedes atacar con ambos extremos como si estuvieras luchando con dos armas, pero si lo haces, ninguno cuenta como arma ligera.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "kama",
+    "name": "Kama",
+    "slug": "kama",
+    "shortDescription": "Arma exótica curva similar a una hoz",
+    "description": "El kama es una pequeña hoz de combate. Los monjes pueden usarla como arma especial de monje.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Cortante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 2
+    },
+    "properties": ["Ligera"],
+    "special": "Arma especial de monje. +2 de bonificador en intentos de desarme.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "nunchaku",
+    "name": "Nunchaku",
+    "slug": "nunchaku",
+    "shortDescription": "Arma exótica de dos palos unidos por cadena",
+    "description": "El nunchaku consiste en dos palos de madera unidos por una cadena corta. Es un arma especial de monje.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 2
+    },
+    "properties": [],
+    "special": "Arma especial de monje.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "sai",
+    "name": "Sai",
+    "slug": "sai",
+    "shortDescription": "Arma exótica con púas laterales para desarme",
+    "description": "El sai es un arma puntiaguda con dos púas laterales. Es ideal para desarmar y parar ataques. Arma especial de monje.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x2",
+      "range": 10,
+      "damageType": ["Contundente"],
+      "weight": 1
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Ligera", "Arrojadiza"],
+    "special": "Arma especial de monje. +4 de bonificador en intentos de desarme contra armas cuerpo a cuerpo.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "shuriken",
+    "name": "Shuriken",
+    "slug": "shuriken",
+    "shortDescription": "Estrella arrojadiza exótica",
+    "description": "El shuriken es una estrella de metal afilada diseñada para ser lanzada. Arma especial de monje.",
+    "category": "Arma",
+    "weaponType": "Arma exótica a distancia",
+    "size": "Diminuta",
+    "stats": {
+      "damage": {
+        "small": "1",
+        "medium": "1d2",
+        "large": "1d3"
+      },
+      "critical": "x2",
+      "range": 10,
+      "damageType": ["Perforante"],
+      "weight": 0.1
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Arrojadiza"],
+    "special": "Arma especial de monje.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "falchion",
+    "name": "Alfanjón",
+    "slug": "alfanjon",
+    "shortDescription": "Espada pesada curva con excelente crítico",
+    "description": "El alfanjón es una espada de hoja ancha y pesada con un filo mortalmente afilado. Su diseño permite cortes devastadores.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "2d4",
+        "large": "2d6"
+      },
+      "critical": "18-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 8
+    },
+    "cost": {
+      "gold": 75
+    },
+    "properties": ["A dos manos"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "glaive",
+    "name": "Guja",
+    "slug": "guja",
+    "shortDescription": "Arma de asta de dos manos con alcance",
+    "description": "La guja es un arma de asta con una hoja larga en el extremo. Permite atacar a enemigos a distancia.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 8
+    },
+    "properties": ["A dos manos", "Alcance"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "guisarme",
+    "name": "Guisarma",
+    "slug": "guisarma",
+    "shortDescription": "Arma de asta con gancho para desarme",
+    "description": "La guisarma tiene un gancho diseñado para desarmar y derribar enemigos.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "2d4",
+        "large": "2d6"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 12
+    },
+    "cost": {
+      "gold": 9
+    },
+    "properties": ["A dos manos", "Alcance"],
+    "special": "+2 de bonificador en intentos de derribar.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "halberd",
+    "name": "Alabarda",
+    "slug": "alabarda",
+    "shortDescription": "Arma de asta versátil con hacha y punta",
+    "description": "La alabarda combina una hoja de hacha con una punta de lanza. Es un arma de asta versátil y mortal.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "x3",
+      "damageType": ["Perforante", "Cortante"],
+      "weight": 12
+    },
+    "cost": {
+      "gold": 10
+    },
+    "properties": ["A dos manos", "Alcance"],
+    "special": "+2 de bonificador en intentos de derribar.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "lance",
+    "name": "Lanza de Caballería",
+    "slug": "lanza-de-caballeria",
+    "shortDescription": "Arma larga de caballería para cargas",
+    "description": "La lanza de caballería está diseñada para ser usada montado. Causa daño doble en una carga montada.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Grande",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "x3",
+      "damageType": ["Perforante"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 10
+    },
+    "properties": ["Alcance"],
+    "special": "Causa daño doble cuando se usa en una carga montada. No puede ser usada contra enemigos adyacentes.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "ranseur",
+    "name": "Ranseur",
+    "slug": "ranseur",
+    "shortDescription": "Arma de asta con púas laterales",
+    "description": "El ranseur tiene una punta central con dos púas laterales, ideal para desarmar.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "2d4",
+        "large": "2d6"
+      },
+      "critical": "x3",
+      "damageType": ["Perforante"],
+      "weight": 12
+    },
+    "cost": {
+      "gold": 10
+    },
+    "properties": ["A dos manos", "Alcance"],
+    "special": "+2 de bonificador en intentos de desarme.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "heavy-pick",
+    "name": "Pico Pesado",
+    "slug": "pico-pesado",
+    "shortDescription": "Pico de guerra con crítico devastador",
+    "description": "El pico pesado está diseñado para perforar armaduras. Su crítico x4 lo hace extremadamente letal.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x4",
+      "damageType": ["Perforante"],
+      "weight": 6
+    },
+    "cost": {
+      "gold": 8
+    },
+    "properties": [],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "light-pick",
+    "name": "Pico Ligero",
+    "slug": "pico-ligero",
+    "shortDescription": "Pico pequeño con crítico x4",
+    "description": "El pico ligero es una versión más pequeña del pico pesado, pero igualmente letal en críticos.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d3",
+        "medium": "1d4",
+        "large": "1d6"
+      },
+      "critical": "x4",
+      "damageType": ["Perforante"],
+      "weight": 3
+    },
+    "cost": {
+      "gold": 4
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "sickle",
+    "name": "Hoz",
+    "slug": "hoz",
+    "shortDescription": "Arma simple curva de granjero",
+    "description": "La hoz es una herramienta agrícola que puede ser usada como arma improvisada en combate.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Cortante"],
+      "weight": 2
+    },
+    "cost": {
+      "gold": 6
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "greatclub",
+    "name": "Garrote Grande",
+    "slug": "garrote-grande",
+    "shortDescription": "Arma simple de dos manos muy pesada",
+    "description": "El garrote grande es un palo masivo de dos manos. Es barato pero efectivo.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d8",
+        "medium": "1d10",
+        "large": "2d8"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 8
+    },
+    "cost": {
+      "gold": 5
+    },
+    "properties": ["A dos manos"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 116
+    }
+  },
+  {
+    "id": "light-mace",
+    "name": "Maza Ligera",
+    "slug": "maza-ligera",
+    "shortDescription": "Maza pequeña de una mano",
+    "description": "La maza ligera es una versión más pequeña de la maza pesada.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Pequeña",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 4
+    },
+    "cost": {
+      "gold": 5
+    },
+    "properties": ["Ligera"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "shortspear",
+    "name": "Lanza Corta",
+    "slug": "lanza-corta",
+    "shortDescription": "Lanza pequeña que puede ser lanzada",
+    "description": "La lanza corta es más pequeña que la lanza estándar y puede ser arrojada con facilidad.",
+    "category": "Arma",
+    "weaponType": "Arma simple cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d4",
+        "medium": "1d6",
+        "large": "1d8"
+      },
+      "critical": "x2",
+      "range": 20,
+      "damageType": ["Perforante"],
+      "weight": 3
+    },
+    "cost": {
+      "gold": 1
+    },
+    "properties": ["Arrojadiza"],
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 117
+    }
+  },
+  {
+    "id": "orc-double-axe",
+    "name": "Hacha Doble Orca",
+    "slug": "hacha-doble-orca",
+    "shortDescription": "Arma exótica doble con hacha en cada extremo",
+    "description": "Esta hacha tiene una hoja en cada extremo del mango. Es el arma tradicional de los orcos.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Grande",
+    "stats": {
+      "damage": {
+        "small": "1d6/1d6",
+        "medium": "1d8/1d8",
+        "large": "1d10/1d10"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante"],
+      "weight": 15
+    },
+    "cost": {
+      "gold": 60
+    },
+    "properties": ["A dos manos", "Doble"],
+    "special": "Puedes atacar con ambos extremos como si estuvieras luchando con dos armas, pero si lo haces, ninguno cuenta como arma ligera.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "dire-flail",
+    "name": "Mangual Atroz",
+    "slug": "mangual-atroz",
+    "shortDescription": "Arma exótica doble con dos cabezas de mangual",
+    "description": "Este mangual tiene dos cabezas pesadas, una en cada extremo de un mango largo.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Grande",
+    "stats": {
+      "damage": {
+        "small": "1d6/1d6",
+        "medium": "1d8/1d8",
+        "large": "1d10/1d10"
+      },
+      "critical": "x2",
+      "damageType": ["Contundente"],
+      "weight": 10
+    },
+    "cost": {
+      "gold": 90
+    },
+    "properties": ["A dos manos", "Doble"],
+    "special": "Puedes atacar con ambos extremos como si estuvieras luchando con dos armas, pero si lo haces, ninguno cuenta como arma ligera. +2 de bonificador en intentos de desarme.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "dwarven-urgrosh",
+    "name": "Urgrosh Enano",
+    "slug": "urgrosh-enano",
+    "shortDescription": "Arma exótica doble enana con hacha y lanza",
+    "description": "Esta arma combina un hacha en un extremo con una punta de lanza en el otro. Es el arma tradicional de los enanos.",
+    "category": "Arma",
+    "weaponType": "Arma exótica cuerpo a cuerpo",
+    "size": "Grande",
+    "stats": {
+      "damage": {
+        "small": "1d6/1d4",
+        "medium": "1d8/1d6",
+        "large": "2d6/1d8"
+      },
+      "critical": "x3",
+      "damageType": ["Cortante", "Perforante"],
+      "weight": 12
+    },
+    "cost": {
+      "gold": 50
+    },
+    "properties": ["A dos manos", "Doble"],
+    "special": "Puedes atacar con ambos extremos como si estuvieras luchando con dos armas, pero si lo haces, ninguno cuenta como arma ligera. Los enanos tratan esta arma como marcial en lugar de exótica.",
+    "isMagic": false,
+    "source": {
+      "book": "Manual del Jugador",
+      "page": 118
+    }
+  },
+  {
+    "id": "longsword-plus-1",
+    "name": "Espada Larga +1",
+    "slug": "espada-larga-plus-1",
+    "shortDescription": "Espada larga mágica con bonificador de encantamiento +1",
+    "description": "Esta espada larga ha sido encantada mágicamente para mejorar su filo y precisión. Brilla con una leve luz cuando se desenvaina.",
+    "category": "Arma",
+    "weaponType": "Arma marcial cuerpo a cuerpo",
+    "size": "Mediana",
+    "stats": {
+      "damage": {
+        "small": "1d6",
+        "medium": "1d8",
+        "large": "2d6"
+      },
+      "critical": "19-20/x2",
+      "damageType": ["Cortante"],
+      "weight": 4
+    },
+    "cost": {
+      "gold": 2315
+    },
+    "properties": [],
+    "isMagic": true,
+    "magicBonus": 1,
+    "magicStats": {
+      "casterLevel": 3,
+      "aura": "Evocación débil"
+    },
+    "special": "+1 de bonificador de encantamiento a tiradas de ataque y daño.",
+    "source": {
+      "book": "Guía del Dungeon Master",
+      "page": 220
+    }
+  }
+]

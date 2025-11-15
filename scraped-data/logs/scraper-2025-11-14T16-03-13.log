@@ -1,0 +1,8 @@
+Log iniciado: 2025-11-14T16:03:13.795Z
+[2025-11-14T16:03:13.796Z] [INFO] ============================================================
+[2025-11-14T16:03:13.797Z] [INFO] D&D Tools SRD Scraper
+[2025-11-14T16:03:13.797Z] [INFO] ============================================================
+[2025-11-14T16:03:13.798Z] [INFO] Starting scrape of category: classes_base
+[2025-11-14T16:03:13.798Z] [INFO] URL: https://srd.dndtools.org/srd/classes/baseCore
+[2025-11-14T16:03:20.929Z] [ERROR] Failed to fetch category page: Max retries exceeded
+[2025-11-14T16:03:20.929Z] [SUCCESS] Scraping completed successfully

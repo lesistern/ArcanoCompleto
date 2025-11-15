@@ -51,3 +51,57 @@ scraped-data/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ============================================================================
+# RECOMMENDED ADDITIONS
+# ============================================================================
+
+# Output directories (generated files - should NOT be in repo)
+scripts/output/
+scripts/scraper/output/
+scripts/pdf-extractor/output/
+
+# Temporary and backup files
+*.tmp
+*.temp
+*.backup
+*.bak
+*~
+.swp
+.swo
+
+# Development/Internal documentation
+# Ignore all .md files except README.md
+*.md
+!README.md
+
+# SQL migration files (OPTIONAL - useful for version control)
+# Only ignore if you want to keep them out of public repo:
+# supabase/*-fixed.sql
+# supabase/*-part*.sql
+# supabase/fix-*.sql
+# supabase/insert-*.sql
+
+# Test files (development only)
+src/app/test-*/
+src/app/api/test-*/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-*
+.project
+.classpath
+.settings/
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Logs
+logs/
+*.log
+
+# Cache directories
+.cache/
+.parcel-cache/

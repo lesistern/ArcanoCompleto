@@ -1,71 +1,100 @@
 # 🐉 D&D 3.5 Compendio Completo en Español
 
-Un compendio completo de Dungeons & Dragons 3.5 en español, con datos de 118 libros oficiales, optimizado para búsqueda y filtrado avanzado.
+Un compendio completo y optimizado de Dungeons & Dragons 3.5 en español, con datos de 118 libros oficiales del SRD.
 
-## 📊 Estado del Proyecto
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green)](https://supabase.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8)](https://tailwindcss.com)
 
-### ✅ Base de Datos Completada
-- **16 Razas migradas** (7 base + 9 suplementarias)
-- **72 Armas** con stats optimizados
-- **43 Skills** del Player's Handbook
-- **34 Dotes** básicas
-- **85 de 118 libros** catalogados
-
-### 🗄️ Tecnologías
-- **Next.js 15** con TypeScript
-- **Supabase PostgreSQL** (base de datos optimizada)
-- **Tailwind CSS** para styling
-- **Búsqueda fulltext** en español
-
-### 🎮 Características
-- ✅ **Frontend completo de razas** con listado y páginas de detalle
-- ✅ **Utilidades para editor de personajes** (cálculos, modificadores, point buy)
-- ✅ **Sistema de advertencias** para contenido suplementario
-- ✅ **Editor de personajes interactivo** con sistema Point Buy y tirada de dados
-  - Información básica (nombre, raza, alineamiento)
-  - Generación de puntajes de habilidad (Point Buy 25pts / 4d6 drop lowest)
-  - Visualización de estadísticas de combate (CA, iniciativa, velocidad)
-  - Sistema de habilidades (skills) con modificadores automáticos
-  - Exportar/Importar personajes en JSON
-  - Persistencia automática con localStorage
+🌐 **[Demo en vivo](https://tu-dominio.vercel.app)** | 📚 **[Documentación](./claude.md)**
 
 ---
 
-## 🎭 Razas Disponibles
+## ✨ Características Principales
 
-### 📖 Razas Base del Player's Handbook (7)
+### 🎮 Editor de Personajes Completo
+- ✅ **3 sistemas de generación de habilidades**
+  - Point Buy (25 puntos estándar)
+  - 4d6 drop lowest con animación de dados
+  - Entrada manual personalizada
+- ✅ **16 razas jugables** (7 base + 9 suplementarias)
+- ✅ **Cálculos automáticos** de modificadores y estadísticas
+- ✅ **Export/Import JSON** de personajes
+- ✅ **Persistencia automática** en localStorage
 
-| Raza | Tamaño | Velocidad | Modificadores | Clase Favorecida |
-|------|--------|-----------|---------------|------------------|
-| **Humano** | Mediano | 30 pies | Ninguno | Cualquiera |
-| **Elfo** | Mediano | 30 pies | +2 Des, -2 Con | Mago |
-| **Enano** | Mediano | 20 pies | +2 Con, -2 Car | Guerrero |
-| **Mediano** | Pequeño | 20 pies | +2 Des, -2 Fue | Pícaro |
-| **Gnomo** | Pequeño | 20 pies | +2 Con, -2 Fue | Bardo |
-| **Semielfo** | Mediano | 30 pies | Ninguno | Cualquiera |
-| **Semiorco** | Mediano | 30 pies | +2 Fue, -2 Int, -2 Car | Bárbaro |
+### 📖 Base de Datos Completa
+- ✅ **11 clases base** del Player's Handbook
+- ✅ **605 conjuros** con relaciones clase-conjuro (1,410 registros)
+- ✅ **143 dotes** (109 del PHB + 34 extras)
+- ✅ **16 razas** completamente detalladas
+- ✅ **72 armas** con stats optimizados
+- ✅ **43 habilidades** del sistema D&D 3.5
 
-### 🌟 Razas Suplementarias (9)
-**⚠️ Requieren aprobación del Dungeon Master**
+### 🌍 Sistema de Traducciones Colaborativo
+- ✅ **554 conjuros** con traducciones oficiales (91.6%)
+- ✅ **6 niveles de usuario** (guest → admin)
+- ✅ **Sistema de votación** comunitaria
+- ✅ **Integración DeepL** para traducciones automáticas
+- ✅ **Gamificación** con reputación y badges
 
-#### Fase 1A - Razas Populares
+### 🎯 Sistema de Experiencia y Progresión
+- ✅ **20 niveles de usuario** basados en D&D 5e
+- ✅ **4 tiers de progreso** (Novato → Legendario)
+- ✅ **Sistema de XP** automático por contribuciones
+- ✅ **Leaderboard público** de top contribuidores
 
-| Raza | Fuente | Tamaño | Modificadores | LA | Destacado |
-|------|--------|--------|---------------|-------|-----------|
-| **Aasimar** | Races of Destiny | Mediano | +2 Sab, +2 Car | +1 | Descendientes celestiales, resistencias elementales |
-| **Tiefling** | Races of Destiny | Mediano | +2 Int, +2 Des, -2 Car | +1 | Herencia infernal, habilidad Oscuridad |
-| **Goliath** | Races of Stone | Mediano | +4 Fue, +2 Con, -2 Des | +0 | Construcción poderosa, 8 pies de altura |
-| **Raptoran** | Races of the Wild | Mediano | +2 Des | +0 | Alas, planeo (vuelo a 5 DG) |
-| **Killoren** | Races of the Wild | Mediano | +2 Des, -2 Con | +0 | Fey, 3 aspectos intercambiables |
+### 🎫 Sistema de Feedback de Beta
+- ✅ **Reportes de bugs** con categorías y prioridades
+- ✅ **Votación comunitaria** de reportes
+- ✅ **Panel de administración** para gestión
+- ✅ **Recompensas de XP** por reportes resueltos
 
-#### Fase 1B - Razas Secundarias
+### 🚀 Optimizaciones de Performance
+- ✅ **Vercel Speed Insights** integrado
+- ✅ **Lazy loading** de componentes
+- ✅ **Prefetch optimizado** en rutas críticas
+- ✅ **Bundle size reducido** -10% (~180 KB)
+- ✅ **Core Web Vitals** optimizados
 
-| Raza | Fuente | Tamaño | Modificadores | LA | Destacado |
-|------|--------|--------|---------------|-------|-----------|
-| **Illumian** | Races of Destiny | Mediano | Ninguno | +0 | Símbolos de poder, multiclase |
-| **Gnomo Susurrante** | Races of Stone | Pequeño | +2 Des, +2 Con, -2 Fue, -2 Car | +0 | Sigilo +8, habilidad Silencio |
-| **Centauro** | Races of the Wild | Grande | +8 Fue, +4 Des, +4 Con, -2 Int, +2 Sab, +2 Car | +2 | Velocidad 50 pies, 4 DG raciales |
-| **Felino (Catfolk)** | Races of the Wild | Mediano | +2 Des | +0 | Trepar 20 pies, velocidad 40 pies |
+---
+
+## 🗄️ Tecnologías
+
+| Categoría | Tecnología |
+|-----------|-----------|
+| **Frontend** | Next.js 15, React 18, TypeScript 5 |
+| **Styling** | Tailwind CSS 3, Lucide Icons |
+| **Backend** | Supabase PostgreSQL, Row Level Security |
+| **Autenticación** | Supabase Auth (Email/Password + OAuth) |
+| **Storage** | Supabase Storage (avatares, imágenes) |
+| **Búsqueda** | PostgreSQL Full-Text Search + Fuzzy Search (pg_trgm) |
+| **Deployment** | Vercel (CI/CD automático) |
+| **Analytics** | Vercel Speed Insights |
+
+---
+
+## 🎭 Contenido Disponible
+
+### Razas (16 totales)
+
+#### 📖 Player's Handbook (7 razas base)
+Humano, Elfo, Enano, Mediano, Gnomo, Semielfo, Semiorco
+
+#### 🌟 Suplementarias (9 razas - requieren DM)
+Aasimar, Tiefling, Goliath, Raptoran, Killoren, Illumian, Gnomo Susurrante, Centauro, Felino
+
+### Clases (11 clases base)
+Bárbaro, Bardo, Clérigo, Druida, Explorador, Guerrero, Hechicero, Mago, Monje, Paladín, Pícaro
+
+### Conjuros (605 conjuros)
+7 listas de clase: Bardo, Clérigo, Druida, Explorador, Hechicero, Mago, Paladín
+
+### Dotes (143 dotes)
+- **General:** 113 dotes
+- **Combate:** 13 dotes
+- **Metamágica:** 9 dotes
+- **Creación de objetos:** 8 dotes
 
 ---
 
@@ -73,22 +102,21 @@ Un compendio completo de Dungeons & Dragons 3.5 en español, con datos de 118 li
 
 ### Prerequisitos
 - Node.js 18+
-- Cuenta de Supabase
+- Cuenta de Supabase (gratis)
 
 ### Instalación
 
 ```bash
 # Clonar el repositorio
+git clone https://github.com/tu-usuario/dnd-compendium.git
 cd dnd-compendium
 
 # Instalar dependencias
 npm install
 
 # Configurar variables de entorno
-# Crear .env.local con:
-# NEXT_PUBLIC_SUPABASE_URL=tu_url
-# NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_key
-# SUPABASE_SERVICE_ROLE_KEY=tu_service_key
+cp .env.example .env.local
+# Editar .env.local con tus credenciales de Supabase
 
 # Ejecutar servidor de desarrollo
 npm run dev
@@ -96,131 +124,150 @@ npm run dev
 
 Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
----
+### Configurar Supabase
 
-## 📦 Scripts de Migración
-
-### Poblar Base de Datos
+1. **Crear proyecto** en [supabase.com](https://supabase.com)
+2. **Obtener credenciales** en Settings → API
+3. **Ejecutar migraciones SQL** desde la carpeta `/supabase/`
+4. **Poblar datos** con scripts de `/scripts/`
 
 ```bash
-# Migrar razas base del Player's Handbook
+# Ejecutar scripts de población
 node scripts/migrate-races.mjs
-
-# Migrar razas suplementarias Fase 1A
-node scripts/migrate-races-supplements.mjs
-
-# Migrar razas suplementarias Fase 1B
-node scripts/migrate-races-phase1b.mjs
-
-# Migrar armas
 node scripts/migrate-weapons.mjs
-
-# Poblar catálogo de libros
 node scripts/populate-books.mjs
 ```
 
-### Aplicar Optimizaciones de BD
+---
 
-Ejecuta `apply-db-optimizations.sql` en el SQL Editor de Supabase para:
-- Optimizar columnas numéricas en `weapons`
-- Añadir constraints y validaciones
-- Crear vistas y funciones útiles
-- Mejorar performance 10-50x
+## 📦 Scripts Disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo (localhost:3000) |
+| `npm run build` | Build de producción |
+| `npm run start` | Servidor de producción |
+| `npm run lint` | Linter de código |
 
 ---
 
-## 📚 Estructura del Proyecto
+## 🏗️ Estructura del Proyecto
 
 ```
 dnd-compendium/
 ├── src/
-│   ├── app/              # Next.js 15 App Router
-│   ├── lib/
-│   │   ├── data/3.5/     # Datos JSON de D&D 3.5
-│   │   │   ├── races.json
-│   │   │   ├── races-supplements.json
-│   │   │   ├── weapons.json
-│   │   │   └── ...
-│   │   └── supabase.ts   # Cliente de Supabase
-│   └── components/       # Componentes React
-├── scripts/              # Scripts de migración
-│   ├── migrate-races.mjs
-│   ├── migrate-races-supplements.mjs
-│   ├── migrate-races-phase1b.mjs
-│   ├── migrate-weapons.mjs
-│   └── populate-books.mjs
-├── apply-db-optimizations.sql  # SQL de optimizaciones
-└── docs/                 # Documentación del proyecto
-    ├── CLAUDE.md         # Estado del proyecto
-    ├── DND35_LIBROS_DISPONIBLES.md
-    └── DND35_SRD_ESTRUCTURA.md
+│   ├── app/                    # Next.js 15 App Router
+│   │   ├── (auth)/            # Rutas de autenticación
+│   │   ├── clases/            # Listado y detalle de clases
+│   │   ├── razas/             # Listado y detalle de razas
+│   │   ├── editor-personajes/ # Editor de personajes
+│   │   ├── feedback/          # Sistema de reportes
+│   │   ├── leaderboard/       # Ranking de usuarios
+│   │   └── profile/           # Perfil y configuración
+│   ├── components/            # Componentes React reutilizables
+│   │   ├── character/         # Componentes del editor
+│   │   ├── layout/            # Header, Footer, etc.
+│   │   └── ui/                # Componentes base (Button, Card, etc.)
+│   ├── hooks/                 # React hooks personalizados
+│   ├── lib/                   # Utilidades y servicios
+│   │   ├── supabase/          # Clientes de Supabase
+│   │   └── utils/             # Helpers y cálculos
+│   └── types/                 # Definiciones TypeScript
+├── supabase/                  # Migraciones SQL
+├── scripts/                   # Scripts de población de datos
+└── public/                    # Assets estáticos
 ```
 
 ---
 
-## 🎯 Próximas Funcionalidades
+## 🎯 Roadmap
 
-### En Desarrollo
-- [ ] 11 Clases base del Player's Handbook
-- [ ] ~300 Conjuros del PH
-- [ ] Frontend: Páginas de listado y detalle de razas
-- [ ] Sistema de búsqueda global
-- [ ] Filtros avanzados por stats
+### ✅ Fase 1: Base de Datos (Completada)
+- [x] 11 clases base con progresión 1-20
+- [x] 605 conjuros con listas de clase
+- [x] 143 dotes del PHB
+- [x] 16 razas completamente detalladas
+- [x] 72 armas optimizadas
 
-### Planeado
-- [ ] Monster Manual completo (~300 criaturas)
+### ✅ Fase 2: Frontend Básico (Completada)
+- [x] Editor de personajes interactivo
+- [x] Páginas de clases y razas
+- [x] Sistema de autenticación
+- [x] Sistema de feedback
+- [x] Perfiles públicos de usuario
+
+### 🚧 Fase 3: Expansión de Contenido (En Progreso)
+- [ ] Monster Manual (~300 criaturas)
 - [ ] Objetos mágicos del DMG
-- [ ] Calculadora de personajes
-- [ ] Árbol visual de dotes
+- [ ] Clases de prestigio
+- [ ] Dotes de suplementos (~1,400 adicionales)
+
+### 📋 Fase 4: Features Avanzadas (Planeado)
+- [ ] Búsqueda global con Algolia
 - [ ] Comparador de razas/clases/items
-- [ ] Modo oscuro
-
----
-
-## 📖 Documentación
-
-- **[CLAUDE.md](CLAUDE.md)** - Estado detallado del proyecto
-- **[DND35_LIBROS_DISPONIBLES.md](DND35_LIBROS_DISPONIBLES.md)** - Catálogo de 118 libros
-- **[DND35_SRD_ESTRUCTURA.md](DND35_SRD_ESTRUCTURA.md)** - Estructura completa del SRD
-- **[OPTIMIZACION_COMPLETADA.md](OPTIMIZACION_COMPLETADA.md)** - Optimizaciones de BD aplicadas
+- [ ] Generador de encuentros por CR
+- [ ] Calculadora de experiencia
+- [ ] Exportar personajes a PDF
+- [ ] Modo oscuro (dark mode)
 
 ---
 
 ## 🤝 Contribuir
 
-Este proyecto está en desarrollo activo. Las contribuciones son bienvenidas!
+¡Las contribuciones son bienvenidas! Este es un proyecto de código abierto.
 
-### Áreas de Contribución
-- Migración de datos de libros adicionales
-- Traducción al español de contenido
-- Desarrollo de componentes de frontend
-- Optimización de queries de base de datos
-- Documentación y tutoriales
+### Formas de Contribuir
+1. **Reportar bugs** usando el sistema de feedback integrado
+2. **Traducir contenido** a través del sistema colaborativo
+3. **Mejorar código** enviando Pull Requests
+4. **Documentación** mejorando guías y tutoriales
+
+### Guía de Contribución
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit cambios (`git commit -m 'Add: nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
 
 ---
 
-## ⚖️ Licencia y Créditos
+## 📄 Licencia
 
-### Contenido
-- Datos de D&D 3.5 basados en el **System Reference Document (SRD)** bajo Open Game License
-- Fuente primaria: [dndtools.org](https://srd.dndtools.org/)
-- Traducción al español por este proyecto
+### Contenido D&D
+- Datos basados en el **System Reference Document (SRD)** bajo **Open Game License (OGL) 1.0a**
+- Fuente: [dndtools.org](https://srd.dndtools.org/) y [d20srd.org](https://www.d20srd.org/)
+- Traducciones basadas en manuales oficiales de **Devir Iberia**
 
-### Código
-- Framework: [Next.js](https://nextjs.org) por Vercel
-- Base de datos: [Supabase](https://supabase.com)
-- Styling: [Tailwind CSS](https://tailwindcss.com)
+### Código del Proyecto
+- Licencia MIT
+- Copyright © 2025
 
 ### Disclaimer
-Dungeons & Dragons y D&D son marcas registradas de Wizards of the Coast LLC. Este proyecto es un compendio de fans bajo OGL y no está afiliado con WotC.
+**Dungeons & Dragons** y **D&D** son marcas registradas de **Wizards of the Coast LLC**.
+Este proyecto es un compendio de fans bajo OGL y **no está afiliado ni respaldado** por WotC.
 
 ---
 
-## 📞 Contacto
+## 📞 Contacto y Soporte
 
-Para preguntas, sugerencias o reportar problemas, por favor abre un issue en el repositorio.
+- **Issues:** [GitHub Issues](https://github.com/tu-usuario/dnd-compendium/issues)
+- **Feedback:** Usa el sistema integrado en la app
+- **Documentación:** Ver [claude.md](./claude.md) para detalles técnicos
 
 ---
 
-**Última actualización:** 2025-01-14
-**Versión:** 0.2.0 (Base de datos completa con 16 razas)
+## 🙏 Agradecimientos
+
+- **Wizards of the Coast** por el SRD bajo OGL
+- **dndtools.org** por el contenido estructurado
+- **Devir Iberia** por las traducciones oficiales
+- **Comunidad D&D** por feedback y pruebas
+
+---
+
+**Última actualización:** 2025-01-15
+**Versión:** 1.0.0 (Sistema completo funcional)
+
+---
+
+⭐ Si este proyecto te resulta útil, considera darle una estrella en GitHub!

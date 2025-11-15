@@ -35,12 +35,13 @@ interface StatusStat {
 interface TopContributor {
   id: string;
   display_name: string | null;
-  email: string;
+  email?: string;
   username_slug: string;
   reports_submitted: number;
   reports_resolved: number;
-  karma_points: number;
-  success_rate: number;
+  experience_points: number;
+  level: number;
+  resolution_rate: number;
 }
 
 interface RecentReport {
@@ -127,11 +128,11 @@ export default function AdminReportesPage() {
       // Verificar si es admin o reviewer
       const { data: profile } = await supabase
         .from('profiles')
-        .select('tier')
+        .select('tier_code')
         .eq('id', user.id)
         .single();
 
-      if (!profile || !['admin', 'reviewer'].includes(profile.tier)) {
+      if (!profile || !['admin', 'reviewer'].includes(profile.tier_code || '')) {
         router.push('/');
         return;
       }
@@ -493,17 +494,17 @@ export default function AdminReportesPage() {
                             href={`/u/${contributor.username_slug}`}
                             className="text-dungeon-100 font-semibold hover:text-gold-400 transition-colors"
                           >
-                            {contributor.display_name || contributor.email.split('@')[0]}
+                            {contributor.display_name || 'Usuario'}
                           </Link>
                           <div className="flex items-center gap-3 text-xs text-dungeon-400 mt-1">
                             <span className="flex items-center gap-1">
                               <Award className="w-3 h-3" />
-                              {contributor.karma_points} karma
+                              Nivel {contributor.level} ({contributor.experience_points} XP)
                             </span>
                             <span>{contributor.reports_submitted} reportes</span>
                             <span>{contributor.reports_resolved} resueltos</span>
                             <span className="text-green-400">
-                              {contributor.success_rate.toFixed(1)}% éxito
+                              {(contributor.resolution_rate || 0).toFixed(1)}% resolución
                             </span>
                           </div>
                         </div>

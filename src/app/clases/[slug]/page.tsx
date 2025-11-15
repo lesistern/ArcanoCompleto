@@ -65,15 +65,11 @@ export async function generateMetadata({ params }: ClassPageProps): Promise<Meta
 export default async function ClassPage({ params }: ClassPageProps) {
   const { slug } = await params;
 
-  // Fetch class from Supabase
-  const supabase = await createClient();
-  const { data: classFromDB, error } = await supabase
-    .from('classes')
-    .select('*')
-    .eq('slug', slug)
-    .single();
+  // Fetch class from Supabase con cached query
+  const { getClassBySlug } = await import('@/lib/supabase/cached-queries');
+  const classFromDB = await getClassBySlug(slug);
 
-  if (error || !classFromDB) {
+  if (!classFromDB) {
     notFound();
   }
 

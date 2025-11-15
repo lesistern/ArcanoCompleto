@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Eye, Zap, AlertTriangle, BookOpen } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -99,6 +100,55 @@ const formatAbilityModifiers = (modifiers: DnDRace['abilityModifiers']) => {
 
   return entries;
 };
+
+// Metadata dinámica para SEO
+export async function generateMetadata({ params }: RacePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+
+  const { data: raceData } = await supabase
+    .from('races')
+    .select('name, description, size, base_speed, creature_type, source_book, level_adjustment')
+    .eq('slug', slug)
+    .single();
+
+  if (!raceData) {
+    return {
+      title: 'Raza no encontrada - D&D 3.5 Compendium',
+    };
+  }
+
+  const title = `${raceData.name} - D&D 3.5 Compendium`;
+  const description = raceData.description.slice(0, 160);
+  const isSupplemental = raceData.source_book !== 'Manual del Jugador' && raceData.source_book !== "Player's Handbook";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      siteName: 'D&D 3.5 Compendium',
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
+    keywords: [
+      raceData.name,
+      'D&D 3.5',
+      'Dungeons & Dragons',
+      'raza',
+      'race',
+      raceData.size,
+      raceData.creature_type,
+      isSupplemental ? 'suplemento' : 'Player\'s Handbook',
+      raceData.level_adjustment > 0 ? `LA +${raceData.level_adjustment}` : 'LA 0',
+    ],
+  };
+}
 
 export default async function RacePage({ params }: RacePageProps) {
   const { slug } = await params;

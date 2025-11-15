@@ -1,24 +1,18 @@
 import ClassCard from '@/components/ClassCard';
-import { createClient } from '@/lib/supabase/server';
 import { DnDClass } from '@/lib/types/class';
+import { getAllClasses } from '@/lib/supabase/cached-queries';
 
 // ISR: Revalidar cada hora (contenido casi estático)
 export const revalidate = 3600;
 
 export default async function ClassesPage() {
-  const supabase = await createClient();
+  const classesFromDB = await getAllClasses();
 
-  const { data: classesFromDB, error } = await supabase
-    .from('classes')
-    .select('*')
-    .order('name');
-
-  if (error || !classesFromDB) {
-    console.error('Error loading classes:', error);
+  if (!classesFromDB || classesFromDB.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">Clases</h1>
-        <p className="text-red-600">Error al cargar las clases: {error?.message || 'Unknown error'}</p>
+        <p className="text-red-600">Error al cargar las clases</p>
       </div>
     );
   }

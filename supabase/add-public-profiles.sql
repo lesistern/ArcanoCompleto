@@ -5,10 +5,14 @@
 -- Admins y moderadores pueden ver perfiles ocultos
 -- =====================================================
 
--- 1. Agregar columna para perfil oculto
+-- 1. Agregar columnas necesarias
 ALTER TABLE public.profiles
 ADD COLUMN IF NOT EXISTS profile_hidden BOOLEAN DEFAULT false,
-ADD COLUMN IF NOT EXISTS username_slug TEXT;
+ADD COLUMN IF NOT EXISTS username_slug TEXT,
+ADD COLUMN IF NOT EXISTS karma_points INTEGER DEFAULT 0,
+ADD COLUMN IF NOT EXISTS reports_submitted INTEGER DEFAULT 0,
+ADD COLUMN IF NOT EXISTS reports_resolved INTEGER DEFAULT 0,
+ADD COLUMN IF NOT EXISTS total_votes_received INTEGER DEFAULT 0;
 
 -- 2. Generar slugs únicos basados en display_name o email
 UPDATE public.profiles p

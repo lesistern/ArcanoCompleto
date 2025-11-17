@@ -10,6 +10,8 @@ import dynamic from "next/dynamic";
 const BackToHome = dynamic(() => import("@/components/BackToHome"));
 const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"));
 const FeedbackButton = dynamic(() => import("@/components/FeedbackButton"));
+const TranslatePageButton = dynamic(() => import("@/components/TranslatePageButton"));
+const DonationButton = dynamic(() => import("@/components/DonationButton"));
 
 const merriweather = Merriweather({
   weight: ["700", "900"],
@@ -27,6 +29,17 @@ const roboto = Roboto_Flex({
 export const metadata: Metadata = {
   title: "Compendio D&D 3.5 - El recurso más completo en español",
   description: "El compendio más completo de Dungeons & Dragons 3.5 en español. Monstruos, hechizos, clases, objetos y más.",
+  icons: {
+    icon: [
+      { url: '/logo.png', sizes: 'any' },
+      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +56,8 @@ export default function RootLayout({
         <BackToHome />
         <ScrollToTop />
         <FeedbackButton />
+        <TranslatePageButton />
+        <DonationButton />
         <main className="flex-1">
           {children}
         </main>

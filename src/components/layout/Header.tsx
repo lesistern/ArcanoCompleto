@@ -2,16 +2,23 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Search, Menu, X, ChevronDown, User, Users, LogOut, Settings, Award, UserPlus, MessageSquarePlus, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '../ui/Button';
-import { LanguageSelector } from '../LanguageSelector';
 import { useAuth } from '@/hooks/useAuth';
 import AuthModal from '@/components/auth/AuthModal';
 import PasswordResetModal from '@/components/auth/PasswordResetModal';
 import AdminInviteModal from '@/components/auth/AdminInviteModal';
 import SearchBar from '@/components/search/SearchBar';
+
+// Importar LanguageSelector solo en el cliente para evitar errores de hidratación
+// (usa localStorage que solo existe en el cliente)
+const LanguageSelector = dynamic(
+  () => import('../LanguageSelector').then(mod => ({ default: mod.LanguageSelector })),
+  { ssr: false }
+);
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -69,6 +76,7 @@ export default function Header() {
 
   const navigation = [
     { name: 'Inicio', href: '/' },
+    { name: 'Dados 3D', href: '/dados' },
     { name: 'Clases', href: '/clases' },
     { name: 'Razas', href: '/razas' },
     { name: 'Habilidades', href: '/habilidades' },
@@ -92,9 +100,14 @@ export default function Header() {
         {/* Logo */}
         <div className="flex lg:flex-1 items-center gap-4">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="font-heading text-lg lg:text-xl font-bold bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-clip-text text-transparent">
-              Compendio Arcano
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Compendio Arcano"
+              width={225}
+              height={50}
+              className="h-10 lg:h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Edition Dropdown - Desktop Only */}

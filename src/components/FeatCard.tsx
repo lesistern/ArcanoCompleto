@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 import { DnDFeat } from '@/lib/types/feat';
-import { getFeatTypeIcon, getFeatTypeColor, getClassIcon, getClassColor } from '@/lib/utils/icons';
+import { getFeatTypeIcon, getFeatTypeColor, getClassColor, extractTextColor } from '@/lib/utils/icons';
+import { getClassIcon } from '@/lib/utils/classIcons';
 
 interface FeatCardProps {
   featData: DnDFeat;
@@ -10,6 +11,7 @@ interface FeatCardProps {
 export default function FeatCard({ featData }: FeatCardProps) {
   const Icon = getFeatTypeIcon(featData.type);
   const typeColor = getFeatTypeColor(featData.type);
+  const iconColor = extractTextColor(typeColor);
 
   return (
     <Link href={`/dotes/${featData.slug}`}>
@@ -17,7 +19,7 @@ export default function FeatCard({ featData }: FeatCardProps) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
-              <Icon className="h-5 w-5 text-class-green" />
+              <Icon className={`h-6 w-6 ${iconColor}`} />
               <CardTitle className="text-lg group-hover:text-gold-500 transition-colors">
                 {featData.name}
               </CardTitle>
@@ -30,13 +32,14 @@ export default function FeatCard({ featData }: FeatCardProps) {
             {featData.bonusFeatClasses && featData.bonusFeatClasses.map((bonusClass, idx) => {
               const ClassIcon = getClassIcon(bonusClass.className);
               const classColor = getClassColor(bonusClass.className);
+              const classIconColor = extractTextColor(classColor);
               return (
                 <span
                   key={idx}
                   className={`text-xs px-2 py-0.5 rounded border ${classColor} flex items-center gap-1`}
                   title={bonusClass.condition ? bonusClass.condition : undefined}
                 >
-                  <ClassIcon className="h-3 w-3" />
+                  <ClassIcon className={`h-3 w-3 ${classIconColor}`} />
                   {bonusClass.className}
                   {bonusClass.level && ` ${bonusClass.level}`}
                 </span>

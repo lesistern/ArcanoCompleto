@@ -1,40 +1,18 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 import { DnDSkill } from '@/lib/types/skill';
-import { Brain, Zap, Users, BookOpen, Hammer, Briefcase, Music } from 'lucide-react';
+import { getSkillCategoryIcon, getSkillCategoryColor, getAbilityColor, getAbilityIcon, extractTextColor } from '@/lib/utils/icons';
 
 interface SkillCardProps {
   skillData: DnDSkill;
 }
 
-const getCategoryIcon = (category: string) => {
-  const iconMap: Record<string, any> = {
-    'Física': Zap,
-    'Mental': Brain,
-    'Social': Users,
-    'Conocimiento': BookOpen,
-    'Oficio': Hammer,
-    'Profesión': Briefcase,
-    'Interpretación': Music,
-  };
-  return iconMap[category] || Brain;
-};
-
-const getAbilityColor = (ability: string) => {
-  const colorMap: Record<string, string> = {
-    'Fuerza': 'text-red-400',
-    'Destreza': 'text-green-400',
-    'Constitución': 'text-orange-400',
-    'Inteligencia': 'text-blue-400',
-    'Sabiduría': 'text-purple-400',
-    'Carisma': 'text-pink-400',
-  };
-  return colorMap[ability] || 'text-dungeon-400';
-};
-
 export default function SkillCard({ skillData }: SkillCardProps) {
-  const Icon = getCategoryIcon(skillData.category);
+  const Icon = getSkillCategoryIcon(skillData.category);
+  const categoryColor = getSkillCategoryColor(skillData.category);
+  const iconColor = extractTextColor(categoryColor);
   const abilityColor = getAbilityColor(skillData.keyAbility);
+  const AbilityIcon = getAbilityIcon(skillData.keyAbility);
 
   return (
     <Link href={`/habilidades/${skillData.slug}`}>
@@ -42,14 +20,15 @@ export default function SkillCard({ skillData }: SkillCardProps) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
-              <Icon className="h-5 w-5 text-class-green" />
+              <Icon className={`h-6 w-6 ${iconColor}`} />
               <CardTitle className="text-lg group-hover:text-gold-500 transition-colors">
                 {skillData.name}
               </CardTitle>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <span className={`text-xs px-2 py-0.5 rounded border bg-dungeon-800/50 border-dungeon-700 font-semibold ${abilityColor}`}>
+            <span className={`text-xs px-2 py-0.5 rounded border bg-dungeon-800/50 border-dungeon-700 font-semibold ${abilityColor} flex items-center gap-1`}>
+              <AbilityIcon className="h-3 w-3" />
               {skillData.keyAbility}
             </span>
             {skillData.trainedOnly && (

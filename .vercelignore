@@ -1,0 +1,11 @@
+# Vercel Ignore - Solo excluir archivos que NO son necesarios para build o runtime
+
+# Datos scrapeados (no necesarios para la app)
+scraped-data/
+
+# Documentación markdown (no afecta el build)
+*.md
+!README.md
+
+# Archivos grandes que no se usan en la app
+*.pdf

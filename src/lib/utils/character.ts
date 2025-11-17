@@ -178,6 +178,15 @@ export function calculatePointBuyCost(scores: AbilityScores): number {
 }
 
 /**
+ * Resultado de tirar 4d6 con dados individuales
+ */
+export interface DiceRollResult {
+  rolls: number[]; // Los 4 dados individuales (ordenados de menor a mayor)
+  total: number;   // Suma de los 3 dados más altos
+  dropped: number; // El dado descartado (el menor)
+}
+
+/**
  * Método de tirada estándar: 4d6, descartar el dado más bajo
  * Retorna un número entre 3 y 18 (más probable 12-13)
  */
@@ -191,6 +200,25 @@ export function rollAbilityScore(): number {
 
   // Sumar los 3 dados más altos
   return rolls[1] + rolls[2] + rolls[3];
+}
+
+/**
+ * Tira 4d6 drop lowest y retorna los dados individuales para animación
+ * @returns Objeto con los 4 dados, el total y el dado descartado
+ */
+export function rollAbilityScoreDetailed(): DiceRollResult {
+  const rolls = [
+    Math.floor(Math.random() * 6) + 1,
+    Math.floor(Math.random() * 6) + 1,
+    Math.floor(Math.random() * 6) + 1,
+    Math.floor(Math.random() * 6) + 1,
+  ].sort((a, b) => a - b);
+
+  return {
+    rolls: rolls,
+    total: rolls[1] + rolls[2] + rolls[3],
+    dropped: rolls[0],
+  };
 }
 
 /**

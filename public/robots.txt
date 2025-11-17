@@ -1,4 +1,4 @@
-# robots.txt para D&D 3.5 Compendium
+# robots.txt para Compendio Arcano
 # Optimizado para SEO y crawling eficiente
 
 # User-agent: * (todos los crawlers)

@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
 import { useCharacterStore } from '@/lib/store/characterStore';
 import { ABILITY_SHORT_NAMES } from '@/lib/utils/character';
 
@@ -52,7 +53,11 @@ const SKILLS = [
   { name: 'Uso de cuerdas', ability: 'dex', trainedOnly: false },
 ];
 
-export default function SkillsSection() {
+interface SkillsSectionProps {
+  onContinue?: () => void;
+}
+
+export default function SkillsSection({ onContinue }: SkillsSectionProps = {}) {
   const { character } = useCharacterStore();
 
   const modifiers = character.abilityModifiers || {
@@ -166,6 +171,19 @@ export default function SkillsSection() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Botón Continuar */}
+      {onContinue && (
+        <div className="flex justify-end">
+          <Button
+            onClick={onContinue}
+            variant="default"
+            size="lg"
+          >
+            Continuar a Equipo →
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import weaponsData from '@/lib/data/3.5/weapons.json';
 import { DnDWeapon } from '@/lib/types/item';
-import { getItemCategoryColor, getWeaponIcon } from '@/lib/utils/icons';
+import { getItemCategoryColor, getWeaponIcon, extractTextColor } from '@/lib/utils/icons';
 
 export default function ArmasPage() {
   const weapons = weaponsData as DnDWeapon[];
@@ -139,6 +139,8 @@ export default function ArmasPage() {
   // Componente para renderizar una tarjeta de arma
   const WeaponCard = ({ weapon }: { weapon: DnDWeapon }) => {
     const Icon = getWeaponIcon(weapon);
+    const categoryColor = getItemCategoryColor(weapon.category);
+    const iconColor = extractTextColor(categoryColor);
     const costText = formatCost(weapon);
 
     // Renderizar tag de tipo de daño
@@ -229,7 +231,7 @@ export default function ArmasPage() {
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
-                <Icon className="h-5 w-5 text-class-green" />
+                <Icon className={`h-6 w-6 ${iconColor}`} />
                 <CardTitle className="text-lg group-hover:text-gold-500 transition-colors">
                   {weapon.name}
                 </CardTitle>

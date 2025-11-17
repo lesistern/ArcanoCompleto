@@ -183,6 +183,9 @@ export interface Character {
   background?: string;
   appearance?: string;
   notes?: string;
+
+  // Avatar del personaje
+  avatarUrl?: string;
 }
 
 /**

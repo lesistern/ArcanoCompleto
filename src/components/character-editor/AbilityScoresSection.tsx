@@ -8,18 +8,26 @@ import {
   AbilityScore,
   ABILITY_NAMES,
   ABILITY_SHORT_NAMES,
-  rollAbilityScore,
   rollAbilityScores,
+  rollAbilityScoreDetailed,
+  DiceRollResult,
   calculatePointBuyCost,
   POINT_BUY_COSTS,
   formatModifier,
-  calculateAbilityModifier,
 } from '@/lib/utils/character';
 import { Dices, RefreshCw } from 'lucide-react';
+import ValidationBadge from './ValidationBadge';
+import HelpTooltip from '@/components/ui/HelpTooltip';
+import DiceRollAnimation from './DiceRollAnimation';
 
 type GenerationMethod = 'manual' | 'roll' | 'pointbuy';
 
-export default function AbilityScoresSection() {
+interface AbilityScoresSectionProps {
+  showHelp?: boolean;
+  onContinue?: () => void;
+}
+
+export default function AbilityScoresSection({ showHelp = false, onContinue }: AbilityScoresSectionProps = {}) {
   const { character, setBaseAbilityScores } = useCharacterStore();
   const [method, setMethod] = useState<GenerationMethod>('pointbuy');
   const [tempScores, setTempScores] = useState({
@@ -30,6 +38,11 @@ export default function AbilityScoresSection() {
     wis: 10,
     cha: 10,
   });
+
+  // Estados para animación de dados
+  const [rollingAbility, setRollingAbility] = useState<AbilityScore | null>(null);
+  const [currentRoll, setCurrentRoll] = useState<DiceRollResult | null>(null);
+  const [isRollingAll, setIsRollingAll] = useState(false);
 
   const baseScores = character.abilityScores?.base || tempScores;
   const racialScores = character.abilityScores?.racial || tempScores;
@@ -45,16 +58,33 @@ export default function AbilityScoresSection() {
   const abilities: AbilityScore[] = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
   const handleRollAll = () => {
+    setIsRollingAll(true);
     const rolled = rollAbilityScores();
     setTempScores(rolled);
     setBaseAbilityScores(rolled);
+
+    // Quitar animación después de 0.6s
+    setTimeout(() => setIsRollingAll(false), 600);
   };
 
   const handleRollSingle = (ability: AbilityScore) => {
-    const rolled = rollAbilityScore();
-    const newScores = { ...tempScores, [ability]: rolled };
-    setTempScores(newScores);
-    setBaseAbilityScores(newScores);
+    // Tirar con detalles para mostrar animación
+    const rollResult = rollAbilityScoreDetailed();
+
+    setRollingAbility(ability);
+    setCurrentRoll(rollResult);
+  };
+
+  const handleRollComplete = () => {
+    if (rollingAbility && currentRoll) {
+      const newScores = { ...tempScores, [rollingAbility]: currentRoll.total };
+      setTempScores(newScores);
+      setBaseAbilityScores(newScores);
+
+      // Limpiar estados
+      setRollingAbility(null);
+      setCurrentRoll(null);
+    }
   };
 
   const handleManualChange = (ability: AbilityScore, value: number) => {
@@ -67,36 +97,63 @@ export default function AbilityScoresSection() {
   const pointBuyCost = calculatePointBuyCost(baseScores);
   const maxPoints = 25;
 
+  // Validación: todas las habilidades deben tener un valor > 0
+  const isAbilitiesValid = Object.values(character.abilityScores?.current || tempScores).every(score => score > 0);
+
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Method Selection */}
       <Card>
         <CardHeader>
-          <CardTitle>Método de Generación</CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle>Método de Generación</CardTitle>
+            <ValidationBadge isValid={isAbilitiesValid} />
+          </div>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            <Button
-              variant={method === 'pointbuy' ? 'primary' : 'secondary'}
-              size="sm"
-              onClick={() => setMethod('pointbuy')}
-            >
-              Point Buy (25 puntos)
-            </Button>
-            <Button
-              variant={method === 'roll' ? 'primary' : 'secondary'}
-              size="sm"
-              onClick={() => setMethod('roll')}
-            >
-              Tirada de Dados (4d6 drop lowest)
-            </Button>
-            <Button
-              variant={method === 'manual' ? 'primary' : 'secondary'}
-              size="sm"
-              onClick={() => setMethod('manual')}
-            >
-              Manual
-            </Button>
+            <div className="relative inline-flex">
+              <Button
+                variant={method === 'pointbuy' ? 'primary' : 'secondary'}
+                size="sm"
+                onClick={() => setMethod('pointbuy')}
+              >
+                Point Buy (25 puntos)
+              </Button>
+              {method === 'pointbuy' && showHelp && (
+                <div className="absolute -bottom-16 left-0 z-10 w-64 px-3 py-2 bg-blue-900 border-2 border-blue-500 rounded-lg text-xs text-blue-100">
+                  Sistema de 25 puntos. Puntuaciones altas cuestan más. Rango: 8-18.
+                </div>
+              )}
+            </div>
+            <div className="relative inline-flex">
+              <Button
+                variant={method === 'roll' ? 'primary' : 'secondary'}
+                size="sm"
+                onClick={() => setMethod('roll')}
+              >
+                Tirada de Dados (4d6 drop lowest)
+              </Button>
+              {method === 'roll' && showHelp && (
+                <div className="absolute -bottom-16 left-0 z-10 w-64 px-3 py-2 bg-blue-900 border-2 border-blue-500 rounded-lg text-xs text-blue-100">
+                  Tira 4 dados de 6 caras y descarta el menor. Resultados aleatorios.
+                </div>
+              )}
+            </div>
+            <div className="relative inline-flex">
+              <Button
+                variant={method === 'manual' ? 'primary' : 'secondary'}
+                size="sm"
+                onClick={() => setMethod('manual')}
+              >
+                Manual
+              </Button>
+              {method === 'manual' && showHelp && (
+                <div className="absolute -bottom-16 left-0 z-10 w-64 px-3 py-2 bg-blue-900 border-2 border-blue-500 rounded-lg text-xs text-blue-100">
+                  Introduce los valores manualmente. Útil para personajes pre-generados.
+                </div>
+              )}
+            </div>
           </div>
 
           {method === 'pointbuy' && (
@@ -123,8 +180,13 @@ export default function AbilityScoresSection() {
 
           {method === 'roll' && (
             <div className="mt-4">
-              <Button variant="primary" size="sm" onClick={handleRollAll}>
-                <Dices className="h-4 w-4 mr-2" />
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={handleRollAll}
+                className={isRollingAll ? 'animate-[shake_0.6s_ease-in-out]' : ''}
+              >
+                <Dices className={`h-4 w-4 mr-2 ${isRollingAll ? 'animate-spin' : ''}`} />
                 Tirar Todas las Habilidades
               </Button>
             </div>
@@ -186,13 +248,26 @@ export default function AbilityScoresSection() {
                     </p>
                   )}
                   {method === 'roll' && (
-                    <button
-                      onClick={() => handleRollSingle(ability)}
-                      className="w-full mt-2 text-xs text-dungeon-400 hover:text-dungeon-200 transition-colors flex items-center justify-center gap-1"
-                    >
-                      <RefreshCw className="h-3 w-3" />
-                      Tirar de nuevo
-                    </button>
+                    <>
+                      {rollingAbility === ability && currentRoll ? (
+                        <div className="mt-3">
+                          <DiceRollAnimation
+                            rolls={currentRoll.rolls}
+                            total={currentRoll.total}
+                            onComplete={handleRollComplete}
+                          />
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleRollSingle(ability)}
+                          disabled={rollingAbility !== null}
+                          className="w-full mt-2 text-xs text-dungeon-400 hover:text-dungeon-200 transition-colors flex items-center justify-center gap-1 disabled:opacity-30 disabled:cursor-not-allowed"
+                        >
+                          <RefreshCw className="h-3 w-3" />
+                          Tirar de nuevo
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
 
@@ -260,6 +335,19 @@ export default function AbilityScoresSection() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Botón Continuar */}
+      {onContinue && (
+        <div className="flex justify-end">
+          <Button
+            onClick={onContinue}
+            variant="primary"
+            size="lg"
+          >
+            Continuar a Combate →
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

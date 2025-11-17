@@ -207,14 +207,21 @@ export default function FeedbackPage() {
           <Card className="mb-6 bg-green-900/20 border-green-500">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-green-400" />
-                <div>
+                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                <div className="flex-1">
                   <p className="text-green-400 font-semibold">
                     ¡Feedback enviado exitosamente!
                   </p>
-                  <p className="text-green-300 text-sm">
+                  <p className="text-green-300 text-sm mb-2">
                     Revisaremos tu reporte lo antes posible.
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => document.getElementById('mis-reportes')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="text-green-400 hover:text-green-300 text-sm font-medium underline transition-colors"
+                  >
+                    📋 Ver en "Mis Reportes" ↓
+                  </button>
                 </div>
               </div>
             </CardContent>
@@ -411,7 +418,7 @@ export default function FeedbackPage() {
         </Card>
 
         {/* My Tickets */}
-        <Card className="bg-dungeon-800 border-dungeon-700">
+        <Card id="mis-reportes" className="bg-dungeon-800 border-dungeon-700 scroll-mt-20">
           <CardHeader>
             <CardTitle className="text-gold-400">Mis Reportes ({myTickets.length})</CardTitle>
             <CardDescription className="text-dungeon-300">

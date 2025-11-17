@@ -2,9 +2,14 @@
 
 import { useCharacterStore } from '@/lib/store/characterStore';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
 import { Shield, Heart, Zap } from 'lucide-react';
 
-export default function CombatStatsSection() {
+interface CombatStatsSectionProps {
+  onContinue?: () => void;
+}
+
+export default function CombatStatsSection({ onContinue }: CombatStatsSectionProps = {}) {
   const { character } = useCharacterStore();
 
   const dexMod = character.abilityModifiers?.dex || 0;
@@ -171,6 +176,19 @@ export default function CombatStatsSection() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Botón Continuar */}
+      {onContinue && (
+        <div className="flex justify-end">
+          <Button
+            onClick={onContinue}
+            variant="default"
+            size="lg"
+          >
+            Continuar a Pericias →
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

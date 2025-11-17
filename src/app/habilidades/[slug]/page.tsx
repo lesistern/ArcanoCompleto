@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Brain, Zap, Users, BookOpen, Hammer, Briefcase, Music, Shield, AlertCircle, Check, X } from 'lucide-react';
+import { Shield, AlertCircle, Check, X } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import skillsData from '@/lib/data/3.5/skills.json';
 import { DnDSkill } from '@/lib/types/skill';
+import { getSkillCategoryIcon, getSkillCategoryColor, getAbilityIcon, getClassColor, extractTextColor } from '@/lib/utils/icons';
+import { getClassIcon } from '@/lib/utils/classIcons';
 
 interface SkillPageProps {
   params: Promise<{
@@ -12,20 +14,8 @@ interface SkillPageProps {
   }>;
 }
 
-const getCategoryIcon = (category: string) => {
-  const iconMap: Record<string, any> = {
-    'Física': Zap,
-    'Mental': Brain,
-    'Social': Users,
-    'Conocimiento': BookOpen,
-    'Oficio': Hammer,
-    'Profesión': Briefcase,
-    'Interpretación': Music,
-  };
-  return iconMap[category] || Brain;
-};
-
-const getAbilityColor = (ability: string) => {
+// Función helper para obtener clases completas de color para badges de habilidad
+const getAbilityBadgeClasses = (ability: string) => {
   const colorMap: Record<string, string> = {
     'Fuerza': 'text-red-400 bg-red-500/20 border-red-500/30',
     'Destreza': 'text-green-400 bg-green-500/20 border-green-500/30',
@@ -35,6 +25,15 @@ const getAbilityColor = (ability: string) => {
     'Carisma': 'text-pink-400 bg-pink-500/20 border-pink-500/30',
   };
   return colorMap[ability] || 'text-dungeon-400 bg-dungeon-800 border-dungeon-700';
+};
+
+// Función helper para convertir nombre de clase a slug
+const getClassSlug = (className: string): string => {
+  return className
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Eliminar acentos
+    .replace(/\s+/g, '-'); // Reemplazar espacios por guiones
 };
 
 export default async function SkillPage({ params }: SkillPageProps) {
@@ -47,8 +46,11 @@ export default async function SkillPage({ params }: SkillPageProps) {
     notFound();
   }
 
-  const Icon = getCategoryIcon(skillData.category);
-  const abilityColorClasses = getAbilityColor(skillData.keyAbility);
+  const Icon = getSkillCategoryIcon(skillData.category);
+  const categoryColor = getSkillCategoryColor(skillData.category);
+  const iconColor = extractTextColor(categoryColor);
+  const abilityColorClasses = getAbilityBadgeClasses(skillData.keyAbility);
+  const AbilityIcon = getAbilityIcon(skillData.keyAbility);
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
@@ -61,14 +63,15 @@ export default async function SkillPage({ params }: SkillPageProps) {
       {/* Header */}
       <div className="border-l-4 border-gold-500 pl-6 mb-12">
         <div className="flex items-center gap-4 mb-3">
-          <Icon className="h-8 w-8 text-class-green" />
+          <Icon className={`h-8 w-8 ${iconColor}`} />
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
             {skillData.name}
           </h1>
         </div>
         <p className="text-lg text-dungeon-300 mb-4">{skillData.shortDescription}</p>
         <div className="flex flex-wrap gap-3 text-sm">
-          <span className={`px-3 py-1 rounded border font-semibold ${abilityColorClasses}`}>
+          <span className={`px-3 py-1 rounded border font-semibold ${abilityColorClasses} flex items-center gap-1.5`}>
+            <AbilityIcon className="h-4 w-4" />
             {skillData.keyAbility}
           </span>
           <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
@@ -246,14 +249,22 @@ export default async function SkillPage({ params }: SkillPageProps) {
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              {skillData.classSkillFor.map((className) => (
-                <span
-                  key={className}
-                  className="text-xs px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700"
-                >
-                  {className}
-                </span>
-              ))}
+              {skillData.classSkillFor.map((className) => {
+                const ClassIcon = getClassIcon(getClassSlug(className));
+                const classColor = getClassColor(className);
+                const iconColor = extractTextColor(classColor);
+
+                return (
+                  <Link
+                    key={className}
+                    href={`/clases/${getClassSlug(className)}`}
+                    className={`text-xs px-3 py-1 rounded border ${classColor} flex items-center gap-1.5 hover:opacity-80 transition-opacity`}
+                  >
+                    <ClassIcon className={`h-3 w-3 ${iconColor}`} />
+                    {className}
+                  </Link>
+                );
+              })}
             </div>
           </CardContent>
         </Card>

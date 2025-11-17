@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 import { DnDClass } from '@/lib/types/class';
-import { getClassIcon } from '@/lib/utils/icons';
+import { getClassIcon } from '@/lib/utils/classIcons';
+import { getDiceIcon } from '@/lib/utils/diceIcons';
+import { getClassColor, extractTextColor } from '@/lib/utils/icons';
 
 interface ClassCardProps {
   classData: DnDClass;
@@ -22,7 +24,10 @@ const getSpellcastingBadge = (classData: DnDClass) => {
 };
 
 export default function ClassCard({ classData }: ClassCardProps) {
-  const Icon = getClassIcon(classData.name);
+  const Icon = getClassIcon(classData.slug);
+  const DiceIcon = getDiceIcon(classData.hitDie);
+  const colorClasses = getClassColor(classData.name);
+  const iconColor = extractTextColor(colorClasses);
 
   return (
     <Link href={`/clases/${classData.slug}`}>
@@ -30,14 +35,15 @@ export default function ClassCard({ classData }: ClassCardProps) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
-              <Icon className="h-5 w-5 text-class-green" />
+              <Icon className={`h-6 w-6 ${iconColor}`} />
               <CardTitle className="text-lg group-hover:text-gold-500 transition-colors">
                 {classData.name}
               </CardTitle>
             </div>
-            <span className="text-xs font-mono text-dungeon-400 bg-dungeon-800 px-2 py-1 rounded">
-              {classData.hitDie}
-            </span>
+            <div className="flex items-center gap-1.5 text-sm font-mono text-dungeon-400 bg-dungeon-800 px-2.5 py-1.5 rounded">
+              <DiceIcon className="h-6 w-6" />
+              <span className="font-semibold">{classData.hitDie}</span>
+            </div>
           </div>
           <div className="flex flex-wrap gap-2">
             {getSpellcastingBadge(classData)}

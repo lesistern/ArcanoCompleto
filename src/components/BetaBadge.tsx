@@ -39,7 +39,10 @@ export function BetaBadge() {
         .single();
 
       if (error) {
-        console.error('Error loading profile:', error);
+        // Solo mostrar error si NO es "not found" (esperado para usuarios sin perfil)
+        if (error.code !== 'PGRST116') {
+          console.error('Error loading profile:', error);
+        }
         setLoading(false);
         return;
       }

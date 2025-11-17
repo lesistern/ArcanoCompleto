@@ -1,38 +1,51 @@
 'use client';
 
 import { useState } from 'react';
-import { Filter } from 'lucide-react';
+import { Filter, ChevronDown } from 'lucide-react';
 import FeatCard from '@/components/FeatCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import featsData from '@/lib/data/3.5/feats.json';
-import { DnDFeat, FeatType, FeatCategory } from '@/lib/types/feat';
+import { DnDFeat, FeatType } from '@/lib/types/feat';
+import { getFeatTypeIcon, getFeatTypeColor, extractTextColor } from '@/lib/utils/icons';
 
 export default function FeatsPage() {
   const feats = featsData as DnDFeat[];
 
   const [selectedType, setSelectedType] = useState<FeatType | 'all'>('all');
-  const [selectedCategory, setSelectedCategory] = useState<FeatCategory | 'all'>('all');
   const [fighterBonusFilter, setFighterBonusFilter] = useState<boolean | 'all'>('all');
   const [hasPrereqsFilter, setHasPrereqsFilter] = useState<boolean | 'all'>('all');
+  const [multipleFilter, setMultipleFilter] = useState<boolean | 'all'>('all');
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   // Filtrar dotes
   const filteredFeats = feats.filter(feat => {
     if (selectedType !== 'all' && feat.type !== selectedType) return false;
-    if (selectedCategory !== 'all' && feat.category !== selectedCategory) return false;
     if (fighterBonusFilter !== 'all' && feat.fighterBonus !== fighterBonusFilter) return false;
     if (hasPrereqsFilter !== 'all') {
       const hasPrereqs = feat.prerequisites && feat.prerequisites.length > 0;
       if (hasPrereqs !== hasPrereqsFilter) return false;
     }
+    if (multipleFilter !== 'all' && feat.multipleAllowed !== multipleFilter) return false;
     return true;
   });
 
-  // Obtener tipos y categorías únicos
-  const types: FeatType[] = ['General', 'Combate', 'Metamagia', 'Creación de Objetos', 'Especial'];
-  const categories: FeatCategory[] = ['Combate', 'Magia', 'Habilidades', 'Creación', 'Racial', 'Varios'];
+  // Obtener tipos únicos
+  const types: FeatType[] = ['General', 'Combate', 'Metamagia', 'Creación de Objetos'];
+
+  // Agrupar dotes filtradas por tipo
+  const featsByType: Record<FeatType, DnDFeat[]> = {
+    'General': filteredFeats.filter(f => f.type === 'General'),
+    'Combate': filteredFeats.filter(f => f.type === 'Combate'),
+    'Metamagia': filteredFeats.filter(f => f.type === 'Metamagia'),
+    'Creación de Objetos': filteredFeats.filter(f => f.type === 'Creación de Objetos'),
+  };
+
+  // Ordenar tipos
+  const typeOrder: FeatType[] = ['General', 'Combate', 'Metamagia', 'Creación de Objetos'];
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl">
+      {/* Header */}
       <div className="border-l-4 border-gold-500 pl-6 mb-12">
         <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100 mb-3">
           Dotes
@@ -42,16 +55,31 @@ export default function FeatsPage() {
         </p>
       </div>
 
-      {/* Filtros */}
-      <Card className="mb-8">
-        <CardHeader>
+      {/* Botón de Filtros Desplegable */}
+      <div className="mb-6">
+        <button
+          onClick={() => setFiltersOpen(!filtersOpen)}
+          className="w-full flex items-center justify-between bg-dungeon-800 border border-dungeon-700 rounded-lg px-4 py-3 text-dungeon-200 hover:border-gold-500 transition-colors"
+        >
           <div className="flex items-center gap-2">
             <Filter className="h-4 w-4 text-gold-500" />
-            <CardTitle className="text-lg">Filtros</CardTitle>
+            <span className="font-semibold">Filtros</span>
+            <span className="text-sm text-dungeon-400">
+              ({filteredFeats.length} de {feats.length})
+            </span>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ChevronDown
+            className={`h-5 w-5 text-gold-500 transition-transform ${
+              filtersOpen ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
+
+        {/* Panel de Filtros Desplegable */}
+        {filtersOpen && (
+          <Card className="mt-4">
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Filtro por Tipo */}
             <div>
               <label className="block text-sm font-semibold text-gold-500 mb-2">
@@ -69,20 +97,19 @@ export default function FeatsPage() {
               </select>
             </div>
 
-            {/* Filtro por Categoría */}
+            {/* Filtro Múltiple */}
             <div>
               <label className="block text-sm font-semibold text-gold-500 mb-2">
-                Categoría
+                Múltiple
               </label>
               <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value as FeatCategory | 'all')}
+                value={multipleFilter === 'all' ? 'all' : String(multipleFilter)}
+                onChange={(e) => setMultipleFilter(e.target.value === 'all' ? 'all' : e.target.value === 'true')}
                 className="w-full bg-dungeon-800 border border-dungeon-700 rounded px-3 py-2 text-sm text-dungeon-200 focus:border-gold-500 focus:outline-none"
               >
                 <option value="all">Todas</option>
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
+                <option value="true">Se puede tomar múltiples veces</option>
+                <option value="false">Solo una vez</option>
               </select>
             </div>
 
@@ -118,26 +145,46 @@ export default function FeatsPage() {
               </select>
             </div>
           </div>
-
-          {/* Contador de resultados */}
-          <div className="mt-4 pt-4 border-t border-dungeon-700">
-            <p className="text-sm text-dungeon-400">
-              Mostrando <span className="text-gold-500 font-semibold">{filteredFeats.length}</span> de {feats.length} dotes
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Grid de Dotes */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-        {filteredFeats.map((featData) => (
-          <FeatCard key={featData.id} featData={featData} />
-        ))}
+            </CardContent>
+          </Card>
+        )}
       </div>
 
-      {filteredFeats.length === 0 && (
+      {/* Dotes por Tipo */}
+      {filteredFeats.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-dungeon-400">No se encontraron dotes con los filtros seleccionados</p>
+        </div>
+      ) : (
+        <div className="space-y-6 mb-16">
+          {typeOrder.map((type) => {
+            const typeFeats = featsByType[type];
+
+            // Solo mostrar tipo si tiene dotes
+            if (typeFeats.length === 0) return null;
+
+            const Icon = getFeatTypeIcon(type);
+            const colorClasses = getFeatTypeColor(type);
+            const iconColor = extractTextColor(colorClasses);
+
+            return (
+              <Card key={type} className="bg-dungeon-800 border-dungeon-700">
+                <CardHeader>
+                  <CardTitle className={`flex items-center gap-2 ${iconColor}`}>
+                    <Icon className="h-5 w-5" />
+                    {type} ({typeFeats.length})
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {typeFeats.map((featData) => (
+                      <FeatCard key={featData.id} featData={featData} />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       )}
 

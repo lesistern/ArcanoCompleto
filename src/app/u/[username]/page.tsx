@@ -8,30 +8,49 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import {
   Award,
   Trophy,
-  CheckCircle2,
-  Eye,
   EyeOff,
   ArrowLeft,
   Calendar,
   TrendingUp,
-  MessageSquare
+  MessageSquare,
+  MapPin,
+  Globe,
+  Twitter
 } from 'lucide-react';
+import { ProfileAvatar } from '@/components/profile/ProfileAvatar';
+import { XPProgressBar } from '@/components/profile/XPProgressBar';
+import { ProfileTabs } from '@/components/profile/ProfileTabs';
+import { AchievementBadge } from '@/components/profile/AchievementBadge';
+import { ActivityTimeline } from '@/components/profile/ActivityTimeline';
 
 interface ProfileData {
   id: string;
   username_slug: string;
   display_name: string | null;
-  tier_code: string;
-  karma_points: number;
+  tier: string;
+  experience_points: number;
+  level: number;
+  level_title: string;
+  level_tier: string;
   reports_submitted: number;
   reports_resolved: number;
   total_votes_received: number;
   profile_hidden: boolean;
   created_at: string;
-  success_rate: number;
+  resolution_rate: number;
   avg_votes_per_report: number;
-  karma_rank: number;
+  global_rank: number;
   can_view: boolean;
+  // Nuevos campos
+  avatar_url: string | null;
+  bio: string | null;
+  location: string | null;
+  twitter_url: string | null;
+  website_url: string | null;
+  show_email: boolean;
+  show_location: boolean;
+  show_characters: boolean;
+  show_activity: boolean;
 }
 
 interface UserReport {
@@ -42,6 +61,25 @@ interface UserReport {
   status: string;
   created_at: string;
   vote_count: number;
+}
+
+interface Achievement {
+  achievement_id: string;
+  category: string;
+  name: string;
+  description: string;
+  icon: string;
+  xp_reward: number;
+  unlocked_at: string | null;
+  is_unlocked: boolean;
+}
+
+interface Activity {
+  id: string;
+  activity_type: string;
+  activity_data: any;
+  xp_earned: number;
+  created_at: string;
 }
 
 const TIER_BADGES = {
@@ -71,12 +109,21 @@ const STATUS_LABELS: Record<string, string> = {
   wont_fix: 'No se arreglará',
 };
 
+const TIER_COLORS: Record<string, string> = {
+  Novato: 'text-gray-400',
+  Héroe: 'text-blue-400',
+  Épico: 'text-purple-400',
+  Legendario: 'text-orange-400',
+};
+
 export default function UserProfilePage() {
   const params = useParams();
   const username = params.username as string;
 
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [reports, setReports] = useState<UserReport[]>([]);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -116,6 +163,14 @@ export default function UserProfilePage() {
       }
 
       setProfile(profileData);
+
+      // Cargar achievements y actividad si el perfil es visible
+      if (profileData.id) {
+        loadAchievements(profileData.id);
+        if (profileData.show_activity) {
+          loadActivity(profileData.id);
+        }
+      }
     } catch (err) {
       console.error('Error loading profile:', err);
       setError('Error al cargar el perfil');
@@ -146,10 +201,48 @@ export default function UserProfilePage() {
     }
   }
 
+  async function loadAchievements(userId: string) {
+    try {
+      const { data, error } = await supabase
+        .rpc('get_user_achievements', {
+          p_user_id: userId
+        });
+
+      if (error) {
+        console.error('Error loading achievements:', error);
+        return;
+      }
+
+      setAchievements(data || []);
+    } catch (err) {
+      console.error('Error loading achievements:', err);
+    }
+  }
+
+  async function loadActivity(userId: string) {
+    try {
+      const { data, error } = await supabase
+        .rpc('get_user_activity_timeline', {
+          p_user_id: userId,
+          p_limit: 20,
+          p_offset: 0
+        });
+
+      if (error) {
+        console.error('Error loading activity:', error);
+        return;
+      }
+
+      setActivities(data || []);
+    } catch (err) {
+      console.error('Error loading activity:', err);
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-dungeon-950 py-8 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center py-12 text-dungeon-400">
             Cargando perfil...
           </div>
@@ -161,7 +254,7 @@ export default function UserProfilePage() {
   if (error) {
     return (
       <div className="min-h-screen bg-dungeon-950 py-8 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <Link
             href="/leaderboard"
             className="inline-flex items-center gap-2 text-gold-400 hover:text-gold-300 mb-6"
@@ -190,134 +283,601 @@ export default function UserProfilePage() {
 
   if (!profile) return null;
 
-  const tierInfo = TIER_BADGES[profile.tier_code as keyof typeof TIER_BADGES] || TIER_BADGES.user;
+  const tierInfo = TIER_BADGES[profile.tier as keyof typeof TIER_BADGES] || TIER_BADGES.user;
+
+  // Calcular XP para siguiente nivel
+  const nextLevelXp = getNextLevelXp(profile.level);
+  const currentLevelXp = getCurrentLevelXp(profile.level);
+
+  const unlockedAchievements = achievements.filter(a => a.is_unlocked);
 
   return (
-    <div className="min-h-screen bg-dungeon-950 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-dungeon-950 py-4 md:py-8 px-3 md:px-4">
+      <div className="max-w-6xl mx-auto">
         {/* Back to Leaderboard */}
         <Link
           href="/leaderboard"
-          className="inline-flex items-center gap-2 text-gold-400 hover:text-gold-300 mb-6"
+          className="inline-flex items-center gap-2 text-gold-400 hover:text-gold-300 mb-4 md:mb-6 text-sm md:text-base"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver al leaderboard
         </Link>
 
         {/* Profile Header */}
-        <Card className="mb-6 bg-gradient-to-r from-gold-900/20 to-dungeon-800 border-gold-500/30">
-          <CardContent className="p-6">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-3xl font-bold text-gold-400">
+        <Card className="mb-6 bg-gradient-to-br from-gold-900/30 via-dungeon-800 to-dungeon-900 border-gold-500/40 shadow-2xl shadow-gold-900/20 overflow-hidden relative">
+          {/* Efecto de brillo de fondo */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gold-500/5 to-transparent pointer-events-none -z-10" />
+
+          <CardContent className="p-4 md:p-8 relative z-10">
+            {/* Layout Mobile First: Vertical en móvil, horizontal en desktop */}
+            <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-8 mb-6 md:mb-8">
+              {/* Avatar - Centrado en móvil */}
+              <div className="relative flex-shrink-0 mx-auto md:mx-0">
+                <ProfileAvatar
+                  userId={profile.id}
+                  avatarUrl={profile.avatar_url}
+                  displayName={profile.display_name}
+                  size="xl"
+                  editable={false}
+                />
+              </div>
+
+              {/* Info principal */}
+              <div className="flex-1 min-w-0 text-center md:text-left">
+                <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                  <h1 className="text-2xl md:text-4xl font-bold text-gold-300">
                     {profile.display_name || `Usuario ${profile.username_slug}`}
                   </h1>
-                  <span className={`text-sm px-3 py-1 rounded border ${tierInfo.color}`}>
-                    {tierInfo.label}
-                  </span>
-                  {profile.profile_hidden && (
-                    <span className="text-xs px-2 py-1 rounded border border-dungeon-600 bg-dungeon-800 text-dungeon-400 flex items-center gap-1">
-                      <EyeOff className="w-3 h-3" />
-                      Perfil oculto
+                  <div className="flex items-center justify-center md:justify-start gap-2 flex-wrap">
+                    <span className={`text-xs md:text-sm px-3 md:px-4 py-1 md:py-1.5 rounded-full border font-semibold ${tierInfo.color} shadow-lg`}>
+                      {tierInfo.label}
                     </span>
+                    {profile.profile_hidden && (
+                      <span className="text-xs px-3 py-1.5 rounded-full border border-dungeon-600 bg-dungeon-800/80 text-dungeon-400 flex items-center gap-1 backdrop-blur-sm">
+                        <EyeOff className="w-3 h-3" />
+                        Perfil oculto
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="text-sm md:text-base text-gold-500/70 mb-3 md:mb-4 font-medium">
+                  @{profile.username_slug}
+                </div>
+
+                {/* Bio */}
+                {profile.bio && (
+                  <p className="text-dungeon-200 mb-3 md:mb-4 max-w-2xl text-sm md:text-base leading-relaxed">
+                    {profile.bio}
+                  </p>
+                )}
+
+                {/* Metadata */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 md:gap-4">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dungeon-800/50 border border-dungeon-700/50 text-sm text-dungeon-300">
+                    <Calendar className="w-4 h-4 text-gold-400" />
+                    Miembro desde {new Date(profile.created_at).toLocaleDateString('es-ES', {
+                      year: 'numeric',
+                      month: 'long'
+                    })}
+                  </div>
+
+                  {profile.show_location && profile.location && (
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dungeon-800/50 border border-dungeon-700/50 text-sm text-dungeon-300">
+                      <MapPin className="w-4 h-4 text-blue-400" />
+                      {profile.location}
+                    </div>
+                  )}
+
+                  {/* Enlaces sociales */}
+                  {profile.twitter_url && (
+                    <a
+                      href={profile.twitter_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dungeon-800/50 border border-dungeon-700/50 text-sm text-dungeon-300 hover:bg-dungeon-700/50 hover:border-blue-500/50 hover:text-blue-400 transition-all"
+                    >
+                      <Twitter className="w-4 h-4" />
+                      Twitter
+                    </a>
+                  )}
+
+                  {profile.website_url && (
+                    <a
+                      href={profile.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dungeon-800/50 border border-dungeon-700/50 text-sm text-dungeon-300 hover:bg-dungeon-700/50 hover:border-green-500/50 hover:text-green-400 transition-all"
+                    >
+                      <Globe className="w-4 h-4" />
+                      Sitio web
+                    </a>
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-dungeon-400">
-                  <Calendar className="w-4 h-4" />
-                  Miembro desde {new Date(profile.created_at).toLocaleDateString('es-ES', {
-                    year: 'numeric',
-                    month: 'long'
-                  })}
-                </div>
               </div>
 
-              <div className="flex items-center gap-3 px-6 py-3 bg-gold-500/10 border border-gold-500/30 rounded-lg">
-                <Trophy className="w-8 h-8 text-gold-400" />
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-gold-400">{profile.karma_points}</div>
-                  <div className="text-xs text-dungeon-400">karma</div>
-                  <div className="text-xs text-dungeon-500">Ranking #{profile.karma_rank}</div>
+              {/* Nivel y XP - Card mejorada - Full width en móvil */}
+              <div className="relative w-full md:w-auto md:flex-shrink-0">
+                <div className="flex items-center gap-3 md:gap-4 px-4 md:px-8 py-4 md:py-6 bg-gradient-to-br from-gold-900/40 to-orange-900/40 border-2 border-gold-500/40 rounded-xl backdrop-blur-sm">
+                  <Trophy className="w-10 h-10 md:w-12 md:h-12 text-gold-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]" />
+                  <div className="flex-1 md:text-right">
+                    <div className="text-2xl md:text-4xl font-bold text-gold-300 mb-1">
+                      {profile.experience_points.toLocaleString()}
+                    </div>
+                    <div className="text-xs text-gold-400/80 font-semibold mb-1 md:mb-2">EXP</div>
+                    <div className={`text-xs md:text-sm font-bold ${TIER_COLORS[profile.level_tier] || 'text-gold-400'} mb-1`}>
+                      Nivel {profile.level} · {profile.level_title}
+                    </div>
+                    <div className="text-xs text-dungeon-400 flex items-center gap-1 md:justify-end">
+                      <Award className="w-3 h-3" />
+                      Ranking #{profile.global_rank}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-dungeon-700">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">{profile.reports_submitted}</div>
-                <div className="text-sm text-dungeon-400">Reportes enviados</div>
+            {/* Barra de progreso de nivel */}
+            <div className="mb-6 md:mb-8">
+              <XPProgressBar
+                currentXp={profile.experience_points}
+                currentLevelXp={currentLevelXp}
+                nextLevelXp={nextLevelXp}
+                level={profile.level}
+              />
+            </div>
+
+            {/* Stats Grid - Cards individuales */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-4 md:pt-6 border-t border-gold-500/20">
+              <div className="p-3 md:p-4 rounded-lg bg-dungeon-800/50 border border-dungeon-700 hover:border-blue-500/50 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-1">{profile.reports_submitted}</div>
+                <div className="text-xs md:text-sm text-dungeon-300 font-medium">Reportes enviados</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-400">{profile.reports_resolved}</div>
-                <div className="text-sm text-dungeon-400">Resueltos</div>
-                <div className="text-xs text-dungeon-500">{profile.success_rate}% éxito</div>
+
+              <div className="p-3 md:p-4 rounded-lg bg-dungeon-800/50 border border-dungeon-700 hover:border-green-500/50 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-green-400 mb-1">{profile.reports_resolved}</div>
+                <div className="text-xs md:text-sm text-dungeon-300 font-medium">Resueltos</div>
+                <div className="text-xs text-green-400/70 mt-1">{profile.resolution_rate}% resolución</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-400">{profile.total_votes_received}</div>
-                <div className="text-sm text-dungeon-400">Votos recibidos</div>
+
+              <div className="p-3 md:p-4 rounded-lg bg-dungeon-800/50 border border-dungeon-700 hover:border-purple-500/50 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-1">{profile.total_votes_received}</div>
+                <div className="text-xs md:text-sm text-dungeon-300 font-medium">Votos recibidos</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400">{profile.avg_votes_per_report}</div>
-                <div className="text-sm text-dungeon-400">Votos por reporte</div>
+
+              <div className="p-3 md:p-4 rounded-lg bg-dungeon-800/50 border border-dungeon-700 hover:border-orange-500/50 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-orange-400 mb-1">{profile.avg_votes_per_report}</div>
+                <div className="text-xs md:text-sm text-dungeon-300 font-medium">Votos por reporte</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Recent Reports */}
-        <Card className="bg-dungeon-800 border-dungeon-700">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-gold-400">
-              <MessageSquare className="w-5 h-5" />
-              Reportes recientes
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {reports.length === 0 ? (
-              <div className="text-center py-8 text-dungeon-400">
-                Este usuario aún no ha enviado reportes públicos
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {reports.map((report) => (
-                  <Link
-                    key={report.id}
-                    href={`/reportes-beta`}
-                    className="block p-4 bg-dungeon-900/50 border border-dungeon-700 rounded-lg hover:border-dungeon-600 transition-colors"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-dungeon-100 font-semibold mb-1 truncate">
+        {/* Mobile: Todo visible en scroll vertical */}
+        <div className="md:hidden space-y-4">
+          {/* Achievements desbloqueados */}
+          {unlockedAchievements.length > 0 && (
+            <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-gold-500/30 shadow-lg">
+              <CardHeader className="relative z-10">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Award className="w-4 h-4 text-gold-400" />
+                  <span className="text-gold-400">
+                    Achievements ({unlockedAchievements.length}/{achievements.length})
+                  </span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <div className="grid grid-cols-2 gap-3">
+                  {unlockedAchievements.slice(0, 4).map((achievement, index) => (
+                    <div
+                      key={achievement.achievement_id}
+                      style={{
+                        animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both`
+                      }}
+                    >
+                      <AchievementBadge
+                        achievement={{
+                          id: achievement.achievement_id,
+                          name: achievement.name,
+                          description: achievement.description,
+                          icon: achievement.icon,
+                          category: achievement.category,
+                          unlocked_at: achievement.unlocked_at,
+                          xp_reward: achievement.xp_reward
+                        }}
+                        locked={false}
+                        size="sm"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Actividad reciente - Mobile */}
+          {profile.show_activity && activities.length > 0 && (
+            <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-blue-500/30 shadow-lg">
+              <CardHeader className="relative z-10">
+                <CardTitle className="text-gold-400 text-base">Actividad reciente</CardTitle>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <ActivityTimeline activities={activities} limit={3} />
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Reportes recientes - Mobile */}
+          {reports.length > 0 && (
+            <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-purple-500/30 shadow-lg">
+              <CardHeader className="relative z-10">
+                <CardTitle className="flex items-center gap-2 text-gold-400 text-base">
+                  <MessageSquare className="w-4 h-4" />
+                  Reportes recientes
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <div className="space-y-2">
+                  {reports.slice(0, 3).map((report, index) => (
+                    <Link
+                      key={report.id}
+                      href={`/reportes-beta`}
+                      className="block"
+                      style={{
+                        animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both`
+                      }}
+                    >
+                      <div className="p-3 bg-gradient-to-br from-dungeon-900/80 to-dungeon-950/80 border border-dungeon-700/50 rounded-lg hover:border-dungeon-600 transition-all">
+                        <h3 className="text-sm text-dungeon-100 font-semibold mb-1 truncate">
                           {report.title}
                         </h3>
-                        <div className="flex items-center gap-3 text-xs text-dungeon-400">
-                          <span className="capitalize">{CATEGORY_LABELS[report.category]}</span>
-                          <span>•</span>
-                          <span className={
-                            report.status === 'resolved' ? 'text-green-400' :
-                            report.status === 'in_progress' ? 'text-blue-400' :
-                            'text-dungeon-400'
-                          }>
+                        <div className="flex items-center gap-2 text-xs text-dungeon-400">
+                          <span className="px-2 py-0.5 rounded bg-dungeon-800/50 border border-dungeon-700/50">
+                            {CATEGORY_LABELS[report.category]}
+                          </span>
+                          <span className={`px-2 py-0.5 rounded border ${
+                            report.status === 'resolved' ? 'text-green-400 bg-green-500/10 border-green-500/30' :
+                            report.status === 'in_progress' ? 'text-blue-400 bg-blue-500/10 border-blue-500/30' :
+                            'text-dungeon-400 bg-dungeon-800/50 border-dungeon-700/50'
+                          }`}>
                             {STATUS_LABELS[report.status]}
                           </span>
-                          <span>•</span>
-                          <span>{new Date(report.created_at).toLocaleDateString('es-ES')}</span>
                         </div>
                       </div>
+                    </Link>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
-                      <div className="flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/30 rounded">
-                        <TrendingUp className="w-4 h-4 text-blue-400" />
-                        <span className="text-sm font-semibold text-blue-400">{report.vote_count}</span>
+          {/* Stats - Mobile */}
+          <Card className="bg-gradient-to-br from-gold-900/30 to-dungeon-900 border-gold-500/40 shadow-lg">
+            <CardHeader className="relative z-10">
+              <CardTitle className="text-gold-400 text-base">Estadísticas</CardTitle>
+            </CardHeader>
+            <CardContent className="relative z-10">
+              <div className="space-y-2">
+                <div className="flex justify-between items-center p-2 rounded-lg bg-gradient-to-br from-gold-900/20 to-dungeon-800/50 border border-gold-500/20">
+                  <span className="text-xs text-dungeon-300 font-medium">Achievements</span>
+                  <span className="text-lg font-bold text-gold-400">
+                    {unlockedAchievements.length}/{achievements.length}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-2 rounded-lg bg-gradient-to-br from-green-900/20 to-dungeon-800/50 border border-green-500/20">
+                  <span className="text-xs text-dungeon-300 font-medium">Tasa de resolución</span>
+                  <span className="text-lg font-bold text-green-400">
+                    {profile.resolution_rate}%
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-2 rounded-lg bg-gradient-to-br from-blue-900/20 to-dungeon-800/50 border border-blue-500/20">
+                  <span className="text-xs text-dungeon-300 font-medium">Votos totales</span>
+                  <span className="text-lg font-bold text-blue-400">
+                    {profile.total_votes_received}
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Desktop: Tabs System */}
+        <div className="hidden md:block">
+          <ProfileTabs>
+            {{
+              resumen: (
+                <div className="space-y-6">
+                  {/* Achievements desbloqueados */}
+                  {unlockedAchievements.length > 0 && (
+                  <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-gold-500/30 shadow-lg">
+                    <CardHeader className="relative z-10">
+                      <CardTitle className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Award className="w-5 h-5 text-gold-400" />
+                          <span className="text-gold-400">
+                            Achievements ({unlockedAchievements.length}/{achievements.length})
+                          </span>
+                        </div>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="relative z-10">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {unlockedAchievements.slice(0, 8).map((achievement, index) => (
+                          <div
+                            key={achievement.achievement_id}
+                            style={{
+                              animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both`
+                            }}
+                          >
+                            <AchievementBadge
+                              achievement={{
+                                id: achievement.achievement_id,
+                                name: achievement.name,
+                                description: achievement.description,
+                                icon: achievement.icon,
+                                category: achievement.category,
+                                unlocked_at: achievement.unlocked_at,
+                                xp_reward: achievement.xp_reward
+                              }}
+                              locked={false}
+                              size="sm"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Actividad reciente */}
+                {profile.show_activity && activities.length > 0 && (
+                  <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-blue-500/30 shadow-lg">
+                    <CardHeader className="relative z-10">
+                      <CardTitle className="text-gold-400">Actividad reciente</CardTitle>
+                    </CardHeader>
+                    <CardContent className="relative z-10">
+                      <ActivityTimeline activities={activities} limit={5} />
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Reportes recientes */}
+                <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-purple-500/30 shadow-lg">
+                  <CardHeader className="relative z-10">
+                    <CardTitle className="flex items-center gap-2 text-gold-400">
+                      <MessageSquare className="w-5 h-5" />
+                      Reportes recientes
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="relative z-10">
+                    {reports.length === 0 ? (
+                      <div className="text-center py-8 text-dungeon-400">
+                        Este usuario aún no ha enviado reportes públicos
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {reports.slice(0, 5).map((report, index) => (
+                          <Link
+                            key={report.id}
+                            href={`/reportes-beta`}
+                            className="block"
+                            style={{
+                              animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both`
+                            }}
+                          >
+                            <div className="p-4 bg-gradient-to-br from-dungeon-900/80 to-dungeon-950/80 border border-dungeon-700/50 rounded-lg hover:border-dungeon-600 hover:shadow-lg transition-all duration-300 backdrop-blur-sm">
+                              <div className="flex items-start justify-between gap-4">
+                                <div className="flex-1 min-w-0">
+                                  <h3 className="text-dungeon-100 font-semibold mb-1 truncate group-hover:text-gold-300 transition-colors">
+                                    {report.title}
+                                  </h3>
+                                  <div className="flex items-center gap-3 text-xs text-dungeon-400">
+                                    <span className="capitalize px-2 py-0.5 rounded bg-dungeon-800/50 border border-dungeon-700/50">
+                                      {CATEGORY_LABELS[report.category]}
+                                    </span>
+                                    <span className={`px-2 py-0.5 rounded border ${
+                                      report.status === 'resolved' ? 'text-green-400 bg-green-500/10 border-green-500/30' :
+                                      report.status === 'in_progress' ? 'text-blue-400 bg-blue-500/10 border-blue-500/30' :
+                                      'text-dungeon-400 bg-dungeon-800/50 border-dungeon-700/50'
+                                    }`}>
+                                      {STATUS_LABELS[report.status]}
+                                    </span>
+                                    <span className="text-dungeon-500">{new Date(report.created_at).toLocaleDateString('es-ES')}</span>
+                                  </div>
+                                </div>
+
+                                <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                                  <TrendingUp className="w-4 h-4 text-blue-400" />
+                                  <span className="text-sm font-semibold text-blue-400">{report.vote_count}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+            ),
+
+            actividad: (
+              <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-blue-500/30 shadow-lg">
+                <CardContent className="p-6 relative z-10">
+                  {profile.show_activity ? (
+                    activities.length > 0 ? (
+                      <ActivityTimeline activities={activities} />
+                    ) : (
+                      <div className="text-center py-12 text-dungeon-400">
+                        No hay actividad registrada aún
+                      </div>
+                    )
+                  ) : (
+                    <div className="text-center py-12 text-dungeon-400">
+                      <EyeOff className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                      <p>El usuario ha ocultado su actividad</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ),
+
+            personajes: (
+              <Card className="bg-dungeon-800 border-dungeon-700">
+                <CardContent className="p-6 relative z-10">
+                  {profile.show_characters ? (
+                    <div className="text-center py-12 text-dungeon-400">
+                      Sistema de personajes próximamente
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 text-dungeon-400">
+                      <EyeOff className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                      <p>El usuario ha ocultado sus personajes</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ),
+
+            reportes: (
+              <Card className="bg-gradient-to-br from-dungeon-800 to-dungeon-900 border-purple-500/30 shadow-lg">
+                <CardContent className="p-6 relative z-10">
+                  {reports.length === 0 ? (
+                    <div className="text-center py-12 text-dungeon-400">
+                      Este usuario aún no ha enviado reportes públicos
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {reports.map((report, index) => (
+                        <Link
+                          key={report.id}
+                          href={`/reportes-beta`}
+                          className="block"
+                          style={{
+                            animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both`
+                          }}
+                        >
+                          <div className="p-4 bg-gradient-to-br from-dungeon-900/80 to-dungeon-950/80 border border-dungeon-700/50 rounded-lg hover:border-dungeon-600 hover:shadow-lg transition-all duration-300 backdrop-blur-sm">
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-dungeon-100 font-semibold mb-1 truncate group-hover:text-gold-300 transition-colors">
+                                  {report.title}
+                                </h3>
+                                <div className="flex items-center gap-3 text-xs text-dungeon-400">
+                                  <span className="capitalize px-2 py-0.5 rounded bg-dungeon-800/50 border border-dungeon-700/50">
+                                    {CATEGORY_LABELS[report.category]}
+                                  </span>
+                                  <span className={`px-2 py-0.5 rounded border ${
+                                    report.status === 'resolved' ? 'text-green-400 bg-green-500/10 border-green-500/30' :
+                                    report.status === 'in_progress' ? 'text-blue-400 bg-blue-500/10 border-blue-500/30' :
+                                    'text-dungeon-400 bg-dungeon-800/50 border-dungeon-700/50'
+                                  }`}>
+                                    {STATUS_LABELS[report.status]}
+                                  </span>
+                                  <span className="text-dungeon-500">{new Date(report.created_at).toLocaleDateString('es-ES')}</span>
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                                <TrendingUp className="w-4 h-4 text-blue-400" />
+                                <span className="text-sm font-semibold text-blue-400">{report.vote_count}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ),
+
+            stats: (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-gradient-to-br from-gold-900/30 to-dungeon-900 border-gold-500/40 shadow-lg">
+                  <CardHeader className="relative z-10">
+                    <CardTitle className="text-gold-400">
+                      Achievements
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="relative z-10">
+                    <div className="space-y-3 md:space-y-5">
+                      <div className="flex justify-between items-center p-3 md:p-4 rounded-lg bg-gradient-to-br from-gold-900/20 to-dungeon-800/50 border border-gold-500/20 hover:border-gold-500/40 transition-all">
+                        <span className="text-xs md:text-sm text-dungeon-300 font-medium">Total desbloqueados</span>
+                        <span className="text-2xl md:text-3xl font-bold text-gold-400">
+                          {unlockedAchievements.length}/{achievements.length}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 md:p-4 rounded-lg bg-gradient-to-br from-green-900/20 to-dungeon-800/50 border border-green-500/20 hover:border-green-500/40 transition-all">
+                        <span className="text-xs md:text-sm text-dungeon-300 font-medium">Porcentaje</span>
+                        <span className="text-2xl md:text-3xl font-bold text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]">
+                          {achievements.length > 0
+                            ? Math.round((unlockedAchievements.length / achievements.length) * 100)
+                            : 0}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 md:p-4 rounded-lg bg-gradient-to-br from-purple-900/20 to-dungeon-800/50 border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                        <span className="text-xs md:text-sm text-dungeon-300 font-medium">XP ganada</span>
+                        <span className="text-2xl md:text-3xl font-bold text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.5)]">
+                          {unlockedAchievements.reduce((sum, a) => sum + a.xp_reward, 0).toLocaleString()}
+                        </span>
                       </div>
                     </div>
-                  </Link>
-                ))}
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-br from-blue-900/30 to-dungeon-900 border-blue-500/40 shadow-lg">
+                  <CardHeader className="relative z-10">
+                    <CardTitle className="text-blue-400">
+                      Contribuciones
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="relative z-10">
+                    <div className="space-y-3 md:space-y-5">
+                      <div className="flex justify-between items-center p-3 md:p-4 rounded-lg bg-gradient-to-br from-green-900/20 to-dungeon-800/50 border border-green-500/20 hover:border-green-500/40 transition-all">
+                        <span className="text-xs md:text-sm text-dungeon-300 font-medium">Tasa de resolución</span>
+                        <span className="text-2xl md:text-3xl font-bold text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]">
+                          {profile.resolution_rate}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 md:p-4 rounded-lg bg-gradient-to-br from-blue-900/20 to-dungeon-800/50 border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                        <span className="text-xs md:text-sm text-dungeon-300 font-medium">Votos promedio</span>
+                        <span className="text-2xl md:text-3xl font-bold text-blue-400 drop-shadow-[0_0_10px_rgba(96,165,250,0.5)]">
+                          {profile.avg_votes_per_report}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 md:p-4 rounded-lg bg-gradient-to-br from-purple-900/20 to-dungeon-800/50 border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                        <span className="text-xs md:text-sm text-dungeon-300 font-medium">Total de votos</span>
+                        <span className="text-2xl md:text-3xl font-bold text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.5)]">
+                          {profile.total_votes_received}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-            )}
-          </CardContent>
-        </Card>
+            )
+          }}
+        </ProfileTabs>
+        </div>
       </div>
     </div>
   );
+}
+
+// Funciones auxiliares para calcular XP de niveles
+function getCurrentLevelXp(level: number): number {
+  const levels = [
+    0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000,
+    85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000
+  ];
+  return levels[level - 1] || 0;
+}
+
+function getNextLevelXp(level: number): number {
+  const levels = [
+    0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000,
+    85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, 500000
+  ];
+  return levels[level] || 500000;
 }

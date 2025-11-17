@@ -1,18 +1,58 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Save, Download, Upload } from 'lucide-react';
+import { ArrowLeft, Save, Download, Upload, Check, Loader2, AlertCircle, FolderOpen, HelpCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { useCharacterStore } from '@/lib/store/characterStore';
 import BasicInfoSection from '@/components/character-editor/BasicInfoSection';
 import AbilityScoresSection from '@/components/character-editor/AbilityScoresSection';
 import CombatStatsSection from '@/components/character-editor/CombatStatsSection';
 import SkillsSection from '@/components/character-editor/SkillsSection';
+import EquipmentSection from '@/components/character-editor/EquipmentSection';
+import LoadCharacterModal from '@/components/character-editor/LoadCharacterModal';
+import ProgressSidebar from '@/components/character-editor/ProgressSidebar';
+import AutoSaveIndicator from '@/components/character-editor/AutoSaveIndicator';
 
 export default function CharacterEditorPage() {
-  const { character, resetCharacter } = useCharacterStore();
+  const {
+    character,
+    resetCharacter,
+    saveToSupabase,
+    autoSave,
+    isSaving,
+    lastSaved,
+    saveError
+  } = useCharacterStore();
   const [activeTab, setActiveTab] = useState<'basic' | 'abilities' | 'combat' | 'skills' | 'feats' | 'equipment'>('basic');
+  const [isLoadModalOpen, setIsLoadModalOpen] = useState(false);
+  const [showHelp, setShowHelp] = useState(true); // Modo ayuda activo por defecto
+
+  // ========================================================================
+  // AUTO-GUARDADO CADA 30 SEGUNDOS
+  // ========================================================================
+  useEffect(() => {
+    const interval = setInterval(() => {
+      autoSave();
+    }, 30000); // 30 segundos
+
+    return () => clearInterval(interval);
+  }, [autoSave]);
+
+  // ========================================================================
+  // FUNCIONES DE GUARDADO
+  // ========================================================================
+
+  /**
+   * Maneja el guardado manual del personaje
+   */
+  const handleSaveCharacter = async () => {
+    try {
+      await saveToSupabase();
+    } catch (error) {
+      console.error('Error al guardar:', error);
+    }
+  };
 
   const tabs = [
     { id: 'basic', label: 'Información Básica', icon: '📋' },
@@ -55,14 +95,60 @@ export default function CharacterEditorPage() {
     <div className="min-h-screen bg-dungeon-950">
       {/* Header */}
       <div className="border-b border-dungeon-700 bg-dungeon-900/50 backdrop-blur">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-heading font-bold text-dungeon-100">
-              Editor de Personajes
+        <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2">
+            {/* Título responsive */}
+            <h1 className="text-lg sm:text-2xl font-heading font-bold text-dungeon-100 truncate">
+              <span className="hidden sm:inline">Editor de Personajes</span>
+              <span className="sm:hidden">Editor</span>
             </h1>
 
-            <div className="flex items-center gap-2">
-              <label htmlFor="import-character" className="cursor-pointer">
+            <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-end">
+              {/* Estado de guardado - siempre visible */}
+              <div className="hidden sm:block">
+                <AutoSaveIndicator
+                  isSaving={isSaving}
+                  lastSaved={lastSaved}
+                  saveError={saveError}
+                />
+              </div>
+
+              {/* Toggle de ayuda - solo desktop */}
+              <Button
+                variant={showHelp ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setShowHelp(!showHelp)}
+                title={showHelp ? 'Ocultar ayuda' : 'Mostrar ayuda'}
+                className="hidden md:flex"
+              >
+                <HelpCircle className="h-4 w-4 md:mr-2" />
+                <span className="hidden md:inline">{showHelp ? 'Ayuda activa' : 'Ayuda'}</span>
+              </Button>
+
+              {/* Botón de ayuda mobile (solo icono) */}
+              <Button
+                variant={showHelp ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setShowHelp(!showHelp)}
+                title={showHelp ? 'Ocultar ayuda' : 'Mostrar ayuda'}
+                className="md:hidden"
+              >
+                <HelpCircle className="h-4 w-4" />
+              </Button>
+
+              {/* Cargar - con texto en desktop */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsLoadModalOpen(true)}
+                title="Cargar personaje"
+              >
+                <FolderOpen className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Cargar</span>
+              </Button>
+
+              {/* Importar - solo desktop */}
+              <label htmlFor="import-character" className="cursor-pointer hidden sm:block">
                 <span className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-dungeon-700 hover:text-dungeon-100 h-9 px-3 text-dungeon-300">
                   <Upload className="h-4 w-4 mr-2" />
                   Importar
@@ -76,26 +162,37 @@ export default function CharacterEditorPage() {
                 className="hidden"
               />
 
-              <Button variant="ghost" size="sm" onClick={handleExportCharacter}>
+              {/* Exportar - solo desktop */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleExportCharacter}
+                className="hidden sm:flex"
+                title="Exportar personaje"
+              >
                 <Download className="h-4 w-4 mr-2" />
                 Exportar
               </Button>
 
+              {/* Guardar - siempre visible, texto solo desktop */}
               <Button
-                variant="ghost"
+                variant="primary"
                 size="sm"
-                onClick={() => {
-                  if (confirm('¿Estás seguro de que quieres reiniciar el personaje?')) {
-                    resetCharacter();
-                  }
-                }}
+                onClick={handleSaveCharacter}
+                disabled={isSaving}
+                title="Guardar personaje"
               >
-                Reiniciar
-              </Button>
-
-              <Button variant="primary" size="sm">
-                <Save className="h-4 w-4 mr-2" />
-                Guardar
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 sm:mr-2 animate-spin" />
+                    <span className="hidden sm:inline">Guardando...</span>
+                  </>
+                ) : (
+                  <>
+                    <Save className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Guardar</span>
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -104,23 +201,23 @@ export default function CharacterEditorPage() {
 
       {/* Character Name Display */}
       <div className="border-b border-dungeon-700 bg-dungeon-900/30">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center gap-4">
-            <h2 className="text-xl font-heading text-dungeon-100">
+        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
+          <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto">
+            <h2 className="text-base sm:text-xl font-heading text-dungeon-100 whitespace-nowrap">
               {character.name || 'Nuevo Personaje'}
             </h2>
             {character.race && (
               <>
-                <span className="text-dungeon-500">•</span>
-                <span className="text-sm text-dungeon-400">
+                <span className="text-dungeon-500 hidden sm:inline">•</span>
+                <span className="text-xs sm:text-sm text-dungeon-400 whitespace-nowrap">
                   {character.race.name}
                 </span>
               </>
             )}
             {character.classes && character.classes.length > 0 && (
               <>
-                <span className="text-dungeon-500">•</span>
-                <span className="text-sm text-dungeon-400">
+                <span className="text-dungeon-500 hidden sm:inline">•</span>
+                <span className="text-xs sm:text-sm text-dungeon-400 whitespace-nowrap">
                   {character.classes.map(c => `${c.class.name} ${c.level}`).join(', ')}
                 </span>
               </>
@@ -130,44 +227,103 @@ export default function CharacterEditorPage() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-dungeon-700 bg-dungeon-900/20">
-        <div className="container mx-auto px-4">
-          <div className="flex gap-1 overflow-x-auto">
+      <div className="border-b border-dungeon-700 bg-dungeon-900/20 sticky top-0 z-40">
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="flex gap-0.5 sm:gap-1 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${
+                className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 border-b-2 transition-colors whitespace-nowrap text-xs sm:text-sm ${
                   activeTab === tab.id
                     ? 'border-gold-500 text-gold-500'
                     : 'border-transparent text-dungeon-400 hover:text-dungeon-200'
                 }`}
               >
-                <span>{tab.icon}</span>
-                <span className="text-sm font-medium">{tab.label}</span>
+                <span className="text-sm sm:text-base">{tab.icon}</span>
+                <span className="font-medium hidden xs:inline sm:inline">{tab.label}</span>
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        {activeTab === 'basic' && <BasicInfoSection />}
-        {activeTab === 'abilities' && <AbilityScoresSection />}
-        {activeTab === 'combat' && <CombatStatsSection />}
-        {activeTab === 'skills' && <SkillsSection />}
-        {activeTab === 'feats' && (
-          <div className="text-center text-dungeon-400 py-12">
-            Sección de Dotes - Próximamente
-          </div>
-        )}
-        {activeTab === 'equipment' && (
-          <div className="text-center text-dungeon-400 py-12">
-            Sección de Equipo - Próximamente
-          </div>
-        )}
+      {/* Main Content - Layout con sidebar en desktop */}
+      <div className="lg:flex lg:min-h-screen">
+        {/* Contenido principal */}
+        <div className="flex-1 container mx-auto px-2 sm:px-4 py-4 sm:py-8 pb-20 lg:pb-8">
+          {/* Progress Sidebar - Versión móvil (arriba del contenido) */}
+          <ProgressSidebar character={character} className="lg:hidden" />
+
+          {activeTab === 'basic' && (
+            <div data-section="basic">
+              <BasicInfoSection
+                showHelp={showHelp}
+                onContinue={() => {
+                  setActiveTab('abilities');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
+          )}
+          {activeTab === 'abilities' && (
+            <div data-section="abilities">
+              <AbilityScoresSection
+                showHelp={showHelp}
+                onContinue={() => {
+                  setActiveTab('combat');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
+          )}
+          {activeTab === 'combat' && (
+            <div data-section="combat">
+              <CombatStatsSection
+                onContinue={() => {
+                  setActiveTab('skills');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
+          )}
+          {activeTab === 'skills' && (
+            <div data-section="skills">
+              <SkillsSection
+                onContinue={() => {
+                  setActiveTab('equipment');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
+          )}
+          {activeTab === 'feats' && (
+            <div className="text-center text-dungeon-400 py-12">
+              Sección de Dotes - Próximamente
+            </div>
+          )}
+          {activeTab === 'equipment' && (
+            <div data-section="equipment">
+              <EquipmentSection
+                showHelp={showHelp}
+                onContinue={() => {
+                  setActiveTab('basic');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Progress Sidebar - Versión desktop (lateral) */}
+        <ProgressSidebar character={character} className="lg:sticky lg:top-0 lg:h-screen" />
       </div>
+
+      {/* Load Character Modal */}
+      <LoadCharacterModal
+        isOpen={isLoadModalOpen}
+        onClose={() => setIsLoadModalOpen(false)}
+      />
     </div>
   );
 }

@@ -8,11 +8,11 @@ import { DnDFeat } from '@/lib/types/feat';
 import {
   getFeatTypeIcon,
   getFeatTypeColor,
-  getClassIcon,
   getClassColor,
   extractTextColor,
   extractBorderColor,
 } from '@/lib/utils/icons';
+import { getClassIcon } from '@/lib/utils/classIcons';
 
 interface FeatPageProps {
   params: Promise<{
@@ -32,6 +32,7 @@ export default async function FeatPage({ params }: FeatPageProps) {
 
   const Icon = getFeatTypeIcon(featData.type);
   const typeColor = getFeatTypeColor(featData.type);
+  const iconColor = extractTextColor(typeColor);
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
@@ -44,7 +45,7 @@ export default async function FeatPage({ params }: FeatPageProps) {
       {/* Header */}
       <div className="border-l-4 border-gold-500 pl-6 mb-12">
         <div className="flex items-center gap-4 mb-3">
-          <Icon className="h-8 w-8 text-class-green" />
+          <Icon className={`h-8 w-8 ${iconColor}`} />
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
             {featData.name}
           </h1>
@@ -60,12 +61,13 @@ export default async function FeatPage({ params }: FeatPageProps) {
           {featData.bonusFeatClasses && featData.bonusFeatClasses.map((bonusClass, idx) => {
             const ClassIcon = getClassIcon(bonusClass.className);
             const classColor = getClassColor(bonusClass.className);
+            const classIconColor = extractTextColor(classColor);
             return (
               <span
                 key={idx}
                 className={`px-3 py-1 rounded border ${classColor} flex items-center gap-2`}
               >
-                <ClassIcon className="h-4 w-4" />
+                <ClassIcon className={`h-4 w-4 ${classIconColor}`} />
                 <span>
                   <span className="font-semibold">{bonusClass.className}</span>
                   {bonusClass.level && <span className="opacity-80"> (Nvl {bonusClass.level})</span>}

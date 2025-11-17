@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { createClient } from '@/lib/supabase/server';
 import { DnDRace } from '@/lib/types/race';
-import { getRaceIcon } from '@/lib/utils/icons';
+import { getRaceIcon, getRaceColor, extractTextColor } from '@/lib/utils/icons';
 
 export const revalidate = 3600; // Revalidar cada hora
 
@@ -114,11 +114,11 @@ export async function generateMetadata({ params }: RacePageProps): Promise<Metad
 
   if (!raceData) {
     return {
-      title: 'Raza no encontrada - D&D 3.5 Compendium',
+      title: 'Raza no encontrada - Compendio Arcano',
     };
   }
 
-  const title = `${raceData.name} - D&D 3.5 Compendium`;
+  const title = `${raceData.name} - Compendio Arcano`;
   const description = raceData.description.slice(0, 160);
   const isSupplemental = raceData.source_book !== 'Manual del Jugador' && raceData.source_book !== "Player's Handbook";
 
@@ -129,7 +129,7 @@ export async function generateMetadata({ params }: RacePageProps): Promise<Metad
       title,
       description,
       type: 'article',
-      siteName: 'D&D 3.5 Compendium',
+      siteName: 'Compendio Arcano',
     },
     twitter: {
       card: 'summary',
@@ -168,6 +168,8 @@ export default async function RacePage({ params }: RacePageProps) {
   const raceData = convertSupabaseRace(raceFromDb);
   const isSupplemental = raceData.source?.book !== 'Manual del Jugador' && raceData.source?.book !== "Player's Handbook";
   const Icon = getRaceIcon(raceData.name);
+  const colorClasses = getRaceColor(raceData.name);
+  const iconColor = extractTextColor(colorClasses);
   const abilityMods = formatAbilityModifiers(raceData.abilityModifiers);
 
   return (
@@ -182,7 +184,7 @@ export default async function RacePage({ params }: RacePageProps) {
       <div className="border-l-4 border-gold-500 pl-6 mb-8">
         <div className="flex items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-4">
-            <Icon className="h-8 w-8 text-class-green" />
+            <Icon className={`h-8 w-8 ${iconColor}`} />
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
               {raceData.name}
             </h1>

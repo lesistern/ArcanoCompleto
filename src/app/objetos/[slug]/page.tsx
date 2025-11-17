@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import weaponsData from '@/lib/data/3.5/weapons.json';
 import { DnDWeapon } from '@/lib/types/item';
-import { getItemCategoryIcon, getItemCategoryColor, getWeaponIcon } from '@/lib/utils/icons';
+import { getItemCategoryIcon, getItemCategoryColor, getWeaponIcon, extractTextColor } from '@/lib/utils/icons';
 
 interface ObjectPageProps {
   params: Promise<{
@@ -25,6 +25,7 @@ export default async function ObjectPage({ params }: ObjectPageProps) {
 
   const Icon = getWeaponIcon(itemData);
   const categoryColor = getItemCategoryColor(itemData.category);
+  const iconColor = extractTextColor(categoryColor);
 
   // Determinar color del tag de tipo de arma (simple/marcial/exótica)
   const getWeaponTypeColor = (weaponType: string) => {
@@ -52,7 +53,7 @@ export default async function ObjectPage({ params }: ObjectPageProps) {
       {/* Header */}
       <div className={`border-l-4 ${itemData.isMagic ? 'border-purple-500' : 'border-gold-500'} pl-6 mb-12`}>
         <div className="flex items-center gap-4 mb-3">
-          <Icon className={`h-8 w-8 ${itemData.isMagic ? 'text-purple-400' : 'text-class-green'}`} />
+          <Icon className={`h-8 w-8 ${itemData.isMagic ? 'text-purple-400' : iconColor}`} />
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
             {itemData.name}
           </h1>

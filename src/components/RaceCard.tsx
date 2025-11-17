@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 import { DnDRace } from '@/lib/types/race';
-import { getRaceIcon } from '@/lib/utils/icons';
+import { getRaceIcon, getRaceColor, extractTextColor } from '@/lib/utils/icons';
 
 interface RaceCardProps {
   raceData: DnDRace;
@@ -23,6 +23,8 @@ const formatAbilityModifiers = (modifiers: DnDRace['abilityModifiers']) => {
 
 export default function RaceCard({ raceData, supplemental = false }: RaceCardProps) {
   const Icon = getRaceIcon(raceData.name);
+  const colorClasses = getRaceColor(raceData.name);
+  const iconColor = extractTextColor(colorClasses);
 
   return (
     <Link href={`/razas/${raceData.slug}`}>
@@ -34,7 +36,7 @@ export default function RaceCard({ raceData, supplemental = false }: RaceCardPro
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3 flex-wrap">
-              <Icon className="h-5 w-5 text-class-green" />
+              <Icon className={`h-6 w-6 ${iconColor}`} />
               <CardTitle className="text-lg group-hover:text-gold-500 transition-colors">
                 {raceData.name}
               </CardTitle>

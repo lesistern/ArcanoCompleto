@@ -12,10 +12,11 @@ interface LeaderboardEntry {
   username_slug: string;
   experience_points: number;
   level: number;
-  level_title: string;
-  level_tier: string;
+  title: string;
+  tier: string;
   exp_to_next_level: number;
-  next_level_xp: number;
+  current_level_xp?: number; // XP total del nivel actual (opcional hasta ejecutar SQL)
+  next_level_xp?: number; // XP total del nivel siguiente (opcional hasta ejecutar SQL)
   reports_submitted: number;
   reports_resolved: number;
   total_votes_received: number;
@@ -26,11 +27,12 @@ interface LeaderboardEntry {
 interface UserStats {
   experience_points: number;
   level: number;
-  level_title: string;
-  level_tier: string;
+  title: string;
+  tier: string;
   exp_to_next_level: number;
-  next_level_xp: number;
-  progress_percentage: number;
+  current_level_xp: number; // XP total del nivel actual
+  next_level_xp: number; // XP total del nivel siguiente
+  progress_percentage: number; // Calculado por la vista (0-100)
   reports_submitted: number;
   reports_resolved: number;
   total_votes_received: number;
@@ -128,11 +130,34 @@ export default function LeaderboardPage() {
     return LEVEL_TIER_COLORS[tier as keyof typeof LEVEL_TIER_COLORS] || LEVEL_TIER_COLORS['Novato'];
   }
 
-  function calculateProgressPercentage(currentExp: number, currentLevelXp: number, nextLevelXp: number): number {
-    if (nextLevelXp === 0) return 100; // Nivel máximo
-    const expInCurrentLevel = currentExp - currentLevelXp;
-    const expNeededForLevel = nextLevelXp - currentLevelXp;
-    return Math.round((expInCurrentLevel / expNeededForLevel) * 100);
+  function calculateProgressPercentage(
+    currentXp: number,
+    currentLevelXp: number | undefined,
+    nextLevelXp: number | undefined
+  ): number {
+    // Validación defensiva: si faltan datos (SQL no ejecutado), retornar 0%
+    if (currentLevelXp === undefined || nextLevelXp === undefined) {
+      return 0;
+    }
+
+    // Si está en nivel máximo
+    if (nextLevelXp === 0 || currentLevelXp === nextLevelXp) return 100;
+
+    // XP dentro del nivel actual = XP total - XP del inicio del nivel
+    const xpWithinLevel = currentXp - currentLevelXp;
+
+    // Rango del nivel = XP siguiente nivel - XP nivel actual
+    const levelRange = nextLevelXp - currentLevelXp;
+
+    // Evitar división por cero o valores negativos
+    if (levelRange <= 0) return 100;
+    if (xpWithinLevel < 0) return 0;
+
+    // Progreso = (XP dentro del nivel / Rango del nivel) * 100
+    const percentage = Math.round((xpWithinLevel / levelRange) * 100);
+
+    // Asegurar que esté entre 0 y 100
+    return Math.max(0, Math.min(100, percentage));
   }
 
   return (
@@ -151,7 +176,7 @@ export default function LeaderboardPage() {
 
         {/* User Stats Card (si está autenticado) */}
         {currentUser && userStats && (
-          <Card className={`mb-6 bg-gradient-to-r ${getTierColors(userStats.level_tier).gradient} to-dungeon-800 border-gold-500/30`}>
+          <Card className={`mb-6 bg-gradient-to-r ${getTierColors(userStats.tier).gradient} to-dungeon-800 border-gold-500/30`}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-gold-400">
                 <Star className="w-5 h-5" />
@@ -162,14 +187,14 @@ export default function LeaderboardPage() {
               {/* Nivel y Título */}
               <div className="mb-4 text-center">
                 <div className="flex items-center justify-center gap-3 mb-2">
-                  <span className={`text-5xl font-bold ${getTierColors(userStats.level_tier).text}`}>
+                  <span className={`text-5xl font-bold ${getTierColors(userStats.tier).text}`}>
                     Nivel {userStats.level}
                   </span>
-                  <span className={`text-xs px-3 py-1 rounded-full border ${getTierColors(userStats.level_tier).border} ${getTierColors(userStats.level_tier).bg} ${getTierColors(userStats.level_tier).text}`}>
-                    {userStats.level_tier}
+                  <span className={`text-xs px-3 py-1 rounded-full border ${getTierColors(userStats.tier).border} ${getTierColors(userStats.tier).bg} ${getTierColors(userStats.tier).text}`}>
+                    {userStats.tier}
                   </span>
                 </div>
-                <div className="text-xl text-dungeon-200 mb-3">{userStats.level_title}</div>
+                <div className="text-xl text-dungeon-200 mb-3">{userStats.title}</div>
 
                 {/* Barra de Progreso */}
                 <div className="max-w-md mx-auto">
@@ -179,7 +204,7 @@ export default function LeaderboardPage() {
                   </div>
                   <div className="w-full bg-dungeon-700 rounded-full h-3 overflow-hidden">
                     <div
-                      className={`h-3 rounded-full transition-all duration-500 bg-gradient-to-r ${getTierColors(userStats.level_tier).gradient} to-gold-500`}
+                      className={`h-3 rounded-full transition-all duration-500 bg-gradient-to-r ${getTierColors(userStats.tier).gradient} to-gold-500`}
                       style={{ width: `${userStats.progress_percentage}%` }}
                     />
                   </div>
@@ -221,23 +246,38 @@ export default function LeaderboardPage() {
               <div>
                 <p className="text-dungeon-200 font-semibold mb-2">¿Cómo ganar experiencia?</p>
                 <ul className="space-y-1 text-sm text-dungeon-300">
-                  <li className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-blue-400" />
-                    <span><span className="text-blue-400 font-semibold">+50 EXP</span> por reportar un bug</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-green-400" />
-                    <span><span className="text-green-400 font-semibold">+200 EXP</span> cuando tu reporte es marcado como resuelto</span>
+                  <li className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-green-400" />
+                      <span className="font-semibold text-green-400">Cuando un mod marca tu reporte como resuelto:</span>
+                    </div>
+                    <div className="ml-6 space-y-0.5 text-xs">
+                      <div><span className="text-gray-400">Baja:</span> <span className="text-green-300">+10 EXP</span></div>
+                      <div><span className="text-blue-400">Media:</span> <span className="text-green-300">+50 EXP</span></div>
+                      <div><span className="text-orange-400">Alta:</span> <span className="text-green-300">+100 EXP</span></div>
+                      <div><span className="text-red-400">Crítica:</span> <span className="text-green-300 font-semibold">+500 EXP</span></div>
+                    </div>
                   </li>
                   <li className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-purple-400" />
                     <span><span className="text-purple-400 font-semibold">+10 EXP</span> cada vez que alguien vota positivamente tu reporte</span>
                   </li>
                   <li className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-red-400" />
+                    <span><span className="text-red-400 font-semibold">-100 EXP</span> si tu reporte es marcado como spam o falso</span>
+                  </li>
+                  <li className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-amber-400" />
                     <span className="text-dungeon-400 italic">Próximamente: traducir contenido, ayudar en foros, y más...</span>
                   </li>
                 </ul>
+                <Link
+                  href="/niveles"
+                  className="inline-flex items-center gap-2 mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Trophy className="w-4 h-4" />
+                  Ver todos los niveles y recompensas
+                </Link>
               </div>
             </div>
           </CardContent>
@@ -258,15 +298,24 @@ export default function LeaderboardPage() {
             ) : (
               <div className="space-y-2">
                 {leaderboard.map((entry) => {
-                  const tierColors = getTierColors(entry.level_tier);
+                  const tierColors = getTierColors(entry.tier);
                   const isCurrentUser = currentUser?.id === entry.id;
                   const progressPercentage = entry.level < 20
                     ? calculateProgressPercentage(
                         entry.experience_points,
-                        entry.next_level_xp - entry.exp_to_next_level,
+                        entry.current_level_xp,
                         entry.next_level_xp
                       )
                     : 100;
+
+                  // DEBUG: Ver datos de la entrada
+                  console.log(`${entry.display_name} (Nivel ${entry.level}):`, {
+                    xp: entry.experience_points,
+                    current_level_xp: entry.current_level_xp,
+                    next_level_xp: entry.next_level_xp,
+                    exp_to_next: entry.exp_to_next_level,
+                    calculated_progress: progressPercentage
+                  });
 
                   return (
                     <div
@@ -302,10 +351,10 @@ export default function LeaderboardPage() {
                             Nivel {entry.level}
                           </span>
                           <span className="text-sm text-dungeon-300">
-                            {entry.level_title}
+                            {entry.title}
                           </span>
                           <span className={`text-xs px-2 py-0.5 rounded border ${tierColors.border} ${tierColors.bg} ${tierColors.text}`}>
-                            {entry.level_tier}
+                            {entry.tier}
                           </span>
                         </div>
 
@@ -324,20 +373,25 @@ export default function LeaderboardPage() {
                           <span>{entry.reports_submitted} reportes</span>
                           <span className="flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3 text-green-400" />
-                            {entry.resolution_rate}% resueltos
+                            {entry.reports_resolved} resueltos
                           </span>
                           <span>{entry.total_votes_received} votos</span>
                         </div>
                       </div>
 
                       {/* Experience Points */}
-                      <div className={`flex items-center gap-2 px-4 py-2 ${tierColors.bg} border ${tierColors.border} rounded-lg flex-shrink-0`}>
+                      <div className={`flex items-center gap-2 px-4 py-2 ${tierColors.bg} border ${tierColors.border} rounded-lg flex-shrink-0 min-w-[180px]`}>
                         <Award className={`w-5 h-5 ${tierColors.text}`} />
-                        <div className="text-right">
-                          <div className={`text-2xl font-bold ${tierColors.text}`}>
+                        <div className="text-right flex-1">
+                          <div className={`text-2xl font-bold ${tierColors.text}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
                             {entry.experience_points.toLocaleString()}
                           </div>
-                          <div className="text-xs text-dungeon-400">EXP</div>
+                          <div className="text-xs text-dungeon-400" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                            {entry.level < 20
+                              ? `${entry.exp_to_next_level.toLocaleString()} para lvl ${entry.level + 1}`
+                              : 'Máximo'
+                            }
+                          </div>
                         </div>
                       </div>
                     </div>

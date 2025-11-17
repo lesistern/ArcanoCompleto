@@ -3,8 +3,10 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { createClient } from '@/lib/supabase/server';
-import { getClassIcon } from '@/lib/utils/icons';
+import classesData from '@/lib/data/3.5/classes.json';
+import { getClassIcon } from '@/lib/utils/classIcons';
+import { getDiceIcon } from '@/lib/utils/diceIcons';
+import { getClassColor, extractTextColor } from '@/lib/utils/icons';
 
 // ISR: Revalidar cada 24 horas (contenido estático)
 export const revalidate = 86400;
@@ -18,23 +20,19 @@ interface ClassPageProps {
 // Metadata dinámica para SEO
 export async function generateMetadata({ params }: ClassPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const supabase = await createClient();
 
-  const { data: classData } = await supabase
-    .from('classes')
-    .select('name, description, hit_die, skill_points_per_level, bab_progression')
-    .eq('slug', slug)
-    .single();
+  const classData = (classesData as any[]).find(
+    (c) => c.slug === slug
+  );
 
   if (!classData) {
     return {
-      title: 'Clase no encontrada - D&D 3.5 Compendium',
+      title: 'Clase no encontrada - Compendio Arcano',
     };
   }
 
-  const title = `${classData.name} - D&D 3.5 Compendium`;
+  const title = `${classData.name} - Compendio Arcano`;
   const description = classData.description.slice(0, 160);
-  const babText = classData.bab_progression === 'good' ? 'Bueno' : classData.bab_progression === 'medium' ? 'Medio' : 'Bajo';
 
   return {
     title,
@@ -43,7 +41,7 @@ export async function generateMetadata({ params }: ClassPageProps): Promise<Meta
       title,
       description,
       type: 'article',
-      siteName: 'D&D 3.5 Compendium',
+      siteName: 'Compendio Arcano',
     },
     twitter: {
       card: 'summary',
@@ -56,8 +54,7 @@ export async function generateMetadata({ params }: ClassPageProps): Promise<Meta
       'Dungeons & Dragons',
       'clase',
       'character class',
-      classData.hit_die,
-      `BAB ${babText}`,
+      classData.hitDie,
     ],
   };
 }
@@ -65,32 +62,67 @@ export async function generateMetadata({ params }: ClassPageProps): Promise<Meta
 export default async function ClassPage({ params }: ClassPageProps) {
   const { slug } = await params;
 
-  // Fetch class from Supabase con cached query
-  const { getClassBySlug } = await import('@/lib/supabase/cached-queries');
-  const classFromDB = await getClassBySlug(slug);
+  // Fetch class from local JSON
+  const classFromJSON = (classesData as any[]).find(
+    (c) => c.slug === slug
+  );
 
-  if (!classFromDB) {
+  if (!classFromJSON) {
     notFound();
   }
 
-  // Map database format to display format
-  const classData = {
-    id: classFromDB.slug,
-    name: classFromDB.name,
-    slug: classFromDB.slug,
-    hitDie: classFromDB.hit_die,
-    skillPoints: classFromDB.skill_points_per_level,
-    classSkills: classFromDB.class_skills || [],
-    weaponProficiencies: classFromDB.weapon_proficiencies || [],
-    armorProficiencies: classFromDB.armor_proficiencies || [],
-    description: classFromDB.description,
-    babProgression: classFromDB.bab_progression,
-    fortitudeSave: classFromDB.fortitude_save,
-    reflexSave: classFromDB.reflex_save,
-    willSave: classFromDB.will_save,
+  // Helper para convertir proficiencias de objeto a array de strings
+  const getProficienciesArray = (profObj: any): string[] => {
+    if (!profObj) return [];
+    return Object.entries(profObj)
+      .filter(([_, value]) => value === true)
+      .map(([key, _]) => {
+        // Traducir nombres de proficiencias
+        const translations: Record<string, string> = {
+          'simple': 'Simples',
+          'martial': 'Marciales',
+          'exotic': 'Exóticas',
+          'light': 'Ligeras',
+          'medium': 'Medias',
+          'heavy': 'Pesadas',
+          'shields': 'Escudos',
+        };
+        return translations[key] || key;
+      });
   };
 
-  const Icon = getClassIcon(classData.name);
+  // Deducir BAB progression desde levelProgression
+  const getBABProgression = (): 'good' | 'medium' | 'poor' => {
+    if (!classFromJSON.levelProgression || classFromJSON.levelProgression.length === 0) return 'medium';
+    const level20 = classFromJSON.levelProgression.find((l: any) => l.level === 20);
+    if (!level20) return 'medium';
+    const bab = parseInt(level20.baseAttackBonus.replace('+', '').split('/')[0]);
+    if (bab >= 20) return 'good';
+    if (bab >= 15) return 'medium';
+    return 'poor';
+  };
+
+  // Map JSON format to display format
+  const classData = {
+    id: classFromJSON.slug,
+    name: classFromJSON.name,
+    slug: classFromJSON.slug,
+    hitDie: classFromJSON.hitDie,
+    skillPoints: classFromJSON.skillPointsPerLevel,
+    classSkills: classFromJSON.classSkills || [],
+    weaponProficiencies: getProficienciesArray(classFromJSON.weaponProficiencies),
+    armorProficiencies: getProficienciesArray(classFromJSON.armorProficiencies),
+    description: classFromJSON.description,
+    babProgression: getBABProgression(),
+    fortitudeSave: classFromJSON.goodSaves?.includes('Fortaleza') ? 'good' : 'poor',
+    reflexSave: classFromJSON.goodSaves?.includes('Reflejos') ? 'good' : 'poor',
+    willSave: classFromJSON.goodSaves?.includes('Voluntad') ? 'good' : 'poor',
+  };
+
+  const Icon = getClassIcon(classData.slug);
+  const DiceIcon = getDiceIcon(classData.hitDie);
+  const colorClasses = getClassColor(classData.name);
+  const iconColor = extractTextColor(colorClasses);
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
@@ -103,15 +135,17 @@ export default async function ClassPage({ params }: ClassPageProps) {
       {/* Header */}
       <div className="border-l-4 border-gold-500 pl-6 mb-12">
         <div className="flex items-center gap-4 mb-3">
-          <Icon className="h-8 w-8 text-class-green" />
+          <Icon className={`h-8 w-8 ${iconColor}`} />
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
             {classData.name}
           </h1>
         </div>
         <p className="text-lg text-dungeon-300 mb-4">{classData.description}</p>
         <div className="flex flex-wrap gap-3 text-sm">
-          <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
-            <span className="text-dungeon-500">DG:</span> {classData.hitDie}
+          <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700 flex items-center gap-2">
+            <span className="text-dungeon-500">DG:</span>
+            <DiceIcon className="h-6 w-6 inline" />
+            <span className="font-semibold">{classData.hitDie}</span>
           </span>
           <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
             <span className="text-dungeon-500">Puntos de habilidad:</span>{' '}
@@ -245,23 +279,9 @@ export default async function ClassPage({ params }: ClassPageProps) {
 }
 
 export async function generateStaticParams() {
-  // Skip static generation if env vars not available (use dynamic rendering)
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-    return [];
-  }
+  const classes = classesData as any[];
 
-  // Usar cliente directo sin cookies para build-time
-  const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
-  const supabase = createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-
-  const { data: classes } = await supabase
-    .from('classes')
-    .select('slug');
-
-  return (classes || []).map((classData) => ({
+  return classes.map((classData) => ({
     slug: classData.slug,
   }));
 }

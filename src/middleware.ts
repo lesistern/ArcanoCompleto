@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 /**
- * Proxy de Next.js para proteger rutas
+ * Middleware de Next.js para proteger rutas
  *
  * Protege toda la aplicación excepto:
  * - /beta-landing (página pública para no autenticados)
@@ -14,7 +14,7 @@ import { NextResponse, type NextRequest } from 'next/server';
  * 1. Usuario autenticado
  * 2. Usuario con rol 'beta_tester' o 'admin'
  */
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // ========================================================================
@@ -86,7 +86,7 @@ export async function proxy(request: NextRequest) {
   // ========================================================================
   const { data: profile, error: profileError } = await supabase
     .from('profiles')
-    .select('tier')
+    .select('tier_code')
     .eq('id', user.id)
     .single();
 
@@ -99,7 +99,7 @@ export async function proxy(request: NextRequest) {
 
   // Verificar si tiene tier permitido (beta_tester o admin)
   const allowedTiers = ['beta_tester', 'admin', 'reviewer', 'translator', 'contributor'];
-  const hasAccess = allowedTiers.includes(profile.tier);
+  const hasAccess = allowedTiers.includes(profile.tier_code);
 
   // Si no tiene acceso, redirigir a beta-landing
   if (!hasAccess) {
@@ -116,7 +116,7 @@ export async function proxy(request: NextRequest) {
 /**
  * Configuración del matcher
  *
- * Define qué rutas pasan por el proxy
+ * Define qué rutas pasan por el middleware
  * - Excluye: api routes, _next/static, _next/image, favicon.ico
  */
 export const config = {

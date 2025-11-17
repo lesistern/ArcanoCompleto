@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import {
   Bug,
@@ -74,6 +74,7 @@ export default function AdminTicketsPage() {
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [resolutionNotes, setResolutionNotes] = useState('');
   const [updating, setUpdating] = useState(false);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const supabase = createClient();
 
@@ -156,6 +157,80 @@ export default function AdminTicketsPage() {
     in_progress: tickets.filter(t => t.status === 'in_progress').length,
     resolved: tickets.filter(t => t.status === 'resolved').length,
     critical: tickets.filter(t => t.priority === 'critical').length,
+  };
+
+  // Separar tickets activos y completados
+  const activeTickets = filteredTickets.filter(t =>
+    t.status !== 'resolved' && t.status !== 'closed' && t.status !== 'wont_fix'
+  );
+  const completedTickets = filteredTickets.filter(t =>
+    t.status === 'resolved' || t.status === 'closed' || t.status === 'wont_fix'
+  );
+
+  // Organizar tickets activos por prioridad
+  const ticketsByPriority = {
+    critical: activeTickets.filter(t => t.priority === 'critical'),
+    high: activeTickets.filter(t => t.priority === 'high'),
+    medium: activeTickets.filter(t => t.priority === 'medium'),
+    low: activeTickets.filter(t => t.priority === 'low'),
+  };
+
+  const renderTicket = (ticket: Ticket) => {
+    const categoryInfo = CATEGORIES[ticket.category];
+    const CategoryIcon = categoryInfo.icon;
+    const statusInfo = STATUS_OPTIONS[ticket.status];
+    const StatusIcon = statusInfo.icon;
+    const priorityInfo = PRIORITIES[ticket.priority];
+
+    return (
+      <div
+        key={ticket.id}
+        className="p-4 bg-dungeon-900 border border-dungeon-700 rounded-lg hover:border-gold-500/30 transition-colors cursor-pointer"
+        onClick={() => setSelectedTicket(ticket)}
+      >
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <CategoryIcon className={`w-5 h-5 ${categoryInfo.color}`} />
+              <h3 className="text-lg font-semibold text-dungeon-100">
+                {ticket.title}
+              </h3>
+              <span className={`px-2 py-0.5 text-xs rounded-full text-white ${priorityInfo.color}`}>
+                {priorityInfo.label}
+              </span>
+            </div>
+            <p className="text-dungeon-300 text-sm mb-2 line-clamp-1">
+              {ticket.description}
+            </p>
+            <div className="flex items-center gap-4 text-xs text-dungeon-500">
+              <span>{ticket.user_email}</span>
+              <span>•</span>
+              <span>{new Date(ticket.created_at).toLocaleDateString('es-ES')}</span>
+              {ticket.page_url && (
+                <>
+                  <span>•</span>
+                  <a
+                    href={ticket.page_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-gold-400 hover:text-gold-300"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Ver página <ExternalLink className="w-3 h-3" />
+                  </a>
+                </>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-1 ml-4">
+            <StatusIcon className={`w-4 h-4 ${statusInfo.color}`} />
+            <span className={`text-sm ${statusInfo.color}`}>
+              {statusInfo.label}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -270,86 +345,127 @@ export default function AdminTicketsPage() {
         </Card>
 
         {/* Tickets List */}
-        <Card className="bg-dungeon-800 border-dungeon-700">
-          <CardHeader>
-            <CardTitle className="text-gold-400">
-              Tickets ({filteredTickets.length})
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="text-center py-12">
+        {loading ? (
+          <Card className="bg-dungeon-800 border-dungeon-700">
+            <CardContent className="py-12">
+              <div className="text-center">
                 <Loader2 className="w-12 h-12 animate-spin mx-auto text-gold-500 mb-4" />
                 <p className="text-dungeon-400">Cargando tickets...</p>
               </div>
-            ) : filteredTickets.length === 0 ? (
-              <div className="text-center py-12">
+            </CardContent>
+          </Card>
+        ) : filteredTickets.length === 0 ? (
+          <Card className="bg-dungeon-800 border-dungeon-700">
+            <CardContent className="py-12">
+              <div className="text-center">
                 <MessageSquare className="w-16 h-16 mx-auto text-dungeon-600 mb-4" />
                 <p className="text-dungeon-400">No hay tickets con los filtros seleccionados</p>
               </div>
-            ) : (
-              <div className="space-y-3">
-                {filteredTickets.map((ticket) => {
-                  const categoryInfo = CATEGORIES[ticket.category];
-                  const CategoryIcon = categoryInfo.icon;
-                  const statusInfo = STATUS_OPTIONS[ticket.status];
-                  const StatusIcon = statusInfo.icon;
-                  const priorityInfo = PRIORITIES[ticket.priority];
-
-                  return (
-                    <div
-                      key={ticket.id}
-                      className="p-4 bg-dungeon-900 border border-dungeon-700 rounded-lg hover:border-gold-500/30 transition-colors cursor-pointer"
-                      onClick={() => setSelectedTicket(ticket)}
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <CategoryIcon className={`w-5 h-5 ${categoryInfo.color}`} />
-                            <h3 className="text-lg font-semibold text-dungeon-100">
-                              {ticket.title}
-                            </h3>
-                            <span className={`px-2 py-0.5 text-xs rounded-full text-white ${priorityInfo.color}`}>
-                              {priorityInfo.label}
-                            </span>
-                          </div>
-                          <p className="text-dungeon-300 text-sm mb-2 line-clamp-1">
-                            {ticket.description}
-                          </p>
-                          <div className="flex items-center gap-4 text-xs text-dungeon-500">
-                            <span>{ticket.user_email}</span>
-                            <span>•</span>
-                            <span>{new Date(ticket.created_at).toLocaleDateString('es-ES')}</span>
-                            {ticket.page_url && (
-                              <>
-                                <span>•</span>
-                                <a
-                                  href={ticket.page_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center gap-1 text-gold-400 hover:text-gold-300"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  Ver página <ExternalLink className="w-3 h-3" />
-                                </a>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1 ml-4">
-                          <StatusIcon className={`w-4 h-4 ${statusInfo.color}`} />
-                          <span className={`text-sm ${statusInfo.color}`}>
-                            {statusInfo.label}
-                          </span>
-                        </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="space-y-6">
+            {/* Tickets Activos por Prioridad */}
+            {activeTickets.length > 0 && (
+              <>
+                {/* Críticos */}
+                {ticketsByPriority.critical.length > 0 && (
+                  <Card className="bg-dungeon-800 border-red-500/50">
+                    <CardHeader>
+                      <CardTitle className="text-red-400 flex items-center gap-2">
+                        <AlertTriangle className="w-5 h-5" />
+                        Prioridad Crítica ({ticketsByPriority.critical.length})
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {ticketsByPriority.critical.map(renderTicket)}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Alta */}
+                {ticketsByPriority.high.length > 0 && (
+                  <Card className="bg-dungeon-800 border-orange-500/30">
+                    <CardHeader>
+                      <CardTitle className="text-orange-400 flex items-center gap-2">
+                        <AlertTriangle className="w-5 h-5" />
+                        Prioridad Alta ({ticketsByPriority.high.length})
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {ticketsByPriority.high.map(renderTicket)}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Media */}
+                {ticketsByPriority.medium.length > 0 && (
+                  <Card className="bg-dungeon-800 border-blue-500/30">
+                    <CardHeader>
+                      <CardTitle className="text-blue-400 flex items-center gap-2">
+                        <Clock className="w-5 h-5" />
+                        Prioridad Media ({ticketsByPriority.medium.length})
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {ticketsByPriority.medium.map(renderTicket)}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Baja */}
+                {ticketsByPriority.low.length > 0 && (
+                  <Card className="bg-dungeon-800 border-dungeon-700">
+                    <CardHeader>
+                      <CardTitle className="text-dungeon-400 flex items-center gap-2">
+                        <Clock className="w-5 h-5" />
+                        Prioridad Baja ({ticketsByPriority.low.length})
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {ticketsByPriority.low.map(renderTicket)}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </>
             )}
-          </CardContent>
-        </Card>
+
+            {/* Tickets Completados */}
+            {completedTickets.length > 0 && (
+              <Card className="bg-dungeon-800 border-green-500/30">
+                <CardHeader>
+                  <button
+                    onClick={() => setShowCompleted(!showCompleted)}
+                    className="w-full flex items-center justify-between hover:opacity-80 transition-opacity"
+                  >
+                    <CardTitle className="text-green-400 flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5" />
+                      Tickets Completados ({completedTickets.length})
+                    </CardTitle>
+                    <span className="text-dungeon-400 text-sm">
+                      {showCompleted ? '▼ Ocultar' : '▶ Mostrar'}
+                    </span>
+                  </button>
+                </CardHeader>
+                {showCompleted && (
+                  <CardContent>
+                    <div className="space-y-3">
+                      {completedTickets.map(renderTicket)}
+                    </div>
+                  </CardContent>
+                )}
+              </Card>
+            )}
+          </div>
+        )}
 
         {/* Ticket Detail Modal */}
         {selectedTicket && (

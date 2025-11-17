@@ -7,7 +7,6 @@ import {
   FaMicrosoft,
   FaDiscord,
   FaApple,
-  FaGithub,
   FaGitlab,
   FaFacebook,
   FaTwitter,
@@ -20,7 +19,7 @@ import {
 } from 'react-icons/fa';
 import { SiNotion, SiKakao, SiZoom } from 'react-icons/si';
 
-type OAuthProvider = 'apple' | 'azure' | 'bitbucket' | 'discord' | 'facebook' | 'figma' | 'github' | 'gitlab' | 'google' | 'kakao' | 'keycloak' | 'linkedin' | 'linkedin_oidc' | 'notion' | 'slack' | 'slack_oidc' | 'spotify' | 'twitch' | 'twitter' | 'workos' | 'zoom' | 'fly';
+type OAuthProvider = 'apple' | 'azure' | 'bitbucket' | 'discord' | 'facebook' | 'figma' | 'gitlab' | 'google' | 'kakao' | 'keycloak' | 'linkedin' | 'linkedin_oidc' | 'notion' | 'slack' | 'slack_oidc' | 'spotify' | 'twitch' | 'twitter' | 'workos' | 'zoom' | 'fly';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -42,7 +41,6 @@ const SOCIAL_PROVIDERS = {
     { id: 'apple', name: 'Apple', icon: FaApple, color: 'hover:bg-gray-800' },
   ],
   secondary: [
-    { id: 'github', name: 'GitHub', icon: FaGithub, color: 'hover:bg-gray-700' },
     { id: 'gitlab', name: 'GitLab', icon: FaGitlab, color: 'hover:bg-orange-600' },
     { id: 'facebook', name: 'Facebook', icon: FaFacebook, color: 'hover:bg-blue-800' },
     { id: 'twitter', name: 'Twitter', icon: FaTwitter, color: 'hover:bg-blue-500' },

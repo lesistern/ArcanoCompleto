@@ -23,10 +23,21 @@ import {
 
   // Iconos de razas
   Users,
+  User,
   Mountain,
   Trees,
+  TreePine,
+  Leaf,
   Coins,
   Moon,
+  Bird,
+  Cat,
+  CircleUser,
+  Sprout,
+  Sun,
+  Eye,
+  Footprints,
+  Home,
 
   // Iconos de objetos
   Sword,
@@ -50,6 +61,19 @@ import {
   Slash,
   ArrowUpRight,
   Waypoints,
+
+  // Iconos de habilidades (skills)
+  Brain,
+  BookOpen,
+  Briefcase,
+
+  // Iconos de puntuaciones de habilidad (ability scores)
+  Dumbbell,
+  Feather,
+  ShieldCheck,
+  Lightbulb,
+  Sparkle,
+
   type LucideIcon,
 } from 'lucide-react';
 
@@ -107,6 +131,41 @@ export function getClassColor(className: string): string {
 }
 
 // ============================================
+// CATEGORÍAS DE CLASES - Iconos y Colores
+// ============================================
+
+export type ClassCategory =
+  | 'Marciales'
+  | 'Lanzadores de conjuros'
+  | 'Versátiles';
+
+/**
+ * Iconos para categorías de clases
+ */
+export const CLASS_CATEGORY_ICONS: Record<ClassCategory, LucideIcon> = {
+  'Marciales': Swords,              // Espadas cruzadas para clases de combate
+  'Lanzadores de conjuros': Wand2,  // Varita para clases mágicas
+  'Versátiles': Star,               // Estrella para clases híbridas
+};
+
+/**
+ * Colores para categorías de clases
+ */
+export const CLASS_CATEGORY_COLORS: Record<ClassCategory, string> = {
+  'Marciales': 'bg-red-500/20 text-red-400 border-red-500/30',
+  'Lanzadores de conjuros': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  'Versátiles': 'bg-gold-500/20 text-gold-500 border-gold-500/30',
+};
+
+export function getClassCategoryIcon(category: string): LucideIcon {
+  return CLASS_CATEGORY_ICONS[category as ClassCategory] || Shield;
+}
+
+export function getClassCategoryColor(category: string): string {
+  return CLASS_CATEGORY_COLORS[category as ClassCategory] || 'bg-dungeon-800 text-dungeon-300 border-dungeon-700';
+}
+
+// ============================================
 // DOTES - Tipos, Iconos y Colores
 // ============================================
 
@@ -146,32 +205,75 @@ export function getFeatTypeColor(type: string): string {
 // ============================================
 
 export type RaceName =
+  // Player's Handbook (7 razas)
   | 'Humano'
   | 'Elfo'
   | 'Enano'
   | 'Mediano'
   | 'Gnomo'
   | 'Semielfo'
-  | 'Semiorco';
+  | 'Semiorco'
+  // Razas Suplementarias (9 razas)
+  | 'Aasimar'
+  | 'Tiefling'
+  | 'Goliath'
+  | 'Raptoran'
+  | 'Killoren'
+  | 'Illumian'
+  | 'Gnomo Susurrante'
+  | 'Centauro'
+  | 'Felino';
 
+/**
+ * Iconos temáticos para cada raza de D&D 3.5
+ * Basados en las características principales de cada raza
+ */
 export const RACE_ICONS: Record<RaceName, LucideIcon> = {
-  'Humano': Users,
-  'Elfo': Trees,
-  'Enano': Mountain,
-  'Mediano': Heart,
-  'Gnomo': Coins,
-  'Semielfo': Moon,
-  'Semiorco': Swords,
+  // Player's Handbook
+  'Humano': Users,           // Versátil, comunidad
+  'Elfo': TreePine,          // Bosque, naturaleza
+  'Enano': Mountain,         // Montaña, minería
+  'Mediano': Home,           // Hogareño, pacífico
+  'Gnomo': Sprout,           // Pequeño, conectado con la naturaleza
+  'Semielfo': Moon,          // Dualidad, entre dos mundos
+  'Semiorco': Axe,           // Guerrero, fuerza
+
+  // Razas Suplementarias
+  'Aasimar': Sun,            // Celestial, divino
+  'Tiefling': Flame,         // Infernal, fuego
+  'Goliath': Mountain,       // Gigante, montañés
+  'Raptoran': Bird,          // Alado, volador
+  'Killoren': Leaf,          // Feérico, naturaleza
+  'Illumian': Eye,           // Conocimiento, sabiduría
+  'Gnomo Susurrante': Wind,  // Silencioso, comunicador
+  'Centauro': Footprints,    // Cuadrúpedo, nómada
+  'Felino': Cat,             // Felino, ágil
 };
 
+/**
+ * Colores temáticos para cada raza
+ * Usando la paleta de Tailwind CSS con opacidades para mantener consistencia
+ */
 export const RACE_COLORS: Record<RaceName, string> = {
-  'Humano': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
-  'Elfo': 'bg-green-500/20 text-green-400 border-green-500/30',
+  // Player's Handbook
+  'Humano': 'bg-gray-500/20 text-gray-300 border-gray-500/30',
+  'Elfo': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
   'Enano': 'bg-orange-600/20 text-orange-400 border-orange-600/30',
-  'Mediano': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-  'Gnomo': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  'Mediano': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  'Gnomo': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
   'Semielfo': 'bg-teal-500/20 text-teal-400 border-teal-500/30',
   'Semiorco': 'bg-red-600/20 text-red-400 border-red-600/30',
+
+  // Razas Suplementarias
+  'Aasimar': 'bg-yellow-400/20 text-yellow-300 border-yellow-400/30',      // Dorado celestial
+  'Tiefling': 'bg-rose-600/20 text-rose-400 border-rose-600/30',          // Rojo infernal
+  'Goliath': 'bg-slate-600/20 text-slate-400 border-slate-600/30',        // Gris piedra
+  'Raptoran': 'bg-sky-500/20 text-sky-400 border-sky-500/30',             // Azul cielo
+  'Killoren': 'bg-lime-500/20 text-lime-400 border-lime-500/30',          // Verde vivo
+  'Illumian': 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30',    // Azul místico
+  'Gnomo Susurrante': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',  // Azul claro
+  'Centauro': 'bg-amber-700/20 text-amber-500 border-amber-700/30',       // Marrón tierra
+  'Felino': 'bg-orange-500/20 text-orange-400 border-orange-500/30',      // Naranja felino
 };
 
 export function getRaceIcon(raceName: string): LucideIcon {
@@ -313,4 +415,91 @@ export function getWeaponIcon(weapon: { stats?: { damageType?: string[]; range?:
 
   // Por defecto, icono genérico de espada
   return Sword;
+}
+
+// ============================================
+// HABILIDADES - Categorías, Iconos y Colores
+// ============================================
+
+export type SkillCategory =
+  | 'Física'
+  | 'Mental'
+  | 'Social'
+  | 'Conocimiento'
+  | 'Oficio'
+  | 'Profesión'
+  | 'Interpretación';
+
+export type AbilityScore =
+  | 'Fuerza'
+  | 'Destreza'
+  | 'Constitución'
+  | 'Inteligencia'
+  | 'Sabiduría'
+  | 'Carisma';
+
+/**
+ * Iconos temáticos para categorías de habilidades
+ */
+export const SKILL_CATEGORY_ICONS: Record<SkillCategory, LucideIcon> = {
+  'Física': Zap,
+  'Mental': Brain,
+  'Social': Users,
+  'Conocimiento': BookOpen,
+  'Oficio': Hammer,
+  'Profesión': Briefcase,
+  'Interpretación': Music,
+};
+
+/**
+ * Colores temáticos para categorías de habilidades
+ */
+export const SKILL_CATEGORY_COLORS: Record<SkillCategory, string> = {
+  'Física': 'bg-green-500/20 text-green-400 border-green-500/30',
+  'Mental': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  'Social': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
+  'Conocimiento': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  'Oficio': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+  'Profesión': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+  'Interpretación': 'bg-rose-500/20 text-rose-400 border-rose-500/30',
+};
+
+/**
+ * Iconos temáticos para puntuaciones de habilidad (Ability Scores)
+ */
+export const ABILITY_ICONS: Record<AbilityScore, LucideIcon> = {
+  'Fuerza': Dumbbell,        // Mancuerna para fuerza física
+  'Destreza': Feather,       // Pluma para agilidad y destreza
+  'Constitución': ShieldCheck, // Escudo para resistencia
+  'Inteligencia': Brain,     // Cerebro para inteligencia
+  'Sabiduría': Lightbulb,    // Bombilla para sabiduría/insight
+  'Carisma': Sparkle,        // Brillo para carisma y presencia
+};
+
+/**
+ * Colores temáticos para puntuaciones de habilidad (Ability Scores)
+ */
+export const ABILITY_COLORS: Record<AbilityScore, string> = {
+  'Fuerza': 'text-red-400',
+  'Destreza': 'text-green-400',
+  'Constitución': 'text-orange-400',
+  'Inteligencia': 'text-blue-400',
+  'Sabiduría': 'text-purple-400',
+  'Carisma': 'text-pink-400',
+};
+
+export function getSkillCategoryIcon(category: string): LucideIcon {
+  return SKILL_CATEGORY_ICONS[category as SkillCategory] || Brain;
+}
+
+export function getSkillCategoryColor(category: string): string {
+  return SKILL_CATEGORY_COLORS[category as SkillCategory] || 'bg-dungeon-800 text-dungeon-300 border-dungeon-700';
+}
+
+export function getAbilityColor(ability: string): string {
+  return ABILITY_COLORS[ability as AbilityScore] || 'text-dungeon-400';
+}
+
+export function getAbilityIcon(ability: string): LucideIcon {
+  return ABILITY_ICONS[ability as AbilityScore] || Brain;
 }

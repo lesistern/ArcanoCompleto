@@ -13,12 +13,20 @@ const LOCALE_STORAGE_KEY = 'preferred-locale';
 // SVG Flags para mejor compatibilidad
 const FlagIcon = ({ locale }: { locale: Locale }) => {
   if (locale === 'es') {
+    // Bandera de España oficial: Roja-Amarilla-Roja (1:2:1)
+    // Colores oficiales de la bandera constitucional de España:
+    // - Rojo: #C60B1E (Pantone 032 C)
+    // - Amarillo: #FFC400 (Pantone 109 C)
     return (
-      <svg viewBox="0 0 36 36" className="w-7 h-7">
-        <path fill="#C60A1D" d="M36 27a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v18z"/>
-        <path fill="#FFC400" d="M0 12h36v12H0z"/>
-        <path fill="#EA596E" d="M0 12h36v3H0z"/>
-        <path fill="#F4A2B2" d="M0 21h36v3H0z"/>
+      <svg
+        viewBox="0 0 36 36"
+        className="w-7 h-7"
+        style={{ imageRendering: 'crisp-edges' }}
+      >
+        {/* Fondo rojo completo */}
+        <rect fill="#C60B1E" x="0" y="0" width="36" height="36"/>
+        {/* Franja amarilla central (9-27) - exactamente el doble de ancho que cada roja */}
+        <rect fill="#FFC400" x="0" y="9" width="36" height="18"/>
       </svg>
     );
   }

@@ -177,22 +177,34 @@ export async function POST(request: NextRequest) {
 
       // Si no encontramos por patreon_user_id, buscamos por email
       if (!existingProfile) {
-        const { data: profileByEmail } = await supabase
-          .from('profiles')
-          .select('id')
-          .eq('id', (await supabase.auth.admin.getUserByEmail(patreonEmail)).data.user?.id)
-          .single();
-
-        if (profileByEmail) {
-          // Vincular el patreon_user_id al perfil existente
-          await supabase
-            .from('profiles')
-            .update({ patreon_user_id: patreonUserId })
-            .eq('id', profileByEmail.id);
+        // Buscar usuarios por email usando listUsers
+        const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
+        
+        if (listError) {
+          console.error(`[Patreon Webhook] Error listing users:`, listError);
         } else {
-          console.warn(`[Patreon Webhook] No profile found for email ${patreonEmail}`);
-          // Usuario no registrado en la app todavía
-          // El tier se aplicará cuando se registre
+          const userByEmail = users?.find(u => u.email === patreonEmail);
+          
+          if (userByEmail) {
+            const { data: profileByEmail } = await supabase
+              .from('profiles')
+              .select('id')
+              .eq('id', userByEmail.id)
+              .single();
+
+            if (profileByEmail) {
+              // Vincular el patreon_user_id al perfil existente
+              await supabase
+                .from('profiles')
+                .update({ patreon_user_id: patreonUserId })
+                .eq('id', profileByEmail.id);
+            }
+          } else {
+            console.warn(`[Patreon Webhook] No profile found for email ${patreonEmail}`);
+            // Usuario no registrado en la app todavía
+            // El tier se aplicará cuando se registre
+          }
+        }
           return NextResponse.json(
             { message: 'User not registered in app yet' },
             { status: 200 }

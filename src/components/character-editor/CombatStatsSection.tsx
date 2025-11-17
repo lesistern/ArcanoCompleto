@@ -14,12 +14,54 @@ export default function CombatStatsSection({ onContinue }: CombatStatsSectionPro
 
   const dexMod = character.abilityModifiers?.dex || 0;
   const conMod = character.abilityModifiers?.con || 0;
+  const activeClass = character.classes?.[0];
+  const classData: any = activeClass?.class;
+  const classLevel = activeClass?.level || character.effectiveCharacterLevel || 1;
 
   // Valores temporales hasta que se implementen clases
   const baseAC = 10;
   const totalAC = baseAC + dexMod;
   const touchAC = baseAC + dexMod;
   const flatFootedAC = baseAC;
+
+  // Soportar camelCase y snake_case según fuente de datos
+  const hitDieRaw = classData?.hitDie ?? (classData as any)?.hit_die;
+  const hitDie =
+    typeof hitDieRaw === 'number'
+      ? hitDieRaw
+      : typeof hitDieRaw === 'string'
+        ? (() => {
+            const match = hitDieRaw.match(/(\d+)/);
+            return match ? parseInt(match[1], 10) : (activeClass ? 8 : 0);
+          })()
+        : activeClass
+          ? 8 // fallback razonable si hay clase pero no viene el dado
+          : 0;
+
+  const storedHP = character.hitPoints;
+  const computedMaxHP = hitDie > 0 ? Math.max(1, hitDie + conMod) * classLevel : undefined;
+  const maxHP = (storedHP?.max && storedHP.max > 0 ? storedHP.max : computedMaxHP) ?? 0;
+  const currentHP = (storedHP?.current && storedHP.current > 0 ? storedHP.current : maxHP) ?? maxHP ?? 0;
+
+  const calcBAB = (progression: 'good' | 'average' | 'poor' | undefined, lvl: number) => {
+    if (!progression) return 0;
+    if (progression === 'good') return lvl;
+    if (progression === 'average') return Math.floor((3 * lvl) / 4);
+    return Math.floor(lvl / 2);
+  };
+
+  const calcSave = (progression: 'good' | 'poor' | undefined, lvl: number) => {
+    if (!progression) return 0;
+    if (progression === 'good') return 2 + Math.floor(lvl / 2);
+    return Math.floor(lvl / 3);
+  };
+
+  const bab =
+    calcBAB(classData?.baseAttackBonus as any, classLevel);
+
+  const fort = calcSave(classData?.fortitudeSave as any, classLevel) + conMod;
+  const ref = calcSave(classData?.reflexSave as any, classLevel) + dexMod;
+  const will = calcSave(classData?.willSave as any, classLevel) + (character.abilityModifiers?.wis || 0);
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
@@ -96,10 +138,25 @@ export default function CombatStatsSection({ onContinue }: CombatStatsSectionPro
         </CardHeader>
         <CardContent>
           <div className="text-center text-dungeon-400 py-8">
-            <p className="mb-2">Los PG se calcularán automáticamente cuando selecciones una clase</p>
-            <p className="text-sm text-dungeon-500">
-              Dado de Golpe de la clase + Modificador de Constitución ({conMod > 0 ? '+' : ''}{conMod})
-            </p>
+            {classData ? (
+              <>
+                <p className="mb-2 text-4xl font-bold text-dungeon-100">
+                  {currentHP}/{maxHP} PG
+                </p>
+                <p className="text-sm text-dungeon-500">
+                  {hitDie
+                    ? `${classData?.name || classData?.slug || 'Clase'} d${hitDie} × nivel (${classLevel}) + Mod. Constitución (${conMod > 0 ? '+' : ''}${conMod}) por nivel`
+                    : 'Usando PG almacenados del personaje'}
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="mb-2">Los PG se calcularán automáticamente cuando selecciones una clase</p>
+                <p className="text-sm text-dungeon-500">
+                  Dado de Golpe de la clase + Modificador de Constitución ({conMod > 0 ? '+' : ''}{conMod})
+                </p>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -154,10 +211,32 @@ export default function CombatStatsSection({ onContinue }: CombatStatsSectionPro
         </CardHeader>
         <CardContent>
           <div className="text-center text-dungeon-400 py-8">
-            <p className="mb-2">Las salvaciones se calcularán automáticamente cuando selecciones una clase</p>
-            <p className="text-sm text-dungeon-500">
-              Salvación Base + Modificador de Habilidad + Modificadores varios
-            </p>
+            {classData ? (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-dungeon-100">
+                <div className="bg-dungeon-900/40 rounded-lg p-4 border border-dungeon-800">
+                  <p className="text-sm text-dungeon-400 mb-1">Fortaleza</p>
+                  <p className="text-3xl font-bold">{fort > 0 ? '+' : ''}{fort}</p>
+                  <p className="text-xs text-dungeon-500">Base {calcSave(classData?.fortitudeSave as any, classLevel)} + Con {conMod > 0 ? '+' : ''}{conMod}</p>
+                </div>
+                <div className="bg-dungeon-900/40 rounded-lg p-4 border border-dungeon-800">
+                  <p className="text-sm text-dungeon-400 mb-1">Reflejos</p>
+                  <p className="text-3xl font-bold">{ref > 0 ? '+' : ''}{ref}</p>
+                  <p className="text-xs text-dungeon-500">Base {calcSave(classData?.reflexSave as any, classLevel)} + Des {dexMod > 0 ? '+' : ''}{dexMod}</p>
+                </div>
+                <div className="bg-dungeon-900/40 rounded-lg p-4 border border-dungeon-800">
+                  <p className="text-sm text-dungeon-400 mb-1">Voluntad</p>
+                  <p className="text-3xl font-bold">{will > 0 ? '+' : ''}{will}</p>
+                  <p className="text-xs text-dungeon-500">Base {calcSave(classData?.willSave as any, classLevel)} + Sab {(character.abilityModifiers?.wis || 0) > 0 ? '+' : ''}{character.abilityModifiers?.wis || 0}</p>
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className="mb-2">Las salvaciones se calcularán automáticamente cuando selecciones una clase</p>
+                <p className="text-sm text-dungeon-500">
+                  Salvación base + modificador de habilidad + modificadores varios
+                </p>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -169,10 +248,23 @@ export default function CombatStatsSection({ onContinue }: CombatStatsSectionPro
         </CardHeader>
         <CardContent>
           <div className="text-center text-dungeon-400 py-8">
-            <p className="mb-2">El BAB se calculará automáticamente según tu clase y nivel</p>
-            <p className="text-sm text-dungeon-500">
-              Las clases tienen progresión buena, media o pobre
-            </p>
+            {classData ? (
+              <>
+                <p className="mb-2 text-4xl font-bold text-dungeon-100">
+                  {bab > 0 ? '+' : ''}{bab}
+                </p>
+                <p className="text-sm text-dungeon-500">
+                  Progresión {classData?.baseAttackBonus || 'N/D'} a nivel {classLevel}
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="mb-2">El BAB se calculará automáticamente según tu clase y nivel</p>
+                <p className="text-sm text-dungeon-500">
+                  Las clases tienen progresión buena, media o pobre
+                </p>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -182,7 +274,7 @@ export default function CombatStatsSection({ onContinue }: CombatStatsSectionPro
         <div className="flex justify-end">
           <Button
             onClick={onContinue}
-            variant="default"
+            variant="primary"
             size="lg"
           >
             Continuar a Pericias →

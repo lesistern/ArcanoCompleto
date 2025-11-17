@@ -6,7 +6,7 @@
  */
 
 import { createClient } from '@/lib/supabase/client';
-import type { Character } from '@/types/character';
+import type { Character } from '@/lib/types/character';
 
 // ============================================================================
 // TIPOS
@@ -79,6 +79,8 @@ export interface CreateCharacterData {
   background?: string | null;
   notes?: string | null;
   is_public?: boolean;
+   is_favorite?: boolean;
+   last_played_at?: string | null;
 }
 
 export interface UpdateCharacterData extends Partial<CreateCharacterData> {
@@ -87,6 +89,8 @@ export interface UpdateCharacterData extends Partial<CreateCharacterData> {
   armor_class?: number | null;
   speed?: number | null;
   avatar_url?: string | null;
+  is_public?: boolean;
+  is_favorite?: boolean;
 }
 
 // ============================================================================
@@ -110,44 +114,82 @@ export async function createCharacter(data: CreateCharacterData): Promise<string
     throw new Error('Debes estar autenticado para crear un personaje');
   }
 
+  // Validaciones r��pidas para evitar errores opacos de la BD
+  if (!data.race_slug) {
+    throw new Error('Debes seleccionar una raza antes de guardar el personaje');
+  }
+  if (!data.class_slug) {
+    throw new Error('Debes seleccionar una clase antes de guardar el personaje');
+  }
+
+  // Helper para normalizar puntajes al formato esperado por la BD
+  const mapAbilityScores = (scores?: any) => {
+    if (!scores) return undefined;
+    return {
+      str: scores.str ?? scores.strength ?? 10,
+      dex: scores.dex ?? scores.dexterity ?? 10,
+      con: scores.con ?? scores.constitution ?? 10,
+      int: scores.int ?? scores.intelligence ?? 10,
+      wis: scores.wis ?? scores.wisdom ?? 10,
+      cha: scores.cha ?? scores.charisma ?? 10,
+    };
+  };
+
+  // Payload con valores por defecto seguros
+  const payload = {
+    user_id: user.id,
+    name: data.name || 'Sin nombre',
+    race_slug: data.race_slug ?? null,
+    class_slug: data.class_slug ?? null,
+    level: data.level ?? 1,
+    experience_points: data.experience_points ?? 0,
+    alignment: data.alignment ?? null,
+    deity: data.deity ?? null,
+    ability_scores: {
+      base: mapAbilityScores(data.ability_scores?.base) || {
+        str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10
+      },
+      racial: mapAbilityScores(data.ability_scores?.racial) || {
+        str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0
+      },
+      current: mapAbilityScores(data.ability_scores?.current) || {
+        str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10
+      },
+    },
+    skills: data.skills || {},
+    feats: data.feats || [],
+    equipment: data.equipment || {
+      weapons: [],
+      armor: [],
+      items: [],
+      gold: 0,
+      silver: 0,
+      copper: 0
+    },
+    background: data.background ?? null,
+    notes: data.notes ?? null,
+    is_public: data.is_public ?? false,
+    is_favorite: data.is_favorite ?? false,
+    last_played_at: data.last_played_at ?? new Date().toISOString(),
+  };
+
   // Crear personaje
-  const { data: character, error } = await supabase
+  const { data: character, error, status, statusText } = await supabase
     .from('characters')
-    .insert({
-      user_id: user.id,
-      name: data.name || 'Sin nombre',
-      race_slug: data.race_slug,
-      class_slug: data.class_slug,
-      level: data.level || 1,
-      experience_points: data.experience_points || 0,
-      alignment: data.alignment,
-      deity: data.deity,
-      ability_scores: data.ability_scores || {
-        base: { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 },
-        racial: { strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 },
-        current: { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 }
-      },
-      skills: data.skills || {},
-      feats: data.feats || [],
-      equipment: data.equipment || {
-        weapons: [],
-        armor: [],
-        items: [],
-        gold: 0,
-        silver: 0,
-        copper: 0
-      },
-      background: data.background,
-      notes: data.notes,
-      is_public: data.is_public || false,
-      last_played_at: new Date().toISOString()
-    })
+    .insert(payload)
     .select('id')
     .single();
 
   if (error) {
-    console.error('Error creating character:', error);
-    throw new Error(`Error al crear personaje: ${error.message}`);
+    const errorMessage =
+      (error as any)?.message ||
+      (error as any)?.details ||
+      (error as any)?.hint ||
+      (typeof error === 'object' ? JSON.stringify(error) : String(error)) ||
+      statusText ||
+      'Error desconocido';
+    console.error('Error creating character:', { error, status, statusText, payload });
+    throw new Error(`Error al crear personaje: ${errorMessage}`);
   }
 
   if (!character) {
@@ -489,37 +531,74 @@ export async function getPublicCharacters(limit: number = 50): Promise<Character
  * @param characterRow - Datos del personaje desde Supabase
  * @returns Personaje en formato del editor
  */
-export function toEditorFormat(characterRow: CharacterRow): Character {
+export function toEditorFormat(characterRow: CharacterRow): Partial<Character> {
   return {
     name: characterRow.name,
-    race: characterRow.race_slug || undefined,
-    class: characterRow.class_slug || undefined,
-    level: characterRow.level,
-    experiencePoints: characterRow.experience_points,
+    race: (characterRow.race_slug as any) || undefined,
+    classes: characterRow.class_slug
+      ? [{ class: { slug: characterRow.class_slug } as any, level: characterRow.level || 1 }]
+      : [],
+    effectiveCharacterLevel: characterRow.level,
+    experience: {
+      current: characterRow.experience_points || 0,
+      needed: 0,
+    },
     alignment: characterRow.alignment || undefined,
     deity: characterRow.deity || undefined,
     abilityScores: {
-      base: characterRow.ability_scores.base,
-      racial: characterRow.ability_scores.racial,
-      current: characterRow.ability_scores.current
+      base: characterRow.ability_scores.base as any,
+      racial: characterRow.ability_scores.racial as any,
+      current: characterRow.ability_scores.current as any
+    },
+    abilityModifiers: {
+      str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0,
     },
     hitPoints: {
       current: characterRow.hit_points_current || 0,
-      max: characterRow.hit_points_max || 0
+      max: characterRow.hit_points_max || 0,
+      temporary: 0,
     },
-    armorClass: characterRow.armor_class || 10,
-    speed: characterRow.speed || 30,
-    skills: characterRow.skills,
-    feats: characterRow.feats,
+    armorClass: {
+      total: characterRow.armor_class || 10,
+      flatFooted: characterRow.armor_class || 10,
+      touch: characterRow.armor_class || 10,
+      breakdown: {
+        base: 10,
+        armor: 0,
+        shield: 0,
+        dex: 0,
+        size: 0,
+        natural: 0,
+        deflection: 0,
+        misc: 0,
+      },
+    },
+    speed: {
+      base: characterRow.speed || 30,
+      armored: characterRow.speed || 30,
+      current: characterRow.speed || 30,
+    },
+    initiative: 0,
+    saves: {
+      fortitude: { total: 0, base: 0, ability: 0, magic: 0, misc: 0 },
+      reflex: { total: 0, base: 0, ability: 0, magic: 0, misc: 0 },
+      will: { total: 0, base: 0, ability: 0, magic: 0, misc: 0 },
+    },
+    skills: characterRow.skills as any,
+    feats: characterRow.feats as any,
+    specialAbilities: [],
+    languages: [],
+    wealth: {
+      platinum: 0,
+      gold: characterRow.equipment.gold || 0,
+      silver: characterRow.equipment.silver || 0,
+      copper: characterRow.equipment.copper || 0,
+    },
     equipment: {
       weapons: characterRow.equipment.weapons,
       armor: characterRow.equipment.armor,
       items: characterRow.equipment.items,
-      currency: {
-        gold: characterRow.equipment.gold,
-        silver: characterRow.equipment.silver,
-        copper: characterRow.equipment.copper
-      }
+      magicItems: [],
     },
     background: characterRow.background || undefined,
     notes: characterRow.notes || undefined,
@@ -550,29 +629,33 @@ export function fromEditorFormat(character: Partial<Character>): CreateCharacter
 
   return {
     name: character.name || 'Sin nombre',
-    race_slug: character.race || null,
-    class_slug: character.class || null,
-    level: character.level || 1,
-    experience_points: character.experiencePoints || 0,
-    alignment: character.alignment || null,
-    deity: character.deity || null,
+    race_slug: (character as any).race?.slug ?? (character as any).race ?? null,
+    class_slug: (character as any).classes?.[0]?.class?.slug ?? (character as any).class ?? null,
+    level: (character as any).effectiveCharacterLevel || (character as any).level || 1,
+    experience_points: (character as any).experience?.current ?? (character as any).experiencePoints ?? 0,
+    alignment: (character as any).alignment || null,
+    deity: (character as any).deity || null,
     ability_scores: character.abilityScores ? {
-      base: character.abilityScores.base,
-      racial: character.abilityScores.racial,
-      current: character.abilityScores.current
+      base: character.abilityScores.base as any,
+      racial: character.abilityScores.racial as any,
+      current: character.abilityScores.current as any
     } : undefined,
-    skills: character.skills || {},
-    feats: character.feats || [],
-    equipment: character.equipment ? {
-      weapons: character.equipment.weapons || [],
-      armor: character.equipment.armor || [],
-      items: character.equipment.items || [],
-      gold: character.equipment.currency?.gold || 0,
-      silver: character.equipment.currency?.silver || 0,
-      copper: character.equipment.currency?.copper || 0
-    } : defaultEquipment,
-    avatar_url: character.avatarUrl || null,
+    skills: (character as any).skills as any,
+    feats: (character.feats as any) || [],
+    equipment: {
+      weapons: character.equipment?.weapons || defaultEquipment.weapons,
+      armor: character.equipment?.armor || defaultEquipment.armor,
+      items: character.equipment?.items || defaultEquipment.items,
+      gold: (character as any).wealth?.gold ?? 0,
+      silver: (character as any).wealth?.silver ?? 0,
+      copper: (character as any).wealth?.copper ?? 0
+    },
+    avatar_url: (character as any).avatarUrl || null,
     background: character.background || null,
-    notes: character.notes || null
+    notes: character.notes || null,
+    is_public: (character as any).isPublic ?? false,
+    is_favorite: (character as any).isFavorite ?? false,
+    last_played_at: (character as any).lastPlayedAt ?? null
   };
 }
+

@@ -87,100 +87,41 @@ export default function SkillsSection({ onContinue }: SkillsSectionProps = {}) {
 
           <div className="space-y-1">
             {/* Header */}
-            <div className="grid grid-cols-12 gap-2 px-3 py-2 bg-dungeon-900/50 rounded text-xs font-semibold text-dungeon-500 sticky top-0">
-              <div className="col-span-5">Habilidad</div>
-              <div className="col-span-2 text-center">Mod.</div>
-              <div className="col-span-2 text-center">Rangos</div>
-              <div className="col-span-1 text-center">Clase</div>
-              <div className="col-span-2 text-center">Total</div>
+            <div className="grid grid-cols-12 gap-2 px-3 py-2 bg-dungeon-900/50 rounded text-xs text-dungeon-400 font-semibold">
+              <span className="col-span-6">Habilidad</span>
+              <span className="col-span-2 text-center">Atributo</span>
+              <span className="col-span-2 text-center">Mod</span>
+              <span className="col-span-2 text-center">Entrenada</span>
             </div>
 
-            {/* Skills List */}
-            {SKILLS.map((skill, index) => {
-              const abilityMod = modifiers[skill.ability as keyof typeof modifiers];
+            {SKILLS.map(skill => {
+              const mod = modifiers[skill.ability as keyof typeof modifiers] || 0;
+              const abilityShort = ABILITY_SHORT_NAMES[skill.ability as keyof typeof ABILITY_SHORT_NAMES];
 
               return (
                 <div
-                  key={index}
-                  className={`grid grid-cols-12 gap-2 px-3 py-2 rounded hover:bg-dungeon-800/30 transition-colors ${
-                    index % 2 === 0 ? 'bg-dungeon-900/20' : ''
-                  }`}
+                  key={skill.name}
+                  className="grid grid-cols-12 gap-2 px-3 py-2 bg-dungeon-900/30 rounded border border-dungeon-800 text-sm text-dungeon-300"
                 >
-                  {/* Skill Name */}
-                  <div className="col-span-5 flex items-center gap-2">
-                    <span className="text-sm text-dungeon-200">{skill.name}</span>
-                    {skill.trainedOnly && (
-                      <span className="text-[10px] px-1.5 py-0.5 bg-red-900/30 text-red-400 rounded border border-red-700/50">
-                        Solo entrenada
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Ability Modifier */}
-                  <div className="col-span-2 flex items-center justify-center gap-1">
-                    <span className="text-xs text-dungeon-500">{ABILITY_SHORT_NAMES[skill.ability as keyof typeof ABILITY_SHORT_NAMES]}</span>
-                    <span
-                      className={`text-sm font-semibold ${
-                        abilityMod > 0 ? 'text-green-400' : abilityMod < 0 ? 'text-red-400' : 'text-dungeon-400'
-                      }`}
-                    >
-                      {abilityMod > 0 ? '+' : ''}{abilityMod}
-                    </span>
-                  </div>
-
-                  {/* Ranks */}
-                  <div className="col-span-2 flex items-center justify-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="20"
-                      defaultValue="0"
-                      disabled
-                      className="w-16 text-center text-sm bg-dungeon-800 border border-dungeon-700 rounded py-1 text-dungeon-400 opacity-50 cursor-not-allowed"
-                    />
-                  </div>
-
-                  {/* Class Skill */}
-                  <div className="col-span-1 flex items-center justify-center">
-                    <input
-                      type="checkbox"
-                      disabled
-                      className="w-4 h-4 opacity-50 cursor-not-allowed"
-                    />
-                  </div>
-
-                  {/* Total */}
-                  <div className="col-span-2 flex items-center justify-center">
-                    <span className="text-sm font-semibold text-dungeon-300">
-                      {abilityMod > 0 ? '+' : ''}{abilityMod}
-                    </span>
-                  </div>
+                  <span className="col-span-6">{skill.name}</span>
+                  <span className="col-span-2 text-center uppercase text-dungeon-400">{abilityShort}</span>
+                  <span className="col-span-2 text-center font-semibold">
+                    {mod > 0 ? '+' : ''}{mod}
+                  </span>
+                  <span className="col-span-2 text-center text-xs text-dungeon-400">
+                    {skill.trainedOnly ? 'Sí' : 'No'}
+                  </span>
                 </div>
               );
             })}
           </div>
-
-          <div className="mt-6 p-4 bg-dungeon-800/30 border border-dungeon-700 rounded text-sm text-dungeon-400">
-            <p className="font-semibold mb-2">Leyenda:</p>
-            <ul className="list-disc list-inside space-y-1 text-xs">
-              <li><strong>Mod.</strong>: Modificador de la habilidad clave</li>
-              <li><strong>Rangos</strong>: Puntos invertidos en la habilidad (máx. nivel + 3)</li>
-              <li><strong>Clase</strong>: +3 si es habilidad de clase</li>
-              <li><strong>Solo entrenada</strong>: Requiere al menos 1 rango para usarse</li>
-            </ul>
-          </div>
         </CardContent>
       </Card>
 
-      {/* Botón Continuar */}
       {onContinue && (
         <div className="flex justify-end">
-          <Button
-            onClick={onContinue}
-            variant="default"
-            size="lg"
-          >
-            Continuar a Equipo →
+          <Button variant="primary" size="lg" onClick={onContinue}>
+            Ir a Equipo →
           </Button>
         </div>
       )}

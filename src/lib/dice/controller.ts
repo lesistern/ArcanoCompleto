@@ -6,6 +6,7 @@ class DiceController {
 
     private sound: HTMLAudioElement | null = null;
     private themeConfig = { themeColor: '#000000', textColor: '#ff0000' };
+    private clearTimer: NodeJS.Timeout | null = null;
 
     private constructor() { }
 
@@ -14,6 +15,18 @@ class DiceController {
             DiceController.instance = new DiceController();
         }
         return DiceController.instance;
+    }
+
+    private resultCallback: ((data: { total: number, notation: string } | null) => void) | null = null;
+
+    public showResult(data: { total: number, notation: string } | null) {
+        if (this.resultCallback) {
+            this.resultCallback(data);
+        }
+    }
+
+    public onShowResult(callback: (data: { total: number, notation: string } | null) => void) {
+        this.resultCallback = callback;
     }
 
     public setTheme(themeColor: string, textColor: string) {
@@ -125,10 +138,23 @@ class DiceController {
             foreground: this.themeConfig.textColor
         });
 
+
+        // Cancel any pending clear timer to allow the new roll to persist
+        if (this.clearTimer) {
+            clearTimeout(this.clearTimer);
+            this.clearTimer = null;
+        }
+
         // Auto-clear dice 5 seconds AFTER the roll is finished/settled
         resultPromise.then(() => {
-            setTimeout(() => {
+            // Re-check just in case, though usually this callback runs later
+            if (this.clearTimer) {
+                clearTimeout(this.clearTimer);
+            }
+
+            this.clearTimer = setTimeout(() => {
                 this.clear();
+                this.clearTimer = null;
             }, 5000);
         });
 

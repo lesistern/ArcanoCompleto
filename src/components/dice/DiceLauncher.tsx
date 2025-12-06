@@ -31,7 +31,7 @@ export default function DiceLauncher() {
     const [inputValue, setInputValue] = useState("");
     const [placeholder, setPlaceholder] = useState("Ej: 4d6+2d20+3");
 
-    const [lastRoll, setLastRoll] = useState<{ total: number, notation: string } | null>(null);
+    // const [lastRoll, setLastRoll] = useState<{ total: number, notation: string } | null>(null);
     const [advMode, setAdvMode] = useState<'normal' | 'ven' | 'des'>('normal');
 
     // Warning State
@@ -77,7 +77,7 @@ export default function DiceLauncher() {
 
 
     const handleAddDie = (type: string) => {
-        if (pool.length >= 10 && !limitOverride) {
+        if (pool.length >= 20 && !limitOverride) {
             setPendingDie(type);
             setShowLimitWarning(true);
             return;
@@ -89,9 +89,16 @@ export default function DiceLauncher() {
         setLimitOverride(true);
         if (pendingDie) {
             setPool([...pool, pendingDie]);
+            setShowLimitWarning(false);
+            setPendingDie(null);
+        } else {
+            // Triggered by roll action, so we execute the roll with force=true
+            setShowLimitWarning(false);
+            // We need to pass clean state or just force.
+            // Since handleRoll reads from state which hasn't updated limitOverride yet in this closure if we rely on it,
+            // we pass an explicit force flag.
+            handleRoll(true);
         }
-        setShowLimitWarning(false);
-        setPendingDie(null);
     };
 
     const handleCancelRisk = () => {
@@ -128,19 +135,17 @@ export default function DiceLauncher() {
         }
     };
 
-    const handleRoll = async () => {
+    const handleRoll = async (force: boolean = false) => {
         if (!inputValue && modifier === 0 && pool.length === 0) return;
 
         // Use inputValue as the source of truth if populated, otherwise generate from pool
         let rollNotation = inputValue || calculateNotation(pool, modifier);
-
         let displayNotation = rollNotation;
 
         // Logic for Advantage/Disadvantage
         const applyingAdvantage = (advMode !== 'normal') && hasD20;
 
         if (applyingAdvantage) {
-            // Logic to replace d20 with 2d20 in string for logic
             if (rollNotation.includes('1d20')) {
                 rollNotation = rollNotation.replace('1d20', '2d20');
             } else if (/\bd20\b/.test(rollNotation) && !/\b[0-9]+d20\b/.test(rollNotation)) {
@@ -151,35 +156,30 @@ export default function DiceLauncher() {
             displayNotation += ` (${advMode === 'ven' ? 'ADV' : 'DES'})`;
         }
 
-        console.log("DiceLauncher: Rolling", rollNotation);
-
-        setIsOpen(false);
-        handleClear();
-
-        // Manual Parsing for DiceBox
-        // convert "2d20 + 4d6 + 5" -> roll(['2d20', '4d6']) and keep +5 for math
-        const cleanStr = rollNotation.replace(/\s+/g, ''); // Remove all spaces
-
-        const diceTerms: string[] = [];
-        let modifierTotal = 0;
-
+        // Parse notation to count dice and validate limits
+        const cleanStr = rollNotation.replace(/\s+/g, '');
         const regex = /([+-]?)([^+-]+)/g;
         let match;
+        const diceTerms: string[] = [];
+        let modifierTotal = 0;
+        let totalDiceCount = 0;
 
         while ((match = regex.exec(cleanStr)) !== null) {
             const sign = match[1] === '-' ? -1 : 1;
             const term = match[2];
 
             if (term.toLowerCase().includes('d')) {
-                // It is a die (e.g. 2d20, d6)
-                // Normalize "d20" -> "1d20"
                 let diceTerm = term;
                 if (/^d\d/.test(diceTerm)) {
                     diceTerm = '1' + diceTerm;
                 }
                 diceTerms.push(diceTerm);
+
+                // Count dice
+                const parts = diceTerm.toLowerCase().split('d');
+                const count = parseInt(parts[0]);
+                if (!isNaN(count)) totalDiceCount += count;
             } else {
-                // It is a number
                 const num = parseInt(term);
                 if (!isNaN(num)) {
                     modifierTotal += (sign * num);
@@ -187,35 +187,46 @@ export default function DiceLauncher() {
             }
         }
 
+        // Validation Checks
+        if (totalDiceCount > 100) {
+            // Hard limit
+            alert("No puedes lanzar más de 100 dados a la vez.");
+            return;
+        }
+
+        if (totalDiceCount > 20 && !limitOverride && !force) {
+            // Soft limit warning
+            setShowLimitWarning(true);
+            return;
+        }
+
+        console.log("DiceLauncher: Rolling", rollNotation);
+
+        setIsOpen(false);
+        handleClear();
+
         // Output fallback if empty
         if (diceTerms.length === 0) {
-            setLastRoll({ total: modifierTotal, notation: displayNotation });
-            setTimeout(() => setLastRoll(null), 5000);
+            diceController.showResult({ total: modifierTotal, notation: displayNotation });
+            setTimeout(() => diceController.showResult(null), 8000);
             return;
         }
 
         try {
-            // Pass array to diceController
-            // Since we modified rolling logic, verify diceController.ts accepts string[]
             const rawResult = await diceController.roll(diceTerms);
-
             let diceSum = 0;
 
-            // Helper to extract rolls from a result item
             const extractValues = (item: any): number[] => {
                 if (Array.isArray(item.rolls)) return item.rolls.map((r: any) => r.value);
                 if ('value' in item) return [item.value];
                 return [];
             };
 
-            // Normalize result to a list of groups
             const groups = Array.isArray(rawResult) ? rawResult : [rawResult];
 
             for (const group of groups) {
-                // Identify group type if possible. 
                 const sides = group.sides || 0;
                 const vals = extractValues(group);
-
                 let groupTotal = 0;
 
                 if (applyingAdvantage && sides === 20 && vals.length >= 2) {
@@ -231,14 +242,16 @@ export default function DiceLauncher() {
 
             const finalTotal = diceSum + modifierTotal;
 
-            setLastRoll({
+
+
+            diceController.showResult({
                 total: finalTotal,
                 notation: displayNotation
             });
 
             setTimeout(() => {
-                setLastRoll(null);
-            }, 5000);
+                diceController.showResult(null);
+            }, 8000);
 
         } catch (error) {
             console.error("Roll failed", error);
@@ -257,7 +270,7 @@ export default function DiceLauncher() {
                             </div>
                             <h3 className="text-xl font-bold text-red-100">¡Advertencia de Rendimiento!</h3>
                             <p className="text-dungeon-200 text-sm leading-relaxed">
-                                ¡Cuidado aventurero! Lanzar más de 10 dados podría invocar al monstruo del Lag (y tal vez crashear tu navegador).
+                                ¡Cuidado aventurero! Lanzar más de 20 dados podría invocar al monstruo del Lag (y tal vez crashear tu navegador).
                             </p>
                             <div className="flex gap-3 w-full mt-2">
                                 <button
@@ -278,20 +291,7 @@ export default function DiceLauncher() {
                 </div>
             )}
 
-            {/* Result Display Overlay */}
-            {lastRoll && (
-                <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] animate-in slide-in-from-bottom-5 fade-in duration-300 pointer-events-none">
-                    <div className="bg-dungeon-900/90 border-2 border-gold-500 rounded-xl p-4 shadow-2xl backdrop-blur-sm min-w-[200px] text-center">
-                        <div className="text-gold-400 text-xs uppercase font-bold tracking-wider mb-1">Resultado</div>
-                        <div className="text-4xl font-bold text-white drop-shadow-md font-mono">
-                            {lastRoll.total}
-                        </div>
-                        <div className="text-dungeon-300 text-xs mt-1 font-mono">
-                            {lastRoll.notation}
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/* Result Display Overlay - Moved to DiceOverlay.tsx via diceController */}
 
             <div className="relative flex justify-end">
                 {/* Panel Expandido */}
@@ -379,7 +379,7 @@ export default function DiceLauncher() {
 
                             {/* Roll Button */}
                             <button
-                                onClick={handleRoll}
+                                onClick={() => handleRoll()}
                                 disabled={inputValue.trim().length === 0 && pool.length === 0 && modifier === 0}
                                 className={`
                                     flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg font-bold text-sm

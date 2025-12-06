@@ -139,6 +139,18 @@ Desktop.ini
 # ============================================================================
 logs/
 *.log
+*_log.txt
+*_output.txt
+*_output_*.txt
+
+# Temporary/Context Files
+discord-setup-temp.js
+.gitignore.recommended
+INSTRUCCIONES_*.txt
+PROXIMA-ACCION-*.txt
+PROXIMO-PASO-*.md
+*.tmp
+*.temp
 
 # ============================================================================
 # CACHE DIRECTORIES

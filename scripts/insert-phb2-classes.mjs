@@ -1,9 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
+import 'dotenv/config';
+
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('❌ Error: SUPABASE_SERVICE_ROLE_KEY is missing in .env');
+  process.exit(1);
+}
 
 // Using service_role key to bypass RLS
 const supabase = createClient(
-  'https://akcuvlanpqpoizconuhm.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrY3V2bGFucHFwb2l6Y29udWhtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MzExNzMwMCwiZXhwIjoyMDc4NjkzMzAwfQ.pIfA0AwG1J9VSp4jp50BaAqhgMR1V-A_QNmS5xs8AXA'
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://akcuvlanpqpoizconuhm.supabase.co',
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 // =============================================

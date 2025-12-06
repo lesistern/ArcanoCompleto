@@ -72,7 +72,7 @@ class DiceController {
                 throwForce: 6, // Reduced aggression
                 // Point to local assets to avoid URL issues
                 assetPath: '/assets/dice-box/',
-            });
+            } as any);
 
             await this.box.init();
             console.log("DiceController: DiceBox initialized successfully");

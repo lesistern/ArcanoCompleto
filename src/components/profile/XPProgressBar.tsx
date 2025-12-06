@@ -1,4 +1,6 @@
 // src/components/profile/XPProgressBar.tsx
+import { memo } from 'react';
+
 interface XPProgressBarProps {
   currentXp: number;
   currentLevelXp: number;
@@ -7,7 +9,7 @@ interface XPProgressBarProps {
   showPercentage?: boolean;
 }
 
-export function XPProgressBar({
+export const XPProgressBar = memo(function XPProgressBar({
   currentXp,
   currentLevelXp,
   nextLevelXp,
@@ -28,7 +30,14 @@ export function XPProgressBar({
         <span>Nivel {level + 1}</span>
       </div>
 
-      <div className="w-full h-3 bg-dungeon-800 rounded-full overflow-hidden border border-dungeon-700 relative">
+      <div
+        className="w-full h-3 bg-dungeon-800 rounded-full overflow-hidden border border-dungeon-700 relative"
+        role="progressbar"
+        aria-valuenow={percentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`Progreso de nivel: ${percentage}% completo`}
+      >
         <div
           className="h-full bg-gradient-to-r from-gold-600 to-gold-400 transition-all duration-500 ease-out"
           style={{ width: `${percentage}%` }}
@@ -51,4 +60,4 @@ export function XPProgressBar({
       )}
     </div>
   );
-}
+});

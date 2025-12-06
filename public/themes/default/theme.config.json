@@ -1,0 +1,12 @@
+{
+    "systemName": "default",
+    "name": "Standard Dice",
+    "diceColor": "#202020",
+    "labelColor": "#aaaaaa",
+    "material": {
+        "type": "phong",
+        "specular": 1513234,
+        "shininess": 40,
+        "shading": 1
+    }
+}

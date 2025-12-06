@@ -1,247 +1,225 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Sparkles, Coins, Weight, Crosshair, Swords } from 'lucide-react';
+import { Sword, Shield, Package, Coins, Weight, Zap, Info } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import weaponsData from '@/lib/data/3.5/weapons.json';
-import { DnDWeapon } from '@/lib/types/item';
-import { getItemCategoryIcon, getItemCategoryColor, getWeaponIcon, extractTextColor } from '@/lib/utils/icons';
+import { createClient, createStaticClient } from '@/lib/supabase/server';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { FormattedDistance } from '@/components/ui/FormattedDistance';
 
-interface ObjectPageProps {
+// Notas al pie del SRD para Goods and Services
+const FOOTNOTES: Record<string, string> = {
+  '1': 'Este objeto pesa una cuarta parte cuando se fabrica para personajes Pequeños. Los contenedores para personajes Pequeños también tienen una cuarta parte de la capacidad.',
+  '2': 'Ver descripción del conjuro para costos adicionales. Si el conjuro lanzado incluye un componente de coste material, añádelo al coste mostrado.',
+};
+
+// Función para detectar y extraer notas al pie
+function parseFootnotes(text: string | null | undefined): {
+  cleanText: string | null;
+  footnotes: string[]
+} {
+  if (!text) return { cleanText: null, footnotes: [] };
+
+  const footnotes: string[] = [];
+  let cleanText = text;
+
+  // Detectar superíndices al final (después de lb., gp, sp, cp, pp, etc.)
+  const match = text.match(/^(.+?)([12]+)$/);
+  if (match) {
+    cleanText = match[1].trim();
+    // Extraer cada dígito como nota al pie separada
+    const footnoteNumbers = match[2].split('');
+    footnoteNumbers.forEach(num => {
+      if (FOOTNOTES[num] && !footnotes.includes(num)) {
+        footnotes.push(num);
+      }
+    });
+  }
+
+  return { cleanText, footnotes };
+}
+
+interface ItemPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
-export default async function ObjectPage({ params }: ObjectPageProps) {
+export default async function ItemPage({ params }: ItemPageProps) {
   const { slug } = await params;
-  const itemData = (weaponsData as DnDWeapon[]).find(
-    (i) => i.slug === slug
-  );
 
-  if (!itemData) {
+  const supabase = await createClient();
+  const { data: item } = await supabase
+    .from('srd_items')
+    .select(`
+      *,
+      srd_weapons(*),
+      srd_armors(*)
+    `)
+    .eq('slug', slug)
+    .single();
+
+  if (!item) {
     notFound();
   }
 
-  const Icon = getWeaponIcon(itemData);
-  const categoryColor = getItemCategoryColor(itemData.category);
-  const iconColor = extractTextColor(categoryColor);
+  const weapon = item.srd_weapons?.[0];
+  const armor = item.srd_armors?.[0];
 
-  // Determinar color del tag de tipo de arma (simple/marcial/exótica)
-  const getWeaponTypeColor = (weaponType: string) => {
-    if (weaponType.includes('simple')) return 'bg-green-500/20 text-green-400 border-green-500/30';
-    if (weaponType.includes('marcial')) return 'bg-red-500/20 text-red-400 border-red-500/30';
-    if (weaponType.includes('exótica')) return 'bg-gold-500/20 text-gold-500 border-gold-500/30';
-    return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+  // Parsear notas al pie de precio y peso
+  const priceData = parseFootnotes(item.price_text);
+  const weightData = parseFootnotes(item.weight_text);
+
+  // Recolectar todas las notas al pie únicas
+  const allFootnotes = [...new Set([...priceData.footnotes, ...weightData.footnotes])].sort();
+
+  // Get icon based on category
+  const getIcon = () => {
+    if (item.item_category === 'weapon') return Sword;
+    if (item.item_category === 'armor') return Shield;
+    return Package;
   };
 
-  // Formatear costo
-  const costText = itemData.cost.gold
-    ? `${itemData.cost.gold.toLocaleString()} po`
-    : itemData.cost.silver
-      ? `${itemData.cost.silver} pp`
-      : 'Gratis';
+  const Icon = getIcon();
+
+  // Get category label
+  const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+      'weapon': 'Arma',
+      'armor': 'Armadura',
+      'goods': 'Bien o Servicio',
+      'material': 'Material Especial'
+    };
+    return labels[category] || category;
+  };
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
-      <div className="mb-8">
-        <Link href="/objetos/armas">
-          <Button variant="secondary">Volver a armas</Button>
-        </Link>
-      </div>
+      <Breadcrumbs items={[
+        { label: 'Equipo', href: '/objetos' },
+        { label: item.name }
+      ]} />
 
       {/* Header */}
-      <div className={`border-l-4 ${itemData.isMagic ? 'border-purple-500' : 'border-gold-500'} pl-6 mb-12`}>
+      <div className="border-l-4 border-amber-500 pl-6 mb-12">
         <div className="flex items-center gap-4 mb-3">
-          <Icon className={`h-8 w-8 ${itemData.isMagic ? 'text-purple-400' : iconColor}`} />
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
-            {itemData.name}
+          <Icon className="h-10 w-10 md:h-12 md:w-12 text-amber-400" />
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-dungeon-100">
+            {item.name}
           </h1>
         </div>
-        <p className="text-lg text-dungeon-300 mb-4">{itemData.shortDescription}</p>
-        <div className="flex flex-wrap gap-3 text-sm">
-          <span className={`px-3 py-1 rounded border font-semibold ${getWeaponTypeColor(itemData.weaponType)}`}>
-            {itemData.weaponType}
+        <div className="flex flex-wrap gap-3 text-sm mb-4">
+          <span className="px-3 py-1 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 font-semibold">
+            {getCategoryLabel(item.item_category)}
           </span>
-          <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
-            <span className="text-dungeon-500">Tamaño:</span> {itemData.size}
-          </span>
-          {itemData.isMagic && itemData.magicBonus && (
-            <span className="px-3 py-1 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              Mágico +{itemData.magicBonus}
+          {weapon && (
+            <>
+              <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
+                <span className="text-dungeon-500">Categoría:</span> {weapon.weapon_category}
+              </span>
+              <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
+                <span className="text-dungeon-500">Tipo:</span> {weapon.weapon_type}
+              </span>
+            </>
+          )}
+          {armor && (
+            <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
+              <span className="text-dungeon-500">Categoría:</span> {armor.armor_category}
             </span>
           )}
         </div>
       </div>
 
-      {/* Descripción */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Descripción</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-dungeon-300 leading-relaxed">{itemData.description}</p>
-        </CardContent>
-      </Card>
+      {/* Basic Info Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {priceData.cleanText && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm">
+                <Coins className="h-4 w-4 text-amber-400" />
+                Precio
+                {priceData.footnotes.length > 0 && (
+                  <span className="text-amber-500 text-xs ml-1">
+                    {priceData.footnotes.map(n => `[${n}]`).join('')}
+                  </span>
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-dungeon-200 font-semibold">{priceData.cleanText}</p>
+            </CardContent>
+          </Card>
+        )}
 
-      {/* Estadísticas */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Swords className="h-5 w-5 text-red-400" />
-            Estadísticas de combate
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Daño</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-dungeon-400">Pequeño:</span>
-                    <span className="text-sm font-bold text-dungeon-200">{itemData.stats.damage.small}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-dungeon-400">Mediano:</span>
-                    <span className="text-sm font-bold text-dungeon-200">{itemData.stats.damage.medium}</span>
-                  </div>
-                  {itemData.stats.damage.large && (
-                    <div className="flex justify-between">
-                      <span className="text-sm text-dungeon-400">Grande:</span>
-                      <span className="text-sm font-bold text-dungeon-200">{itemData.stats.damage.large}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+        {weightData.cleanText && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm">
+                <Weight className="h-4 w-4 text-gray-400" />
+                Peso
+                {weightData.footnotes.length > 0 && (
+                  <span className="text-amber-500 text-xs ml-1">
+                    {weightData.footnotes.map(n => `[${n}]`).join('')}
+                  </span>
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-dungeon-200">{weightData.cleanText}</p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
 
-              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Crítico</h3>
-                <p className="text-lg font-bold text-red-400">{itemData.stats.critical}</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Tipo de daño</h3>
-                <div className="flex flex-wrap gap-2 items-center">
-                  {itemData.stats.damageType.map((type, idx) => {
-                    const colorClass = type === 'Perforante' ? 'bg-green-500/20 text-green-400 border-green-500/30' :
-                                       type === 'Cortante' ? 'bg-red-500/20 text-red-400 border-red-500/30' :
-                                       'bg-blue-500/20 text-blue-400 border-blue-500/30';
-
-                    // Determinar si el arma hace daño "y" o "o"
-                    const andWeapons = ['lucero del alba', 'guadaña'];
-                    const isAnd = andWeapons.some(name => itemData.name.toLowerCase().includes(name));
-
-                    return (
-                      <>
-                        {idx > 0 && (
-                          <span className="text-sm text-dungeon-400 mx-1">
-                            {isAnd ? 'y' : 'o'}
-                          </span>
-                        )}
-                        <span key={idx} className={`text-sm px-2 py-1 rounded border ${colorClass}`}>
-                          {type}
-                        </span>
-                      </>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {itemData.stats.range && (
-                <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Alcance</h3>
-                  <div className="flex items-center gap-2">
-                    <Crosshair className="h-4 w-4 text-blue-400" />
-                    <p className="text-lg font-bold text-blue-400">{itemData.stats.range} pies</p>
-                  </div>
-                </div>
-              )}
-
-              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Peso</h3>
-                <div className="flex items-center gap-2">
-                  <Weight className="h-4 w-4 text-gray-400" />
-                  <p className="text-lg font-bold text-gray-400">{itemData.stats.weight} lb</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Costo */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Coins className="h-5 w-5 text-gold-500" />
-            Costo
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold text-gold-500">{costText}</p>
-        </CardContent>
-      </Card>
-
-      {/* Propiedades */}
-      {itemData.properties && itemData.properties.length > 0 && (
+      {/* Weapon Stats */}
+      {weapon && (
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Propiedades</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {itemData.properties.map((prop, index) => (
-                <span
-                  key={index}
-                  className="text-sm px-3 py-1 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                >
-                  {prop}
-                </span>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Especial */}
-      {itemData.special && (
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Especial</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-dungeon-300">{itemData.special}</p>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Información Mágica */}
-      {itemData.isMagic && itemData.magicStats && (
-        <Card className="mb-8 border-purple-500/30 bg-purple-500/5">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-purple-400">
-              <Sparkles className="h-5 w-5" />
-              Propiedades mágicas
+            <CardTitle className="flex items-center gap-2">
+              <Sword className="h-5 w-5 text-red-400" />
+              Estadísticas de arma
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2 text-sm bg-dungeon-800/30 rounded p-3">
-                <span className="text-purple-400 font-semibold min-w-[120px]">Aura:</span>
-                <span className="text-dungeon-300">{itemData.magicStats.aura}</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Empuñadura</h3>
+                <p className="text-dungeon-200">{weapon.handedness}</p>
               </div>
-              <div className="flex items-start gap-2 text-sm bg-dungeon-800/30 rounded p-3">
-                <span className="text-purple-400 font-semibold min-w-[120px]">Nivel de lanzador:</span>
-                <span className="text-dungeon-300">{itemData.magicStats.casterLevel}</span>
+
+              {weapon.damage_by_size && (
+                <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Daño (Medio)</h3>
+                  <p className="text-dungeon-200 font-bold">
+                    {weapon.damage_by_size.M || weapon.damage_by_size.S || 'N/A'}
+                  </p>
+                </div>
+              )}
+
+              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Crítico</h3>
+                <p className="text-dungeon-200 font-bold text-red-400">
+                  {weapon.critical_range}/{weapon.critical_mult}
+                </p>
               </div>
-              {itemData.magicBonus && (
-                <div className="flex items-start gap-2 text-sm bg-dungeon-800/30 rounded p-3">
-                  <span className="text-purple-400 font-semibold min-w-[120px]">Bonificador:</span>
-                  <span className="text-dungeon-300">+{itemData.magicBonus} a tiradas de ataque y daño</span>
+
+              {weapon.damage_type && weapon.damage_type.length > 0 && (
+                <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Tipo de daño</h3>
+                  <p className="text-dungeon-200">{weapon.damage_type.join(', ')}</p>
+                </div>
+              )}
+
+              {weapon.range_increment_ft && (
+                <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Alcance</h3>
+                  <p className="text-dungeon-200"><FormattedDistance feet={weapon.range_increment_ft} /></p>
+                </div>
+              )}
+
+              {weapon.special_rules && (
+                <div className="md:col-span-2 bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Especial</h3>
+                  <p className="text-dungeon-200">{weapon.special_rules}</p>
                 </div>
               )}
             </div>
@@ -249,10 +227,83 @@ export default async function ObjectPage({ params }: ObjectPageProps) {
         </Card>
       )}
 
-      {/* Información de fuente */}
+      {/* Armor Stats */}
+      {armor && (
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="h-5 w-5 text-blue-400" />
+              Estadísticas de armadura
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Bonificador de armadura</h3>
+                <p className="text-dungeon-200 font-bold text-blue-400">+{armor.armor_bonus}</p>
+              </div>
+
+              {armor.max_dex_bonus !== null && (
+                <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Bonificador máx. de Des</h3>
+                  <p className="text-dungeon-200">+{armor.max_dex_bonus}</p>
+                </div>
+              )}
+
+              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Penalizador de armadura</h3>
+                <p className="text-dungeon-200">{armor.armor_check_penalty}</p>
+              </div>
+
+              <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
+                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Fallo de conjuros arcanos</h3>
+                <p className="text-dungeon-200">{armor.arcane_spell_failure}%</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Description */}
+      {item.description_full && (
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Info className="h-5 w-5 text-amber-400" />
+              Descripción
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div
+              className="prose prose-invert prose-sm max-w-none prose-headings:text-amber-400 prose-p:text-dungeon-200 prose-strong:text-dungeon-100 prose-table:border-dungeon-700 [&_table]:w-full [&_th]:text-left [&_th]:text-amber-400 [&_td]:text-dungeon-200"
+              dangerouslySetInnerHTML={{ __html: item.description_full }}
+            />
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Notas al pie (solo si hay) */}
+      {allFootnotes.length > 0 && (
+        <div className="bg-blue-900/20 border border-blue-700/50 rounded-lg p-4 mb-4">
+          <div className="flex items-start gap-2">
+            <Info className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold text-blue-400">Notas del SRD</h4>
+              {allFootnotes.map(num => (
+                <p key={num} className="text-xs text-dungeon-300">
+                  <span className="text-blue-400 font-bold">[{num}]</span>{' '}
+                  {FOOTNOTES[num]}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Source */}
       <div className="bg-dungeon-800/30 border border-dungeon-700 rounded-lg p-4 mb-8">
         <p className="text-xs text-dungeon-500">
-          Fuente: {itemData.source.book}, página {itemData.source.page}
+          Fuente: Manual del Jugador 3.5
         </p>
       </div>
     </div>
@@ -260,9 +311,12 @@ export default async function ObjectPage({ params }: ObjectPageProps) {
 }
 
 export async function generateStaticParams() {
-  const weapons = weaponsData as DnDWeapon[];
+  const supabase = await createStaticClient();
+  const { data: items } = await supabase
+    .from('srd_items')
+    .select('slug');
 
-  return weapons.map((item) => ({
+  return (items || []).map((item) => ({
     slug: item.slug,
   }));
 }

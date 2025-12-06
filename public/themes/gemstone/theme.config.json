@@ -1,0 +1,16 @@
+{
+    "systemName": "gemstone",
+    "name": "Amethyst Gemstone",
+    "diceColor": "#8e44ad",
+    "labelColor": "#ffffff",
+    "material": {
+        "type": "phong",
+        "specular": 16777215,
+        "shininess": 100,
+        "shading": 2,
+        "emissive": "#3e145d",
+        "emissiveIntensity": 0.5,
+        "transparent": true,
+        "opacity": 0.9
+    }
+}

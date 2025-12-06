@@ -1,13 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Sparkles, User, Heart, Swords, Shield, Wand2, BookOpen, Filter } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { allTemplates, type CharacterTemplate, TEMPLATE_TAGS } from '@/lib/data/character-templates';
-import { getClassIcon, getClassColor, extractTextColor } from '@/lib/utils/icons';
+import { getCharacterTemplates, type CharacterTemplate } from '@/lib/services/templateService.client';
+import { getClassIcon } from '@/lib/utils/classIcons';
+import { getClassColor, extractTextColor } from '@/lib/utils/icons';
 import { useCharacterStore } from '@/lib/store/characterStore';
+import { getRaceBySlug } from '@/lib/services/raceService.client';
+import { getAvailableClasses } from '@/lib/services/classService.client';
+import type { AbilityScores } from '@/lib/utils/character';
 import { useRouter } from 'next/navigation';
+
+// Tags de plantillas (mantener mientras no estén en la base de datos)
+const TEMPLATE_TAGS = [
+  'combate',
+  'magia',
+  'furtividad',
+  'social',
+  'naturaleza',
+  'divino',
+  'versátil',
+  'tanque',
+  'daño',
+  'soporte',
+  'exploración',
+  'control'
+];
 
 // Mapeo de nombres completos de alineamientos
 const ALIGNMENT_NAMES: Record<string, string> = {
@@ -37,55 +57,80 @@ const ALIGNMENT_COLORS: Record<string, string> = {
 
 export default function InspiracionPage() {
   const router = useRouter();
-  const { resetCharacter, setRaceSlug, setClassSlug, setAlignment, setAbilityScores } = useCharacterStore();
+  const { resetCharacter, setRace, setClass, setAlignment, setBaseAbilityScores } = useCharacterStore();
 
+  const [templates, setTemplates] = useState<CharacterTemplate[]>([]);
+  const [loadingTemplates, setLoadingTemplates] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClass, setSelectedClass] = useState<string>('all');
   const [selectedAlignment, setSelectedAlignment] = useState<string>('all');
   const [selectedTag, setSelectedTag] = useState<string>('all');
 
+  // Cargar plantillas al montar el componente
+  useEffect(() => {
+    setLoadingTemplates(true);
+    getCharacterTemplates().then((fetchedTemplates) => {
+      setTemplates(fetchedTemplates);
+      setLoadingTemplates(false);
+    }).catch(err => {
+      console.error('Error fetching templates:', err);
+      setTemplates([]);
+      setLoadingTemplates(false);
+    });
+  }, []);
+
   // Filtrar plantillas
-  const filteredTemplates = allTemplates.filter(template => {
+  const filteredTemplates = templates.filter(template => {
     const matchesSearch =
-      template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      template.template_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       template.concept.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesClass = selectedClass === 'all' || template.class_slug === selectedClass;
-    const matchesAlignment = selectedAlignment === 'all' || template.alignment === selectedAlignment;
+    const matchesClass = selectedClass === 'all' || template.suggested_class === selectedClass;
+    const matchesAlignment = selectedAlignment === 'all' || template.suggested_alignment === selectedAlignment;
     const matchesTag = selectedTag === 'all' || template.tags.includes(selectedTag);
 
     return matchesSearch && matchesClass && matchesAlignment && matchesTag;
   });
 
-  // Obtener clases únicas (primero slugs, luego objetos)
-  const uniqueClassSlugs = Array.from(new Set(allTemplates.map(t => t.class_slug)));
+  // Obtener clases únicas
+  const uniqueClassSlugs = Array.from(new Set(templates.map(t => t.suggested_class)));
   const uniqueClasses = uniqueClassSlugs.map(slug => {
-    const template = allTemplates.find(t => t.class_slug === slug)!;
-    return { slug, name: template.class_name };
+    // Para el nombre, usar el slug convertido a título case
+    const name = slug.split('-').map(word =>
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+    return { slug, name };
   });
 
   // Obtener alineamientos únicos
-  const uniqueAlignments = Array.from(new Set(allTemplates.map(t => t.alignment)));
+  const uniqueAlignments = Array.from(new Set(templates.map(t => t.suggested_alignment)));
 
   /**
    * Aplica una plantilla y redirige al editor
    */
-  function applyTemplate(template: CharacterTemplate) {
+  async function applyTemplate(template: CharacterTemplate) {
     // Resetear personaje actual
     resetCharacter();
 
-    // Aplicar valores de la plantilla
-    setRaceSlug(template.race_slug);
-    setClassSlug(template.class_slug);
-    setAlignment(template.alignment);
+    const abilityScores: AbilityScores = {
+      str: template.ability_scores.strength,
+      dex: template.ability_scores.dexterity,
+      con: template.ability_scores.constitution,
+      int: template.ability_scores.intelligence,
+      wis: template.ability_scores.wisdom,
+      cha: template.ability_scores.charisma,
+    };
+    setBaseAbilityScores(abilityScores);
 
-    // Aplicar habilidades sugeridas
-    setAbilityScores({
-      base: template.suggested_abilities,
-      racial: { strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 },
-      current: template.suggested_abilities
-    });
+    // Aplicar valores de la plantilla
+    const race = await getRaceBySlug(template.suggested_race);
+    if (race) setRace(race);
+
+    const classes = await getAvailableClasses();
+    const selectedClass = classes.find(c => c.slug === template.suggested_class);
+    if (selectedClass) setClass(selectedClass, 1);
+    setAlignment(template.suggested_alignment);
 
     // Redirigir al editor
     router.push('/editor-personajes');
@@ -105,13 +150,13 @@ export default function InspiracionPage() {
       </div>
 
       {/* Descripción */}
-      <Card className="mb-8 bg-dungeon-800 border-dungeon-700">
+      <Card className="card mb-8">
         <CardContent className="pt-6">
           <div className="flex items-start gap-3">
             <BookOpen className="h-6 w-6 text-blue-400 flex-shrink-0 mt-1" />
             <div className="text-dungeon-300">
               <p className="mb-3">
-                ¿Bloqueado creando tu personaje? Explora estas <span className="text-gold-400 font-semibold">{allTemplates.length} plantillas predefinidas</span> organizadas por clase y alineamiento.
+                ¿Bloqueado creando tu personaje? Explora estas <span className="text-gold-400 font-semibold">{templates.length} plantillas predefinidas</span> organizadas por clase y alineamiento.
               </p>
               <p className="text-sm">
                 Cada plantilla incluye un concepto temático, distribución de habilidades (Point Buy 25 pts), skills recomendadas y dotes sugeridas. Selecciona una para pre-cargar el editor y personaliza a tu gusto.
@@ -122,7 +167,7 @@ export default function InspiracionPage() {
       </Card>
 
       {/* Filtros */}
-      <Card className="mb-8 bg-dungeon-800 border-dungeon-700">
+      <Card className="card mb-8">
         <CardContent className="pt-6">
           <div className="space-y-4">
             {/* Búsqueda */}
@@ -133,7 +178,7 @@ export default function InspiracionPage() {
                 placeholder="Buscar plantilla por nombre o concepto..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:border-gold-500 transition-colors"
+                className="input pl-10"
               />
             </div>
 
@@ -148,7 +193,7 @@ export default function InspiracionPage() {
                 <select
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
-                  className="w-full px-3 py-2 bg-dungeon-900 border border-dungeon-700 rounded text-dungeon-100 focus:outline-none focus:border-gold-500 transition-colors"
+                  className="input"
                 >
                   <option value="all">Todas las clases</option>
                   {uniqueClasses.map(({ slug, name }) => (
@@ -166,7 +211,7 @@ export default function InspiracionPage() {
                 <select
                   value={selectedAlignment}
                   onChange={(e) => setSelectedAlignment(e.target.value)}
-                  className="w-full px-3 py-2 bg-dungeon-900 border border-dungeon-700 rounded text-dungeon-100 focus:outline-none focus:border-gold-500 transition-colors"
+                  className="input"
                 >
                   <option value="all">Todos los alineamientos</option>
                   {uniqueAlignments.map(align => (
@@ -184,7 +229,7 @@ export default function InspiracionPage() {
                 <select
                   value={selectedTag}
                   onChange={(e) => setSelectedTag(e.target.value)}
-                  className="w-full px-3 py-2 bg-dungeon-900 border border-dungeon-700 rounded text-dungeon-100 focus:outline-none focus:border-gold-500 transition-colors"
+                  className="input"
                 >
                   <option value="all">Todos los estilos</option>
                   {TEMPLATE_TAGS.map(tag => (
@@ -203,8 +248,15 @@ export default function InspiracionPage() {
       </Card>
 
       {/* Grid de plantillas */}
-      {filteredTemplates.length === 0 ? (
-        <Card className="bg-dungeon-800 border-dungeon-700">
+      {loadingTemplates ? (
+        <Card className="card">
+          <CardContent className="pt-6 text-center">
+            <Sparkles className="h-16 w-16 text-dungeon-600 mx-auto mb-4 animate-pulse" />
+            <p className="text-dungeon-400">Cargando plantillas de personaje...</p>
+          </CardContent>
+        </Card>
+      ) : filteredTemplates.length === 0 ? (
+        <Card className="card">
           <CardContent className="pt-6 text-center">
             <Sparkles className="h-16 w-16 text-dungeon-600 mx-auto mb-4" />
             <p className="text-dungeon-400">No se encontraron plantillas con esos criterios</p>
@@ -224,23 +276,31 @@ export default function InspiracionPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTemplates.map(template => {
-            const ClassIcon = getClassIcon(template.class_slug);
-            const classColor = getClassColor(template.class_slug);
+            const ClassIcon = getClassIcon(template.suggested_class);
+            const classColor = getClassColor(template.suggested_class);
             const iconColor = extractTextColor(classColor);
-            const alignmentColor = ALIGNMENT_COLORS[template.alignment] || 'text-gray-400 border-gray-500/30';
+            const alignmentColor = ALIGNMENT_COLORS[template.suggested_alignment] || 'text-gray-400 border-gray-500/30';
+
+            // Derive display names from slugs
+            const className = template.suggested_class.split('-').map(word =>
+              word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+            const raceName = template.suggested_race.split('-').map(word =>
+              word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
 
             return (
               <Card
                 key={template.id}
-                className="hover:border-gold-500/50 transition-all bg-dungeon-800 border-dungeon-700 group cursor-pointer"
+                className="card hover:border-gold-500/50 transition-all group cursor-pointer"
                 onClick={() => applyTemplate(template)}
               >
                 <CardHeader>
                   <div className="flex items-start gap-3 mb-3">
                     <ClassIcon className={`h-8 w-8 ${iconColor} flex-shrink-0`} />
                     <div className="flex-1">
-                      <CardTitle className="text-2xl text-gold-400 mb-1">
-                        {template.name}
+                      <CardTitle className="text-2xl text-gold-400 mb-1 font-heading">
+                        {template.template_name}
                       </CardTitle>
                       <p className="text-sm text-dungeon-400 italic">
                         {template.concept}
@@ -251,13 +311,13 @@ export default function InspiracionPage() {
                   {/* Badges */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className={`px-2 py-1 text-xs rounded border ${classColor}`}>
-                      {template.class_name}
+                      {className}
                     </span>
                     <span className="px-2 py-1 text-xs rounded border text-green-400 border-green-500/30">
-                      {template.race_name}
+                      {raceName}
                     </span>
                     <span className={`px-2 py-1 text-xs rounded border ${alignmentColor}`}>
-                      {template.alignment_name}
+                      {ALIGNMENT_NAMES[template.suggested_alignment] || template.suggested_alignment}
                     </span>
                   </div>
                 </CardHeader>
@@ -270,11 +330,11 @@ export default function InspiracionPage() {
 
                   {/* Habilidades principales */}
                   <div className="mb-4 pb-4 border-b border-dungeon-700">
-                    <h4 className="text-xs font-semibold text-dungeon-400 uppercase tracking-wider mb-2">
+                    <h4 className="text-xs font-semibold text-dungeon-400 uppercase tracking-wider mb-2 font-heading">
                       Habilidades principales
                     </h4>
                     <div className="grid grid-cols-3 gap-2 text-xs">
-                      {Object.entries(template.suggested_abilities)
+                      {Object.entries(template.ability_scores)
                         .sort(([, a], [, b]) => b - a)
                         .slice(0, 3)
                         .map(([ability, value]) => (

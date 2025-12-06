@@ -17,7 +17,7 @@ export default function BackToHome() {
   return (
     <div className="fixed bottom-8 left-8 z-40">
       <Link
-        href="/"
+        href="/3.5"
         onMouseDown={() => setIsPressed(true)}
         onMouseUp={() => setIsPressed(false)}
         onMouseLeave={() => setIsPressed(false)}

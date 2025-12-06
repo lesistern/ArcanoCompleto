@@ -1,0 +1,299 @@
+[
+  {
+    "id": "illumian",
+    "name": "Illumian",
+    "slug": "illumian",
+    "shortDescription": "Humanos transformados por el lenguaje mágico, con símbolos luminosos orbitando sus cabezas.",
+    "description": "Los illumian son humanos transformados, delgados y de piel pálida con uno o más símbolos de luz mística flotando en órbita perpetua alrededor de sus cabezas. Son la encarnación física de un lenguaje mágico y han formado una sociedad secreta dedicada al conocimiento arcano. Los símbolos de poder (power sigils) que orbitan sus cabezas definen sus habilidades y se combinan para formar palabras de poder a medida que avanzan en niveles. Los illumian son criaturas de conocimiento y ambición, frecuentemente multiclas y adaptables.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Humanoide",
+    "abilityModifiers": {},
+    "racialTraits": [
+      {
+        "name": "Símbolos luminosos",
+        "description": "Los símbolos que orbitan la cabeza de un illumian brillan suavemente, proporcionando iluminación igual a una vela. Los illumian pueden hacer desaparecer sus símbolos concentrándose un momento (acción estándar), pero no reciben los beneficios de los símbolos mientras estén apagados.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Símbolos de poder",
+        "description": "Un illumian de 1er nivel tiene un único símbolo de poder brillante que le otorga bonificadores a habilidades específicas. Al alcanzar 2do nivel en cualquier clase, obtiene otro símbolo. Dos símbolos se combinan en una palabra de poder con efectos especiales.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Resonancia glífica",
+        "description": "Los illumian interactúan extrañamente con hechizos basados en símbolos (glifo de custodia, símbolo, etc.). Tienen penalizador racial -4 en salvaciones contra estos efectos si su nivel es menor al nivel de lanzador del hechizo. Si el nivel del illumian iguala o excede el nivel de lanzador, es inmune al efecto.",
+        "type": "habilidad extraordinaria"
+      },
+      {
+        "name": "Idiomas bonus",
+        "description": "Los illumian comienzan el juego hablando Común e Illumian, más un idioma adicional por cada punto de bonificador de Inteligencia (sin restricción).",
+        "type": "bonificador"
+      }
+    ],
+    "languages": {
+      "automatic": [
+        "Común",
+        "Illumian"
+      ],
+      "bonus": [
+        "Cualquiera (excepto lenguajes secretos)"
+      ]
+    },
+    "specialAbilities": {
+      "luminousSigils": true,
+      "powerSigils": true,
+      "glyphicResonance": true
+    },
+    "favoredClass": "Cualquiera",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Neutral. Los illumian valoran el conocimiento por encima del bien o el mal.",
+    "advantageousClasses": [
+      "Mago",
+      "Hechicero",
+      "Cualquier multiclase"
+    ],
+    "source": {
+      "book": "Races of Destiny",
+      "page": 164
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "whisper-gnome",
+    "name": "Gnomo Susurrante",
+    "slug": "whisper-gnome",
+    "shortDescription": "Gnomos sigilosos y diminutos, maestros del sigilo y el silencio.",
+    "description": "Los gnomos susurrantes son una subraza de gnomos especialmente adaptada para el sigilo y la supervivencia en ambientes peligrosos. Son aún más pequeños y delgados que los gnomos comunes, con piel que va del gris oscuro al marrón tierra. Poseen una habilidad sobrenatural para moverse en completo silencio y pueden proyectar un campo de silencio a su alrededor. A diferencia de otros gnomos, tienen tanto visión en la penumbra como visión en la oscuridad. Son criaturas tímidas y cautelosas que prefieren observar desde las sombras.",
+    "size": "Pequeño",
+    "speed": 20,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "dexterity": 2,
+      "constitution": 2,
+      "strength": -2,
+      "charisma": -2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la oscuridad",
+        "description": "Los gnomos susurrantes pueden ver en la oscuridad hasta 60 pies. La visión en la oscuridad es en blanco y negro, pero por lo demás es como la vista normal.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los gnomos susurrantes pueden ver el doble de lejos que un humano en condiciones de poca luz.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +4 a Esconderse y Moverse Sigilosamente",
+        "description": "Los gnomos susurrantes tienen una habilidad innata para el sigilo, otorgándoles un bonificador racial de +4 a las pruebas de Esconderse y Moverse Sigilosamente (además del bonificador por tamaño).",
+        "type": "bonificador"
+      },
+      {
+        "name": "Habilidad sortílega: Silencio",
+        "description": "Un gnomo susurrante puede usar silencio una vez al día como habilidad sortílega (nivel de lanzador igual al nivel del personaje). El silencio se centra en el gnomo y se mueve con él.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Bonificador de tamaño +4 a Esconderse",
+        "description": "Como criatura Pequeña, un gnomo susurrante recibe un bonificador de tamaño +4 adicional a Esconderse (total +8 con bonificador racial).",
+        "type": "bonificador"
+      }
+    ],
+    "languages": {
+      "automatic": [
+        "Común",
+        "Gnomo"
+      ],
+      "bonus": [
+        "Dracónico",
+        "Enano",
+        "Élfico",
+        "Gigante",
+        "Goblin",
+        "Terran"
+      ]
+    },
+    "specialAbilities": {
+      "darkvision": 60,
+      "lowLightVision": true,
+      "bonusSkills": [
+        {
+          "skill": "Esconderse",
+          "bonus": 8
+        },
+        {
+          "skill": "Moverse Sigilosamente",
+          "bonus": 4
+        }
+      ],
+      "spellLikeAbilities": [
+        "Silencio 1/día"
+      ]
+    },
+    "favoredClass": "Pícaro",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Neutral Bueno. Los gnomos susurrantes son generalmente buenos pero valoran la supervivencia.",
+    "advantageousClasses": [
+      "Pícaro",
+      "Explorador",
+      "Ninja"
+    ],
+    "source": {
+      "book": "Races of Stone",
+      "page": 94
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "centaur",
+    "name": "Centauro",
+    "slug": "centaur",
+    "shortDescription": "Mitad humano, mitad caballo, los centauros son guerreros y rastreadores formidables.",
+    "description": "Los centauros son criaturas con el torso, brazos y cabeza de un humano unidos al cuerpo de un caballo de gran tamaño. Son criaturas orgullosas de las tierras salvajes, viviendo en manadas nómadas que patrullan vastas praderas y bosques. Los centauros son excelentes arqueros y rastreadores, capaces de correr grandes distancias sin cansarse. Su naturaleza salvaje y su tamaño los hacen inadecuados para la vida en ciudades, prefiriendo los espacios abiertos. Son guerreros honrados pero fieramente independientes.",
+    "size": "Grande",
+    "speed": 50,
+    "type": "Humanoide Monstruoso",
+    "abilityModifiers": {
+      "strength": 8,
+      "dexterity": 4,
+      "constitution": 4,
+      "intelligence": -2,
+      "wisdom": 2,
+      "charisma": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los centauros pueden ver el doble de lejos que un humano en condiciones de poca luz.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Patas con cascos",
+        "description": "Los centauros pueden atacar con sus cascos como armas secundarias, infligiendo 1d6 de daño cada uno.",
+        "type": "arma natural"
+      },
+      {
+        "name": "Tamaño Grande",
+        "description": "Como criaturas Grandes, los centauros sufren -1 de penalizador a CA y a ataques, pero ganan +4 en pruebas de presa. Su espacio es de 10 pies y su alcance de 5 pies.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Dados de Golpe raciales",
+        "description": "Un centauro tiene 4 Dados de Golpe de Humanoide Monstruoso (d8), otorgando 4d8 DG, BAB +4, y salvaciones base Fortaleza +1, Reflejos +4, Voluntad +4.",
+        "type": "habilidad especial"
+      }
+    ],
+    "languages": {
+      "automatic": [
+        "Silvano",
+        "Élfico"
+      ],
+      "bonus": [
+        "Común",
+        "Gnomo",
+        "Goblin"
+      ]
+    },
+    "specialAbilities": {
+      "lowLightVision": true,
+      "naturalWeapons": [
+        "Cascos (1d6)"
+      ]
+    },
+    "favoredClass": "Explorador",
+    "levelAdjustment": 2,
+    "typicalAlignment": "Neutral Bueno. Los centauros respetan la naturaleza y valoran la libertad.",
+    "advantageousClasses": [
+      "Explorador",
+      "Bárbaro",
+      "Guerrero"
+    ],
+    "source": {
+      "book": "Races of the Wild",
+      "page": 123
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "catfolk",
+    "name": "Felino (Catfolk)",
+    "slug": "catfolk",
+    "shortDescription": "Humanoides felinos ágiles, curiosos y nocturnos.",
+    "description": "Los catfolk son humanoides felinos ágiles y gráciles con cabezas de gato y colas largas. Su pelaje varía en color y patrón, similar a los grandes felinos. Son curiosos por naturaleza y excelentes trepadores y cazadores nocturnos. Los catfolk viven en pequeñas comunidades tribales y valoran la independencia y la destreza. Son criaturas sociales con sus propios clanes pero pueden ser desconfiados con extraños. Su agilidad y sentidos agudos los hacen excelentes exploradores y pícaros.",
+    "size": "Mediano",
+    "speed": 40,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "dexterity": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los catfolk pueden ver el doble de lejos que un humano en condiciones de poca luz.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +2 a Equilibrio, Trepar y Moverse Sigilosamente",
+        "description": "Los catfolk son naturalmente ágiles y sigilosos, otorgándoles un bonificador racial de +2 a las pruebas de Equilibrio, Trepar y Moverse Sigilosamente.",
+        "type": "bonificador"
+      },
+      {
+        "name": "Trepar",
+        "description": "Los catfolk tienen velocidad de trepar de 20 pies y pueden usar su modificador de Destreza en lugar de Fuerza para pruebas de Trepar.",
+        "type": "habilidad especial"
+      }
+    ],
+    "languages": {
+      "automatic": [
+        "Común",
+        "Felino"
+      ],
+      "bonus": [
+        "Dracónico",
+        "Élfico",
+        "Gnoll",
+        "Gnomo",
+        "Goblin",
+        "Halfling",
+        "Silvano"
+      ]
+    },
+    "specialAbilities": {
+      "lowLightVision": true,
+      "climbSpeed": 20,
+      "bonusSkills": [
+        {
+          "skill": "Equilibrio",
+          "bonus": 2
+        },
+        {
+          "skill": "Trepar",
+          "bonus": 2
+        },
+        {
+          "skill": "Moverse Sigilosamente",
+          "bonus": 2
+        }
+      ]
+    },
+    "favoredClass": "Explorador",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Caótico Neutral. Los catfolk valoran la independencia y la curiosidad.",
+    "advantageousClasses": [
+      "Explorador",
+      "Pícaro",
+      "Bárbaro"
+    ],
+    "source": {
+      "book": "Races of the Wild",
+      "page": 127
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  }
+]

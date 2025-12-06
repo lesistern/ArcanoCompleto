@@ -2,8 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, Loader2, Sparkles, Swords, BookOpen } from 'lucide-react';
-import Link from 'next/link';
+import { Search, Loader2 } from 'lucide-react';
 import {
   searchAll,
   searchSpells,
@@ -13,6 +12,10 @@ import {
   type GlobalSearchResult,
   type SearchCountResult
 } from '@/lib/supabase/search';
+import { Card, CardContent } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { SearchFilters } from '@/components/search/SearchFilters';
+import { SearchResultCard } from '@/components/search/SearchResultCard';
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -22,7 +25,7 @@ function SearchContent() {
   const [results, setResults] = useState<GlobalSearchResult[]>([]);
   const [counts, setCounts] = useState<SearchCountResult[]>([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState<'all' | 'spell' | 'feat' | 'class'>('all');
+  const [filter, setFilter] = useState<'all' | 'spell' | 'feat' | 'class' | 'race' | 'skill' | 'weapon' | 'deity' | 'monster'>('all');
 
   useEffect(() => {
     if (queryParam) {
@@ -98,68 +101,12 @@ function SearchContent() {
     handleSearch(query);
   };
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'spell':
-        return <Sparkles className="w-4 h-4" />;
-      case 'feat':
-        return <Swords className="w-4 h-4" />;
-      case 'class':
-        return <BookOpen className="w-4 h-4" />;
-      default:
-        return null;
-    }
-  };
-
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'spell':
-        return 'text-purple-400';
-      case 'feat':
-        return 'text-red-400';
-      case 'class':
-        return 'text-blue-400';
-      default:
-        return 'text-gray-400';
-    }
-  };
-
-  const getTypeLabel = (type: string) => {
-    switch (type) {
-      case 'spell':
-        return 'Conjuro';
-      case 'feat':
-        return 'Dote';
-      case 'class':
-        return 'Clase';
-      default:
-        return type;
-    }
-  };
-
-  const getResultLink = (result: GlobalSearchResult) => {
-    switch (result.result_type) {
-      case 'spell':
-        return `/spells/${result.id}`;
-      case 'feat':
-        return `/feats/${result.id}`;
-      case 'class':
-        return `/clases/${result.name.toLowerCase()}`;
-      default:
-        return '#';
-    }
-  };
-
-  const getTotalCount = () => {
-    return counts.reduce((sum, item) => sum + Number(item.total_results), 0);
-  };
-
   return (
     <div className="min-h-screen bg-dungeon-950 text-dungeon-100">
       {/* Header */}
-      <div className="bg-gradient-to-r from-dungeon-900 to-dungeon-800 border-b border-gold-500/20 py-12">
+      <div className="bg-dungeon-900 border-b border-gold-500/20 py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-gold-400 mb-4">
+          <h1 className="text-4xl font-bold text-gold-400 mb-4 font-heading">
             🔍 Búsqueda Global
           </h1>
           <p className="text-dungeon-300">
@@ -179,13 +126,14 @@ function SearchContent() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Buscar en el compendio..."
-                className="w-full bg-dungeon-800 border border-dungeon-700 rounded-lg pl-12 pr-4 py-3 text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:border-gold-500"
+                className="w-full input pl-12 pr-4 py-3"
               />
             </div>
-            <button
+            <Button
               type="submit"
               disabled={loading}
-              className="px-6 py-3 bg-gold-500 hover:bg-gold-600 text-dungeon-950 font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              variant="primary"
+              className="flex items-center gap-2"
             >
               {loading ? (
                 <>
@@ -198,41 +146,18 @@ function SearchContent() {
                   Buscar
                 </>
               )}
-            </button>
+            </Button>
           </div>
         </form>
 
         {/* Filters */}
         {counts.length > 0 && (
-          <div className="mb-6 flex gap-4">
-            <button
-              onClick={() => { setFilter('all'); handleSearch(query); }}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                filter === 'all'
-                  ? 'bg-gold-500 text-dungeon-950'
-                  : 'bg-dungeon-800 text-dungeon-300 hover:bg-dungeon-700'
-              }`}
-            >
-              Todos ({getTotalCount()})
-            </button>
-            {counts.map((count) => (
-              <button
-                key={count.result_type}
-                onClick={() => {
-                  setFilter(count.result_type as any);
-                  handleSearch(query);
-                }}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
-                  filter === count.result_type
-                    ? 'bg-gold-500 text-dungeon-950'
-                    : 'bg-dungeon-800 text-dungeon-300 hover:bg-dungeon-700'
-                }`}
-              >
-                {getTypeIcon(count.result_type)}
-                {getTypeLabel(count.result_type)}s ({count.total_results})
-              </button>
-            ))}
-          </div>
+          <SearchFilters
+            counts={counts}
+            selectedFilter={filter}
+            onSelectFilter={setFilter}
+            onSearch={() => handleSearch(query)}
+          />
         )}
 
         {/* Results */}
@@ -243,45 +168,13 @@ function SearchContent() {
         ) : results.length > 0 ? (
           <div className="space-y-4">
             {results.map((result) => (
-              <Link
-                key={`${result.result_type}-${result.id}`}
-                href={getResultLink(result)}
-                className="block bg-dungeon-800 hover:bg-dungeon-700 border border-dungeon-700 hover:border-gold-500/50 rounded-lg p-6 transition-all group"
-              >
-                <div className="flex items-start gap-4">
-                  <div className={`mt-1 ${getTypeColor(result.result_type)}`}>
-                    {getTypeIcon(result.result_type)}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-dungeon-100 group-hover:text-gold-400 transition-colors">
-                        {result.name}
-                      </h3>
-                      <span className={`text-sm px-2 py-1 rounded ${getTypeColor(result.result_type)} bg-dungeon-900/50`}>
-                        {getTypeLabel(result.result_type)}
-                      </span>
-                      {result.category && (
-                        <span className="text-sm text-dungeon-400">
-                          {result.category}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-dungeon-300 leading-relaxed">
-                      {result.description}
-                      {result.description.length >= 200 && '...'}
-                    </p>
-                    <div className="mt-3 flex items-center gap-4 text-xs text-dungeon-500">
-                      <span>Relevancia: {(result.relevance * 100).toFixed(1)}%</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <SearchResultCard key={`${result.result_type}-${result.id}`} result={result} />
             ))}
           </div>
         ) : query && !loading ? (
           <div className="text-center py-12">
             <Search className="w-16 h-16 text-dungeon-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-dungeon-400 mb-2">
+            <h3 className="text-xl font-semibold text-dungeon-400 mb-2 font-heading">
               No se encontraron resultados
             </h3>
             <p className="text-dungeon-500">
@@ -291,7 +184,7 @@ function SearchContent() {
         ) : (
           <div className="text-center py-12">
             <Search className="w-16 h-16 text-dungeon-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-dungeon-400 mb-2">
+            <h3 className="text-xl font-semibold text-dungeon-400 mb-2 font-heading">
               Comienza a buscar
             </h3>
             <p className="text-dungeon-500">

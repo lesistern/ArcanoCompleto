@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Heart, ExternalLink, Coffee, DollarSign } from 'lucide-react';
 
@@ -18,6 +18,7 @@ import { Heart, ExternalLink, Coffee, DollarSign } from 'lucide-react';
 export default function DonationButton() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Mostrar tooltip automáticamente al cargar
   useEffect(() => {
@@ -36,6 +37,22 @@ export default function DonationButton() {
       clearTimeout(hideTimer);
     };
   }, []);
+
+  // Cerrar menú cuando se hace click fuera
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsExpanded(false);
+      }
+    }
+
+    if (isExpanded) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [isExpanded]);
 
   // Enlaces de donación (actualizar con tus URLs reales)
   const donationLinks = [
@@ -63,25 +80,25 @@ export default function DonationButton() {
   ];
 
   return (
-    <div className="fixed bottom-6 left-6 z-[60]">
+    <div className="flex justify-end">
       {/* Contenedor relativo para posicionar el tooltip */}
-      <div className="relative">
+      <div className="relative" ref={containerRef}>
         {/* Globo de texto (tooltip) - Solo cuando está colapsado */}
         {!isExpanded && (
           <div
             className={`
-              absolute bottom-0 left-full ml-3
+              absolute bottom-0 right-full mr-3
               bg-dungeon-800 border-2 border-gold-500 rounded-lg shadow-xl
               px-3 py-2 w-[240px]
               transition-all duration-300 ease-in-out
               pointer-events-none
-              ${showTooltip ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}
+              ${showTooltip ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'}
             `}
           >
-            {/* Flecha izquierda */}
-            <div className="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2">
-              <div className="border-8 border-transparent border-r-gold-500" />
-              <div className="absolute top-1/2 left-[2px] -translate-y-1/2 border-8 border-transparent border-r-dungeon-800" />
+            {/* Flecha derecha */}
+            <div className="absolute right-0 top-1/2 translate-x-full -translate-y-1/2">
+              <div className="border-8 border-transparent border-l-gold-500" />
+              <div className="absolute top-1/2 right-[2px] -translate-y-1/2 border-8 border-transparent border-l-dungeon-800" />
             </div>
 
             {/* Contenido del tooltip */}
@@ -100,16 +117,16 @@ export default function DonationButton() {
         {isExpanded && (
           <div
             className="
-              absolute bottom-0 left-full ml-3
+              absolute bottom-0 right-full mr-3
               bg-dungeon-800 border-2 border-gold-500 rounded-lg shadow-xl
               py-2 w-[280px]
-              animate-in fade-in slide-in-from-left-2 duration-200
+              animate-in fade-in slide-in-from-right-2 duration-200
             "
           >
-            {/* Flecha izquierda */}
-            <div className="absolute left-0 bottom-6 -translate-x-full">
-              <div className="border-8 border-transparent border-r-gold-500" />
-              <div className="absolute top-1/2 left-[2px] -translate-y-1/2 border-8 border-transparent border-r-dungeon-800" />
+            {/* Flecha abajo a la derecha */}
+            <div className="absolute right-0 bottom-6 translate-x-full">
+              <div className="border-8 border-transparent border-l-gold-500" />
+              <div className="absolute top-1/2 right-[2px] -translate-y-1/2 border-8 border-transparent border-l-dungeon-800" />
             </div>
 
             {/* Header */}

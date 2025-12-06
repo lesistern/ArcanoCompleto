@@ -28,30 +28,24 @@ export default function Footer() {
                 Actualmente con D&D 3.5 completo. Próximamente: 5e y 5.5e (One D&D).
               </p>
               <p className="text-xs text-dungeon-500">
-                Contenido bajo Open Game License v1.0a. System Reference Document oficial.
-                No afiliado con Wizards of the Coast.
+                Compendio Arcano es contenido de fans no oficial permitido por la Política de contenido de fans. No está aprobado ni respaldado por Wizards. Parte de los materiales utilizados es propiedad de Wizards of the Coast. ©Wizards of the Coast LLC.
               </p>
             </div>
 
             {/* Compendio */}
             <div>
               <h3 className="text-xs font-semibold text-dungeon-400 uppercase tracking-wider mb-3">
-                Compendio
+                Biblioteca
               </h3>
               <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/clases" className="text-dungeon-400 hover:text-gold-400 transition-colors">
-                    Clases
-                  </Link>
-                </li>
                 <li>
                   <Link href="/razas" className="text-dungeon-400 hover:text-gold-400 transition-colors">
                     Razas
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dotes" className="text-dungeon-400 hover:text-gold-400 transition-colors">
-                    Dotes
+                  <Link href="/clases" className="text-dungeon-400 hover:text-gold-400 transition-colors">
+                    Clases
                   </Link>
                 </li>
                 <li>
@@ -60,8 +54,23 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/objetos/armas" className="text-dungeon-400 hover:text-gold-400 transition-colors">
-                    Armas
+                  <Link href="/dotes" className="text-dungeon-400 hover:text-gold-400 transition-colors">
+                    Dotes
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/conjuros" className="text-dungeon-400 hover:text-gold-400 transition-colors">
+                    Conjuros
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/objetos" className="text-dungeon-400 hover:text-gold-400 transition-colors">
+                    Objetos
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/monstruos" className="text-dungeon-400 hover:text-gold-400 transition-colors">
+                    Monstruos
                   </Link>
                 </li>
               </ul>
@@ -97,6 +106,16 @@ export default function Footer() {
                   <Link href="/sobre" className="text-dungeon-400 hover:text-gold-400 transition-colors font-semibold">
                     Quiénes Somos
                   </Link>
+                </li>
+                <li>
+                  <a
+                    href="https://drive.google.com/drive/folders/1cbatIBiCQ_StwcVGDJQHmfz42lTF2_DI?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dungeon-400 hover:text-gold-400 transition-colors"
+                  >
+                    Descargar Hojas Pj
+                  </a>
                 </li>
               </ul>
             </div>
@@ -148,25 +167,16 @@ export default function Footer() {
               Actualmente con D&D 3.5 completo. Próximamente: 5e y 5.5e (One D&D).
             </p>
             <p className="text-xs text-gray-600">
-              Contenido bajo Open Game License v1.0a. System Reference Document oficial.
-              No afiliado con Wizards of the Coast.
+              Compendio Arcano es contenido de fans no oficial permitido por la Política de contenido de fans. No está aprobado ni respaldado por Wizards. Parte de los materiales utilizados es propiedad de Wizards of the Coast. ©Wizards of the Coast LLC.
             </p>
           </div>
 
           {/* Compendio */}
           <div>
             <h3 className="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-3">
-              Compendio
+              Biblioteca
             </h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/clases"
-                  className="text-gray-700 hover:text-orange-600 transition-colors"
-                >
-                  Clases
-                </Link>
-              </li>
               <li>
                 <Link
                   href="/razas"
@@ -177,10 +187,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/dotes"
+                  href="/clases"
                   className="text-gray-700 hover:text-orange-600 transition-colors"
                 >
-                  Dotes
+                  Clases
                 </Link>
               </li>
               <li>
@@ -193,10 +203,34 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/objetos/armas"
+                  href="/dotes"
                   className="text-gray-700 hover:text-orange-600 transition-colors"
                 >
-                  Armas
+                  Dotes
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/conjuros"
+                  className="text-gray-700 hover:text-orange-600 transition-colors"
+                >
+                  Conjuros
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/objetos"
+                  className="text-gray-700 hover:text-orange-600 transition-colors"
+                >
+                  Objetos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/monstruos"
+                  className="text-gray-700 hover:text-orange-600 transition-colors"
+                >
+                  Monstruos
                 </Link>
               </li>
             </ul>

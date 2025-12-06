@@ -21,13 +21,15 @@ export type ItemCategory =
   | 'Vara'
   | 'Objeto Maravilloso';
 
-export type WeaponType =
-  | 'Arma simple cuerpo a cuerpo'
-  | 'Arma simple a distancia'
-  | 'Arma marcial cuerpo a cuerpo'
-  | 'Arma marcial a distancia'
-  | 'Arma exótica cuerpo a cuerpo'
-  | 'Arma exótica a distancia';
+// Weapon types are now dynamic based on database values (e.g., "simple melee", "martial ranged")
+// export type WeaponType =
+//   | 'Arma simple cuerpo a cuerpo'
+//   | 'Arma simple a distancia'
+//   | 'Arma marcial cuerpo a cuerpo'
+//   | 'Arma marcial a distancia'
+//   | 'Arma exótica cuerpo a cuerpo'
+//   | 'Arma exótica a distancia';
+export type WeaponType = string;
 
 export type WeaponSize = 'Diminuta' | 'Pequeña' | 'Mediana' | 'Grande';
 

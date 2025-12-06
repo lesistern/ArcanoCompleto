@@ -1,0 +1,139 @@
+{
+  "_comentario": "Este es un archivo de ejemplo para progresión de clases. Copia este archivo como 'class-progression-to-import.json' y modifica los datos.",
+  "_instrucciones": [
+    "1. Copia este archivo como 'class-progression-to-import.json'",
+    "2. Modifica o agrega las entradas de progresión que necesites",
+    "3. Ejecuta: node scripts/import-class-progression.mjs",
+    "4. El campo class_slug debe coincidir con el slug de una clase existente",
+    "5. spells_per_day es un objeto con niveles de conjuro como claves (0-9)"
+  ],
+  "_ejemplo_wizard": "Ver ejemplo de Mago con conjuros por día completos",
+  "_ejemplo_barbarian": "Ver ejemplo de Bárbaro sin conjuros",
+  "class_progression": [
+    {
+      "_comentario": "Ejemplo: Bárbaro nivel 1 (sin conjuros)",
+      "class_slug": "barbarian",
+      "level": 1,
+      "base_attack_bonus": "+1",
+      "fort_save": 2,
+      "ref_save": 0,
+      "will_save": 0,
+      "special_abilities": "Fast movement, illiteracy, rage 1/day"
+    },
+    {
+      "_comentario": "Ejemplo: Bárbaro nivel 2",
+      "class_slug": "barbarian",
+      "level": 2,
+      "base_attack_bonus": "+2",
+      "fort_save": 3,
+      "ref_save": 0,
+      "will_save": 0,
+      "special_abilities": "Uncanny dodge"
+    },
+    {
+      "_comentario": "Ejemplo: Mago nivel 1 (con conjuros)",
+      "class_slug": "wizard",
+      "level": 1,
+      "base_attack_bonus": "+0",
+      "fort_save": 0,
+      "ref_save": 0,
+      "will_save": 2,
+      "special_abilities": "Summon familiar, Scribe Scroll",
+      "spells_per_day": {
+        "0": 3,
+        "1": 1
+      }
+    },
+    {
+      "_comentario": "Ejemplo: Mago nivel 2",
+      "class_slug": "wizard",
+      "level": 2,
+      "base_attack_bonus": "+1",
+      "fort_save": 0,
+      "ref_save": 0,
+      "will_save": 3,
+      "special_abilities": "",
+      "spells_per_day": {
+        "0": 4,
+        "1": 2
+      }
+    },
+    {
+      "_comentario": "Ejemplo: Mago nivel 5 (con más niveles de conjuro)",
+      "class_slug": "wizard",
+      "level": 5,
+      "base_attack_bonus": "+2",
+      "fort_save": 1,
+      "ref_save": 1,
+      "will_save": 4,
+      "special_abilities": "Bonus feat",
+      "spells_per_day": {
+        "0": 4,
+        "1": 4,
+        "2": 2,
+        "3": 1
+      }
+    },
+    {
+      "_comentario": "Ejemplo: Clérigo nivel 1",
+      "class_slug": "cleric",
+      "level": 1,
+      "base_attack_bonus": "+0",
+      "fort_save": 2,
+      "ref_save": 0,
+      "will_save": 2,
+      "special_abilities": "Turn or rebuke undead",
+      "spells_per_day": {
+        "0": 3,
+        "1": 2
+      }
+    },
+    {
+      "_comentario": "Ejemplo: Druida nivel 1",
+      "class_slug": "druid",
+      "level": 1,
+      "base_attack_bonus": "+0",
+      "fort_save": 2,
+      "ref_save": 0,
+      "will_save": 2,
+      "special_abilities": "Animal companion, nature sense, wild empathy",
+      "spells_per_day": {
+        "0": 3,
+        "1": 1
+      }
+    },
+    {
+      "_comentario": "Ejemplo: Bardo nivel 1 (lanzador arcano)",
+      "class_slug": "bard",
+      "level": 1,
+      "base_attack_bonus": "+0",
+      "fort_save": 0,
+      "ref_save": 2,
+      "will_save": 2,
+      "special_abilities": "Bardic music, bardic knowledge, countersong, fascinate, inspire courage +1",
+      "spells_per_day": {
+        "0": 2
+      }
+    },
+    {
+      "_comentario": "Ejemplo: Guerrero nivel 1 (sin conjuros)",
+      "class_slug": "fighter",
+      "level": 1,
+      "base_attack_bonus": "+1",
+      "fort_save": 2,
+      "ref_save": 0,
+      "will_save": 0,
+      "special_abilities": "Bonus feat"
+    },
+    {
+      "_comentario": "Ejemplo: Monje nivel 1 (con habilidades especiales)",
+      "class_slug": "monk",
+      "level": 1,
+      "base_attack_bonus": "+0",
+      "fort_save": 2,
+      "ref_save": 2,
+      "will_save": 2,
+      "special_abilities": "Bonus feat, flurry of blows, unarmed strike"
+    }
+  ]
+}

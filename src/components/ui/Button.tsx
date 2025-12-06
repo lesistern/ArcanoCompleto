@@ -1,50 +1,41 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react';
-import clsx from 'clsx';
+import React from 'react';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'primary' | 'outline' | 'destructive' | 'danger' | 'ghost' | 'secondary' | 'success' | 'link';
   size?: 'sm' | 'md' | 'lg';
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', children, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={clsx(
-          // Base styles
-          'inline-flex items-center justify-center rounded-md font-medium transition-colors',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-          'disabled:pointer-events-none disabled:opacity-50',
-          // Variants
-          {
-            'bg-gold-500 text-dungeon-900 hover:bg-gold-600 focus-visible:ring-gold-500':
-              variant === 'primary',
-            'bg-dungeon-700 text-dungeon-100 hover:bg-dungeon-600 focus-visible:ring-dungeon-500':
-              variant === 'secondary',
-            'bg-transparent hover:bg-dungeon-700/50 text-dungeon-100':
-              variant === 'ghost',
-            'bg-crimson-500 text-white hover:bg-crimson-600 focus-visible:ring-crimson-500':
-              variant === 'danger',
-            'bg-green-500 text-white hover:bg-green-600 focus-visible:ring-green-500':
-              variant === 'success',
-          },
-          // Sizes
-          {
-            'h-8 px-3 text-sm': size === 'sm',
-            'h-10 px-4 text-base': size === 'md',
-            'h-12 px-6 text-lg': size === 'lg',
-          },
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
-);
+const variantClasses = {
+  default: 'bg-gold-500 hover:bg-gold-600 text-white',
+  primary: 'bg-gold-500 hover:bg-gold-600 text-white',
+  outline: 'border border-dungeon-600 text-dungeon-100 hover:bg-dungeon-700',
+  destructive: 'bg-red-500 hover:bg-red-600 text-white',
+  danger: 'bg-red-500 hover:bg-red-600 text-white',
+  ghost: 'hover:bg-dungeon-700 text-dungeon-100',
+  secondary: 'bg-dungeon-700 hover:bg-dungeon-600 text-dungeon-100',
+  success: 'bg-green-500 hover:bg-green-600 text-white',
+  link: 'text-gold-500 hover:underline bg-transparent',
+};
 
-Button.displayName = 'Button';
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-base',
+  lg: 'px-6 py-3 text-lg',
+};
 
-export default Button;
+export function Button({
+  className = '',
+  variant = 'default',
+  size = 'md',
+  children,
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      className={`inline-flex items-center justify-center rounded font-medium transition-colors ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}

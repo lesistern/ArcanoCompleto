@@ -1,0 +1,94 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║  🔍 DIAGNÓSTICO CLASS FEATURES - INSTRUCCIONES RÁPIDAS           ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+📍 PASO 1: Abrir Supabase SQL Editor
+   → https://supabase.com/dashboard
+   → Proyecto: D&D Compendium (akcuvlanpqpoizconuhm)
+   → SQL Editor → New Query
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📍 PASO 2: Ejecutar Queries (UNA POR UNA)
+
+🔹 QUERY 1: VER COLUMNAS
+SELECT column_name, data_type, is_nullable, column_default, ordinal_position
+FROM information_schema.columns
+WHERE table_name = 'class_features'
+ORDER BY ordinal_position;
+
+🔹 QUERY 2: VER CONSTRAINTS
+SELECT constraint_name, constraint_type, table_name, column_name
+FROM information_schema.constraint_column_usage
+WHERE table_name = 'class_features'
+ORDER BY constraint_name;
+
+🔹 QUERY 3: VER DATOS
+SELECT * FROM class_features LIMIT 3;
+
+🔹 QUERY 4: CONTAR
+SELECT COUNT(*) as total_features, COUNT(DISTINCT class_id) as classes_with_features
+FROM class_features;
+
+🔹 QUERY 5: VER CLASES
+SELECT id, slug, nombre, descripcion FROM classes ORDER BY nombre;
+
+🔹 QUERY 6: CARACTERÍSTICAS POR CLASE
+SELECT c.nombre as clase, COUNT(cf.*) as num_caracteristicas
+FROM classes c
+LEFT JOIN class_features cf ON c.id = cf.class_id
+GROUP BY c.id, c.nombre
+ORDER BY c.nombre;
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📍 PASO 3: Copiar TODOS los resultados y enviarlos
+
+   Formato:
+
+   === QUERY 1: COLUMNAS ===
+   [pega resultado aquí]
+
+   === QUERY 2: CONSTRAINTS ===
+   [pega resultado aquí]
+
+   === QUERY 3: PRIMEROS 3 REGISTROS ===
+   [pega resultado aquí]
+
+   === QUERY 4: CONTEO ===
+   [pega resultado aquí]
+
+   === QUERY 5: CLASES ===
+   [pega resultado aquí]
+
+   === QUERY 6: CARACTERÍSTICAS POR CLASE ===
+   [pega resultado aquí]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏱️ TIEMPO ESTIMADO: 10 minutos
+
+🎯 CON ESTO PODRÉ:
+   ✅ Ver estructura exacta de la tabla
+   ✅ Corregir los scripts SQL
+   ✅ Insertar las características correctamente
+   ✅ Verificar que todo funcione
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 IMPORTANTE:
+   - Ejecuta cada query POR SEPARADO (no todas juntas)
+   - Copia el resultado COMPLETO de cada una
+   - Si hay error, copia el mensaje exacto
+   - No importa si hay 0 registros, eso lo arreglamos después
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 ARCHIVOS CREADOS:
+   ✅ supabase/diagnose-class-features.sql (script completo)
+   ✅ EJECUTAR_DIAGNOSTICO_FEATURES.md (guía detallada)
+   ✅ INSTRUCCIONES_RAPIDAS.txt (este archivo)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 ¡LISTO! Abre Supabase y empieza con Query 1

@@ -70,7 +70,7 @@ export default function FeedbackButton() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60]">
+    <div className="flex justify-end">
       {/* Contenedor relativo para posicionar el tooltip */}
       <div className="relative">
         {/* Globo de texto (tooltip) */}
@@ -86,12 +86,12 @@ export default function FeedbackButton() {
             }
           `}
           style={{
-            transformOrigin: 'right center'
+            transformOrigin: 'left center'
           }}
         >
           {/* Flecha apuntando al botón */}
           <div
-            className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-dungeon-800 border-r-2 border-b-2 border-gold-500 rotate-[-45deg]"
+            className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-dungeon-800 border-l-2 border-b-2 border-gold-500 rotate-[45deg]"
           />
 
           {/* Contenido del tooltip */}
@@ -114,11 +114,11 @@ export default function FeedbackButton() {
         {/* Botón flotante */}
         <button
           onClick={handleClick}
-          className="bg-gold-600 hover:bg-gold-700 text-dungeon-950 rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dungeon-950"
+          className="flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-dungeon-900 bg-gradient-to-br from-blue-500 to-cyan-500"
           aria-label="Reportar problema o sugerencia"
           title="Reportar problema"
         >
-          <MessageSquare className="w-6 h-6" />
+          <MessageSquare className="w-6 h-6 text-white" />
         </button>
       </div>
     </div>

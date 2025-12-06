@@ -69,6 +69,7 @@ export interface DnDFeat {
     book: string;
     page: number;
   };
+  bookId?: number;
 }
 
 export interface FeatFilter {

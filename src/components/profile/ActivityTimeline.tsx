@@ -1,7 +1,9 @@
 // src/components/profile/ActivityTimeline.tsx
+import { memo } from 'react';
 import {
   Bug,
   CheckCircle2,
+  Activity as ActivityIcon,
   TrendingUp,
   User,
   Trophy,
@@ -34,20 +36,20 @@ const ACTIVITY_CONFIG = {
   achievement_unlocked: { icon: Star, color: 'text-yellow-400', bgColor: 'bg-yellow-900/20', label: 'Desbloqueó' },
 };
 
-export function ActivityTimeline({ activities, limit }: ActivityTimelineProps) {
+export const ActivityTimeline = memo(function ActivityTimeline({ activities, limit }: ActivityTimelineProps) {
   const displayedActivities = limit ? activities.slice(0, limit) : activities;
 
   if (displayedActivities.length === 0) {
     return (
-      <div className="text-center py-8 text-dungeon-500">
-        <Activity className="w-12 h-12 mx-auto mb-2 opacity-50" />
+      <div className="text-center py-8 text-dungeon-500" role="status" aria-label="Sin actividad">
+        <ActivityIcon className="w-12 h-12 mx-auto mb-2 opacity-50" aria-hidden="true" />
         <p>No hay actividad reciente</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3" role="feed" aria-label="Actividad reciente">
       {displayedActivities.map((activity, index) => {
         const config = ACTIVITY_CONFIG[activity.activity_type as keyof typeof ACTIVITY_CONFIG];
         if (!config) return null;
@@ -71,7 +73,7 @@ export function ActivityTimeline({ activities, limit }: ActivityTimelineProps) {
               <div className="relative flex-shrink-0">
                 <div className={`absolute inset-0 ${config.bgColor} rounded-lg blur-md opacity-50`} />
                 <div className={`relative p-2.5 rounded-lg ${config.bgColor} border border-dungeon-700/50 ${config.color}`}>
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
               </div>
 
@@ -100,7 +102,7 @@ export function ActivityTimeline({ activities, limit }: ActivityTimelineProps) {
       })}
     </div>
   );
-}
+});
 
 function formatActivityMessage(activity: Activity): string {
   const data = activity.activity_data;

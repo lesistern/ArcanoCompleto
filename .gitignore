@@ -65,7 +65,7 @@ yarn-error.log*
 scraped-data/
 
 # Population scripts (local use only)
-/scripts/
+# /scripts/
 
 # SQL migrations (local use only)
 /supabase/
@@ -146,3 +146,5 @@ logs/
 .cache/
 .parcel-cache/
 .turbo/
+
+.vercel

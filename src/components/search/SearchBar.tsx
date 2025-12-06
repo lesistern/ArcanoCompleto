@@ -76,6 +76,16 @@ export default function SearchBar() {
         return 'Dote';
       case 'class':
         return 'Clase';
+      case 'race':
+        return 'Raza';
+      case 'skill':
+        return 'Habilidad';
+      case 'weapon':
+        return 'Arma';
+      case 'deity':
+        return 'Deidad';
+      case 'monster':
+        return 'Monstruo';
       default:
         return type;
     }
@@ -89,19 +99,40 @@ export default function SearchBar() {
         return 'bg-red-500/10 text-red-400';
       case 'class':
         return 'bg-blue-500/10 text-blue-400';
+      case 'race':
+        return 'bg-green-500/10 text-green-400';
+      case 'skill':
+        return 'bg-cyan-500/10 text-cyan-400';
+      case 'weapon':
+        return 'bg-orange-500/10 text-orange-400';
+      case 'deity':
+        return 'bg-gold-500/10 text-gold-400';
+      case 'monster':
+        return 'bg-rose-500/10 text-rose-400';
       default:
         return 'bg-gray-500/10 text-gray-400';
     }
   };
 
   const getResultLink = (result: GlobalSearchResult) => {
+    const slug = result.slug || result.id;
     switch (result.result_type) {
       case 'spell':
-        return `/spells/${result.id}`;
+        return `/conjuros/${slug}`;
       case 'feat':
-        return `/feats/${result.id}`;
+        return `/dotes/${slug}`;
       case 'class':
-        return `/clases/${result.name.toLowerCase()}`;
+        return `/clases/${slug}`;
+      case 'race':
+        return `/razas/${slug}`;
+      case 'skill':
+        return `/habilidades/${slug}`;
+      case 'weapon':
+        return `/objetos/armas/${slug}`;
+      case 'deity':
+        return `/reglas/contenido/dioses/${slug}`;
+      case 'monster':
+        return `/monstruos/${slug}`;
       default:
         return '#';
     }

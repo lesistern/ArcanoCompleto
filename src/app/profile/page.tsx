@@ -15,6 +15,7 @@ import {
   Star,
   Calendar,
   Target,
+  Filter,
 } from 'lucide-react';
 
 interface ContributionStats {
@@ -26,11 +27,14 @@ interface ContributionStats {
   recent_edits: any[];
 }
 
+type TranslationFilterStatus = 'all' | 'approved' | 'pending' | 'rejected';
+
 export default function ProfilePage() {
   const router = useRouter();
   const { user, profile, tier, loading, isAuthenticated } = useAuth();
   const [stats, setStats] = useState<ContributionStats | null>(null);
   const [loadingStats, setLoadingStats] = useState(true);
+  const [translationFilter, setTranslationFilter] = useState<TranslationFilterStatus>('all');
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -82,14 +86,14 @@ export default function ProfilePage() {
 
   const getTierColor = (tierCode: string) => {
     const colors: Record<string, string> = {
-      guest: 'from-gray-400 to-gray-600',
-      user: 'from-blue-400 to-blue-600',
-      contributor: 'from-green-400 to-green-600',
-      translator: 'from-purple-400 to-purple-600',
-      reviewer: 'from-orange-400 to-orange-600',
-      admin: 'from-red-400 to-red-600',
+      guest: 'from-dungeon-400 to-dungeon-600',
+      user: 'from-blue-500 to-blue-700',
+      contributor: 'from-green-500 to-green-700',
+      translator: 'from-purple-500 to-purple-700',
+      reviewer: 'from-orange-500 to-orange-700',
+      admin: 'from-crimson-500 to-crimson-700',
     };
-    return colors[tierCode] || 'from-blue-400 to-blue-600';
+    return colors[tierCode] || 'from-blue-500 to-blue-700';
   };
 
   const getNextTier = () => {
@@ -118,7 +122,7 @@ export default function ProfilePage() {
 
   if (loading || loadingStats) {
     return (
-      <div className="min-h-screen bg-dungeon-950 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-500 mx-auto"></div>
           <p className="mt-4 text-dungeon-300">Cargando perfil...</p>
@@ -135,44 +139,44 @@ export default function ProfilePage() {
   const progress = calculateProgress();
 
   return (
-    <div className="min-h-screen bg-dungeon-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
         {/* Header con Avatar y Info Básica */}
-        <div className="bg-dungeon-900 rounded-lg shadow-xl overflow-hidden mb-8">
+        <div className="card overflow-hidden">
           <div className={`h-32 bg-gradient-to-r ${getTierColor(tier.code)}`}></div>
           <div className="px-8 pb-8">
             <div className="flex flex-col sm:flex-row items-center sm:items-end -mt-16 sm:-mt-12">
               {/* Avatar */}
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-5xl border-4 border-dungeon-900 shadow-lg">
+              <div className="w-32 h-32 rounded-full bg-dungeon-800 flex items-center justify-center text-dungeon-100 font-bold text-5xl border-4 border-dungeon-900 shadow-xl">
                 {profile.display_name?.[0]?.toUpperCase() || 'U'}
               </div>
 
               {/* Info */}
               <div className="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left flex-1">
-                <h1 className="text-3xl font-bold text-dungeon-50">{profile.display_name}</h1>
+                <h1 className="text-3xl font-bold text-gold-400 font-heading">{profile.display_name}</h1>
                 <p className="text-dungeon-400">{user.email}</p>
 
                 <div className="mt-3 flex flex-wrap gap-3 justify-center sm:justify-start">
-                  <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gradient-to-r ${getTierColor(tier.code)} text-white text-sm font-semibold`}>
-                    <Award size={16} />
-                    <span>{tier.name}</span>
+                  <div className={`tag px-3 py-1 bg-gradient-to-r ${getTierColor(tier.code)} text-white border-none`}>
+                    <Award size={14} className="mr-1" />
+                    {tier.name}
                   </div>
 
-                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-dungeon-800 text-gold-500 text-sm font-semibold">
-                    <Trophy size={16} />
-                    <span>{profile.reputation_points} pts de reputación</span>
+                  <div className="tag tag-secondary">
+                    <Trophy size={14} className="mr-1 text-gold-500" />
+                    {profile.reputation_points} pts de reputación
                   </div>
                 </div>
               </div>
 
               {/* Botón Editar */}
-              <div className="mt-4 sm:mt-0">
+              <div className="mt-6 sm:mt-0">
                 <button
                   onClick={() => router.push('/profile/settings')}
-                  className="inline-flex items-center space-x-2 px-4 py-2 bg-dungeon-800 hover:bg-dungeon-700 text-dungeon-100 rounded-md transition-colors"
+                  className="btn btn-secondary"
                 >
                   <Edit size={16} />
-                  <span>Editar Perfil</span>
+                  Editar Perfil
                 </button>
               </div>
             </div>
@@ -181,90 +185,90 @@ export default function ProfilePage() {
 
         {/* Progreso al Siguiente Tier */}
         {nextTier && (
-          <div className="bg-dungeon-900 rounded-lg shadow-xl p-6 mb-8">
+          <div className="card p-6">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold text-dungeon-50 flex items-center space-x-2">
+              <h2 className="text-xl font-bold text-dungeon-100 flex items-center gap-2 font-heading">
                 <Target className="text-gold-500" size={24} />
-                <span>Progreso al Siguiente Nivel</span>
+                Progreso al Siguiente Nivel
               </h2>
-              <span className="text-sm text-dungeon-400">
+              <span className="text-sm text-dungeon-400 font-mono">
                 {profile.reputation_points} / {nextTier.requiredPoints} pts
               </span>
             </div>
 
             <div className="relative pt-1">
-              <div className="overflow-hidden h-4 text-xs flex rounded-full bg-dungeon-800">
+              <div className="overflow-hidden h-3 text-xs flex rounded-full bg-dungeon-950 border border-dungeon-800">
                 <div
                   style={{ width: `${progress}%` }}
-                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-gold-500 to-gold-600 transition-all duration-500"
+                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-gold-600 to-gold-400 transition-all duration-500"
                 ></div>
               </div>
             </div>
 
             <p className="mt-3 text-sm text-dungeon-400">
-              Te faltan {nextTier.requiredPoints - profile.reputation_points} puntos para alcanzar el tier{' '}
-              <span className="font-semibold text-dungeon-200">{nextTier.name}</span>
+              Te faltan <span className="text-gold-400 font-bold">{nextTier.requiredPoints - profile.reputation_points}</span> puntos para alcanzar el tier{' '}
+              <span className="font-bold text-dungeon-200">{nextTier.name}</span>
             </p>
           </div>
         )}
 
         {/* Estadísticas Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Total Contribuciones */}
-          <div className="bg-dungeon-900 rounded-lg shadow-xl p-6">
+          <div className="card p-6 hover:-translate-y-1 transition-transform">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-dungeon-400">Total Contribuciones</p>
-                <p className="text-3xl font-bold text-dungeon-50 mt-2">
+                <p className="label text-xs">Total Contribuciones</p>
+                <p className="text-3xl font-bold text-dungeon-100 mt-1">
                   {profile.translations_submitted}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center border border-blue-500/20">
                 <Edit className="text-blue-400" size={24} />
               </div>
             </div>
           </div>
 
           {/* Aprobadas */}
-          <div className="bg-dungeon-900 rounded-lg shadow-xl p-6">
+          <div className="card p-6 hover:-translate-y-1 transition-transform">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-dungeon-400">Aprobadas</p>
-                <p className="text-3xl font-bold text-green-400 mt-2">
+                <p className="label text-xs">Aprobadas</p>
+                <p className="text-3xl font-bold text-green-400 mt-1">
                   {profile.translations_approved}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center border border-green-500/20">
                 <CheckCircle className="text-green-400" size={24} />
               </div>
             </div>
           </div>
 
           {/* Tasa de Aprobación */}
-          <div className="bg-dungeon-900 rounded-lg shadow-xl p-6">
+          <div className="card p-6 hover:-translate-y-1 transition-transform">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-dungeon-400">Tasa de Aprobación</p>
-                <p className="text-3xl font-bold text-gold-400 mt-2">
+                <p className="label text-xs">Tasa de Aprobación</p>
+                <p className="text-3xl font-bold text-gold-400 mt-1">
                   {stats ? Math.round(stats.approval_rate) : 0}%
                 </p>
               </div>
-              <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center border border-gold-500/20">
                 <TrendingUp className="text-gold-400" size={24} />
               </div>
             </div>
           </div>
 
           {/* Revisiones Completadas */}
-          <div className="bg-dungeon-900 rounded-lg shadow-xl p-6">
+          <div className="card p-6 hover:-translate-y-1 transition-transform">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-dungeon-400">Revisiones</p>
-                <p className="text-3xl font-bold text-purple-400 mt-2">
+                <p className="label text-xs">Revisiones</p>
+                <p className="text-3xl font-bold text-purple-400 mt-1">
                   {profile.reviews_completed}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center border border-purple-500/20">
                 <Star className="text-purple-400" size={24} />
               </div>
             </div>
@@ -272,49 +276,96 @@ export default function ProfilePage() {
         </div>
 
         {/* Actividad Reciente */}
-        <div className="bg-dungeon-900 rounded-lg shadow-xl p-6">
-          <h2 className="text-xl font-bold text-dungeon-50 mb-6 flex items-center space-x-2">
-            <Clock className="text-gold-500" size={24} />
-            <span>Actividad Reciente</span>
-          </h2>
+        <div className="card p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-dungeon-100 flex items-center gap-2 font-heading">
+              <Clock className="text-gold-500" size={24} />
+              Actividad Reciente
+            </h2>
+          </div>
+
+          {/* Filtros */}
+          {stats && stats.recent_edits.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6 pb-4 border-b border-dungeon-700">
+              <button
+                onClick={() => setTranslationFilter('all')}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                  translationFilter === 'all'
+                    ? 'bg-gold-500/20 text-gold-400 border border-gold-500/40'
+                    : 'bg-dungeon-800/50 text-dungeon-300 hover:bg-dungeon-700/50'
+                }`}
+              >
+                Todas ({stats.total_submissions})
+              </button>
+              <button
+                onClick={() => setTranslationFilter('approved')}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                  translationFilter === 'approved'
+                    ? 'bg-green-500/20 text-green-400 border border-green-500/40'
+                    : 'bg-dungeon-800/50 text-dungeon-300 hover:bg-dungeon-700/50'
+                }`}
+              >
+                Aprobadas ({stats.approved})
+              </button>
+              <button
+                onClick={() => setTranslationFilter('pending')}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                  translationFilter === 'pending'
+                    ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/40'
+                    : 'bg-dungeon-800/50 text-dungeon-300 hover:bg-dungeon-700/50'
+                }`}
+              >
+                Pendientes ({stats.pending})
+              </button>
+              <button
+                onClick={() => setTranslationFilter('rejected')}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                  translationFilter === 'rejected'
+                    ? 'bg-red-500/20 text-red-400 border border-red-500/40'
+                    : 'bg-dungeon-800/50 text-dungeon-300 hover:bg-dungeon-700/50'
+                }`}
+              >
+                Rechazadas ({stats.rejected})
+              </button>
+            </div>
+          )}
 
           {stats && stats.recent_edits.length > 0 ? (
-            <div className="space-y-4">
-              {stats.recent_edits.map((edit) => (
+            <div className="space-y-3">
+              {stats.recent_edits
+                .filter((edit) => translationFilter === 'all' || edit.status === translationFilter)
+                .map((edit) => (
                 <div
                   key={edit.id}
-                  className="flex items-center justify-between p-4 bg-dungeon-800 rounded-lg hover:bg-dungeon-750 transition-colors"
+                  className="flex items-center justify-between p-4 bg-dungeon-950/50 border border-dungeon-800 rounded-xl hover:border-dungeon-600 transition-colors"
                 >
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-dungeon-100">
-                      {edit.entity_type} - {edit.field_name}
+                    <p className="text-sm font-bold text-dungeon-200">
+                      {edit.entity_type} <span className="text-dungeon-500 font-normal">/</span> {edit.field_name}
                     </p>
-                    <p className="text-xs text-dungeon-400 mt-1 line-clamp-1">
-                      {edit.new_value}
+                    <p className="text-xs text-dungeon-400 mt-1 line-clamp-1 italic">
+                      "{edit.new_value}"
                     </p>
-                    <p className="text-xs text-dungeon-500 mt-1 flex items-center space-x-1">
+                    <p className="text-xs text-dungeon-500 mt-2 flex items-center gap-1">
                       <Calendar size={12} />
-                      <span>{new Date(edit.submitted_at).toLocaleDateString('es-ES')}</span>
+                      {new Date(edit.submitted_at).toLocaleDateString('es-ES')}
                     </p>
                   </div>
 
                   <div className="ml-4">
                     {edit.status === 'approved' && (
-                      <span className="inline-flex items-center space-x-1 px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs font-semibold">
-                        <CheckCircle size={14} />
-                        <span>Aprobado</span>
+                      <span className="tag bg-green-500/10 text-green-400 border-green-500/20">
+                        <CheckCircle size={12} className="mr-1" /> Aprobado
                       </span>
                     )}
                     {edit.status === 'rejected' && (
-                      <span className="inline-flex items-center space-x-1 px-2 py-1 bg-red-500/20 text-red-400 rounded text-xs font-semibold">
-                        <XCircle size={14} />
-                        <span>Rechazado</span>
+                      <span className="tag bg-red-500/10 text-red-400 border-red-500/20">
+                        <XCircle size={12} className="mr-1" /> Rechazado
                       </span>
                     )}
                     {edit.status === 'pending' && (
-                      <span className="inline-flex items-center space-x-1 px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded text-xs font-semibold">
-                        <Clock size={14} />
-                        <span>Pendiente</span>
+                      <span className="tag bg-yellow-500/10 text-yellow-400 border-yellow-500/20">
+                        <Clock size={12} className="mr-1" /> Pendiente
                       </span>
                     )}
                   </div>
@@ -322,16 +373,16 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 bg-dungeon-800 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="text-center py-12 border border-dashed border-dungeon-700 rounded-xl">
+              <div className="w-16 h-16 bg-dungeon-800/50 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Edit className="text-dungeon-600" size={32} />
               </div>
-              <p className="text-dungeon-400">No has realizado ninguna contribución aún</p>
+              <p className="text-dungeon-400 mb-6">No has realizado ninguna contribución aún</p>
               <button
                 onClick={() => router.push('/contribute/translate')}
-                className="mt-4 inline-flex items-center space-x-2 px-4 py-2 bg-gold-600 hover:bg-gold-500 text-dungeon-950 rounded-md transition-colors font-semibold"
+                className="btn btn-primary"
               >
-                <span>Comenzar a Contribuir</span>
+                Comenzar a Contribuir
               </button>
             </div>
           )}
@@ -339,9 +390,11 @@ export default function ProfilePage() {
 
         {/* Biografía */}
         {profile.bio && (
-          <div className="bg-dungeon-900 rounded-lg shadow-xl p-6 mt-8">
-            <h2 className="text-xl font-bold text-dungeon-50 mb-4">Acerca de mí</h2>
-            <p className="text-dungeon-300 whitespace-pre-wrap">{profile.bio}</p>
+          <div className="card p-6">
+            <h2 className="text-xl font-bold text-dungeon-100 mb-4 font-heading">Acerca de mí</h2>
+            <div className="prose prose-invert max-w-none text-dungeon-300">
+              <p className="whitespace-pre-wrap">{profile.bio}</p>
+            </div>
           </div>
         )}
       </div>

@@ -1,673 +1,435 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import {
-  BarChart3,
-  TrendingUp,
-  AlertCircle,
+  AlertTriangle,
   CheckCircle,
   Clock,
-  Users,
-  Award,
-  FileText,
-  Loader2,
-  Calendar,
   Filter,
-  Download
+  MessageSquare,
+  ExternalLink,
+  User,
+  ShieldAlert,
+  X,
+  Loader2,
+  Eye
 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-interface CategoryStat {
-  category: string;
-  count: number;
-  percentage: number;
-}
+type ReportStatus = 'pending' | 'investigating' | 'resolved' | 'dismissed';
+type ReportReason = 'spam' | 'harassment' | 'inappropriate' | 'misinformation' | 'other';
+type ContentType = 'thread' | 'post' | 'user' | 'comment';
 
-interface StatusStat {
-  status: string;
-  count: number;
-  percentage: number;
-}
-
-interface TopContributor {
+interface Report {
   id: string;
-  display_name: string | null;
-  email?: string;
-  username_slug: string;
-  reports_submitted: number;
-  reports_resolved: number;
-  experience_points: number;
-  level: number;
-  resolution_rate: number;
-}
-
-interface RecentReport {
-  id: string;
-  title: string;
-  category: string;
-  status: string;
+  reporter_id: string;
+  reported_user_id?: string;
+  content_type: ContentType;
+  content_id: string;
+  reason: ReportReason;
+  description?: string;
+  status: ReportStatus;
   created_at: string;
-  author_display_name: string | null;
-  author_username: string;
-  vote_count: number;
+  resolved_at?: string;
+  resolved_by?: string;
+  resolution_notes?: string;
+  reporter_email?: string;
+  reported_user_email?: string;
+  content_preview?: string;
+  content_url?: string;
 }
 
-const CATEGORY_LABELS: Record<string, string> = {
-  bug: 'Error/Bug',
-  feature: 'Nueva funcionalidad',
-  translation: 'Error de traducción',
-  data: 'Error en datos',
-  ui: 'Problema de interfaz',
-  performance: 'Rendimiento',
-  other: 'Otro',
+const REASONS = {
+  spam: { label: 'Spam', color: 'text-yellow-400' },
+  harassment: { label: 'Acoso', color: 'text-red-400' },
+  inappropriate: { label: 'Contenido Inapropiado', color: 'text-orange-400' },
+  misinformation: { label: 'Desinformación', color: 'text-purple-400' },
+  other: { label: 'Otro', color: 'text-gray-400' },
 };
 
-const STATUS_LABELS: Record<string, string> = {
-  open: 'Abierto',
-  in_progress: 'En progreso',
-  resolved: 'Resuelto',
-  closed: 'Cerrado',
-  wont_fix: 'No se arreglará',
+const STATUSES = {
+  pending: { label: 'Pendiente', icon: Clock, color: 'text-yellow-400', bg: 'bg-yellow-500/10 border-yellow-500/30' },
+  investigating: { label: 'Investigando', icon: Eye, color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/30' },
+  resolved: { label: 'Resuelto', icon: CheckCircle, color: 'text-green-400', bg: 'bg-green-500/10 border-green-500/30' },
+  dismissed: { label: 'Descartado', icon: X, color: 'text-gray-400', bg: 'bg-gray-500/10 border-gray-500/30' },
 };
 
-const CATEGORY_COLORS: Record<string, string> = {
-  bug: 'text-red-400',
-  feature: 'text-blue-400',
-  translation: 'text-purple-400',
-  data: 'text-yellow-400',
-  ui: 'text-green-400',
-  performance: 'text-orange-400',
-  other: 'text-dungeon-400',
-};
-
-const STATUS_COLORS: Record<string, string> = {
-  open: 'text-yellow-400',
-  in_progress: 'text-blue-400',
-  resolved: 'text-green-400',
-  closed: 'text-dungeon-400',
-  wont_fix: 'text-red-400',
-};
-
-export default function AdminReportesPage() {
-  const router = useRouter();
+export default function AdminReportsPage() {
+  const [reports, setReports] = useState<Report[]>([]);
   const [loading, setLoading] = useState(true);
-  const [authorized, setAuthorized] = useState(false);
-  const [categoryStats, setCategoryStats] = useState<CategoryStat[]>([]);
-  const [statusStats, setStatusStats] = useState<StatusStat[]>([]);
-  const [topContributors, setTopContributors] = useState<TopContributor[]>([]);
-  const [recentReports, setRecentReports] = useState<RecentReport[]>([]);
-  const [totalReports, setTotalReports] = useState(0);
-  const [totalVotes, setTotalVotes] = useState(0);
-
-  // Estados para el exportador
-  const [exportLoading, setExportLoading] = useState(false);
-  const [exportFilters, setExportFilters] = useState({
-    category: 'all',
-    status: 'all',
-    priority: 'all',
-  });
+  const [filterStatus, setFilterStatus] = useState<ReportStatus | 'all'>('all');
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null);
+  const [resolutionNotes, setResolutionNotes] = useState('');
+  const [updating, setUpdating] = useState(false);
 
   const supabase = createClient();
 
   useEffect(() => {
-    checkAuthorization();
+    loadReports();
   }, []);
 
-  async function checkAuthorization() {
+  async function loadReports() {
     try {
-      const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-      if (authError || !user) {
-        router.push('/');
-        return;
-      }
-
-      // Verificar si es admin o reviewer
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('tier_code')
-        .eq('id', user.id)
-        .single();
-
-      if (!profile || !['admin', 'reviewer'].includes(profile.tier_code || '')) {
-        router.push('/');
-        return;
-      }
-
-      setAuthorized(true);
-      await loadStats();
-    } catch (error) {
-      console.error('Error checking authorization:', error);
-      router.push('/');
-    }
-  }
-
-  async function loadStats() {
-    try {
-      // Total de reportes
-      const { count: total } = await supabase
+      const { data, error } = await supabase
         .from('feedback_tickets')
-        .select('*', { count: 'exact', head: true });
-
-      setTotalReports(total || 0);
-
-      // Estadísticas por categoría
-      const { data: categoryData } = await supabase
-        .from('feedback_tickets')
-        .select('category');
-
-      if (categoryData) {
-        const categoryCount: Record<string, number> = {};
-        categoryData.forEach((ticket) => {
-          categoryCount[ticket.category] = (categoryCount[ticket.category] || 0) + 1;
-        });
-
-        const categoryStatsData = Object.entries(categoryCount).map(([category, count]) => ({
-          category,
-          count,
-          percentage: total ? Math.round((count / total) * 100) : 0,
-        }));
-
-        setCategoryStats(categoryStatsData);
-      }
-
-      // Estadísticas por estado
-      const { data: statusData } = await supabase
-        .from('feedback_tickets')
-        .select('status');
-
-      if (statusData) {
-        const statusCount: Record<string, number> = {};
-        statusData.forEach((ticket) => {
-          statusCount[ticket.status] = (statusCount[ticket.status] || 0) + 1;
-        });
-
-        const statusStatsData = Object.entries(statusCount).map(([status, count]) => ({
-          status,
-          count,
-          percentage: total ? Math.round((count / total) * 100) : 0,
-        }));
-
-        setStatusStats(statusStatsData);
-      }
-
-      // Top contributors (de la tabla de leaderboard)
-      const { data: contributors } = await supabase
-        .from('v_level_leaderboard')
         .select('*')
-        .limit(5);
+        .order('created_at', { ascending: false });
 
-      if (contributors) {
-        setTopContributors(contributors);
-      }
-
-      // Total de votos
-      const { count: votes } = await supabase
-        .from('feedback_votes')
-        .select('*', { count: 'exact', head: true });
-
-      setTotalVotes(votes || 0);
-
-      // Reportes recientes
-      const { data: recent } = await supabase
-        .from('v_feedback_tickets_with_author')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(10);
-
-      if (recent) {
-        setRecentReports(recent);
+      if (error) {
+        console.error('Error loading reports:', error);
+        setReports([]);
+      } else {
+        // Mapear feedback_tickets al formato de Report
+        const mappedReports = (data || []).map((ticket: any) => ({
+          id: ticket.id,
+          reporter_id: ticket.user_id,
+          reporter_email: ticket.user_email,
+          reported_user_id: undefined,
+          reported_user_email: undefined,
+          content_type: 'comment' as ContentType,
+          content_id: ticket.id,
+          reason: ticket.category as ReportReason || 'other',
+          description: ticket.description,
+          status: ticket.status as ReportStatus,
+          created_at: ticket.created_at,
+          resolved_at: ticket.resolved_at,
+          resolved_by: ticket.assigned_to,
+          resolution_notes: ticket.resolution_notes,
+          content_preview: ticket.title,
+          content_url: ticket.page_url,
+        }));
+        setReports(mappedReports);
       }
     } catch (err) {
-      console.error('Error loading stats:', err);
+      console.error('Error loading reports:', err);
+      setReports([]);
     } finally {
       setLoading(false);
     }
   }
 
-  async function exportToMarkdown() {
-    setExportLoading(true);
+  async function updateStatus(reportId: string, newStatus: ReportStatus) {
+    setUpdating(true);
     try {
-      // Construir query con filtros
-      let query = supabase
-        .from('v_feedback_tickets_with_votes')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      // Aplicar filtros
-      if (exportFilters.category !== 'all') {
-        query = query.eq('category', exportFilters.category);
-      }
-      if (exportFilters.status !== 'all') {
-        query = query.eq('status', exportFilters.status);
-      }
-      if (exportFilters.priority !== 'all') {
-        query = query.eq('priority', exportFilters.priority);
-      }
-
-      const { data: reports, error } = await query;
+      // Actualizar en tabla feedback_tickets (la fuente real de datos)
+      const { error } = await supabase
+        .from('feedback_tickets')
+        .update({
+          status: newStatus,
+          resolved_at: newStatus === 'resolved' || newStatus === 'dismissed' ? new Date().toISOString() : null,
+          resolution_notes: resolutionNotes
+        })
+        .eq('id', reportId);
 
       if (error) throw error;
 
-      // Generar contenido Markdown
-      let markdown = `# Reporte de Feedback - Beta Testers\n\n`;
-      markdown += `**Fecha de exportación:** ${new Date().toLocaleString('es-ES')}\n\n`;
-      markdown += `**Filtros aplicados:**\n`;
-      markdown += `- Categoría: ${exportFilters.category === 'all' ? 'Todas' : CATEGORY_LABELS[exportFilters.category]}\n`;
-      markdown += `- Estado: ${exportFilters.status === 'all' ? 'Todos' : STATUS_LABELS[exportFilters.status]}\n`;
-      markdown += `- Prioridad: ${exportFilters.priority === 'all' ? 'Todas' : exportFilters.priority.toUpperCase()}\n\n`;
-      markdown += `**Total de reportes:** ${reports?.length || 0}\n\n`;
-      markdown += `---\n\n`;
-
-      // Agregar cada reporte
-      reports?.forEach((report, index) => {
-        markdown += `## ${index + 1}. ${report.title}\n\n`;
-        markdown += `**ID:** ${report.id}\n`;
-        markdown += `**Categoría:** ${CATEGORY_LABELS[report.category]}\n`;
-        markdown += `**Estado:** ${STATUS_LABELS[report.status]}\n`;
-        markdown += `**Prioridad:** ${report.priority?.toUpperCase() || 'N/A'}\n`;
-        markdown += `**Autor:** ${report.author_display_name || 'Usuario'} (@${report.author_username})\n`;
-        markdown += `**Fecha:** ${new Date(report.created_at).toLocaleString('es-ES')}\n`;
-        markdown += `**Votos:** ${report.vote_count || 0}\n\n`;
-        markdown += `### Descripción\n\n`;
-        markdown += `${report.description || 'Sin descripción'}\n\n`;
-
-        if (report.page_url) {
-          markdown += `**URL de la página:** ${report.page_url}\n\n`;
-        }
-
-        if (report.browser_info) {
-          markdown += `**Información del navegador:** ${report.browser_info}\n\n`;
-        }
-
-        markdown += `---\n\n`;
-      });
-
-      // Crear archivo y descargar
-      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-
-      // Generar nombre de archivo con fecha y filtros
-      const fecha = new Date().toISOString().split('T')[0];
-      const categoryPart = exportFilters.category !== 'all' ? `-${exportFilters.category}` : '';
-      const statusPart = exportFilters.status !== 'all' ? `-${exportFilters.status}` : '';
-      link.download = `reportes-beta-${fecha}${categoryPart}${statusPart}.md`;
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
+      // Actualizar estado local
+      setReports(prev => prev.map(r =>
+        r.id === reportId
+          ? { ...r, status: newStatus, resolution_notes: resolutionNotes }
+          : r
+      ));
+      setSelectedReport(null);
+      setResolutionNotes('');
     } catch (err) {
-      console.error('Error exportando reportes:', err);
-      alert('Error al exportar reportes. Por favor, intenta de nuevo.');
+      console.error('Error updating report:', err);
+      alert('Error al actualizar el reporte');
     } finally {
-      setExportLoading(false);
+      setUpdating(false);
     }
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-dungeon-950 flex items-center justify-center">
-        <Loader2 className="w-12 h-12 animate-spin text-gold-500" />
-      </div>
-    );
-  }
+  const filteredReports = reports.filter(r =>
+    filterStatus === 'all' ? true : r.status === filterStatus
+  );
 
-  if (!authorized) {
-    return null;
-  }
+  const stats = {
+    total: reports.length,
+    pending: reports.filter(r => r.status === 'pending').length,
+    investigating: reports.filter(r => r.status === 'investigating').length,
+    resolved: reports.filter(r => r.status === 'resolved').length,
+  };
 
   return (
     <div className="min-h-screen bg-dungeon-950 py-8 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-red-500 mb-2 flex items-center gap-3">
-            <BarChart3 className="w-10 h-10" />
-            Estadísticas de Reportes Beta
+          <h1 className="text-4xl font-bold text-red-500 mb-2 flex items-center gap-3 font-heading">
+            <ShieldAlert className="w-10 h-10" />
+            Reportes de Contenido
           </h1>
           <p className="text-dungeon-300">
-            Análisis completo del sistema de feedback (Solo Admin/Reviewers)
+            Moderación de contenido y reportes de usuarios
           </p>
         </div>
 
-        {/* Overview Stats */}
+        {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Card className="bg-gradient-to-br from-blue-900/20 to-dungeon-800 border-blue-500/30">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-blue-300 mb-1">Total Reportes</p>
-                  <p className="text-3xl font-bold text-blue-400">{totalReports}</p>
-                </div>
-                <FileText className="w-12 h-12 text-blue-400 opacity-50" />
-              </div>
+          <Card className="card">
+            <CardContent className="p-4">
+              <p className="text-dungeon-400 text-sm">Total Reportes</p>
+              <p className="text-2xl font-bold text-dungeon-100 font-heading">{stats.total}</p>
             </CardContent>
           </Card>
-
-          <Card className="bg-gradient-to-br from-green-900/20 to-dungeon-800 border-green-500/30">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-green-300 mb-1">Total Votos</p>
-                  <p className="text-3xl font-bold text-green-400">{totalVotes}</p>
-                </div>
-                <TrendingUp className="w-12 h-12 text-green-400 opacity-50" />
-              </div>
+          <Card className="bg-dungeon-800 border-yellow-500/30">
+            <CardContent className="p-4">
+              <p className="text-yellow-400 text-sm">Pendientes</p>
+              <p className="text-2xl font-bold text-yellow-400 font-heading">{stats.pending}</p>
             </CardContent>
           </Card>
-
-          <Card className="bg-gradient-to-br from-purple-900/20 to-dungeon-800 border-purple-500/30">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-purple-300 mb-1">Contribuidores</p>
-                  <p className="text-3xl font-bold text-purple-400">{topContributors.length}</p>
-                </div>
-                <Users className="w-12 h-12 text-purple-400 opacity-50" />
-              </div>
+          <Card className="bg-dungeon-800 border-blue-500/30">
+            <CardContent className="p-4">
+              <p className="text-blue-400 text-sm">Investigando</p>
+              <p className="text-2xl font-bold text-blue-400 font-heading">{stats.investigating}</p>
             </CardContent>
           </Card>
-
-          <Card className="bg-gradient-to-br from-yellow-900/20 to-dungeon-800 border-yellow-500/30">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-yellow-300 mb-1">Promedio Votos</p>
-                  <p className="text-3xl font-bold text-yellow-400">
-                    {totalReports > 0 ? (totalVotes / totalReports).toFixed(1) : '0'}
-                  </p>
-                </div>
-                <Award className="w-12 h-12 text-yellow-400 opacity-50" />
-              </div>
+          <Card className="bg-dungeon-800 border-green-500/30">
+            <CardContent className="p-4">
+              <p className="text-green-400 text-sm">Resueltos</p>
+              <p className="text-2xl font-bold text-green-400 font-heading">{stats.resolved}</p>
             </CardContent>
           </Card>
         </div>
 
-        {/* Category and Status Stats */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {/* Category Breakdown */}
-          <Card className="bg-dungeon-800 border-dungeon-700">
-            <CardHeader>
-              <CardTitle className="text-gold-400 flex items-center gap-2">
-                <Filter className="w-5 h-5" />
-                Reportes por Categoría
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {categoryStats.length === 0 ? (
-                <p className="text-dungeon-400 text-center py-8">No hay datos disponibles</p>
-              ) : (
-                <div className="space-y-3">
-                  {categoryStats
-                    .sort((a, b) => b.count - a.count)
-                    .map((stat) => (
-                      <div key={stat.category} className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 flex-1">
-                          <span className={`font-medium ${CATEGORY_COLORS[stat.category]}`}>
-                            {CATEGORY_LABELS[stat.category] || stat.category}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span className="text-dungeon-300 text-sm">{stat.count} reportes</span>
-                          <span className="text-gold-400 font-semibold min-w-[3rem] text-right">
-                            {stat.percentage}%
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Status Breakdown */}
-          <Card className="bg-dungeon-800 border-dungeon-700">
-            <CardHeader>
-              <CardTitle className="text-gold-400 flex items-center gap-2">
-                <CheckCircle className="w-5 h-5" />
-                Reportes por Estado
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {statusStats.length === 0 ? (
-                <p className="text-dungeon-400 text-center py-8">No hay datos disponibles</p>
-              ) : (
-                <div className="space-y-3">
-                  {statusStats
-                    .sort((a, b) => b.count - a.count)
-                    .map((stat) => (
-                      <div key={stat.status} className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 flex-1">
-                          <span className={`font-medium ${STATUS_COLORS[stat.status]}`}>
-                            {STATUS_LABELS[stat.status] || stat.status}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span className="text-dungeon-300 text-sm">{stat.count} reportes</span>
-                          <span className="text-gold-400 font-semibold min-w-[3rem] text-right">
-                            {stat.percentage}%
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
+        {/* Filters */}
+        <div className="mb-6 flex items-center gap-4">
+          <div className="flex items-center gap-2 bg-dungeon-800 p-1 rounded-lg border border-dungeon-700">
+            {(['all', 'pending', 'investigating', 'resolved', 'dismissed'] as const).map((status) => (
+              <button
+                key={status}
+                onClick={() => setFilterStatus(status)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${filterStatus === status
+                    ? 'bg-dungeon-700 text-dungeon-100 shadow-sm'
+                    : 'text-dungeon-400 hover:text-dungeon-200'
+                  }`}
+              >
+                {status === 'all' ? 'Todos' : STATUSES[status].label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Top Contributors */}
-        <Card className="bg-dungeon-800 border-dungeon-700 mb-8">
+        {/* Reports List */}
+        <Card className="card">
           <CardHeader>
-            <CardTitle className="text-gold-400 flex items-center gap-2">
-              <Award className="w-5 h-5" />
-              Top Contribuidores
+            <CardTitle className="flex items-center gap-2 text-lg font-heading">
+              <MessageSquare className="w-5 h-5 text-gold-400" />
+              Reportes Recientes
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {topContributors.length === 0 ? (
-              <p className="text-dungeon-400 text-center py-8">No hay contribuidores aún</p>
+            {loading ? (
+              <div className="flex justify-center py-12">
+                <Loader2 className="w-8 h-8 animate-spin text-gold-500" />
+              </div>
+            ) : filteredReports.length === 0 ? (
+              <div className="text-center py-12 text-dungeon-400">
+                No hay reportes con el estado seleccionado
+              </div>
             ) : (
-              <div className="space-y-3">
-                {topContributors.map((contributor, index) => (
-                  <div
-                    key={contributor.id}
-                    className="p-4 bg-dungeon-900 border border-dungeon-700 rounded-lg hover:border-gold-500/30 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        {/* Rank */}
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center text-dungeon-950 font-bold">
-                          {index + 1}
-                        </div>
+              <div className="space-y-4">
+                {filteredReports.map((report) => {
+                  const StatusIcon = STATUSES[report.status].icon;
+                  return (
+                    <div
+                      key={report.id}
+                      className="p-4 bg-dungeon-900 border border-dungeon-700 rounded-lg hover:border-dungeon-600 transition-colors"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`px-2 py-0.5 rounded text-xs font-medium border ${STATUSES[report.status].bg} ${STATUSES[report.status].color} flex items-center gap-1`}>
+                              <StatusIcon className="w-3 h-3" />
+                              {STATUSES[report.status].label}
+                            </span>
+                            <span className="text-dungeon-400 text-sm">•</span>
+                            <span className={`text-sm font-medium ${REASONS[report.reason].color}`}>
+                              {REASONS[report.reason].label}
+                            </span>
+                            <span className="text-dungeon-400 text-sm">•</span>
+                            <span className="text-dungeon-400 text-sm">
+                              {new Date(report.created_at).toLocaleDateString()}
+                            </span>
+                          </div>
 
-                        {/* User Info */}
-                        <div>
-                          <Link
-                            href={`/u/${contributor.username_slug}`}
-                            className="text-dungeon-100 font-semibold hover:text-gold-400 transition-colors"
-                          >
-                            {contributor.display_name || 'Usuario'}
-                          </Link>
-                          <div className="flex items-center gap-3 text-xs text-dungeon-400 mt-1">
-                            <span className="flex items-center gap-1">
-                              <Award className="w-3 h-3" />
-                              Nivel {contributor.level} ({contributor.experience_points} XP)
-                            </span>
-                            <span>{contributor.reports_submitted} reportes</span>
-                            <span>{contributor.reports_resolved} resueltos</span>
-                            <span className="text-green-400">
-                              {(contributor.resolution_rate || 0).toFixed(1)}% resolución
-                            </span>
+                          <div className="mb-3">
+                            <p className="text-dungeon-200 text-sm mb-1">
+                              <span className="text-dungeon-400">Reportado por:</span> {report.reporter_email || 'Anónimo'}
+                            </p>
+                            <p className="text-dungeon-200 text-sm">
+                              <span className="text-dungeon-400">Usuario reportado:</span> {report.reported_user_email || 'N/A'}
+                            </p>
+                          </div>
+
+                          {report.description && (
+                            <div className="bg-dungeon-950 p-3 rounded border border-dungeon-800 mb-3">
+                              <p className="text-sm text-dungeon-300 italic">"{report.description}"</p>
+                            </div>
+                          )}
+
+                          {report.content_preview && (
+                            <div className="mb-3">
+                              <p className="text-xs text-dungeon-500 uppercase font-bold mb-1">Contenido Reportado:</p>
+                              <p className="text-sm text-dungeon-200 line-clamp-2">{report.content_preview}</p>
+                            </div>
+                          )}
+
+                          <div className="flex items-center gap-3">
+                            {report.content_url && (
+                              <Link
+                                href={report.content_url}
+                                target="_blank"
+                                className="text-sm text-gold-400 hover:text-gold-300 flex items-center gap-1"
+                              >
+                                Ver Contenido <ExternalLink className="w-3 h-3" />
+                              </Link>
+                            )}
+                            <button
+                              onClick={() => setSelectedReport(report)}
+                              className="text-sm text-blue-400 hover:text-blue-300"
+                            >
+                              Gestionar Reporte
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </CardContent>
         </Card>
 
-        {/* Recent Reports */}
-        <Card className="bg-dungeon-800 border-dungeon-700 mb-8">
-          <CardHeader>
-            <CardTitle className="text-gold-400 flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              Actividad Reciente
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {recentReports.length === 0 ? (
-              <p className="text-dungeon-400 text-center py-8">No hay reportes recientes</p>
-            ) : (
-              <div className="space-y-3">
-                {recentReports.map((report) => (
-                  <div
-                    key={report.id}
-                    className="p-4 bg-dungeon-900 border border-dungeon-700 rounded-lg hover:border-gold-500/30 transition-colors"
+        {/* Report Management Modal */}
+        {selectedReport && (
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+            <Card className="max-w-2xl w-full bg-dungeon-800 border-gold-500">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <CardTitle className="text-gold-400 font-heading">Gestionar Reporte</CardTitle>
+                  <button
+                    onClick={() => setSelectedReport(null)}
+                    className="text-dungeon-400 hover:text-dungeon-100"
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h3 className="text-dungeon-100 font-semibold mb-2">{report.title}</h3>
-                        <div className="flex items-center gap-3 text-xs text-dungeon-400">
-                          <span className={`${CATEGORY_COLORS[report.category]}`}>
-                            {CATEGORY_LABELS[report.category]}
-                          </span>
-                          <span className={`${STATUS_COLORS[report.status]}`}>
-                            {STATUS_LABELS[report.status]}
-                          </span>
-                          <span>
-                            Por{' '}
-                            <Link
-                              href={`/u/${report.author_username}`}
-                              className="hover:text-gold-400 transition-colors"
-                            >
-                              {report.author_display_name || 'Usuario'}
-                            </Link>
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <TrendingUp className="w-3 h-3" />
-                            {report.vote_count || 0} votos
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {new Date(report.created_at).toLocaleDateString('es-ES')}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4 text-sm bg-dungeon-900 p-4 rounded border border-dungeon-700">
+                  <div>
+                    <p className="text-dungeon-400 mb-1">Razón</p>
+                    <p className="text-dungeon-100 font-medium">{REASONS[selectedReport.reason].label}</p>
                   </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Exportador de Reportes */}
-        <Card className="bg-gradient-to-br from-gold-900/20 to-dungeon-800 border-gold-500/30">
-          <CardHeader>
-            <CardTitle className="text-gold-400 flex items-center gap-2">
-              <Download className="w-5 h-5" />
-              Exportar Reportes a Markdown
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {/* Filtros */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Filtro de Categoría */}
-                <div>
-                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
-                    Categoría
-                  </label>
-                  <select
-                    value={exportFilters.category}
-                    onChange={(e) => setExportFilters({ ...exportFilters, category: e.target.value })}
-                    className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
-                  >
-                    <option value="all">Todas las categorías</option>
-                    {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
-                      <option key={key} value={key}>
-                        {label}
-                      </option>
-                    ))}
-                  </select>
+                  <div>
+                    <p className="text-dungeon-400 mb-1">Estado Actual</p>
+                    <p className={`font-medium ${STATUSES[selectedReport.status].color}`}>
+                      {STATUSES[selectedReport.status].label}
+                    </p>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="text-dungeon-400 mb-1">Descripción del Reporte</p>
+                    <p className="text-dungeon-200">{selectedReport.description || 'Sin descripción'}</p>
+                  </div>
                 </div>
 
-                {/* Filtro de Estado */}
                 <div>
-                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
-                    Estado
+                  <label className="block text-sm font-medium text-dungeon-300 mb-2">
+                    Notas de Resolución
                   </label>
-                  <select
-                    value={exportFilters.status}
-                    onChange={(e) => setExportFilters({ ...exportFilters, status: e.target.value })}
-                    className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
-                  >
-                    <option value="all">Todos los estados</option>
-                    {Object.entries(STATUS_LABELS).map(([key, label]) => (
-                      <option key={key} value={key}>
-                        {label}
-                      </option>
-                    ))}
-                  </select>
+                  <textarea
+                    value={resolutionNotes}
+                    onChange={(e) => setResolutionNotes(e.target.value)}
+                    className="w-full h-24 px-3 py-2 bg-dungeon-900 border border-dungeon-700 rounded text-dungeon-100 resize-none input"
+                    placeholder="Explica las acciones tomadas..."
+                  />
                 </div>
 
-                {/* Filtro de Prioridad */}
-                <div>
-                  <label className="block text-sm font-medium text-dungeon-200 mb-2">
-                    Prioridad
-                  </label>
-                  <select
-                    value={exportFilters.priority}
-                    onChange={(e) => setExportFilters({ ...exportFilters, priority: e.target.value })}
-                    className="w-full px-4 py-2 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 focus:outline-none focus:border-gold-500"
+                <div className="flex gap-2 justify-end pt-4 border-t border-dungeon-700">
+                  <Button
+                    onClick={() => updateStatus(selectedReport.id, 'dismissed')}
+                    variant="ghost"
+                    disabled={updating}
+                    className="text-dungeon-400 hover:text-dungeon-200"
                   >
-                    <option value="all">Todas las prioridades</option>
-                    <option value="low">Baja (LOW)</option>
-                    <option value="medium">Media (MEDIUM)</option>
-                    <option value="high">Alta (HIGH)</option>
-                    <option value="critical">Crítica (CRITICAL)</option>
-                  </select>
+                    Descartar
+                  </Button>
+                  <Button
+                    onClick={() => updateStatus(selectedReport.id, 'investigating')}
+                    variant="secondary"
+                    disabled={updating}
+                    className="bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
+                  >
+                    Investigar
+                  </Button>
+                  <Button
+                    onClick={() => updateStatus(selectedReport.id, 'resolved')}
+                    disabled={updating || !resolutionNotes.trim()}
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    Resolver
+                  </Button>
                 </div>
-              </div>
-
-              {/* Botón de Exportar */}
-              <div className="flex items-center justify-between pt-4 border-t border-dungeon-700">
-                <p className="text-sm text-dungeon-400">
-                  Los reportes se exportarán en formato Markdown (.md) con los filtros seleccionados
-                </p>
-                <button
-                  onClick={exportToMarkdown}
-                  disabled={exportLoading}
-                  className="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-700 hover:from-gold-600 hover:to-gold-800 text-dungeon-950 font-semibold rounded-lg transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {exportLoading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Exportando...
-                    </>
-                  ) : (
-                    <>
-                      <Download className="w-5 h-5" />
-                      Exportar a .md
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
+// Mock Data for UI Development
+const MOCK_REPORTS: Report[] = [
+  {
+    id: '1',
+    reporter_id: 'user1',
+    reporter_email: 'usuario@ejemplo.com',
+    reported_user_id: 'user2',
+    reported_user_email: 'spammer@ejemplo.com',
+    content_type: 'post',
+    content_id: 'post1',
+    reason: 'spam',
+    description: 'Este usuario está publicando enlaces sospechosos repetidamente.',
+    status: 'pending',
+    created_at: new Date().toISOString(),
+    content_preview: '¡Gana dinero rápido visitando este enlace! http://spam-link.com',
+    content_url: '/foro/general/hilo-spam'
+  },
+  {
+    id: '2',
+    reporter_id: 'user3',
+    reporter_email: 'mod@ejemplo.com',
+    reported_user_id: 'user4',
+    reported_user_email: 'troll@ejemplo.com',
+    content_type: 'comment',
+    content_id: 'comment1',
+    reason: 'harassment',
+    description: 'Insultos directos hacia otro usuario.',
+    status: 'investigating',
+    created_at: new Date(Date.now() - 86400000).toISOString(),
+    content_preview: 'Eres un idiota y no sabes jugar.',
+    content_url: '/foro/reglas/discusion'
+  },
+  {
+    id: '3',
+    reporter_id: 'user5',
+    reporter_email: 'beta@ejemplo.com',
+    reported_user_id: 'user6',
+    reported_user_email: 'newbie@ejemplo.com',
+    content_type: 'thread',
+    content_id: 'thread1',
+    reason: 'misinformation',
+    description: 'Reglas inventadas que confunden a los nuevos.',
+    status: 'resolved',
+    created_at: new Date(Date.now() - 172800000).toISOString(),
+    resolved_at: new Date().toISOString(),
+    resolution_notes: 'Hilo cerrado y usuario advertido.',
+    content_preview: 'En D&D 5e puedes lanzar 3 hechizos por turno si eres mago nivel 1.',
+    content_url: '/foro/dudas/reglas-magia'
+  }
+];

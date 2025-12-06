@@ -1,88 +1,403 @@
 @import "tailwindcss";
-
-:root {
-  /* Light mode colors */
-  --background: #ffffff;
-  --foreground: #171717;
-
-  /* Dungeon theme - Light */
-  --dungeon-50: #f5f3f0;
-  --dungeon-100: #e2e8f0;
-  --dungeon-200: #cbd5e0;
-  --dungeon-700: #2d3748;
-  --dungeon-800: #1a202c;
-  --dungeon-900: #0f1419;
-
-  /* Gold accents */
-  --gold-400: #fbbf24;
-  --gold-500: #d69e2e;
-  --gold-600: #b8860b;
-
-  /* Crimson accents */
-  --crimson-500: #dc2626;
-  --crimson-600: #b91c1c;
-
-  /* Content type colors */
-  --spell-blue: #3b82f6;
-  --monster-red: #ef4444;
-  --item-gold: #f59e0b;
-  --class-green: #10b981;
-}
+@plugin "@tailwindcss/typography";
 
 @theme inline {
-  /* Color palette */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-dungeon-50: #f5f3f0;
+  --color-dungeon-100: #e2e8f0;
+  --color-dungeon-200: #cbd5e0;
+  --color-dungeon-300: #a0aec0;
+  --color-dungeon-400: #718096;
+  --color-dungeon-500: #4a5568;
+  --color-dungeon-600: #2d3748;
+  --color-dungeon-700: #1a202c;
+  --color-dungeon-800: #171923;
+  --color-dungeon-900: #0f1419;
+  --color-dungeon-950: #0a0d11;
 
-  /* Dungeon colors */
-  --color-dungeon-50: var(--dungeon-50);
-  --color-dungeon-100: var(--dungeon-100);
-  --color-dungeon-200: var(--dungeon-200);
-  --color-dungeon-700: var(--dungeon-700);
-  --color-dungeon-800: var(--dungeon-800);
-  --color-dungeon-900: var(--dungeon-900);
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #d69e2e;
+  --color-gold-600: #b8860b;
 
-  /* Gold colors */
-  --color-gold-400: var(--gold-400);
-  --color-gold-500: var(--gold-500);
-  --color-gold-600: var(--gold-600);
+  --color-crimson-500: #dc2626;
+  --color-crimson-600: #b91c1c;
 
-  /* Crimson colors */
-  --color-crimson-500: var(--crimson-500);
-  --color-crimson-600: var(--crimson-600);
+  --color-spell-blue: #3b82f6;
+  --color-monster-red: #ef4444;
+  --color-item-gold: #f59e0b;
+  --color-class-green: #10b981;
 
-  /* Content type colors */
-  --color-spell-blue: var(--spell-blue);
-  --color-monster-red: var(--monster-red);
-  --color-item-gold: var(--item-gold);
-  --color-class-green: var(--class-green);
+  /* Landing Page Colors - Classic Tome Theme */
+  --color-parchment-bg: #fdf6e3;
+  /* Solarized Light-ish */
+  --color-parchment-dark: #eee8d5;
+  --color-ink-text: #073642;
+  /* Deep dark blue/green ink */
+  --color-ink-subtle: #586e75;
+  --color-gold-accent: #b58900;
+  --color-red-accent: #dc322f;
 
-  /* Fonts */
+  /* Legacy colors kept for compatibility but re-mapped where needed */
+  --color-arcane-blue: #268bd2;
+  --color-arcane-blue-glow: #6c71c4;
+  --color-legendary-gold: #b58900;
+  --color-deep-bg: #002b36;
+  /* Solarized Dark for contrast areas */
+
+  --color-background: var(--color-dungeon-900);
+  --color-foreground: var(--color-dungeon-100);
+
   --font-heading: var(--font-merriweather);
   --font-body: var(--font-roboto);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1a202c;
-    --foreground: #e2e8f0;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+
+
+  .card-parchment {
+    background-color: #fffbf0;
+    border: 1px solid #d3c6a6;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05), inset 0 0 20px rgba(181, 137, 0, 0.05);
+  }
+
+  .text-ink {
+    color: var(--color-ink-text);
+    text-shadow: 0.5px 0.5px 0px rgba(0, 0, 0, 0.1);
+    /* Slight ink bleed effect */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+/* Remove Tailwind v4 debug background grid */
+html {
+  background-color: var(--color-dungeon-900) !important;
+  background-image: none !important;
 }
 
-/* Utility classes */
+html::before,
+html::after {
+  content: none !important;
+  display: none !important;
+}
+
+body {
+  background-color: var(--color-dungeon-900) !important;
+  color: var(--color-dungeon-100);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  background-image: none !important;
+
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+/* Ensure no pseudo-elements are creating the grid */
+body::before,
+body::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+
+.text-gradient-gold {
+  background: linear-gradient(to right, var(--color-gold-400), var(--color-gold-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Magic Circle Animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse-slower {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-reverse-slower {
+  animation: spin-reverse-slower 30s linear infinite;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 4s linear infinite;
+}
+
+/* System Colors */
+:root {
+  --color-system-35: #f59e0b;
+  /* Amber */
+  --color-system-5e: #ef4444;
+  /* Red */
+  --color-system-pf: #3b82f6;
+  /* Blue */
+  --color-system-sf: #8b5cf6;
+  /* Violet */
+  --color-system-coc: #10b981;
+  /* Emerald */
+}
+
+/* Focus-visible global para accesibilidad */
+button,
+a,
+input,
+textarea,
+select {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400;
+}
+
+/* Components (Standard CSS) */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 200ms;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, var(--color-gold-600), var(--color-gold-500));
+  color: var(--color-dungeon-950);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* shadow-lg */
+}
+
+.btn-primary:hover {
+  background-image: linear-gradient(to right, var(--color-gold-500), var(--color-gold-400));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px color-mix(in srgb, var(--color-gold-500) 30%, transparent);
+  /* Gold shadow */
+}
+
+.btn-secondary {
+  background-color: var(--color-dungeon-800);
+  color: var(--color-dungeon-200);
+  border: 1px solid var(--color-dungeon-700);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-dungeon-700);
+  color: var(--color-dungeon-100);
+  border-color: var(--color-dungeon-500);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-dungeon-400);
+}
+
+.btn-ghost:hover {
+  color: var(--color-gold-400);
+  background-color: color-mix(in srgb, var(--color-dungeon-800) 50%, transparent);
+  /* dungeon-800/50 */
+}
+
+.btn-danger {
+  background-color: var(--color-crimson-600);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: var(--color-crimson-500);
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  /* rounded-xl */
+  border: 1px solid var(--color-dungeon-700);
+  background-color: color-mix(in srgb, var(--color-dungeon-950) 50%, transparent);
+  /* dungeon-950/50 */
+  padding: 0.75rem 1rem;
+  color: var(--color-dungeon-100);
+  transition: all 200ms;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-dungeon-600);
+}
+
+.input:focus {
+  border-color: var(--color-gold-500);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-gold-500) 50%, transparent);
+  /* ring-gold-500/50 */
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-dungeon-300);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+/* Cards */
+.card {
+  border-radius: 1rem;
+  /* rounded-2xl */
+  border: 1px solid var(--color-dungeon-800);
+  background-color: color-mix(in srgb, var(--color-dungeon-900) 60%, transparent);
+  /* dungeon-900/60 */
+  backdrop-filter: blur(12px);
+  /* backdrop-blur-md */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* shadow-xl */
+  overflow: hidden;
+  transition: all 300ms;
+}
+
+.card:hover {
+  border-color: var(--color-dungeon-600);
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  /* shadow-2xl */
+}
+
+/* Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  transition: color 200ms, background-color 200ms;
+}
+
+.tag-primary {
+  background-color: color-mix(in srgb, var(--color-gold-500) 10%, transparent);
+  /* gold-500/10 */
+  color: var(--color-gold-400);
+  border: 1px solid color-mix(in srgb, var(--color-gold-500) 20%, transparent);
+  /* gold-500/20 */
+}
+
+.tag-secondary {
+  background-color: var(--color-dungeon-800);
+  color: var(--color-dungeon-400);
+  border: 1px solid var(--color-dungeon-700);
+}
+
+/* Utilities */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+  display: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dungeon-900);
+  border-left: 1px solid var(--color-dungeon-800);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dungeon-600);
+  border-radius: 5px;
+  border: 2px solid var(--color-dungeon-900);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dungeon-500);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dungeon-600) var(--color-dungeon-900);
+}
+
+/* Distinct Sidebar Scrollbar */
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /* Wider for better usability */
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-dungeon-950);
+  /* Darker track */
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-gold-600);
+  /* Gold thumb for distinction */
+  border-radius: 5px;
+  border: 2px solid var(--color-dungeon-950);
+  /* Add border to make it look detached */
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-500);
+}
+
+/* Firefox support for sidebar scrollbar */
+.sidebar-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold-600) var(--color-dungeon-950);
 }
 
 /* Animations */
@@ -91,69 +406,1172 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Dice rolling animations */
-@keyframes shake {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  10% { transform: translateX(-5px) rotate(-5deg); }
-  20% { transform: translateX(5px) rotate(5deg); }
-  30% { transform: translateX(-5px) rotate(-5deg); }
-  40% { transform: translateX(5px) rotate(5deg); }
-  50% { transform: translateX(-5px) rotate(-5deg); }
-  60% { transform: translateX(5px) rotate(5deg); }
-  70% { transform: translateX(-5px) rotate(-5deg); }
-  80% { transform: translateX(5px) rotate(5deg); }
-  90% { transform: translateX(-5px) rotate(-5deg); }
+/* Tiptap */
+.spoiler {
+  background: var(--color-dungeon-600);
+  color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-@keyframes diceRoll {
-  0% {
-    transform: scale(0.8) rotate(0deg);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.1) rotate(180deg);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1) rotate(360deg);
-    opacity: 1;
-  }
+.spoiler:hover,
+.spoiler[data-visible="true"] {
+  color: inherit;
+  background: var(--color-dungeon-600);
 }
 
-@keyframes dicePopIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) translateY(-20px);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.1) translateY(0);
-  }
-  100% {
-    transform: scale(1) translateY(0);
-  }
+.statblock-placeholder,
+.statblock-card {
+  border: 1px solid var(--color-dungeon-700);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--color-dungeon-950);
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.25);
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(251, 191, 36, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
-  }
+/* ProseMirror Overrides */
+.ProseMirror {
+  min-height: 300px;
+  outline: none !important;
 }
 
-@keyframes strikethrough {
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--color-dungeon-500);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Performance Optimizations */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
   from {
-    width: 0;
+    opacity: 0;
+    transform: translateY(10px);
   }
+
   to {
-    width: 100%;
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Shimmer Animation for Skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      var(--color-dungeon-800) 0%,
+      var(--color-dungeon-700) 20%,
+      var(--color-dungeon-800) 40%,
+      var(--color-dungeon-800) 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Staggered Animation Delays */
+.stagger-1 {
+  animation-delay: 50ms;
+}
+
+.stagger-2 {
+  animation-delay: 100ms;
+}
+
+.stagger-3 {
+  animation-delay: 150ms;
+}
+
+.stagger-4 {
+  animation-delay: 200ms;
+}
+
+.stagger-5 {
+  animation-delay: 250ms;
+}
+
+.stagger-6 {
+  animation-delay: 300ms;
+}
+
+/* Smooth Transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Will-change optimization for frequently animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Global glow layer for feature images */
+.glow-layer {
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(32px);
+  opacity: 0.56;
+  background: radial-gradient(circle at 50% 45%,
+      color-mix(in srgb, var(--glow-from, #fbbf24) 20%, transparent),
+      color-mix(in srgb, var(--glow-via, #f59e0b) 16%, transparent) 55%,
+      color-mix(in srgb, var(--glow-to, #10b981) 14%, transparent) 75%);
+  z-index: 0;
+}
+
+.hero-figure {
+  position: relative;
+}
+
+.hero-image {
+  position: relative;
+  z-index: 1;
+}
+
+/* Formatted Text Content from RichTextEditor (TipTap) */
+.formatted-text-content {
+  color: var(--color-dungeon-200);
+}
+
+.formatted-text-content p {
+  text-align: justify;
+  line-height: 1.625;
+  margin-bottom: 1rem;
+  hyphens: auto;
+}
+
+.formatted-text-content strong {
+  font-weight: 700;
+  color: var(--color-gold-400);
+}
+
+.formatted-text-content em {
+  font-style: italic;
+}
+
+.formatted-text-content u {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.formatted-text-content s {
+  text-decoration: line-through;
+}
+
+.formatted-text-content h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-gold-400);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading), serif;
+}
+
+.formatted-text-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gold-400);
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading), serif;
+}
+
+.formatted-text-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-gold-400);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading), serif;
+}
+
+.formatted-text-content ul {
+  list-style-type: disc;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.formatted-text-content ol {
+  list-style-type: decimal;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.formatted-text-content li {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+
+.formatted-text-content blockquote {
+  border-left: 4px solid var(--color-gold-500);
+  padding-left: 1.5rem;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-dungeon-300);
+  font-style: italic;
+}
+
+.formatted-text-content a {
+  color: var(--color-gold-400);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold-400);
+  text-underline-offset: 4px;
+}
+
+.formatted-text-content a:hover {
+  color: var(--color-gold-500);
+  text-decoration-color: var(--color-gold-500);
+}
+
+/* Sidebar Styles */
+.sidebar-container {
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+  contain: layout style paint;
+}
+
+.sidebar-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb {
+  background: var(--color-dungeon-700);
+  border-radius: 4px;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dungeon-600);
+}
+
+/* Scrollbar a la izquierda para sidebar - usando transform */
+.sidebar-scroll-left {
+  overflow-y: auto;
+  transform: scaleX(-1);
+}
+
+.sidebar-scroll-left>* {
+  transform: scaleX(-1);
+}
+
+.sidebar-scroll-left::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-scroll-left::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll-left::-webkit-scrollbar-thumb {
+  background: var(--color-dungeon-700);
+  border-radius: 4px;
+}
+
+.sidebar-scroll-left::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dungeon-600);
+}
+
+/* Smooth transitions for sidebar items */
+.sidebar-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.sidebar-nav-item:hover::before {
+  transform: translateX(100%);
+}
+
+/* Active state with accent border */
+.sidebar-nav-item-active {
+  position: relative;
+}
+
+.sidebar-nav-item-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-gold-500);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Liquid Effect Animations for Deity Cards */
+@keyframes liquid-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  25% {
+    background-position: 50% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 50% 50%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes liquid-pulse {
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    background-position: 100% 100%;
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+
+  100% {
+    background-position: 0% 0%;
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+/* Deity Card Animations - Modern Effects 2024 */
+
+/* Shimmer effect that sweeps across card */
+@keyframes deity-shimmer {
+  0% {
+    left: -150%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+/* Glow border that flows around the card */
+@keyframes deity-glow-border {
+  0% {
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  }
+
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+  }
+
+  100% {
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  }
+}
+
+/* Deity Card Wrapper - Perspective for 3D effect */
+.deity-card-wrapper {
+  perspective: 1000px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Deity Card - Main container with all effects */
+.deity-card {
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+/* Shimmer overlay - appears on hover */
+.deity-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent);
+  transform: skewX(-20deg);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Hover Effects */
+.deity-card-wrapper:hover .deity-card {
+  transform: translateY(-8px) rotateX(2deg) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(251, 191, 36, 0.3);
+}
+
+.deity-card-wrapper:hover .deity-card::before {
+  opacity: 1;
+  animation: deity-shimmer 1.2s ease-in-out;
+}
+
+/* Glow border on hover */
+.deity-card-wrapper:hover .deity-card {
+  animation: deity-glow-border 2s ease-in-out infinite;
+}
+
+/* Active/Press state - card pushes down slightly */
+.deity-card-wrapper:active .deity-card {
+  transform: translateY(-4px) scale(1.01);
+  transition: all 0.1s ease;
+}
+
+/* ============================================================================
+   TEMAS BASADOS EN CLASES D&D 3.5 - DUAL MODE (DARK/LIGHT)
+   ============================================================================
+   Sistema de 12 temas con variantes dark y light. Cada tema sobrescribe
+   variables CSS según el modo activo (data-mode="dark" o data-mode="light").
+   ========================================================================= */
+
+/* Tema Base/Fallback: Modo Claro Predefinido */
+/* Se aplica cuando data-mode="light" sin tema específico o como fallback */
+/* Usando html para mayor especificidad según best practices */
+html[data-mode="light"] {
+  /* Colores base claros - Escala de grises suaves */
+  --color-dungeon-950: #f8f9fa;
+  --color-dungeon-900: #e9ecef;
+  --color-dungeon-800: #dee2e6;
+  --color-dungeon-700: #ced4da;
+  --color-dungeon-600: #adb5bd;
+  --color-dungeon-500: #6c757d;
+  --color-dungeon-400: #495057;
+  --color-dungeon-300: #343a40;
+  --color-dungeon-200: #212529;
+  --color-dungeon-100: #1a1d20;
+
+  /* Colores de acento - Dorados cálidos para modo claro */
+  --color-gold-400: #d97706;
+  --color-gold-500: #b45309;
+  --color-gold-600: #92400e;
+
+  /* Colores de estado */
+  --color-success: #16a34a;
+  --color-warning: #ea580c;
+  --color-error: #dc2626;
+  --color-info: #0284c7;
+
+  /* Colores de UI específicos */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-card: #ffffff;
+  --border-color: #dee2e6;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-muted: #6c757d;
+
+  /* Sombras suaves para modo claro */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Tema 1: Clásico */
+html[data-theme="clasico"][data-mode="dark"] {
+  /* Usa los colores por defecto (oscuros) */
+  --color-dungeon-950: #0a0d11;
+  --color-dungeon-900: #0f1419;
+  --color-dungeon-800: #171923;
+  --color-dungeon-700: #1a202c;
+  --color-dungeon-600: #2d3748;
+  --color-dungeon-500: #4a5568;
+  --color-dungeon-400: #718096;
+  --color-dungeon-300: #a0aec0;
+  --color-dungeon-200: #cbd5e0;
+  --color-dungeon-100: #e2e8f0;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #d69e2e;
+  --color-gold-600: #b8860b;
+}
+
+html[data-theme="clasico"][data-mode="light"] {
+  --color-dungeon-950: #f5f3f0;
+  --color-dungeon-900: #e2e8f0;
+  --color-dungeon-800: #cbd5e0;
+  --color-dungeon-700: #a0aec0;
+  --color-dungeon-600: #718096;
+  --color-dungeon-500: #4a5568;
+  --color-dungeon-400: #2d3748;
+  --color-dungeon-300: #1a202c;
+  --color-dungeon-200: #171923;
+  --color-dungeon-100: #0f1419;
+  --color-gold-400: #d69e2e;
+  --color-gold-500: #b8860b;
+  --color-gold-600: #92720b;
+}
+
+/* Tema 2: Bárbaro */
+html[data-theme="barbaro"][data-mode="dark"] {
+  --color-dungeon-950: #1A0B0A;
+  --color-dungeon-900: #5A0F0B;
+  --color-dungeon-800: #B3342C;
+  --color-dungeon-700: #C14842;
+  --color-dungeon-600: #CF6158;
+  --color-dungeon-500: #DD7A6E;
+  --color-dungeon-400: #EB9984;
+  --color-dungeon-300: #F9B89A;
+  --color-dungeon-200: #F9D7B0;
+  --color-dungeon-100: #F9F6C6;
+  --color-gold-400: #DD7A6E;
+  --color-gold-500: #CF6158;
+  --color-gold-600: #C14842;
+}
+
+html[data-theme="barbaro"][data-mode="light"] {
+  --color-dungeon-950: #F9EDE8;
+  --color-dungeon-900: #A12F1F;
+  --color-dungeon-800: #E85545;
+  --color-dungeon-700: #ED6E5B;
+  --color-dungeon-600: #F28771;
+  --color-dungeon-500: #F7A087;
+  --color-dungeon-400: #FCB99D;
+  --color-dungeon-300: #FFD2B3;
+  --color-dungeon-200: #FFEBC9;
+  --color-dungeon-100: #FFFFDF;
+  --color-gold-400: #F7A087;
+  --color-gold-500: #F28771;
+  --color-gold-600: #ED6E5B;
+}
+
+/* Tema 3: Guerrero */
+html[data-theme="guerrero"][data-mode="dark"] {
+  --color-dungeon-950: #0F1418;
+  --color-dungeon-900: #2E3D47;
+  --color-dungeon-800: #7A8A96;
+  --color-dungeon-700: #8C9BA6;
+  --color-dungeon-600: #9EACB6;
+  --color-dungeon-500: #B0BDC6;
+  --color-dungeon-400: #C2CED6;
+  --color-dungeon-300: #D4DFE6;
+  --color-dungeon-200: #E6F0F6;
+  --color-dungeon-100: #F8FFFF;
+  --color-gold-400: #B0BDC6;
+  --color-gold-500: #9EACB6;
+  --color-gold-600: #8C9BA6;
+}
+
+html[data-theme="guerrero"][data-mode="light"] {
+  --color-dungeon-950: #F4F8FA;
+  --color-dungeon-900: #3C4B54;
+  --color-dungeon-800: #A7BAC7;
+  --color-dungeon-700: #B4C5D1;
+  --color-dungeon-600: #C1D0DB;
+  --color-dungeon-500: #CEDBE5;
+  --color-dungeon-400: #DBE6EF;
+  --color-dungeon-300: #E8F1F9;
+  --color-dungeon-200: #F5FCFF;
+  --color-dungeon-100: #FFFFFF;
+  --color-gold-400: #CEDBE5;
+  --color-gold-500: #C1D0DB;
+  --color-gold-600: #B4C5D1;
+}
+
+/* Tema 4: Paladín */
+html[data-theme="paladin"][data-mode="dark"] {
+  --color-dungeon-950: #1A1408;
+  --color-dungeon-900: #5A3F19;
+  --color-dungeon-800: #B3925C;
+  --color-dungeon-700: #C1A06F;
+  --color-dungeon-600: #CFAE82;
+  --color-dungeon-500: #DDBC95;
+  --color-dungeon-400: #EBCAA8;
+  --color-dungeon-300: #F9D8BB;
+  --color-dungeon-200: #F9E6CE;
+  --color-dungeon-100: #F9F4E1;
+  --color-gold-400: #DDBC95;
+  --color-gold-500: #CFAE82;
+  --color-gold-600: #C1A06F;
+}
+
+html[data-theme="paladin"][data-mode="light"] {
+  --color-dungeon-950: #F9F4E1;
+  --color-dungeon-900: #A17A2F;
+  --color-dungeon-800: #E8C955;
+  --color-dungeon-700: #EDD368;
+  --color-dungeon-600: #F2DD7B;
+  --color-dungeon-500: #F7E78E;
+  --color-dungeon-400: #FCF1A1;
+  --color-dungeon-300: #FFFBB4;
+  --color-dungeon-200: #FFFFC7;
+  --color-dungeon-100: #FFFFDA;
+  --color-gold-400: #F7E78E;
+  --color-gold-500: #F2DD7B;
+  --color-gold-600: #EDD368;
+}
+
+/* Tema 5: Clérigo */
+html[data-theme="clerigo"][data-mode="dark"] {
+  --color-dungeon-950: #0F141A;
+  --color-dungeon-900: #2E3D5A;
+  --color-dungeon-800: #7A8AB3;
+  --color-dungeon-700: #8C9BC1;
+  --color-dungeon-600: #9EACCF;
+  --color-dungeon-500: #B0BDDD;
+  --color-dungeon-400: #C2CEEB;
+  --color-dungeon-300: #D4DFF9;
+  --color-dungeon-200: #E6F0FF;
+  --color-dungeon-100: #F8FFFF;
+  --color-gold-400: #B0BDDD;
+  --color-gold-500: #9EACCF;
+  --color-gold-600: #8C9BC1;
+}
+
+html[data-theme="clerigo"][data-mode="light"] {
+  --color-dungeon-950: #F4F8F9;
+  --color-dungeon-900: #3C4B5A;
+  --color-dungeon-800: #A7BAE8;
+  --color-dungeon-700: #B4C5ED;
+  --color-dungeon-600: #C1D0F2;
+  --color-dungeon-500: #CEDBF7;
+  --color-dungeon-400: #DBE6FC;
+  --color-dungeon-300: #E8F1FF;
+  --color-dungeon-200: #F5FCFF;
+  --color-dungeon-100: #FFFFFF;
+  --color-gold-400: #CEDBF7;
+  --color-gold-500: #C1D0F2;
+  --color-gold-600: #B4C5ED;
+}
+
+/* Tema 6: Mago */
+html[data-theme="mago"][data-mode="dark"] {
+  --color-dungeon-950: #0A0F1A;
+  --color-dungeon-900: #192E5A;
+  --color-dungeon-800: #5C7AB3;
+  --color-dungeon-700: #6F8CC1;
+  --color-dungeon-600: #829ECF;
+  --color-dungeon-500: #95B0DD;
+  --color-dungeon-400: #A8C2EB;
+  --color-dungeon-300: #BBD4F9;
+  --color-dungeon-200: #CEE6FF;
+  --color-dungeon-100: #E1F8FF;
+  --color-gold-400: #95B0DD;
+  --color-gold-500: #829ECF;
+  --color-gold-600: #6F8CC1;
+}
+
+html[data-theme="mago"][data-mode="light"] {
+  --color-dungeon-950: #E8F4F9;
+  --color-dungeon-900: #1F3C5A;
+  --color-dungeon-800: #55A7E8;
+  --color-dungeon-700: #68B4ED;
+  --color-dungeon-600: #7BC1F2;
+  --color-dungeon-500: #8ECEF7;
+  --color-dungeon-400: #A1DBFC;
+  --color-dungeon-300: #B4E8FF;
+  --color-dungeon-200: #C7F5FF;
+  --color-dungeon-100: #DAFFFF;
+  --color-gold-400: #8ECEF7;
+  --color-gold-500: #7BC1F2;
+  --color-gold-600: #68B4ED;
+}
+
+/* Tema 7: Hechicero */
+html[data-theme="hechicero"][data-mode="dark"] {
+  --color-dungeon-950: #1A0A1A;
+  --color-dungeon-900: #5A195A;
+  --color-dungeon-800: #B35CB3;
+  --color-dungeon-700: #C16FC1;
+  --color-dungeon-600: #CF82CF;
+  --color-dungeon-500: #DD95DD;
+  --color-dungeon-400: #EBA8EB;
+  --color-dungeon-300: #F9BBF9;
+  --color-dungeon-200: #FFCEFF;
+  --color-dungeon-100: #FFE1FF;
+  --color-gold-400: #DD95DD;
+  --color-gold-500: #CF82CF;
+  --color-gold-600: #C16FC1;
+}
+
+html[data-theme="hechicero"][data-mode="light"] {
+  --color-dungeon-950: #F9E8F9;
+  --color-dungeon-900: #5A1F5A;
+  --color-dungeon-800: #E855E8;
+  --color-dungeon-700: #ED68ED;
+  --color-dungeon-600: #F27BF2;
+  --color-dungeon-500: #F78EF7;
+  --color-dungeon-400: #FCA1FC;
+  --color-dungeon-300: #FFB4FF;
+  --color-dungeon-200: #FFC7FF;
+  --color-dungeon-100: #FFDAFF;
+  --color-gold-400: #F78EF7;
+  --color-gold-500: #F27BF2;
+  --color-gold-600: #ED68ED;
+}
+
+/* Tema 8: Druida */
+html[data-theme="druida"][data-mode="dark"] {
+  --color-dungeon-950: #0A1A0A;
+  --color-dungeon-900: #195A19;
+  --color-dungeon-800: #5CB35C;
+  --color-dungeon-700: #6FC16F;
+  --color-dungeon-600: #82CF82;
+  --color-dungeon-500: #95DD95;
+  --color-dungeon-400: #A8EBA8;
+  --color-dungeon-300: #BBF9BB;
+  --color-dungeon-200: #CEFFCE;
+  --color-dungeon-100: #E1FFE1;
+  --color-gold-400: #95DD95;
+  --color-gold-500: #82CF82;
+  --color-gold-600: #6FC16F;
+}
+
+html[data-theme="druida"][data-mode="light"] {
+  --color-dungeon-950: #E8F9E8;
+  --color-dungeon-900: #1F5A1F;
+  --color-dungeon-800: #55E855;
+  --color-dungeon-700: #68ED68;
+  --color-dungeon-600: #7BF27B;
+  --color-dungeon-500: #8EF78E;
+  --color-dungeon-400: #A1FCA1;
+  --color-dungeon-300: #B4FFB4;
+  --color-dungeon-200: #C7FFC7;
+  --color-dungeon-100: #DAFFDA;
+  --color-gold-400: #8EF78E;
+  --color-gold-500: #7BF27B;
+  --color-gold-600: #68ED68;
+}
+
+/* Tema 9: Explorador */
+html[data-theme="explorador"][data-mode="dark"] {
+  --color-dungeon-950: #0F1A0A;
+  --color-dungeon-900: #2E5A19;
+  --color-dungeon-800: #7AB35C;
+  --color-dungeon-700: #8CC16F;
+  --color-dungeon-600: #9ECF82;
+  --color-dungeon-500: #B0DD95;
+  --color-dungeon-400: #C2EBA8;
+  --color-dungeon-300: #D4F9BB;
+  --color-dungeon-200: #E6FFCE;
+  --color-dungeon-100: #F8FFE1;
+  --color-gold-400: #B0DD95;
+  --color-gold-500: #9ECF82;
+  --color-gold-600: #8CC16F;
+}
+
+html[data-theme="explorador"][data-mode="light"] {
+  --color-dungeon-950: #F4F9E8;
+  --color-dungeon-900: #3C5A1F;
+  --color-dungeon-800: #A7E855;
+  --color-dungeon-700: #B4ED68;
+  --color-dungeon-600: #C1F27B;
+  --color-dungeon-500: #CEF78E;
+  --color-dungeon-400: #DBFCA1;
+  --color-dungeon-300: #E8FFB4;
+  --color-dungeon-200: #F5FFC7;
+  --color-dungeon-100: #FFFFDA;
+  --color-gold-400: #CEF78E;
+  --color-gold-500: #C1F27B;
+  --color-gold-600: #B4ED68;
+}
+
+/* Tema 10: Pícaro */
+html[data-theme="picaro"][data-mode="dark"] {
+  --color-dungeon-950: #1A0A1A;
+  --color-dungeon-900: #5A195A;
+  --color-dungeon-800: #B35CB3;
+  --color-dungeon-700: #C16FC1;
+  --color-dungeon-600: #CF82CF;
+  --color-dungeon-500: #DD95DD;
+  --color-dungeon-400: #EBA8EB;
+  --color-dungeon-300: #F9BBF9;
+  --color-dungeon-200: #FFCEFF;
+  --color-dungeon-100: #FFE1FF;
+  --color-gold-400: #DD95DD;
+  --color-gold-500: #CF82CF;
+  --color-gold-600: #C16FC1;
+}
+
+html[data-theme="picaro"][data-mode="light"] {
+  --color-dungeon-950: #F9E8F9;
+  --color-dungeon-900: #5A1F5A;
+  --color-dungeon-800: #E855E8;
+  --color-dungeon-700: #ED68ED;
+  --color-dungeon-600: #F27BF2;
+  --color-dungeon-500: #F78EF7;
+  --color-dungeon-400: #FCA1FC;
+  --color-dungeon-300: #FFB4FF;
+  --color-dungeon-200: #FFC7FF;
+  --color-dungeon-100: #FFDAFF;
+  --color-gold-400: #F78EF7;
+  --color-gold-500: #F27BF2;
+  --color-gold-600: #ED68ED;
+}
+
+/* Tema 11: Monje */
+html[data-theme="monje"][data-mode="dark"] {
+  --color-dungeon-950: #0A0F1A;
+  --color-dungeon-900: #192E5A;
+  --color-dungeon-800: #5C7AB3;
+  --color-dungeon-700: #6F8CC1;
+  --color-dungeon-600: #829ECF;
+  --color-dungeon-500: #95B0DD;
+  --color-dungeon-400: #A8C2EB;
+  --color-dungeon-300: #BBD4F9;
+  --color-dungeon-200: #CEE6FF;
+  --color-dungeon-100: #E1F8FF;
+  --color-gold-400: #95B0DD;
+  --color-gold-500: #829ECF;
+  --color-gold-600: #6F8CC1;
+}
+
+html[data-theme="monje"][data-mode="light"] {
+  --color-dungeon-950: #E8F4F9;
+  --color-dungeon-900: #1F3C5A;
+  --color-dungeon-800: #55A7E8;
+  --color-dungeon-700: #68B4ED;
+  --color-dungeon-600: #7BC1F2;
+  --color-dungeon-500: #8ECEF7;
+  --color-dungeon-400: #A1DBFC;
+  --color-dungeon-300: #B4E8FF;
+  --color-dungeon-200: #C7F5FF;
+  --color-dungeon-100: #DAFFFF;
+  --color-gold-400: #8ECEF7;
+  --color-gold-500: #7BC1F2;
+  --color-gold-600: #68B4ED;
+}
+
+/* Utility classes globales que usan variables CSS dinámicas */
+.text-dungeon-100 {
+  color: var(--color-dungeon-100);
+}
+
+.text-dungeon-200 {
+  color: var(--color-dungeon-200);
+}
+
+.text-dungeon-300 {
+  color: var(--color-dungeon-300);
+}
+
+.text-dungeon-400 {
+  color: var(--color-dungeon-400);
+}
+
+.text-dungeon-500 {
+  color: var(--color-dungeon-500);
+}
+
+.text-dungeon-600 {
+  color: var(--color-dungeon-600);
+}
+
+.text-gold-300 {
+  color: var(--color-gold-400);
+}
+
+.text-gold-400 {
+  color: var(--color-gold-400);
+}
+
+.text-gold-500 {
+  color: var(--color-gold-500);
+}
+
+.bg-dungeon-800 {
+  background-color: var(--color-dungeon-800);
+}
+
+.bg-dungeon-900 {
+  background-color: var(--color-dungeon-900);
+}
+
+.bg-dungeon-950 {
+  background-color: var(--color-dungeon-950);
+}
+
+.border-dungeon-700 {
+  border-color: var(--color-dungeon-700);
+}
+
+.border-dungeon-800 {
+  border-color: var(--color-dungeon-800);
+}
+
+.border-gold-500 {
+  border-color: var(--color-gold-500);
+}
+
+.hover\:text-gold-300:hover {
+  color: var(--color-gold-400);
+}
+
+.hover\:text-gold-400:hover {
+  color: var(--color-gold-400);
+}
+
+.hover\:border-gold-500:hover {
+  border-color: var(--color-gold-500);
+}
+
+/* Tema 5: Druida - Verde bosque y tierra */
+html[data-theme="druida"] {
+  --color-dungeon-950: #0a1f0a;
+  --color-dungeon-900: #14532d;
+  --color-dungeon-800: #166534;
+  --color-dungeon-700: #15803d;
+  --color-dungeon-600: #16a34a;
+  --color-dungeon-500: #22c55e;
+  --color-dungeon-400: #4ade80;
+  --color-dungeon-300: #86efac;
+  --color-dungeon-200: #bbf7d0;
+  --color-dungeon-100: #dcfce7;
+  --color-gold-400: #16a34a;
+  --color-gold-500: #15803d;
+  --color-gold-600: #166534;
+}
+
+/* Tema 6: Guerrero - Acero plateado y rojo */
+html[data-theme="guerrero"] {
+  --color-dungeon-950: #020617;
+  --color-dungeon-900: #0f172a;
+  --color-dungeon-800: #1e293b;
+  --color-dungeon-700: #334155;
+  --color-dungeon-600: #475569;
+  --color-dungeon-500: #64748b;
+  --color-dungeon-400: #94a3b8;
+  --color-dungeon-300: #cbd5e1;
+  --color-dungeon-200: #e2e8f0;
+  --color-dungeon-100: #f1f5f9;
+  --color-gold-400: #dc2626;
+  --color-gold-500: #b91c1c;
+  --color-gold-600: #991b1b;
+}
+
+/* Tema 7: Monje - Azul noche y ki */
+html[data-theme="monje"] {
+  --color-dungeon-950: #0a0f1e;
+  --color-dungeon-900: #172554;
+  --color-dungeon-800: #1e3a8a;
+  --color-dungeon-700: #1e40af;
+  --color-dungeon-600: #1d4ed8;
+  --color-dungeon-500: #2563eb;
+  --color-dungeon-400: #3b82f6;
+  --color-dungeon-300: #60a5fa;
+  --color-dungeon-200: #93c5fd;
+  --color-dungeon-100: #bfdbfe;
+  --color-gold-400: #0ea5e9;
+  --color-gold-500: #0284c7;
+  --color-gold-600: #0369a1;
+}
+
+/* Tema 8: Paladín - Dorado radiante y blanco */
+html[data-theme="paladin"] {
+  --color-dungeon-950: #0c0a09;
+  --color-dungeon-900: #1c1917;
+  --color-dungeon-800: #292524;
+  --color-dungeon-700: #44403c;
+  --color-dungeon-600: #57534e;
+  --color-dungeon-500: #78716c;
+  --color-dungeon-400: #a8a29e;
+  --color-dungeon-300: #d6d3d1;
+  --color-dungeon-200: #e7e5e4;
+  --color-dungeon-100: #f5f5f4;
+  --color-gold-400: #eab308;
+  --color-gold-500: #ca8a04;
+  --color-gold-600: #a16207;
+}
+
+/* Tema 9: Explorador - Verde bosque oscuro */
+html[data-theme="explorador"] {
+  --color-dungeon-950: #052e16;
+  --color-dungeon-900: #14532d;
+  --color-dungeon-800: #166534;
+  --color-dungeon-700: #15803d;
+  --color-dungeon-600: #16a34a;
+  --color-dungeon-500: #22c55e;
+  --color-dungeon-400: #4ade80;
+  --color-dungeon-300: #86efac;
+  --color-dungeon-200: #bbf7d0;
+  --color-dungeon-100: #dcfce7;
+  --color-gold-400: #84cc16;
+  --color-gold-500: #65a30d;
+  --color-gold-600: #4d7c0f;
+}
+
+/* Tema 10: Pícaro - Negro sombra y púrpura */
+html[data-theme="picaro"] {
+  --color-dungeon-950: #0a0a0f;
+  --color-dungeon-900: #0f0f1e;
+  --color-dungeon-800: #1e1b2e;
+  --color-dungeon-700: #2e2844;
+  --color-dungeon-600: #3f3351;
+  --color-dungeon-500: #52475e;
+  --color-dungeon-400: #6b5d78;
+  --color-dungeon-300: #8775a0;
+  --color-dungeon-200: #a590c0;
+  --color-dungeon-100: #c5b2d8;
+  --color-gold-400: #c026d3;
+  --color-gold-500: #a21caf;
+  --color-gold-600: #86198f;
+}
+
+/* Tema 11: Hechicero - Magenta oscuro y rosa */
+html[data-theme="hechicero"] {
+  --color-dungeon-950: #1e0a1f;
+  --color-dungeon-900: #4a044e;
+  --color-dungeon-800: #701a75;
+  --color-dungeon-700: #86198f;
+  --color-dungeon-600: #a21caf;
+  --color-dungeon-500: #c026d3;
+  --color-dungeon-400: #d946ef;
+  --color-dungeon-300: #e879f9;
+  --color-dungeon-200: #f0abfc;
+  --color-dungeon-100: #f5d0fe;
+  --color-gold-400: #ec4899;
+  --color-gold-500: #db2777;
+  --color-gold-600: #be185d;
+}
+
+/* Tema 12: Mago - Azul medianoche y arcano */
+html[data-theme="mago"] {
+  --color-dungeon-950: #0a0f1e;
+  --color-dungeon-900: #172554;
+  --color-dungeon-800: #1e3a8a;
+  --color-dungeon-700: #1e40af;
+  --color-dungeon-600: #1d4ed8;
+  --color-dungeon-500: #2563eb;
+  --color-dungeon-400: #3b82f6;
+  --color-dungeon-300: #60a5fa;
+  --color-dungeon-200: #93c5fd;
+  --color-dungeon-100: #dbeafe;
+  --color-gold-400: #06b6d4;
+  --color-gold-500: #0891b2;
+  --color-gold-600: #0e7490;
+}
+
+/* ============================================================================
+   ACCESIBILIDAD - Clases para preferencias de usuario
+   ============================================================================ */
+
+/* Reducir movimiento - Desactiva animaciones y transiciones */
+html.reduce-motion,
+html.reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Respetar preferencia del sistema operativo para reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.force-motion),
+  html:not(.force-motion) * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Alto contraste - Mejora la legibilidad */
+html.high-contrast {
+  --color-dungeon-100: #ffffff;
+  --color-dungeon-200: #f0f0f0;
+  --color-dungeon-300: #e0e0e0;
+  --color-dungeon-400: #b0b0b0;
+  --color-dungeon-500: #808080;
+  --color-dungeon-600: #505050;
+  --color-dungeon-700: #303030;
+  --color-dungeon-800: #1a1a1a;
+  --color-dungeon-900: #0d0d0d;
+  --color-dungeon-950: #000000;
+  --color-gold-400: #ffcc00;
+  --color-gold-500: #e6b800;
+  --color-gold-600: #cc9900;
+}
+
+html.high-contrast body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.high-contrast .card,
+html.high-contrast .btn,
+html.high-contrast .input {
+  border-width: 2px !important;
+}
+
+/* Fuente para dislexia - OpenDyslexic o fuente más legible */
+html.dyslexia-font {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+}
+
+html.dyslexia-font body,
+html.dyslexia-font p,
+html.dyslexia-font span,
+html.dyslexia-font div,
+html.dyslexia-font li,
+html.dyslexia-font a {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+/* Indicadores de foco mejorados */
+html.focus-visible button:focus-visible,
+html.focus-visible a:focus-visible,
+html.focus-visible input:focus-visible,
+html.focus-visible textarea:focus-visible,
+html.focus-visible select:focus-visible,
+html.focus-visible [tabindex]:focus-visible {
+  outline: 3px solid var(--color-gold-400) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.3) !important;
 }

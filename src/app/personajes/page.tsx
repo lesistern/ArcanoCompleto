@@ -16,10 +16,11 @@ import {
   Eye,
   EyeOff
 } from 'lucide-react';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { getUserCharacters, duplicateCharacter, deleteCharacter, toggleFavorite, togglePublic } from '@/lib/supabase/characters';
 import type { CharacterSummary } from '@/lib/supabase/characters';
 import { useCharacterStore } from '@/lib/store/characterStore';
+import { pageContainerPadding } from '@/lib/utils/responsive-spacing';
 
 export default function PersonajesPage() {
   const router = useRouter();
@@ -201,7 +202,7 @@ export default function PersonajesPage() {
       </div>
 
       {/* Character Grid */}
-      <div className="container mx-auto px-4 py-8">
+      <div className={`container mx-auto ${pageContainerPadding}`}>
         {characters.length === 0 ? (
           <div className="max-w-md mx-auto text-center py-12">
             <div className="bg-dungeon-900 border border-dungeon-700 rounded-lg p-8">
@@ -221,7 +222,7 @@ export default function PersonajesPage() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
             {characters.map((character) => (
               <div
                 key={character.id}
@@ -300,39 +301,42 @@ export default function PersonajesPage() {
                     <div className="flex gap-2">
                       <Button
                         variant="ghost"
-                        size="sm"
+                        size="md"
                         onClick={() => handleTogglePublic(character.id, character.is_public || false)}
                         disabled={actionLoading === character.id}
                         title={character.is_public ? 'Hacer privado' : 'Hacer público'}
-                        className="flex-1"
+                        aria-label={character.is_public ? 'Hacer privado' : 'Hacer público'}
+                        className="flex-1 min-h-12 hover:bg-dungeon-700 transition-colors"
                       >
                         {character.is_public ? (
-                          <Eye className="h-3 w-3" />
+                          <Eye className="h-4 w-4" />
                         ) : (
-                          <EyeOff className="h-3 w-3" />
+                          <EyeOff className="h-4 w-4" />
                         )}
                       </Button>
 
                       <Button
                         variant="ghost"
-                        size="sm"
+                        size="md"
                         onClick={() => handleDuplicateCharacter(character.id)}
                         disabled={actionLoading === character.id}
                         title="Duplicar personaje"
-                        className="flex-1"
+                        aria-label="Duplicar personaje"
+                        className="flex-1 min-h-12 hover:bg-dungeon-700 transition-colors"
                       >
-                        <Copy className="h-3 w-3" />
+                        <Copy className="h-4 w-4" />
                       </Button>
 
                       <Button
                         variant="ghost"
-                        size="sm"
+                        size="md"
                         onClick={() => handleDeleteCharacter(character.id, character.name)}
                         disabled={actionLoading === character.id}
                         title="Eliminar personaje"
-                        className="flex-1 hover:text-red-500"
+                        aria-label="Eliminar personaje"
+                        className="flex-1 min-h-12 hover:bg-red-900 hover:text-red-400 transition-colors"
                       >
-                        <Trash2 className="h-3 w-3" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>

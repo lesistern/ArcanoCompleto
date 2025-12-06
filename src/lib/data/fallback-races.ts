@@ -1,0 +1,490 @@
+import { DnDRace } from "@/lib/types/race";
+
+export const FALLBACK_RACES: DnDRace[] = [
+    {
+        "id": "humano",
+        "name": "Humano",
+        "slug": "humano",
+        "shortDescription": "Versátiles y ambiciosos, los humanos son la raza más adaptable y dominante.",
+        "description": "Los humanos son la raza más adaptable, flexible y ambiciosa entre las razas comunes. Son diversos en sus gustos, moral, costumbres y hábitos. Otros los acusan de no tener respeto por la historia, pero es natural para una raza con una esperanza de vida tan corta que se centre en el presente. Los humanos típicamente tienen 5 a 6 pies de altura y pesan entre 125 y 250 libras, con los hombres notablemente más altos y pesados que las mujeres. Los humanos alcanzan la adultez a los 15 años y rara vez viven más de un siglo.",
+        "size": "Mediano",
+        "speed": 30,
+        "type": "Humanoide",
+        "abilityModifiers": {},
+        "racialTraits": [
+            {
+                "name": "Dote adicional al 1er nivel",
+                "description": "Los humanos obtienen 1 dote adicional al 1er nivel. Un humano (y solo un humano) puede seleccionar cualquier dote para la cual califique como su dote adicional de 1er nivel.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Puntos de habilidad adicionales",
+                "description": "Los humanos ganan 4 puntos de habilidad adicionales al 1er nivel y 1 punto de habilidad adicional en cada nivel subsiguiente.",
+                "type": "bonificador"
+            }
+        ],
+        "languages": {
+            "automatic": ["Común"],
+            "bonus": ["Cualquier idioma (excepto lenguajes secretos como el Druídico)"]
+        },
+        "specialAbilities": {},
+        "favoredClass": "cualquiera",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Cualquier alineamiento. Los humanos no tienden hacia ningún alineamiento en particular, ni siquiera la neutralidad.",
+        "advantageousClasses": ["Cualquier clase"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 12
+        }
+    },
+    {
+        "id": "elfo",
+        "name": "Elfo",
+        "slug": "elfo",
+        "shortDescription": "Gráciles y longevos, los elfos son maestros de la magia y el arco.",
+        "description": "Los elfos son conocidos por su poesía, danza, canto, conocimiento y habilidades mágicas. Son delgados, ágiles y atractivos. Típicamente miden entre 4½ y 5½ pies de altura y pesan entre 85 y 135 libras, con los hombres ligeramente más altos y pesados que las mujeres. Los elfos no tienen vello facial y poco vello corporal. Favorecen las ropas elegantes en colores brillantes y disfrutan de joyería simple pero hermosa. Los elfos alcanzan la madurez física alrededor de los 110 años, aunque se les considera niños hasta los 110 años, cuando maduran emocionalmente. Un elfo puede vivir hasta 700 años.",
+        "size": "Mediano",
+        "speed": 30,
+        "type": "Humanoide",
+        "abilityModifiers": {
+            "dexterity": 2,
+            "constitution": -2
+        },
+        "racialTraits": [
+            {
+                "name": "Inmunidad al sueño",
+                "description": "Los elfos son inmunes a los hechizos y efectos mágicos de tipo sueño.",
+                "type": "inmunidad"
+            },
+            {
+                "name": "Bonificador +2 a salvaciones contra Encantamientos",
+                "description": "Los elfos reciben un bonificador racial de +2 a las tiradas de salvación contra hechizos y efectos de la escuela de Encantamiento.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Visión en la penumbra",
+                "description": "Los elfos pueden ver el doble de lejos que un humano en condiciones de poca luz (luz de luna, luz de antorcha, etc.). En estas condiciones, pueden distinguir colores y detalles con la misma claridad que con luz del día.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Bonificador +2 a Avistar, Buscar y Escuchar",
+                "description": "Los elfos tienen sentidos agudos, otorgándoles un bonificador racial de +2 a las pruebas de Avistar, Buscar y Escuchar.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Búsqueda automática",
+                "description": "Un elfo que simplemente pase a menos de 5 pies de una puerta secreta u oculta tiene derecho a una prueba de Buscar como si la estuviera buscando activamente.",
+                "type": "habilidad especial"
+            }
+        ],
+        "weaponProficiencies": [
+            "Espada larga",
+            "Estoque",
+            "Arco largo (incluyendo compuesto)",
+            "Arco corto (incluyendo compuesto)"
+        ],
+        "languages": {
+            "automatic": ["Común", "Élfico"],
+            "bonus": ["Dracónico", "Gnoll", "Gnomo", "Goblin", "Orco", "Silvano"]
+        },
+        "specialAbilities": {
+            "lowLightVision": true,
+            "bonusSkills": [
+                { "skill": "Avistar", "bonus": 2 },
+                { "skill": "Buscar", "bonus": 2 },
+                { "skill": "Escuchar", "bonus": 2 }
+            ],
+            "bonusSaves": [
+                { "save": "Voluntad", "bonus": 2, "condition": "contra Encantamientos" }
+            ]
+        },
+        "favoredClass": "Mago",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Caótico Bueno. Los elfos aman la libertad, la variedad y la autoexpresión. Se inclinan fuertemente hacia los aspectos más gentiles del caos.",
+        "advantageousClasses": ["Mago", "Explorador", "Pícaro"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 14
+        }
+    },
+    {
+        "id": "enano",
+        "name": "Enano",
+        "slug": "enano",
+        "shortDescription": "Robustos y resistentes, los enanos son guerreros formidables y artesanos expertos.",
+        "description": "Los enanos son conocidos por su habilidad en la guerra, su capacidad para resistir castigos físicos y mágicos, su conocimiento de los secretos de la tierra, su trabajo duro y su capacidad para beber grandes cantidades de cerveza. Son robustos y resistentes. Típicamente miden entre 4 y 4½ pies de altura y pesan alrededor de 150 libras. Los enanos machos valoran altamente sus barbas y las cuidan con esmero. Los enanos alcanzan la madurez física alrededor de los 40 años y pueden vivir hasta 450 años.",
+        "size": "Mediano",
+        "speed": 20,
+        "type": "Humanoide",
+        "abilityModifiers": {
+            "constitution": 2,
+            "charisma": -2
+        },
+        "racialTraits": [
+            {
+                "name": "Visión en la oscuridad",
+                "description": "Los enanos pueden ver en la oscuridad hasta 60 pies. La visión en la oscuridad es en blanco y negro, pero por lo demás es como la vista normal.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Estabilidad",
+                "description": "Los enanos son excepcionalmente estables sobre sus pies. Un enano recibe un bonificador de +4 a las pruebas de habilidad para resistir ser derribado o empujado cuando está de pie en el suelo (pero no cuando está escalando, volando, montando o de otra forma no firmemente plantado en el suelo).",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 a salvaciones contra veneno",
+                "description": "Los enanos son resistentes al veneno y reciben un bonificador racial de +2 a las tiradas de salvación contra veneno.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 a salvaciones contra hechizos y efectos de conjuración",
+                "description": "Los enanos son naturalmente resistentes a la magia y reciben un bonificador racial de +2 a las tiradas de salvación contra hechizos y efectos de tipo conjuración.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +1 al ataque contra orcos y trasgos",
+                "description": "Los enanos han sido entrenados en técnicas especiales de combate contra sus enemigos ancestrales. Reciben un bonificador racial de +1 a las tiradas de ataque contra orcos (incluyendo semiorcos) y trasgoides (incluyendo goblins, hobgoblins y buggbears).",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +4 a CA contra gigantes",
+                "description": "Los enanos son pequeños y tienen entrenamiento especial para luchar contra gigantes. Reciben un bonificador de esquiva de +4 a la Clase de Armadura contra criaturas del tipo gigante (como ogros, trolls y gigantes).",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 a Tasación relacionada con objetos de piedra o metal",
+                "description": "Los enanos son expertos en evaluar objetos hechos de piedra o metal y reciben un bonificador racial de +2 a las pruebas de Tasación relacionadas con estos materiales.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 a Artesanía relacionada con piedra o metal",
+                "description": "Los enanos son artesanos expertos y reciben un bonificador racial de +2 a todas las pruebas de Artesanía relacionadas con piedra o metal.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Conocimiento de la piedra",
+                "description": "Los enanos están familiarizados con la piedra. Un enano que simplemente pase a menos de 10 pies de una construcción de piedra inusual (muros deslizantes, trampas de piedra, nuevas construcciones, pisos inseguros, techos inestables, etc.) puede hacer una prueba de Buscar como si estuviera buscando activamente. Un enano también puede usar la habilidad Buscar para encontrar trampas de piedra como lo haría un pícaro. También puede utilizar esta habilidad para determinar la profundidad bajo tierra y su orientación.",
+                "type": "habilidad especial"
+            }
+        ],
+        "weaponProficiencies": [
+            "Hacha de guerra enana",
+            "Urgrosh enano"
+        ],
+        "languages": {
+            "automatic": ["Común", "Enano"],
+            "bonus": ["Gigante", "Gnomo", "Goblin", "Orco", "Terran", "Subterráneo"]
+        },
+        "specialAbilities": {
+            "darkvision": 60,
+            "bonusSkills": [
+                { "skill": "Tasación", "bonus": 2 },
+                { "skill": "Artesanía (piedra)", "bonus": 2 },
+                { "skill": "Artesanía (metal)", "bonus": 2 }
+            ],
+            "bonusSaves": [
+                { "save": "Fortaleza", "bonus": 2, "condition": "contra veneno" },
+                { "save": "Voluntad", "bonus": 2, "condition": "contra hechizos" },
+                { "save": "Fortaleza", "bonus": 2, "condition": "contra hechizos" },
+                { "save": "Reflejos", "bonus": 2, "condition": "contra hechizos" }
+            ]
+        },
+        "favoredClass": "Guerrero",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Leal. Los enanos son defensores de la ley y el orden, siguiendo códigos estrictos y tradiciones antiguas. La mayoría son legales buenos.",
+        "advantageousClasses": ["Guerrero", "Clérigo", "Paladín"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 16
+        }
+    },
+    {
+        "id": "mediano",
+        "name": "Mediano",
+        "slug": "mediano",
+        "shortDescription": "Hábiles y afortunados, los medianos son astutos supervivientes y ladrones expertos.",
+        "description": "Los medianos son inteligentes, capaces y emprendedores. Se adaptan bien a casi cualquier situación y son conocidos por su audacia (que algunos consideran temeridad) y su suerte. Son un pueblo pacífico, trabajador y ordenado. Típicamente miden alrededor de 3 pies de altura y pesan entre 30 y 35 libras. Tienen piel morena o bronceada, cabello castaño o negro ondulado y ojos marrones o avellana. Los hombres medianos a menudo tienen patillas largas, pero las barbas son raras y los bigotes aún más. Los medianos alcanzan la adultez a los 20 años y generalmente viven hasta mediados de su segundo siglo.",
+        "size": "Pequeño",
+        "speed": 20,
+        "type": "Humanoide",
+        "abilityModifiers": {
+            "dexterity": 2,
+            "strength": -2
+        },
+        "racialTraits": [
+            {
+                "name": "Bonificador de tamaño +1 a CA",
+                "description": "Como criatura Pequeña, un mediano recibe un bonificador de tamaño +1 a la Clase de Armadura.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador de tamaño +1 a las tiradas de ataque",
+                "description": "Como criatura Pequeña, un mediano recibe un bonificador de tamaño +1 a las tiradas de ataque.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Penalizador de tamaño -4 a las pruebas de presa",
+                "description": "Como criatura Pequeña, un mediano recibe un penalizador de tamaño -4 a las pruebas de presa.",
+                "type": "penalizador"
+            },
+            {
+                "name": "Bonificador de tamaño +4 a pruebas de Esconderse",
+                "description": "Como criatura Pequeña, un mediano recibe un bonificador de tamaño +4 a las pruebas de Esconderse.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 a Escuchar, Saltar y Moverse sigilosamente",
+                "description": "Los medianos tienen sentidos agudos y pies ágiles, otorgándoles un bonificador racial de +2 a las pruebas de Escuchar, Saltar y Moverse sigilosamente.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +1 a todas las tiradas de salvación",
+                "description": "Los medianos son sorprendentemente capaces de evitar el peligro y reciben un bonificador racial de +1 a todas las tiradas de salvación.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 adicional contra miedo",
+                "description": "Este bonificador se apila con el bonificador general de +1 a salvaciones de los medianos, dándoles un total de +3 contra efectos de miedo.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +1 con armas arrojadizas y hondas",
+                "description": "Los medianos son excepcionalmente buenos con armas arrojadizas y hondas, recibiendo un bonificador racial de +1 a las tiradas de ataque con estas armas.",
+                "type": "bonificador"
+            }
+        ],
+        "languages": {
+            "automatic": ["Común", "Mediano"],
+            "bonus": ["Enano", "Élfico", "Gnomo", "Goblin", "Orco"]
+        },
+        "specialAbilities": {
+            "bonusSkills": [
+                { "skill": "Escuchar", "bonus": 2 },
+                { "skill": "Saltar", "bonus": 2 },
+                { "skill": "Moverse sigilosamente", "bonus": 2 },
+                { "skill": "Esconderse", "bonus": 4 }
+            ],
+            "bonusSaves": [
+                { "save": "Fortaleza", "bonus": 1 },
+                { "save": "Reflejos", "bonus": 1 },
+                { "save": "Voluntad", "bonus": 1 },
+                { "save": "Voluntad", "bonus": 2, "condition": "adicional contra miedo" }
+            ]
+        },
+        "favoredClass": "Pícaro",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Leal Bueno. Los medianos tienden a ser ordenados y cómodos en sus vidas. También son generalmente buenos de corazón.",
+        "advantageousClasses": ["Pícaro", "Explorador", "Guerrero"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 18
+        }
+    },
+    {
+        "id": "gnomo",
+        "name": "Gnomo",
+        "slug": "gnomo",
+        "shortDescription": "Ingeniosos e ilusionistas, los gnomos combinan curiosidad con maestría mágica.",
+        "description": "Los gnomos están distantemente relacionados con las hadas, aunque sus lazos con ese plano ancestral se han desvanecido a lo largo de los siglos. Son conocidos por su amor al conocimiento, la invención, la exploración y la broma pesada. Disfrutan de la vida y de todas las facetas de su existencia: trabajo, juego, investigación e incluso cosas mundanas como comer. Los gnomos miden típicamente entre 3 y 3½ pies de altura y pesan entre 40 y 45 libras. Su piel varía de morena oscura a marrón leñosa, su cabello es rubio claro y sus ojos pueden ser cualquier tonalidad de azul. Los hombres gnomos prefieren barbas cortas y cuidadosamente recortadas. Los gnomos alcanzan la adultez alrededor de los 40 años y pueden vivir entre 350 y 500 años.",
+        "size": "Pequeño",
+        "speed": 20,
+        "type": "Humanoide",
+        "abilityModifiers": {
+            "constitution": 2,
+            "strength": -2
+        },
+        "racialTraits": [
+            {
+                "name": "Bonificador de tamaño +1 a CA",
+                "description": "Como criatura Pequeña, un gnomo recibe un bonificador de tamaño +1 a la Clase de Armadura.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador de tamaño +1 a las tiradas de ataque",
+                "description": "Como criatura Pequeña, un gnomo recibe un bonificador de tamaño +1 a las tiradas de ataque.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Penalizador de tamaño -4 a las pruebas de presa",
+                "description": "Como criatura Pequeña, un gnomo recibe un penalizador de tamaño -4 a las pruebas de presa.",
+                "type": "penalizador"
+            },
+            {
+                "name": "Bonificador de tamaño +4 a pruebas de Esconderse",
+                "description": "Como criatura Pequeña, un gnomo recibe un bonificador de tamaño +4 a las pruebas de Esconderse.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Visión en la penumbra",
+                "description": "Los gnomos pueden ver el doble de lejos que un humano en condiciones de poca luz (luz de luna, luz de antorcha, etc.). En estas condiciones, pueden distinguir colores y detalles con la misma claridad que con luz del día.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Bonificador +2 a salvaciones contra ilusiones",
+                "description": "Los gnomos son astutos y reciben un bonificador racial de +2 a las tiradas de salvación contra ilusiones.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +1 a la CD de hechizos de ilusión",
+                "description": "Si un gnomo tiene la habilidad de lanzar hechizos de ilusión, la Clase de Dificultad para todas las tiradas de salvación contra estos hechizos aumenta en +1. Este es un bonificador racial.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +1 al ataque contra kobolds y trasgoides",
+                "description": "Los gnomos reciben un bonificador racial de +1 a las tiradas de ataque contra kobolds y trasgoides (incluyendo goblins, hobgoblins y bugbears). Han sido entrenados especialmente para luchar contra estos enemigos comunes.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +4 a CA contra gigantes",
+                "description": "Los gnomos reciben un bonificador de esquiva de +4 a la Clase de Armadura contra criaturas del tipo gigante (como ogros, trolls y gigantes). Este bonificador representa su entrenamiento especial contra oponentes mucho más grandes.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Bonificador +2 a Escuchar y Artesanía (alquimia)",
+                "description": "Los gnomos tienen oídos agudos y una afinidad natural por la alquimia, otorgándoles un bonificador racial de +2 a las pruebas de Escuchar y Artesanía (alquimia).",
+                "type": "bonificador"
+            },
+            {
+                "name": "Habilidades sortílegas",
+                "description": "Un gnomo con Carisma 10 o superior tiene las siguientes habilidades sortílegas: 1/día - luces danzantes, fantasma menor, prestidigitación. El nivel de lanzador es 1. La CD de la salvación es 10 + modificador de Carisma del gnomo + nivel del hechizo.",
+                "type": "habilidad especial"
+            }
+        ],
+        "languages": {
+            "automatic": ["Común", "Gnomo"],
+            "bonus": ["Dracónico", "Enano", "Élfico", "Gigante", "Goblin", "Orco"]
+        },
+        "specialAbilities": {
+            "lowLightVision": true,
+            "bonusSkills": [
+                { "skill": "Escuchar", "bonus": 2 },
+                { "skill": "Artesanía (alquimia)", "bonus": 2 },
+                { "skill": "Esconderse", "bonus": 4 }
+            ],
+            "bonusSaves": [
+                { "save": "Voluntad", "bonus": 2, "condition": "contra ilusiones" }
+            ],
+            "spellLikeAbilities": [
+                "Luces danzantes 1/día",
+                "Fantasma menor 1/día",
+                "Prestidigitación 1/día"
+            ]
+        },
+        "favoredClass": "Bardo",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Neutral Bueno. Los gnomos son de buen corazón y se inclinan hacia la bondad. Quienes tienden hacia la ley son sabios, ingenieros, investigadores o inventores. Los más caóticos son bardos, pícaros o aventureros errantes.",
+        "advantageousClasses": ["Bardo", "Ilusionista", "Pícaro"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 20
+        }
+    },
+    {
+        "id": "semielfo",
+        "name": "Semielfo",
+        "slug": "semielfo",
+        "shortDescription": "Carismáticos y versátiles, los semielfos combinan lo mejor de ambos mundos.",
+        "description": "Los semielfos tienen curiosidad, invención y ambición como sus ancestros humanos, pero sentidos refinados, amor por la naturaleza y sentido artístico como sus ancestros elfos. Algunos semielfos viven entre humanos, apartados por sus diferencias emocionales y físicas, mirando a sus amigos y seres queridos envejecer mientras permanecen apenas tocados por el tiempo. Otros viven con elfos, creciendo inquietos mientras alcanzan la adultez en los reinos atemporales de los elfos, mientras sus compañeros permanecen como niños. Los semielfos miden típicamente entre 5 y 6 pies de altura y pesan entre 100 y 180 libras. Los hombres son más altos y pesados que las mujeres. Los semielfos alcanzan la adultez alrededor de los 20 años y pueden vivir más de 180 años.",
+        "size": "Mediano",
+        "speed": 30,
+        "type": "Humanoide",
+        "abilityModifiers": {},
+        "racialTraits": [
+            {
+                "name": "Inmunidad al sueño",
+                "description": "Los semielfos heredan la resistencia élfica a los efectos de sueño y son inmunes a los hechizos y efectos mágicos de tipo sueño.",
+                "type": "inmunidad"
+            },
+            {
+                "name": "Bonificador +2 a salvaciones contra Encantamientos",
+                "description": "Los semielfos reciben un bonificador racial de +2 a las tiradas de salvación contra hechizos y efectos de la escuela de Encantamiento.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Visión en la penumbra",
+                "description": "Los semielfos pueden ver el doble de lejos que un humano en condiciones de poca luz (luz de luna, luz de antorcha, etc.). En estas condiciones, pueden distinguir colores y detalles con la misma claridad que con luz del día.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Bonificador +1 a Escuchar, Buscar y Avistar",
+                "description": "Los semielfos tienen sentidos agudos, aunque no tan afinados como los elfos puros. Reciben un bonificador racial de +1 a las pruebas de Escuchar, Buscar y Avistar.",
+                "type": "bonificador"
+            },
+            {
+                "name": "Búsqueda automática",
+                "description": "Un semielfo que simplemente pase a menos de 5 pies de una puerta secreta u oculta tiene derecho a una prueba de Buscar como si la estuviera buscando activamente.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Sangre élfica",
+                "description": "Para todos los efectos relacionados con la raza, un semielfo es considerado tanto elfo como humano. Un semielfo, por ejemplo, es tan vulnerable a efectos especiales que afectan a elfos como lo sería un elfo, y puede usar objetos mágicos que estén solo disponibles para elfos.",
+                "type": "habilidad especial"
+            }
+        ],
+        "languages": {
+            "automatic": ["Común", "Élfico"],
+            "bonus": ["Cualquier idioma (excepto lenguajes secretos como el Druídico)"]
+        },
+        "specialAbilities": {
+            "lowLightVision": true,
+            "bonusSkills": [
+                { "skill": "Escuchar", "bonus": 1 },
+                { "skill": "Buscar", "bonus": 1 },
+                { "skill": "Avistar", "bonus": 1 }
+            ],
+            "bonusSaves": [
+                { "save": "Voluntad", "bonus": 2, "condition": "contra Encantamientos" }
+            ]
+        },
+        "favoredClass": "cualquiera",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Caótico. Los semielfos comparten la naturaleza caótica de su herencia élfica. Valoran tanto la bondad como la libertad personal, pero no son líderes naturales ni seguidores. Los semielfos generalmente son buenos.",
+        "advantageousClasses": ["Cualquier clase"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 22
+        }
+    },
+    {
+        "id": "semiorco",
+        "name": "Semiorco",
+        "slug": "semiorco",
+        "shortDescription": "Fuertes y feroces, los semiorcos son guerreros formidables con herencia salvaje.",
+        "description": "Los semiorcos son criaturas que viven entre dos mundos. La mayor parte de la civilización los trata con sospecha y desdén, asumiendo que un semiorco tiene las peores tendencias, morales y físicas, de sus linajes orco y humano. Los semiorcos típicamente miden entre 6 y 7 pies de altura y pesan entre 180 y 250 libras. Su piel tiende a ser gris con tintes verdosos, su frente es inclinada, su mandíbula prominente, y sus dientes son notablemente puntiagudos. Su cabello es generalmente negro, oscuro, marrón o castaño oscuro. Los semiorcos alcanzan la madurez un poco más rápido que los humanos y envejecen notablemente más rápido. Son considerados adultos a los 14 años y rara vez viven más de 75 años.",
+        "size": "Mediano",
+        "speed": 30,
+        "type": "Humanoide",
+        "abilityModifiers": {
+            "strength": 2,
+            "intelligence": -2,
+            "charisma": -2
+        },
+        "racialTraits": [
+            {
+                "name": "Visión en la oscuridad",
+                "description": "Los semiorcos (y orcos) pueden ver en la oscuridad hasta 60 pies. La visión en la oscuridad es en blanco y negro, pero por lo demás es como la vista normal.",
+                "type": "habilidad especial"
+            },
+            {
+                "name": "Sangre orca",
+                "description": "Para todos los efectos relacionados con la raza, un semiorco es considerado tanto orco como humano. Un semiorco, por ejemplo, es tan vulnerable a efectos especiales que afectan a orcos como lo sería un orco, y puede usar objetos mágicos que estén solo disponibles para orcos.",
+                "type": "habilidad especial"
+            }
+        ],
+        "languages": {
+            "automatic": ["Común", "Orco"],
+            "bonus": ["Dracónico", "Enano", "Gigante", "Gnoll", "Goblin", "Abismal"]
+        },
+        "specialAbilities": {
+            "darkvision": 60
+        },
+        "favoredClass": "Bárbaro",
+        "levelAdjustment": 0,
+        "typicalAlignment": "Caótico. Los semiorcos heredan una tendencia hacia el caos de sus ancestros orcos, pero, como los humanos, no se inclinan fuertemente hacia el bien o el mal. Los semiorcos criados entre orcos y dispuestos a vivir sus vidas entre ellos son generalmente malvados.",
+        "advantageousClasses": ["Bárbaro", "Guerrero", "Clérigo"],
+        "source": {
+            "book": "Manual del Jugador",
+            "page": 24
+        }
+    }
+];

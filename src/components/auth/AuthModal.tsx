@@ -15,9 +15,31 @@ import {
   FaTwitch,
   FaSlack,
   FaFigma,
-  FaBitbucket
+  FaBitbucket,
+  FaPatreon
 } from 'react-icons/fa';
 import { SiNotion, SiKakao, SiZoom } from 'react-icons/si';
+
+// URL de autorización de Patreon OAuth
+const getPatreonOAuthUrl = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://compendioarcano.com.ar';
+  const clientId = process.env.NEXT_PUBLIC_PATREON_CLIENT_ID;
+
+  if (!clientId) {
+    console.error('PATREON_CLIENT_ID no configurado');
+    return null;
+  }
+
+  const params = new URLSearchParams({
+    response_type: 'code',
+    client_id: clientId,
+    redirect_uri: `${baseUrl}/api/auth/callback/patreon`,
+    scope: 'identity identity[email]',
+    state: crypto.randomUUID(), // CSRF protection
+  });
+
+  return `https://www.patreon.com/oauth2/authorize?${params.toString()}`;
+};
 
 type OAuthProvider = 'apple' | 'azure' | 'bitbucket' | 'discord' | 'facebook' | 'figma' | 'gitlab' | 'google' | 'kakao' | 'keycloak' | 'linkedin' | 'linkedin_oidc' | 'notion' | 'slack' | 'slack_oidc' | 'spotify' | 'twitch' | 'twitter' | 'workos' | 'zoom' | 'fly';
 
@@ -128,6 +150,16 @@ export default function AuthModal({
     }
 
     setLoading(false);
+  };
+
+  const handlePatreonLogin = () => {
+    const patreonUrl = getPatreonOAuthUrl();
+    if (patreonUrl) {
+      window.location.href = patreonUrl;
+    } else {
+      setError('El login con Patreon no está configurado. Contacta al administrador.');
+      triggerShake();
+    }
   };
 
   const handleMagicLinkSubmit = async (e: React.FormEvent) => {
@@ -273,7 +305,10 @@ export default function AuthModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/85 backdrop-blur-lg flex items-center justify-center z-[9999] p-2 sm:p-4">
+    <div
+      className="fixed inset-0 bg-black/85 backdrop-blur-lg flex items-center justify-center z-[9999] p-2 sm:p-4"
+      onClick={onClose}
+    >
       <style jsx>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
@@ -284,7 +319,10 @@ export default function AuthModal({
           animation: shake 0.5s;
         }
       `}</style>
-      <div className={`relative bg-dungeon-900 border-2 border-dungeon-700 rounded-lg shadow-2xl w-full max-w-[95vw] sm:max-w-md max-h-[95vh] overflow-y-auto my-auto ${shake ? 'shake' : ''}`}>
+      <div
+        className={`relative card w-full max-w-[95vw] sm:max-w-md max-h-[90vh] flex flex-col ${shake ? 'shake' : ''}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Botón cerrar */}
         <button
           onClick={onClose}
@@ -294,7 +332,7 @@ export default function AuthModal({
           <X size={20} className="sm:w-6 sm:h-6" />
         </button>
 
-        <div className="px-4 pt-8 pb-6 sm:px-8 sm:pt-10 sm:pb-8">
+        <div className="flex-1 overflow-y-auto px-4 pt-8 pb-6 sm:px-8 sm:pt-10 sm:pb-8">
           {/* Título */}
           <h2 className="text-xl sm:text-2xl font-bold text-gold-500 mb-2 text-center font-heading">
             {mode === 'signin' && 'Iniciar sesión'}
@@ -321,96 +359,35 @@ export default function AuthModal({
           )}
 
           {/* Tabs de modo */}
-          <div className="flex space-x-2 mb-4 bg-dungeon-800 rounded-lg p-1">
+          <div className="flex space-x-2 mb-6 bg-dungeon-950/50 rounded-lg p-1 border border-dungeon-700">
             <button
               onClick={() => switchMode('signin')}
-              className={`flex-1 py-2 px-3 rounded-md text-xs sm:text-sm font-medium transition-all ${
-                mode === 'signin'
-                  ? 'bg-gold-500 text-dungeon-950'
-                  : 'text-dungeon-400 hover:text-dungeon-200'
-              }`}
+              className={`flex-1 py-2 px-3 rounded-md text-xs sm:text-sm font-medium transition-all ${mode === 'signin'
+                ? 'bg-gold-500 text-dungeon-950 shadow-md'
+                : 'text-dungeon-400 hover:text-dungeon-200 hover:bg-dungeon-800/50'
+                }`}
             >
               Iniciar sesión
             </button>
             <button
               onClick={() => switchMode('signup')}
-              className={`flex-1 py-2 px-3 rounded-md text-xs sm:text-sm font-medium transition-all ${
-                mode === 'signup'
-                  ? 'bg-gold-500 text-dungeon-950'
-                  : 'text-dungeon-400 hover:text-dungeon-200'
-              }`}
+              className={`flex-1 py-2 px-3 rounded-md text-xs sm:text-sm font-medium transition-all ${mode === 'signup'
+                ? 'bg-gold-500 text-dungeon-950 shadow-md'
+                : 'text-dungeon-400 hover:text-dungeon-200 hover:bg-dungeon-800/50'
+                }`}
             >
               Registrarse
             </button>
             <button
               onClick={() => switchMode('magiclink')}
-              className={`flex-1 py-2 px-3 rounded-md text-xs sm:text-sm font-medium transition-all ${
-                mode === 'magiclink'
-                  ? 'bg-gold-500 text-dungeon-950'
-                  : 'text-dungeon-400 hover:text-dungeon-200'
-              }`}
+              className={`flex-1 py-2 px-3 rounded-md text-xs sm:text-sm font-medium transition-all ${mode === 'magiclink'
+                ? 'bg-gold-500 text-dungeon-950 shadow-md'
+                : 'text-dungeon-400 hover:text-dungeon-200 hover:bg-dungeon-800/50'
+                }`}
             >
               Magic link
             </button>
           </div>
-
-          {/* Social Login - Solo en signin y signup, NO en magiclink */}
-          {onSignInWithProvider && mode !== 'magiclink' && (
-            <div className="mb-4">
-              <p className="text-xs text-dungeon-400 text-center mb-3">Continuar con:</p>
-
-              {/* Primary providers - Always visible */}
-              <div className="grid grid-cols-2 gap-2 mb-2">
-                {SOCIAL_PROVIDERS.primary.map((provider) => (
-                  <button
-                    key={provider.id}
-                    onClick={() => handleSocialLogin(provider.id as OAuthProvider)}
-                    disabled={loading}
-                    className={`flex items-center justify-center space-x-2 py-2.5 px-3 bg-dungeon-800 border border-dungeon-700 rounded-md text-sm text-dungeon-200 ${provider.color} transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-                  >
-                    <provider.icon className="w-4 h-4" />
-                    <span className="text-xs sm:text-sm">{provider.name}</span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Show more button */}
-              <button
-                onClick={() => setShowMoreProviders(!showMoreProviders)}
-                className="w-full flex items-center justify-center space-x-1 py-2 text-xs text-dungeon-400 hover:text-dungeon-200 transition-colors"
-              >
-                <span>{showMoreProviders ? 'Mostrar menos' : 'Mostrar más opciones'}</span>
-                {showMoreProviders ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-              </button>
-
-              {/* Secondary providers - Collapsible */}
-              {showMoreProviders && (
-                <div className="grid grid-cols-2 gap-2 mt-2">
-                  {SOCIAL_PROVIDERS.secondary.map((provider) => (
-                    <button
-                      key={provider.id}
-                      onClick={() => handleSocialLogin(provider.id as OAuthProvider)}
-                      disabled={loading}
-                      className={`flex items-center justify-center space-x-2 py-2.5 px-3 bg-dungeon-800 border border-dungeon-700 rounded-md text-sm text-dungeon-200 ${provider.color} transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-                    >
-                      <provider.icon className="w-4 h-4" />
-                      <span className="text-xs">{provider.name}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              {/* Divisor */}
-              <div className="relative my-4">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-dungeon-700"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-dungeon-900 text-dungeon-500">o</span>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Magic Link Form */}
           {mode === 'magiclink' && onSignInWithMagicLink && (
@@ -427,9 +404,8 @@ export default function AuthModal({
                     setEmail(e.target.value);
                     if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: false });
                   }}
-                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-dungeon-800 border rounded-md text-sm sm:text-base text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all ${
-                    fieldErrors.email ? 'border-red-500' : 'border-dungeon-700'
-                  }`}
+                  className={`input w-full ${fieldErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''
+                    }`}
                   placeholder="tu@email.com"
                   disabled={loading}
                   autoFocus
@@ -439,7 +415,7 @@ export default function AuthModal({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-gold-600 to-gold-500 text-dungeon-950 py-2 sm:py-3 px-4 rounded-md text-sm sm:text-base font-semibold hover:from-gold-500 hover:to-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dungeon-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
+                className="btn btn-primary w-full"
               >
                 {loading ? 'Enviando...' : 'Enviar magic link'}
               </button>
@@ -462,9 +438,8 @@ export default function AuthModal({
                       setDisplayName(e.target.value);
                       if (fieldErrors.displayName) setFieldErrors({ ...fieldErrors, displayName: false });
                     }}
-                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-dungeon-800 border rounded-md text-sm sm:text-base text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all ${
-                      fieldErrors.displayName ? 'border-red-500' : 'border-dungeon-700'
-                    }`}
+                    className={`input w-full ${fieldErrors.displayName ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''
+                      }`}
                     placeholder="Tu nombre de aventurero"
                     disabled={loading}
                   />
@@ -483,9 +458,8 @@ export default function AuthModal({
                     setEmail(e.target.value);
                     if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: false });
                   }}
-                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-dungeon-800 border rounded-md text-sm sm:text-base text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all ${
-                    fieldErrors.email ? 'border-red-500' : 'border-dungeon-700'
-                  }`}
+                  className={`input w-full ${fieldErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''
+                    }`}
                   placeholder="tu@email.com"
                   disabled={loading}
                 />
@@ -507,9 +481,8 @@ export default function AuthModal({
                         setPasswordStrength(calculatePasswordStrength(e.target.value));
                       }
                     }}
-                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 pr-10 bg-dungeon-800 border rounded-md text-sm sm:text-base text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all ${
-                      fieldErrors.password ? 'border-red-500' : 'border-dungeon-700'
-                    }`}
+                    className={`input w-full pr-10 ${fieldErrors.password ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''
+                      }`}
                     placeholder="••••••••"
                     disabled={loading}
                   />
@@ -527,13 +500,12 @@ export default function AuthModal({
                   <div className="mt-2">
                     <div className="h-1.5 bg-dungeon-700 rounded-full overflow-hidden">
                       <div
-                        className={`h-full transition-all duration-300 ease-out ${
-                          passwordStrength < 40
-                            ? 'bg-red-500'
-                            : passwordStrength < 70
+                        className={`h-full transition-all duration-300 ease-out ${passwordStrength < 40
+                          ? 'bg-red-500'
+                          : passwordStrength < 70
                             ? 'bg-yellow-500'
                             : 'bg-green-500'
-                        }`}
+                          }`}
                         style={{ width: `${passwordStrength}%` }}
                       />
                     </div>
@@ -541,8 +513,8 @@ export default function AuthModal({
                       {passwordStrength < 40
                         ? 'Contraseña débil'
                         : passwordStrength < 70
-                        ? 'Contraseña media'
-                        : 'Contraseña fuerte'}
+                          ? 'Contraseña media'
+                          : 'Contraseña fuerte'}
                     </p>
                   </div>
                 )}
@@ -562,9 +534,8 @@ export default function AuthModal({
                         setConfirmPassword(e.target.value);
                         if (fieldErrors.confirmPassword) setFieldErrors({ ...fieldErrors, confirmPassword: false });
                       }}
-                      className={`w-full px-3 py-2 sm:px-4 sm:py-3 pr-10 bg-dungeon-800 border rounded-md text-sm sm:text-base text-dungeon-100 placeholder-dungeon-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all ${
-                        fieldErrors.confirmPassword ? 'border-red-500' : 'border-dungeon-700'
-                      }`}
+                      className={`input w-full pr-10 ${fieldErrors.confirmPassword ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''
+                        }`}
                       placeholder="••••••••"
                       disabled={loading}
                     />
@@ -583,7 +554,7 @@ export default function AuthModal({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-gold-600 to-gold-500 text-dungeon-950 py-2 sm:py-3 px-4 rounded-md text-sm sm:text-base font-semibold hover:from-gold-500 hover:to-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dungeon-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
+                className="btn btn-primary w-full"
               >
                 {loading ? (
                   <span className="flex items-center justify-center">
@@ -611,6 +582,69 @@ export default function AuthModal({
                 </div>
               )}
             </form>
+          )}
+
+          {/* Social Login - Moved below forms */}
+          {mode !== 'magiclink' && (
+            <div className="mt-6 pt-6 border-t border-dungeon-700">
+              <p className="text-xs text-dungeon-400 text-center mb-3">O continuar con:</p>
+
+              {/* Patreon Login - Destacado */}
+              <button
+                onClick={handlePatreonLogin}
+                disabled={loading}
+                className="w-full flex items-center justify-center space-x-2 py-3 px-4 mb-3 bg-[#FF424D] hover:bg-[#E63946] border border-[#FF424D] rounded-md text-sm text-white font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <FaPatreon className="w-5 h-5" />
+                <span>Continuar con Patreon</span>
+              </button>
+
+              {/* Other providers - Only if onSignInWithProvider is available */}
+              {onSignInWithProvider && (
+                <>
+                  {/* Primary providers - Always visible */}
+                  <div className="grid grid-cols-2 gap-2 mb-2">
+                    {SOCIAL_PROVIDERS.primary.map((provider) => (
+                      <button
+                        key={provider.id}
+                        onClick={() => handleSocialLogin(provider.id as OAuthProvider)}
+                        disabled={loading}
+                        className={`flex items-center justify-center space-x-2 py-2.5 px-3 bg-dungeon-800 border border-dungeon-700 rounded-md text-sm text-dungeon-200 ${provider.color} transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:border-dungeon-500`}
+                      >
+                        <provider.icon className="w-4 h-4" />
+                        <span className="text-xs sm:text-sm">{provider.name}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Show more button */}
+                  <button
+                    onClick={() => setShowMoreProviders(!showMoreProviders)}
+                    className="w-full flex items-center justify-center space-x-1 py-2 text-xs text-dungeon-400 hover:text-dungeon-200 transition-colors"
+                  >
+                    <span>{showMoreProviders ? 'Mostrar menos' : 'Mostrar más opciones'}</span>
+                    {showMoreProviders ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                  </button>
+
+                  {/* Secondary providers - Collapsible */}
+                  {showMoreProviders && (
+                    <div className="grid grid-cols-2 gap-2 mt-2">
+                      {SOCIAL_PROVIDERS.secondary.map((provider) => (
+                        <button
+                          key={provider.id}
+                          onClick={() => handleSocialLogin(provider.id as OAuthProvider)}
+                          disabled={loading}
+                          className={`flex items-center justify-center space-x-2 py-2.5 px-3 bg-dungeon-800 border border-dungeon-700 rounded-md text-sm text-dungeon-200 ${provider.color} transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:border-dungeon-500`}
+                        >
+                          <provider.icon className="w-4 h-4" />
+                          <span className="text-xs">{provider.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           )}
         </div>
       </div>

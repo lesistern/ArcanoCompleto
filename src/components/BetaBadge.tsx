@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { LogOut, Shield, User } from 'lucide-react';
 
 interface Profile {
@@ -69,7 +69,7 @@ export function BetaBadge() {
 
       // Esperar un momento para mostrar feedback visual
       setTimeout(() => {
-        router.push('/beta-landing');
+        router.push('/');
         router.refresh();
       }, 500);
     } catch (error) {

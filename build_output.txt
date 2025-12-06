@@ -1,0 +1,185 @@
+
+> dnd-compendium@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of D:\CalabozosYDragones\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * D:\CalabozosYDragones\dnd-compendium\package-lock.json
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+> Build error occurred
+Error: Turbopack build failed with 6 errors:
+./dnd-compendium/src/components/alignment/AlignmentSelector.tsx:4:1
+Export ALIGNMENT_GRID doesn't exist in target module
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { c [36mas[39m _c } [36mfrom[39m [32m"react/compiler-runtime"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mALIGNMENT_CONFIG[39m[33m,[39m [33mALIGNMENT_GRID[39m } [36mfrom[39m [32m'@/lib/data/alignments'[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36minterface[39m [33mAlignmentSelectorProps[39m {
+ [90m 6 |[39m   value[33m:[39m string[33m;[39m
+ [90m 7 |[39m   onChange[33m:[39m (code[33m:[39m string) [33m=>[39m [36mvoid[39m[33m;[39m[0m
+
+The export ALIGNMENT_GRID was not found in module [project]/dnd-compendium/src/lib/data/alignments.ts [app-client] (ecmascript).
+Did you mean to import ALIGNMENT_CONFIG?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./dnd-compendium/src/components/alignment/AlignmentSelector.tsx [Client Component Browser]
+    ./dnd-compendium/src/components/character-editor/basic-info/BasicDetailsForm.tsx [Client Component Browser]
+    ./dnd-compendium/src/components/character-editor/BasicInfoSection.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./dnd-compendium/src/components/alignment/AlignmentSelector.tsx [Client Component SSR]
+    ./dnd-compendium/src/components/character-editor/basic-info/BasicDetailsForm.tsx [Client Component SSR]
+    ./dnd-compendium/src/components/character-editor/BasicInfoSection.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Server Component]
+
+
+./dnd-compendium/src/components/alignment/AlignmentSelector.tsx:3:1
+Export ALIGNMENT_GRID doesn't exist in target module
+[0m [90m 1 |[39m [32m'use client'[39m[33m;[39m
+ [90m 2 |[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mALIGNMENT_CONFIG[39m[33m,[39m [33mALIGNMENT_GRID[39m } [36mfrom[39m [32m'@/lib/data/alignments'[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36minterface[39m [33mAlignmentSelectorProps[39m {
+ [90m 6 |[39m   value[33m:[39m string[33m;[39m[0m
+
+The export ALIGNMENT_GRID was not found in module [project]/dnd-compendium/src/lib/data/alignments.ts [app-ssr] (ecmascript).
+Did you mean to import ALIGNMENT_CONFIG?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./dnd-compendium/src/components/alignment/AlignmentSelector.tsx [Client Component Browser]
+    ./dnd-compendium/src/components/character-editor/basic-info/BasicDetailsForm.tsx [Client Component Browser]
+    ./dnd-compendium/src/components/character-editor/BasicInfoSection.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./dnd-compendium/src/components/alignment/AlignmentSelector.tsx [Client Component SSR]
+    ./dnd-compendium/src/components/character-editor/basic-info/BasicDetailsForm.tsx [Client Component SSR]
+    ./dnd-compendium/src/components/character-editor/BasicInfoSection.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/editor-personajes/page.tsx [Server Component]
+
+
+./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx:9:1
+Export getAlignmentImageGlow doesn't exist in target module
+[0m [90m  7 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m'next/link'[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mSparkles[39m[33m,[39m [33mSword[39m[33m,[39m [33mShield[39m[33m,[39m [33mSkull[39m[33m,[39m [33mCrown[39m[33m,[39m [33mArrowLeft[39m[33m,[39m [33mBook[39m[33m,[39m [33mUsers[39m[33m,[39m [33mHome[39m[33m,[39m [33mScroll[39m[33m,[39m [33mInfo[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mALIGNMENT_CONFIG[39m[33m,[39m getAlignmentImageGlow } [36mfrom[39m [32m'@/lib/data/alignments'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mDEITY_RANK_CONFIG[39m } [36mfrom[39m [32m'@/lib/data/deity-ranks'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mFormattedText[39m } [36mfrom[39m [32m'@/components/FormattedText'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m type { [33mCSSProperties[39m } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+
+The export getAlignmentImageGlow was not found in module [project]/dnd-compendium/src/lib/data/alignments.ts [app-client] (ecmascript).
+Did you mean to import alignmentDetails?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Server Component]
+
+
+./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx:8:1
+Export getAlignmentImageGlow doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m'next/link'[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSparkles[39m[33m,[39m [33mSword[39m[33m,[39m [33mShield[39m[33m,[39m [33mSkull[39m[33m,[39m [33mCrown[39m[33m,[39m [33mArrowLeft[39m[33m,[39m [33mBook[39m[33m,[39m [33mUsers[39m[33m,[39m [33mHome[39m[33m,[39m [33mScroll[39m[33m,[39m [33mInfo[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mALIGNMENT_CONFIG[39m[33m,[39m getAlignmentImageGlow } [36mfrom[39m [32m'@/lib/data/alignments'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mDEITY_RANK_CONFIG[39m } [36mfrom[39m [32m'@/lib/data/deity-ranks'[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { [33mFormattedText[39m } [36mfrom[39m [32m'@/components/FormattedText'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m type { [33mCSSProperties[39m } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+
+The export getAlignmentImageGlow was not found in module [project]/dnd-compendium/src/lib/data/alignments.ts [app-ssr] (ecmascript).
+Did you mean to import alignmentDetails?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx [Server Component]
+
+
+./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx:10:1
+Export getAlignmentImageGlow doesn't exist in target module
+[0m [90m  8 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m'next/image'[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mSparkles[39m[33m,[39m [33mSword[39m[33m,[39m [33mShield[39m[33m,[39m [33mSkull[39m[33m,[39m [33mCrown[39m[33m,[39m [33mArrowLeft[39m[33m,[39m [33mBook[39m[33m,[39m [33mUsers[39m[33m,[39m [33mHome[39m[33m,[39m [33mScroll[39m[33m,[39m [33mInfo[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { [33mALIGNMENT_CONFIG[39m[33m,[39m getAlignmentImageGlow } [36mfrom[39m [32m'@/lib/data/alignments'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { [33mDEITY_RANK_CONFIG[39m } [36mfrom[39m [32m'@/lib/data/deity-ranks'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { getDeityImageUrl[33m,[39m hasDeityImage } [36mfrom[39m [32m'@/lib/data/deity-images'[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m { [33mDeityDebugInfo[39m } [36mfrom[39m [32m'./debug'[39m[33m;[39m[0m
+
+The export getAlignmentImageGlow was not found in module [project]/dnd-compendium/src/lib/data/alignments.ts [app-client] (ecmascript).
+Did you mean to import alignmentDetails?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Server Component]
+
+
+./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx:9:1
+Export getAlignmentImageGlow doesn't exist in target module
+[0m [90m  7 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m'next/image'[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mSparkles[39m[33m,[39m [33mSword[39m[33m,[39m [33mShield[39m[33m,[39m [33mSkull[39m[33m,[39m [33mCrown[39m[33m,[39m [33mArrowLeft[39m[33m,[39m [33mBook[39m[33m,[39m [33mUsers[39m[33m,[39m [33mHome[39m[33m,[39m [33mScroll[39m[33m,[39m [33mInfo[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mALIGNMENT_CONFIG[39m[33m,[39m getAlignmentImageGlow } [36mfrom[39m [32m'@/lib/data/alignments'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mDEITY_RANK_CONFIG[39m } [36mfrom[39m [32m'@/lib/data/deity-ranks'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { getDeityImageUrl[33m,[39m hasDeityImage } [36mfrom[39m [32m'@/lib/data/deity-images'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mDeityDebugInfo[39m } [36mfrom[39m [32m'./debug'[39m[33m;[39m[0m
+
+The export getAlignmentImageGlow was not found in module [project]/dnd-compendium/src/lib/data/alignments.ts [app-ssr] (ecmascript).
+Did you mean to import alignmentDetails?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Client Component Browser]
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Client Component SSR]
+    ./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx [Server Component]
+
+
+    at <unknown> (./dnd-compendium/src/components/alignment/AlignmentSelector.tsx:4:1)
+    at <unknown> (./dnd-compendium/src/components/alignment/AlignmentSelector.tsx:3:1)
+    at <unknown> (./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx:9:1)
+    at <unknown> (./dnd-compendium/src/app/es/planos-deidades/deidades/[slug]/page.tsx:8:1)
+    at <unknown> (./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx:10:1)
+    at <unknown> (./dnd-compendium/src/app/reglas/contenido/dioses/[slug]/page.tsx:9:1)

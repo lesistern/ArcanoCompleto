@@ -74,6 +74,17 @@ import {
   Lightbulb,
   Sparkle,
 
+  // Iconos de alineamientos
+  Scale,
+  Skull,
+  HandHeart,
+  Gavel,
+  Flame as FlameIcon,
+  Compass,
+  CircleDashed,
+  Landmark,
+  Siren,
+
   type LucideIcon,
 } from 'lucide-react';
 
@@ -81,34 +92,16 @@ import {
 // CLASES - Iconos y Colores
 // ============================================
 
-export type ClassName =
-  | 'Bárbaro'
-  | 'Bardo'
-  | 'Clérigo'
-  | 'Druida'
-  | 'Explorador'
-  | 'Guerrero'
-  | 'Hechicero'
-  | 'Mago'
-  | 'Monje'
-  | 'Paladín'
-  | 'Pícaro';
+export type ClassName = string; // Expandido para soportar todas las clases
 
-export const CLASS_ICONS: Record<ClassName, LucideIcon> = {
-  'Bárbaro': Swords,
-  'Bardo': Music,
-  'Clérigo': Cross,
-  'Druida': Trees,
-  'Explorador': Wind,
-  'Guerrero': Swords,
-  'Hechicero': Sparkles,
-  'Mago': Wand2,
-  'Monje': Flame,
-  'Paladín': Shield,
-  'Pícaro': Zap,
-};
-
-export const CLASS_COLORS: Record<ClassName, string> = {
+/**
+ * Colores temáticos para TODAS las clases de D&D 3.5
+ * Organizados por categoría para mantener consistencia visual
+ */
+export const CLASS_COLORS: Record<string, string> = {
+  // ============================================
+  // CLASES BASE PHB (11 clases)
+  // ============================================
   'Bárbaro': 'bg-red-600/20 text-red-400 border-red-600/30',
   'Bardo': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
   'Clérigo': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
@@ -120,14 +113,177 @@ export const CLASS_COLORS: Record<ClassName, string> = {
   'Monje': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
   'Paladín': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
   'Pícaro': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+
+  // ============================================
+  // CLASES PSIÓNICAS (Indigo/Violeta - Poder mental)
+  // ============================================
+  'Psiónico': 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30',
+  'Guerrero Psíquico': 'bg-indigo-600/20 text-indigo-400 border-indigo-600/30',
+  'Cuchilla del Alma': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
+  'Pícaro Psíquico': 'bg-violet-600/20 text-violet-400 border-violet-600/30',
+  'Mente Divina': 'bg-indigo-400/20 text-indigo-300 border-indigo-400/30',
+  'Cerebromante': 'bg-purple-600/20 text-purple-400 border-purple-600/30',
+  'Doblegador de Mentes': 'bg-purple-700/20 text-purple-400 border-purple-700/30',
+  'Elocador': 'bg-fuchsia-500/20 text-fuchsia-400 border-fuchsia-500/30',
+  'Metamente': 'bg-violet-700/20 text-violet-400 border-violet-700/30',
+  'Pirocinetico': 'bg-orange-600/20 text-orange-400 border-orange-600/30',
+  'Psion Desencarnado': 'bg-slate-500/20 text-slate-400 border-slate-500/30',
+  'Mente de Guerra': 'bg-indigo-700/20 text-indigo-400 border-indigo-700/30',
+  'Puno de Zuoken': 'bg-amber-600/20 text-amber-400 border-amber-600/30',
+
+  // ============================================
+  // TOME OF BATTLE - Sublime Way (Azul/Acero)
+  // ============================================
+  'Cruzado': 'bg-sky-600/20 text-sky-400 border-sky-600/30',
+  'Espada de Guerra': 'bg-slate-600/20 text-slate-400 border-slate-600/30',
+  'Sabio de la Espada': 'bg-teal-600/20 text-teal-400 border-teal-600/30',
+  'Maestro de las Nueve': 'bg-zinc-600/20 text-zinc-400 border-zinc-600/30',
+  'Espada Eterna': 'bg-sky-500/20 text-sky-400 border-sky-500/30',
+  'Espada de la Tormenta de Sangre': 'bg-rose-600/20 text-rose-400 border-rose-600/30',
+
+  // ============================================
+  // CLASES ARCANAS (Azul/Púrpura - Magia arcana)
+  // ============================================
+  'Archimago': 'bg-blue-700/20 text-blue-400 border-blue-700/30',
+  'Brujo': 'bg-emerald-600/20 text-emerald-400 border-emerald-600/30',
+  'Nigromante Macabro': 'bg-gray-700/20 text-gray-400 border-gray-700/30',
+  'Ladrón de Conjuros': 'bg-purple-400/20 text-purple-300 border-purple-400/30',
+  'Lanzasombras': 'bg-slate-700/20 text-slate-400 border-slate-700/30',
+  'Mago de Guerra': 'bg-red-700/20 text-red-400 border-red-700/30',
+  'Mago de la Furia': 'bg-orange-700/20 text-orange-400 border-orange-700/30',
+  'Mago de la Orden Arcana': 'bg-blue-600/20 text-blue-400 border-blue-600/30',
+  'Mago de Sangre': 'bg-rose-700/20 text-rose-400 border-rose-700/30',
+  'Mago del Fenix de Jade': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  'Mago Salvaje': 'bg-fuchsia-600/20 text-fuchsia-400 border-fuchsia-600/30',
+  'Embaucador Arcano': 'bg-teal-500/20 text-teal-400 border-teal-500/30',
+  'Caballero Arcano': 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30',
+  'Arquero Arcano': 'bg-cyan-600/20 text-cyan-400 border-cyan-600/30',
+  'Iniciado del Septimo Velo': 'bg-purple-800/20 text-purple-400 border-purple-800/30',
+  'Wu Jen': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+  'Sha\'ir': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  'Shugenja': 'bg-teal-500/20 text-teal-400 border-teal-500/30',
+
+  // ============================================
+  // CLASES DIVINAS (Dorado/Amarillo - Fe y devoción)
+  // ============================================
+  'Hierofante': 'bg-yellow-600/20 text-yellow-400 border-yellow-600/30',
+  'Contemplativo': 'bg-amber-400/20 text-amber-300 border-amber-400/30',
+  'Templario Piadoso': 'bg-gold-500/20 text-gold-400 border-gold-500/30',
+  'Evangelista': 'bg-yellow-400/20 text-yellow-300 border-yellow-400/30',
+  'Oraculo Divino': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  'Servidor Radiante de Pelor': 'bg-yellow-300/20 text-yellow-200 border-yellow-300/30',
+  'Libertador Sagrado': 'bg-gold-600/20 text-gold-500 border-gold-600/30',
+  'Sacerdote de Guerra': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+  'Sanador': 'bg-emerald-400/20 text-emerald-300 border-emerald-400/30',
+  'Teurgo Mistico': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
+  'Guardia Negro': 'bg-stone-700/20 text-stone-400 border-stone-700/30',
+  'Inquisidor de la Iglesia': 'bg-red-800/20 text-red-400 border-red-800/30',
+  'Caballero Rubi Vindicador': 'bg-rose-600/20 text-rose-400 border-rose-600/30',
+
+  // ============================================
+  // CLASES MARCIALES (Rojo/Carmesí - Combate físico)
+  // ============================================
+  'Caballero': 'bg-sky-700/20 text-sky-400 border-sky-700/30',
+  'Caballero Protector': 'bg-cyan-700/20 text-cyan-400 border-cyan-700/30',
+  'Samurái': 'bg-red-700/20 text-red-400 border-red-700/30',
+  'Espadachín': 'bg-gray-600/20 text-gray-400 border-gray-600/30',
+  'Malaespada': 'bg-slate-500/20 text-slate-400 border-slate-500/30',
+  'Kensai': 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30',
+  'Duelista': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+  'Maestro de Armas Exoticas': 'bg-amber-600/20 text-amber-400 border-amber-600/30',
+  'Berserker Frenetico': 'bg-red-800/20 text-red-400 border-red-800/30',
+  'Guerrero Oso': 'bg-amber-700/20 text-amber-500 border-amber-700/30',
+  'Defensor Enano': 'bg-orange-700/20 text-orange-400 border-orange-700/30',
+  'Sohei': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  'Derviche': 'bg-sand-500/20 text-amber-400 border-amber-500/30',
+
+  // ============================================
+  // CLASES DE NATURALEZA (Verde - Conexión natural)
+  // ============================================
+  'Chamán': 'bg-lime-600/20 text-lime-400 border-lime-600/30',
+  'Chamán de los Espíritus': 'bg-teal-600/20 text-teal-400 border-teal-600/30',
+  'Chamán Dragón': 'bg-emerald-700/20 text-emerald-400 border-emerald-700/30',
+  'Druida Urbano': 'bg-green-700/20 text-green-400 border-green-700/30',
+  'Totemista': 'bg-lime-500/20 text-lime-400 border-lime-500/30',
+  'Senor de las Tormentas': 'bg-blue-800/20 text-blue-400 border-blue-800/30',
+
+  // ============================================
+  // CLASES DE SIGILO (Gris/Oscuro - Astucia y sombras)
+  // ============================================
+  'Ninja': 'bg-stone-600/20 text-stone-400 border-stone-600/30',
+  'Asesino': 'bg-stone-700/20 text-stone-400 border-stone-700/30',
+  'Cazador Oscuro': 'bg-zinc-700/20 text-zinc-400 border-zinc-700/30',
+  'Bailarin de las Sombras': 'bg-violet-800/20 text-violet-400 border-violet-800/30',
+  'Ninja Sol de Sombras': 'bg-stone-800/20 text-stone-400 border-stone-800/30',
+  'Espada Invisible': 'bg-transparent border border-slate-500/30 text-slate-400',
+  'Acechador': 'bg-emerald-700/20 text-emerald-400 border-emerald-700/30',
+  'Acechador Nocturno': 'bg-slate-800/20 text-slate-400 border-slate-800/30',
+
+  // ============================================
+  // CLASES ESPECIALIZADAS (Colores únicos)
+  // ============================================
+  'Artificiero': 'bg-amber-600/20 text-amber-400 border-amber-600/30',
+  'Archivista': 'bg-slate-500/20 text-slate-400 border-slate-500/30',
+  'Factótum': 'bg-teal-500/20 text-teal-400 border-teal-500/30',
+  'Mariscal': 'bg-blue-600/20 text-blue-400 border-blue-600/30',
+  'Noble': 'bg-gold-600/20 text-gold-500 border-gold-600/30',
+  'Marinero': 'bg-sky-500/20 text-sky-400 border-sky-500/30',
+  'Batidor': 'bg-green-700/20 text-green-400 border-green-700/30',
+  'Bufón': 'bg-pink-600/20 text-pink-400 border-pink-600/30',
+  'Charlatán': 'bg-rose-500/20 text-rose-400 border-rose-500/30',
+  'Embaucador': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  'Sabio': 'bg-blue-400/20 text-blue-300 border-blue-400/30',
+  'Erudito': 'bg-indigo-400/20 text-indigo-300 border-indigo-400/30',
+  'Maestro': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  'Místico': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
+
+  // ============================================
+  // ENCARNACIÓN / MAGIA DE INCARNA (Cyan/Turquesa)
+  // ============================================
+  'Encarnado': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+  'Vinculador': 'bg-teal-500/20 text-teal-400 border-teal-500/30',
+  'Alma Elegida': 'bg-sky-400/20 text-sky-300 border-sky-400/30',
+  'Almacido': 'bg-cyan-600/20 text-cyan-400 border-cyan-600/30',
+
+  // ============================================
+  // MAGIA DE SOMBRAS / TRUENAME (Gris oscuro)
+  // ============================================
+  'Nominador': 'bg-zinc-600/20 text-zinc-400 border-zinc-600/30',
+  'Bailarín de Batalla': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
+  'Espada del Ocaso': 'bg-orange-800/20 text-orange-400 border-orange-800/30',
+  'Ardiente': 'bg-orange-600/20 text-orange-400 border-orange-600/30',
+  'Desatado': 'bg-red-600/20 text-red-400 border-red-600/30',
+
+  // ============================================
+  // CLASES DE PRESTIGIO ESPECIALES
+  // ============================================
+  'Acolito de la Piel': 'bg-rose-800/20 text-rose-400 border-rose-800/30',
+  'Acorde Sublime': 'bg-pink-400/20 text-pink-300 border-pink-400/30',
+  'Adepto de la Estrella Verde': 'bg-emerald-600/20 text-emerald-400 border-emerald-600/30',
+  'Adepto del Fuego Dragón': 'bg-orange-700/20 text-orange-400 border-orange-700/30',
+  'Caminante del Horizonte': 'bg-sky-600/20 text-sky-400 border-sky-600/30',
+  'Cantor de la Espada': 'bg-violet-600/20 text-violet-400 border-violet-600/30',
+  'Cazador de Ilithidos': 'bg-indigo-700/20 text-indigo-400 border-indigo-700/30',
+  'Centinela de Piedra Profunda': 'bg-stone-600/20 text-stone-400 border-stone-600/30',
+  'Discipulo del Dragon': 'bg-red-600/20 text-red-400 border-red-600/30',
+  'Entropomante': 'bg-gray-800/20 text-gray-400 border-gray-800/30',
+  'Maestro Borracho': 'bg-amber-700/20 text-amber-500 border-amber-700/30',
+  'Maestro de la Muerte': 'bg-stone-800/20 text-stone-400 border-stone-800/30',
+  'Maestro del Saber': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  'Maestro Garra Sangrienta': 'bg-red-900/20 text-red-400 border-red-900/30',
+  'Moldeador de Guerra': 'bg-cyan-700/20 text-cyan-400 border-cyan-700/30',
+  'Pastor de Esclavos': 'bg-zinc-800/20 text-zinc-400 border-zinc-800/30',
+  'Sabio Argento': 'bg-slate-400/20 text-slate-300 border-slate-400/30',
+  'Sabio Elemental': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+  'Taumaturgo': 'bg-purple-600/20 text-purple-400 border-purple-600/30',
+  'Tejedor del Destino': 'bg-violet-700/20 text-violet-400 border-violet-700/30',
 };
 
-export function getClassIcon(className: string): LucideIcon {
-  return CLASS_ICONS[className as ClassName] || Shield;
-}
+// NOTA: getClassIcon() está definida en classIcons.tsx
+// Este archivo solo mantiene getClassColor() para separar iconos de colores
 
 export function getClassColor(className: string): string {
-  return CLASS_COLORS[className as ClassName] || 'bg-dungeon-800 text-dungeon-300 border-dungeon-700';
+  return CLASS_COLORS[className] || 'bg-dungeon-800 text-dungeon-300 border-dungeon-700';
 }
 
 // ============================================
@@ -136,16 +292,16 @@ export function getClassColor(className: string): string {
 
 export type ClassCategory =
   | 'Marciales'
-  | 'Lanzadores de conjuros'
+  | 'Mágicas'
   | 'Versátiles';
 
 /**
  * Iconos para categorías de clases
  */
 export const CLASS_CATEGORY_ICONS: Record<ClassCategory, LucideIcon> = {
-  'Marciales': Swords,              // Espadas cruzadas para clases de combate
-  'Lanzadores de conjuros': Wand2,  // Varita para clases mágicas
-  'Versátiles': Star,               // Estrella para clases híbridas
+  'Marciales': Swords,      // Espadas cruzadas para clases de combate
+  'Mágicas': Wand2,        // Varita para clases mágicas
+  'Versátiles': Star,       // Estrella para clases híbridas
 };
 
 /**
@@ -153,7 +309,7 @@ export const CLASS_CATEGORY_ICONS: Record<ClassCategory, LucideIcon> = {
  */
 export const CLASS_CATEGORY_COLORS: Record<ClassCategory, string> = {
   'Marciales': 'bg-red-500/20 text-red-400 border-red-500/30',
-  'Lanzadores de conjuros': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  'Mágicas': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
   'Versátiles': 'bg-gold-500/20 text-gold-500 border-gold-500/30',
 };
 
@@ -163,6 +319,86 @@ export function getClassCategoryIcon(category: string): LucideIcon {
 
 export function getClassCategoryColor(category: string): string {
   return CLASS_CATEGORY_COLORS[category as ClassCategory] || 'bg-dungeon-800 text-dungeon-300 border-dungeon-700';
+}
+
+// ============================================
+// TAGS DE FUENTE (LIBROS) - Códigos y Colores
+// ============================================
+
+export type SourceTagConfig = {
+  code: string;
+  className: string;
+  Icon?: LucideIcon;
+  label?: string;
+};
+
+const SOURCE_TAG_PRESETS: Record<string, SourceTagConfig> = {
+  phb: { code: 'PHB', className: 'bg-emerald-500/15 text-emerald-200 border border-emerald-500/30', Icon: Book },
+  ph2: { code: 'PH2', className: 'bg-green-500/15 text-green-200 border border-green-500/30', Icon: Book },
+  xph: { code: 'XPH', className: 'bg-indigo-500/15 text-indigo-200 border border-indigo-500/30', Icon: Book },
+  cad: { code: 'CAD', className: 'bg-amber-500/15 text-amber-100 border border-amber-500/30', Icon: Book },
+  car: { code: 'CAR', className: 'bg-blue-500/15 text-blue-200 border border-blue-500/30', Icon: Book },
+  cdv: { code: 'CDV', className: 'bg-lime-500/15 text-lime-100 border border-lime-500/30', Icon: Book },
+  cps: { code: 'CPS', className: 'bg-fuchsia-500/15 text-fuchsia-200 border border-fuchsia-500/30', Icon: Book },
+  cwr: { code: 'CWR', className: 'bg-red-500/15 text-red-200 border border-red-500/30', Icon: Book },
+  dco: { code: 'DCO', className: 'bg-orange-500/15 text-orange-200 border border-orange-500/30', Icon: Book },
+  drm: { code: 'DRM', className: 'bg-rose-500/15 text-rose-100 border border-rose-500/30', Icon: Book },
+  dlc: { code: 'DLC', className: 'bg-cyan-500/15 text-cyan-100 border border-cyan-500/30', Icon: Book },
+  dsc: { code: 'DSC', className: 'bg-slate-500/15 text-slate-200 border border-slate-500/30', Icon: Book },
+  ecs: { code: 'ECS', className: 'bg-amber-400/15 text-amber-100 border border-amber-400/30', Icon: Book },
+  hoh: { code: 'HOH', className: 'bg-purple-600/15 text-purple-100 border border-purple-600/30', Icon: Book },
+  moi: { code: 'MOI', className: 'bg-sky-500/15 text-sky-100 border border-sky-500/30', Icon: Book },
+  mhb: { code: 'MHB', className: 'bg-teal-500/15 text-teal-100 border border-teal-500/30', Icon: Book },
+  oad: { code: 'OAD', className: 'bg-yellow-500/15 text-yellow-100 border border-yellow-500/30', Icon: Book },
+  tob: { code: 'TOB', className: 'bg-blue-600/15 text-blue-100 border border-blue-600/30', Icon: Book },
+  tom: { code: 'TOM', className: 'bg-indigo-400/15 text-indigo-100 border border-indigo-400/30', Icon: Book },
+  web: { code: 'WEB', className: 'bg-dungeon-800 text-dungeon-200 border border-dungeon-600', Icon: Book },
+  default: { code: 'SRC', className: 'bg-dungeon-800 text-dungeon-200 border border-dungeon-700', Icon: Book },
+};
+
+const SOURCE_BOOK_MAP: Record<string, keyof typeof SOURCE_TAG_PRESETS> = {
+  'manualdeljugador': 'phb',
+  'playershandbook': 'phb',
+  'playershandbooki': 'phb',
+  'playershandbookii': 'ph2',
+  'playershandbook2': 'ph2',
+  'expandedpsionicshandbook': 'xph',
+  'completeadventurer': 'cad',
+  'completearcane': 'car',
+  'completedivine': 'cdv',
+  'completepsionic': 'cps',
+  'completewarrior': 'cwr',
+  'dragoncompendium': 'dco',
+  'dragonmagic': 'drm',
+  'dragonlancecampaignsetting': 'dlc',
+  'dungeonscape': 'dsc',
+  'eberroncampaignsetting': 'ecs',
+  'heroesofhorror': 'hoh',
+  'magicofincarnum': 'moi',
+  'miniatureshandbook': 'mhb',
+  'orientaladventures': 'oad',
+  'tomeofbattle': 'tob',
+  'tomeofmagic': 'tom',
+  'sitiowebdewizards': 'web',
+  'wizardsofthescoastwebsite': 'web',
+};
+
+const normalizeSourceKey = (value?: string) =>
+  value
+    ? value
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, '')
+    : '';
+
+export function getSourceTag(book?: string): SourceTagConfig {
+  const normalized = normalizeSourceKey(book);
+  const presetKey = SOURCE_BOOK_MAP[normalized];
+  const preset = presetKey ? SOURCE_TAG_PRESETS[presetKey] : null;
+  const selected = preset || SOURCE_TAG_PRESETS[normalized] || SOURCE_TAG_PRESETS.default;
+  return { ...selected, label: book || selected.label };
 }
 
 // ============================================
@@ -488,6 +724,106 @@ export const ABILITY_COLORS: Record<AbilityScore, string> = {
   'Carisma': 'text-pink-400',
 };
 
+/**
+ * Mapeo de IDs de habilidades (str, dex, etc.) a nombres completos
+ */
+export const ABILITY_ID_TO_NAME: Record<string, AbilityScore> = {
+  'str': 'Fuerza',
+  'dex': 'Destreza',
+  'con': 'Constitución',
+  'int': 'Inteligencia',
+  'wis': 'Sabiduría',
+  'cha': 'Carisma',
+};
+
+/**
+ * Iconos por ID de habilidad (str, dex, con, int, wis, cha)
+ */
+export const ABILITY_ICONS_BY_ID: Record<string, LucideIcon> = {
+  'str': Dumbbell,
+  'dex': Feather,
+  'con': ShieldCheck,
+  'int': Brain,
+  'wis': Lightbulb,
+  'cha': Sparkle,
+};
+
+/**
+ * Colores por ID de habilidad (str, dex, con, int, wis, cha)
+ */
+export const ABILITY_COLORS_BY_ID: Record<string, string> = {
+  'str': 'text-red-400',
+  'dex': 'text-green-400',
+  'con': 'text-orange-400',
+  'int': 'text-blue-400',
+  'wis': 'text-purple-400',
+  'cha': 'text-pink-400',
+};
+
+// ============================================
+// ALINEAMIENTOS - Iconos y Colores
+// ============================================
+
+export type AlignmentName =
+  | 'Legal Bueno'
+  | 'Neutral Bueno'
+  | 'Caótico Bueno'
+  | 'Legal Neutral'
+  | 'Neutral'
+  | 'Caótico Neutral'
+  | 'Legal Maligno'
+  | 'Neutral Maligno'
+  | 'Caótico Maligno';
+
+/**
+ * Iconos temáticos para alineamientos de D&D 3.5
+ */
+export const ALIGNMENT_ICONS: Record<AlignmentName, LucideIcon> = {
+  'Legal Bueno': Landmark,        // Orden y justicia
+  'Neutral Bueno': HandHeart,     // Bondad y compasión
+  'Caótico Bueno': Heart,         // Libertad y bondad
+  'Legal Neutral': Gavel,         // Ley y orden
+  'Neutral': Scale,               // Balance perfecto
+  'Caótico Neutral': Compass,     // Libertad sin restricciones
+  'Legal Maligno': Skull,         // Tiranía y opresión
+  'Neutral Maligno': Siren,       // Maldad pragmática
+  'Caótico Maligno': FlameIcon,   // Destrucción y caos
+};
+
+/**
+ * Mapeo de IDs de alineamientos a nombres completos
+ */
+export const ALIGNMENT_ID_TO_NAME: Record<string, AlignmentName> = {
+  'LB': 'Legal Bueno',
+  'NB': 'Neutral Bueno',
+  'CB': 'Caótico Bueno',
+  'LN': 'Legal Neutral',
+  'N': 'Neutral',
+  'CN': 'Caótico Neutral',
+  'LM': 'Legal Maligno',
+  'NM': 'Neutral Maligno',
+  'CM': 'Caótico Maligno',
+};
+
+/**
+ * Iconos por ID de alineamiento
+ */
+export const ALIGNMENT_ICONS_BY_ID: Record<string, LucideIcon> = {
+  'LB': Landmark,
+  'NB': HandHeart,
+  'CB': Heart,
+  'LN': Gavel,
+  'N': Scale,
+  'CN': Compass,
+  'LM': Skull,
+  'NM': Siren,
+  'CM': FlameIcon,
+};
+
+// ============================================
+// FUNCIONES DE UTILIDAD
+// ============================================
+
 export function getSkillCategoryIcon(category: string): LucideIcon {
   return SKILL_CATEGORY_ICONS[category as SkillCategory] || Brain;
 }
@@ -502,4 +838,32 @@ export function getAbilityColor(ability: string): string {
 
 export function getAbilityIcon(ability: string): LucideIcon {
   return ABILITY_ICONS[ability as AbilityScore] || Brain;
+}
+
+/**
+ * Obtiene el icono de habilidad por ID (str, dex, etc.)
+ */
+export function getAbilityIconById(id: string): LucideIcon {
+  return ABILITY_ICONS_BY_ID[id] || Brain;
+}
+
+/**
+ * Obtiene el color de habilidad por ID (str, dex, etc.)
+ */
+export function getAbilityColorById(id: string): string {
+  return ABILITY_COLORS_BY_ID[id] || 'text-dungeon-400';
+}
+
+/**
+ * Obtiene el icono de alineamiento por nombre completo
+ */
+export function getAlignmentIcon(alignment: string): LucideIcon {
+  return ALIGNMENT_ICONS[alignment as AlignmentName] || Scale;
+}
+
+/**
+ * Obtiene el icono de alineamiento por ID (lg, ng, etc.)
+ */
+export function getAlignmentIconById(id: string): LucideIcon {
+  return ALIGNMENT_ICONS_BY_ID[id] || Scale;
 }

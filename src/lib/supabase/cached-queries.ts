@@ -21,12 +21,32 @@ import { cache } from 'react';
  * Obtiene todas las clases ordenadas por nombre
  * Cached para evitar queries duplicadas en un mismo request
  */
+// Helper to generate slug
+const generateSlug = (name: string) => {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+const normalizeSlug = (slug: string) =>
+  slug
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+/**
+ * Obtiene todas las clases ordenadas por nombre
+ * Cached para evitar queries duplicadas en un mismo request
+ */
 export const getAllClasses = cache(async () => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('classes')
     .select('*')
-    .order('name');
+    .order('titulo');
 
   if (error) {
     console.error('Error fetching classes:', error);
@@ -326,7 +346,7 @@ export const getSpellsByLevel = cache(async (level: number) => {
 export const getAllSkills = cache(async () => {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from('skills')
+    .from('v_skills')
     .select('*')
     .order('name');
 
@@ -345,7 +365,7 @@ export const getAllSkills = cache(async () => {
 export const getSkillBySlug = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from('skills')
+    .from('v_skills')
     .select('*')
     .eq('slug', slug)
     .single();

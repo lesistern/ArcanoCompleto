@@ -518,11 +518,11 @@
     }
   },
   {
-    "id": "conocimiento-dungeons",
-    "name": "Conocimiento (Dungeons)",
-    "slug": "conocimiento-dungeons",
+    "id": "conocimiento-mazmorreria",
+    "name": "Conocimiento (mazmorrería)",
+    "slug": "conocimiento-mazmorreria",
     "shortDescription": "Conocimiento sobre aberraciones, cavernas y cieno",
-    "description": "Conocimiento (Dungeons) incluye información sobre aberraciones, cavernas, cieno, y criaturas que habitan bajo tierra.",
+    "description": "Conocimiento (mazmorrería) incluye información sobre aberraciones, cavernas, cieno, y criaturas que habitan bajo tierra.",
     "keyAbility": "Inteligencia",
     "category": "Conocimiento",
     "trainedOnly": true,
@@ -815,9 +815,9 @@
     }
   },
   {
-    "id": "conocimiento-planos",
-    "name": "Conocimiento (Planos)",
-    "slug": "conocimiento-planos",
+    "id": "conocimiento-los-planos",
+    "name": "Conocimiento (los planos)",
+    "slug": "conocimiento-los-planos",
     "shortDescription": "Conocimiento sobre planos de existencia y sus habitantes",
     "description": "Conocimiento (Planos) abarca los Planos Internos, Planos Externos, el Plano Astral, el Plano Etéreo, forasteros, elementales y criaturas mágicas nativas de otros planos.",
     "keyAbility": "Inteligencia",
@@ -1555,9 +1555,9 @@
     }
   },
   {
-    "id": "interpretar",
-    "name": "Interpretar",
-    "slug": "interpretar",
+    "id": "interpretacion",
+    "name": "Interpretación",
+    "slug": "interpretacion",
     "shortDescription": "Actuar, cantar, bailar o tocar un instrumento",
     "description": "Como Artesanía y Profesión, Interpretar es en realidad varias habilidades diferentes. Podrías tener varios rangos de Interpretar (canto), Interpretar (instrumentos de cuerda) e Interpretar (comedia). Cada uno se compra por separado.",
     "keyAbility": "Carisma",
@@ -1865,9 +1865,9 @@
     }
   },
   {
-    "id": "reunir-informacion",
-    "name": "Reunir Información",
-    "slug": "reunir-informacion",
+    "id": "recabar-informacion",
+    "name": "Recabar información",
+    "slug": "recabar-informacion",
     "shortDescription": "Recopilar rumores e información en comunidades",
     "description": "Haciendo una tirada de Reunir Información, puedes recopilar información sobre un tema específico o individuo. Esta información podría provenir de rumores de bar, contactos en las calles o chismes locales.",
     "keyAbility": "Carisma",
@@ -2203,9 +2203,9 @@
     }
   },
   {
-    "id": "usar-cuerda",
-    "name": "Usar Cuerda",
-    "slug": "usar-cuerda",
+    "id": "uso-de-cuerdas",
+    "name": "Uso de cuerdas",
+    "slug": "uso-de-cuerdas",
     "shortDescription": "Atar nudos y asegurar cuerdas",
     "description": "Usas Usar Cuerda para atar cuerdas firmemente, incluyendo nudos especiales, atar un prisionero firmemente y hacer nudos que se deslizan.",
     "keyAbility": "Destreza",

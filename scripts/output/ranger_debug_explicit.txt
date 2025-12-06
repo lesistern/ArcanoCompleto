@@ -1,0 +1,336 @@
+START RANGER TEXT (15406 chars)
+
+
+The forests are home to fierce and cunning
+creatures, such as bloodthirsty
+
+- wlbears and malicious displacer
+beasts. But more cunning and
+powerful than these monsters is the
+ranger, a skilled hunter and stalker. He
+knows the woods as if they were his
+home (as indeed they are), and he
+knows his prey in deadly detail.
+**Adventures:** A ranger often accepts
+the role of protector, aiding those who
+live in or travel through the woods. In
+addition, a ranger carries grudges
+against certain types of creatures and
+looks for opportunities to find and
+destroy them. He may adventure for all
+the reasons that a fighter does.
+**Characteristics:** A ranger can use a variety
+
+- f weapons and is quite capable in combat.
+His skills allow him to survive in the
+wilderness, to find his prey, and to avoid
+detection. He also has special
+knowledge about certain types of
+
+
+
+
+ - ften rangers as well, being adaptable enough to learn their way
+around the woods even if it doesn’t come naturally to them. Half
+  - rcs may find the life of a ranger more comfortable than life among
+cruel and taunting humans (or orcs). Gnome rangers are more
+common than gnome fighters, but still they tend to remain in their
+
+ - wn lands rather than adventure among “the big people.” Dwarf
+rangers are rare, but they can be quite effective. Instead of living in
+the surface wilderness, they are at home in the endless caverns
+beneath the earth. Here they hunt down and destroy the enemies of
+dwarvenkind with the relentless precision for which dwarves are
+known. Dwarf rangers are often known as cavers. Halfling rangers
+are highly respected for their ability to help communities of
+halflings prosper as they pursue their nomadic lifestyle.
+Among the savage humanoids, only gnolls are commonly rangers,
+using their skills to slyly stalk their prey.
+**Classes:** Rangers get along well with druids and to some extent
+with barbarians. They are known to bicker with paladins, mostly
+because they often share goals but differ in style, tactics, approach,
+philosophy, and esthetics. Since rangers don’t often look to other
+people for support or friendship, they find it easy to tolerate people
+who are quite different from themselves, such as bookish wizards
+and preachy clerics. They just don’t care enough to get upset about
+
+  - thers’ differences.
+**Role:** The ranger’s best role is that of a scout and secondary
+combatant. Without the heavy armor of the fighter or the staying
+power of the barbarian, the ranger should focus on opportunistic
+and ranged attacks. Most rangers user their animal companions as
+sentries, scouts, or to assist them in melee combat.
+
+GAME RULE INFORMATION
+
+Rangers have the following game statistics.
+**Abilities:** Dexterity is important for a ranger both because he
+tends to wear light armor and because several ranger skills are based
+
+  - n that ability. Strength is important because rangers frequently get
+involved in combat. Several ranger skills are based on Wisdom, and
+a Wisdom score of 14 or higher is required to get access to the most
+powerful ranger spells. A Wisdom score of 11 or higher is required
+to cast any ranger spells at all. One of the ranger’s trademark skills,
+his ability to track foes, is based on Wisdom.
+**Alignment:** Any.
+**Hit Die:** d8.
+
+Class Skills
+
+The ranger’s class skills (and the key ability for each skill) are Climb
+(Str), Concentration (Con), Craft (Int), Handle Animal (Cha), Heal
+(Wis), Hide (Dex), Jump (Str), Knowledge (dungeoneering) (Int),
+Knowledge (geography) (Int), Knowledge (nature) (Int), Listen
+(Wis), Move Silently (Dex), Profession (Wis), Ride (Dex), Search
+(Int), Spot (Wis), Survival (Wis), Swim (Str), and Use Rope (Dex).
+See Chapter 4: Skills for skill descriptions.
+**Skill Points at 1st Level:** (6 + Int modifier) × 4.
+**Skill Points at Each Additional Level:** 6 + Int modifier.
+
+Class Features
+
+All of the following are class features of the ranger.
+**Weapon and Armor Proficiency:** A ranger is proficient with all
+simple and martial weapons, and with light armor and shields
+(except tower shields).
+**Favored Enemy (Ex):** At 1st level, a ranger may select a type of
+creature from among those given on Table 3–14: Ranger Favored
+Enemies. Due to his extensive study on his chosen type of foe and
+training in the proper techniques for combating such creatures, the
+ranger gains a +2 bonus on Bluff, Listen, Sense Motive, Spot, and
+Survival checks when using these skills against creatures of this
+type. Likewise, he gets a +2 bonus on weapon damage rolls against
+such creatures.
+
+
+
+At 5th level and every five levels thereafter (10th, 15th, and 20th
+level), the ranger may select an additional favored enemy from those
+given on the table. In addition, at each such interval, the bonus
+against any one favored enemy (including the one just selected, if so
+desired) increases by 2. For example, a 5th-level ranger has two
+favored enemies; against one he gains a +4 bonus on Bluff, Listen,
+Sense Motive, Spot, and Survival checks and weapon damage rolls,
+and against the other he has a +2 bonus. At 10th level, he has three
+favored enemies, and he gains an additional +2 bonus, which he can
+allocate to the bonus against any one of his three favored enemies.
+Thus, his bonuses could be either +4, +4, +2 or +6, +2, +2.
+If the ranger chooses humanoids or outsiders as a favored enemy,
+he must also choose an associated subtype, as indicated on the table.
+If a specific creature falls into more than one category of favored
+enemy (for instance, devils are both evil outsiders and lawful
+
+ - utsiders), the ranger’s bonuses do not stack; he simply uses
+whichever bonus is higher. See the _Monster Manual_ for more information on types of creatures.
+
+**Table 3–14: Ranger Favored Enemies**
+
+**Type (Subtype)** **Examples**
+Aberration beholder
+
+Animal bear
+Construct golem
+Dragon black dragon
+Elemental invisible stalker
+
+Fey dryad
+Giant  - gre
+Humanoid (aquatic) merfolk
+Humanoid (dwarf) dwarf
+Humanoid (elf) elf
+Humanoid (goblinoid) hobgoblin
+Humanoid (gnoll) gnoll
+Humanoid (gnome) gnome
+Humanoid (halfling) halfling
+Humanoid (human) human
+Humanoid (orc)  - rc
+Humanoid (reptilian) kobold
+Magical beast displacer beast
+Monstrous humanoid minotaur
+Ooze gelatinous cube
+Outsider (air) arrowhawk
+Outsider (chaotic) demon
+Outsider (earth) xorn
+Outsider (evil) devil
+Outsider (fire) salamander
+Outsider (good) angel
+Outsider (lawful) formian
+Outsider (native) tiefling
+Outsider (water) tojanida
+Plant shambling mound
+Undead zombie
+Vermin monstrous spider
+
+**Track:** A ranger gains Track (see page 101) as a bonus feat.
+**Wild Empathy (Ex):** A ranger can use body language, vocalizations, and demeanor to improve the attitude of an animal (such as a
+bear or a monitor lizard). This ability functions just like a Diplomacy
+check to improve the attitude of a person (see page 72). The ranger
+rolls 1d20 and adds his ranger level and his Charisma bonus to
+determine the wild empathy check result. The typical domestic
+animal has a starting attitude of indifferent, while wild animals are
+usually unfriendly.
+To use wild empathy, the ranger and the animal must be able to
+study each other, which means that they must be within 30 feet of
+
+
+
+
+influencing an animal in this way takes 1 minute, but, as with
+influencing people, it might take more or less time.
+The ranger can also use this ability to influence a magical beast
+with an Intelligence score of 1 or 2 (such as a basilisk or a girallon),
+but he takes a –4 penalty on the check.
+**Combat Style (Ex):** At 2nd level, a ranger must select one of two
+combat styles to pursue: archery or two-weapon combat. This choice
+affects the character’s class features but does not restrict his
+selection of feats or special abilities in any way.
+If the ranger selects archery, he is treated as having the Rapid
+Shot feat, even if he does not have the normal prerequisites for that
+feat.
+If the ranger selects two-weapon combat, he is treated as having
+the Two-Weapon Fighting feat, even if he does not have the normal
+prerequisites for that feat.
+The benefits of the ranger’s chosen style apply only when he
+wears light or no armor. He loses all benefits of his combat style
+when wearing medium or heavy armor.
+**Endurance:** A ranger gains Endurance (see page 93) as a bonus
+feat at 3rd level.
+**Animal Companion (Ex):** At 4th level, a ranger gains an animal
+companion selected from the following list: badger, camel, dire rat,
+dog, riding dog, eagle, hawk, horse (light or heavy), owl, pony, snake
+(Small or Medium viper), or wolf. If the DM’s campaign takes place
+wholly or partly in an aquatic environment, the DM may add the
+following creatures to the ranger’s list of options: crocodile,
+porpoise, Medium shark, and squid. This animal is a loyal
+companion that accompanies the ranger on his adventures as
+appropriate for its kind. (For instance, an aquatic creature can’t
+adventure with a ranger on land and shouldn’t be selected by a
+nonaquatic character without extenuating circumstances). In most
+cases, the animal companion functions as a mount, sentry, scout, or
+hunting animal, rather than as a protector.
+This ability functions like the druid ability of the same name (see
+page 35), except that the ranger’s effective druid level is one-half his
+ranger level. For example, the animal companion of a 4th-level
+ranger would be the equivalent of a 2nd-level druid’s animal
+companion. A ranger may select from the alternative lists of animal
+companions just as a druid can, though again his effective druid
+level is half his ranger level. Thus, he must be at least an 8th-level
+ranger to select from the druid’s list of 4th-level animal companions,
+and if he chooses one of those animals, his effective druid level
+would be reduced by 3, to 1st level. Like a druid, a ranger cannot
+select an alternative animal if the choice would reduce his effective
+druid level below 1st.
+**Spells:** Beginning at 4th level, a ranger gains the ability to cast a
+small number of divine spells (the same type of spells available to
+the cleric, druid, and paladin), which are drawn from the ranger
+spell list (page 191). A ranger must choose and prepare his spells in
+advance (see below).
+To prepare or cast a spell, a ranger must have a Wisdom score
+equal to at least 10 + the spell level (Wis 11 for 1st-level spells, Wis
+12 for 2nd-level spells, and so forth). The Difficulty Class for a saving
+throw against a ranger’s spell is 10 + the spell level + the ranger’s
+Wisdom modifier.
+Like other spellcasters, a ranger can cast only a certain number of
+spells of each spell level per day. His base daily spell allotment is
+given on Table 3–13: The Ranger. In addition, he receives bonus
+spells per day if he has a high Wisdom score (see Table 1–1: Ability
+Modifiers and Bonus Spells, page 8). When Table 3–13 indicates that
+the ranger gets 0 spells per day of a given spell level (for instance,
+1st-level spells for a 4th-level ranger), he gains only the bonus spells
+he would be entitled to based on his Wisdom score for that spell
+level. The ranger does not have access to any domain spells or
+granted powers, as a cleric does.
+A ranger prepares and casts spells the way a cleric does, though he
+cannot lose a prepared spell to cast a _cure_ spell in its place. A ranger
+
+
+
+he can cast spells of that level, but he must choose which spells to
+prepare during his daily meditation.
+Through 3rd level, a ranger has no caster level. At 4th level and
+higher, his caster level is one-half his ranger level.
+**Improved Combat Style (Ex):** At 6th level, a ranger’s aptitude in
+his chosen combat style (archery or two-weapon combat) improves.
+If he selected archery at 2nd level, he is treated as having the
+Manyshot feat (page 97), even if he does not have the normal
+prerequisites for that feat.
+If the ranger selected two-weapon combat at 2nd level, he is
+treated as having the Improved Two-Weapon Fighting feat (page
+96), even if he does not have the normal prerequisites for that feat.
+As before, the benefits of the ranger’s chosen style apply only
+when he wears light or no armor. He loses all benefits of his combat
+style when wearing medium or heavy armor.
+**Woodland Stride (Ex):** Starting at 7th level, a ranger may move
+through any sort of undergrowth (such as natural thorns, briars,
+
+ - vergrown areas, and similar terrain) at his normal speed and
+without taking damage or suffering any other impairment.
+However, thorns, briars, and overgrown areas that are enchanted or
+magically manipulated to impede motion still affect him.
+**Swift Tracker (Ex):** Beginning at 8th level, a ranger can move at
+his normal speed while following tracks without taking the normal
+
+  - 5 penalty. He takes only a –10 penalty (instead of the normal –20)
+when moving at up to twice normal speed while tracking.
+**Evasion (Ex):** At 9th level, a ranger can avoid even magical and
+unusual attacks with great agility. If he makes a successful Reflex
+saving throw against an attack that normally deals half damage on a
+successful save (such as a red dragon’s fiery breath or a _fireball_ ), he
+instead takes no damage. Evasion can be used only if the ranger is
+wearing light armor or no armor. A helpless ranger (such as one who
+is unconscious or paralysed) does not gain the benefit of evasion.
+**Combat Style Mastery (Ex):** At 11th level, a ranger’s aptitude in
+his chosen combat style (archery or two-weapon combat) improves
+again. If he selected archery at 2nd level, he is treated as having the
+Improved Precise Shot feat (page 96), even if he does not have the
+normal prerequisites for that feat.
+If the ranger selected two-weapon combat at 2nd level, he is
+treated as having the Greater Two-Weapon Fighting feat (page 95),
+even if he does not have the normal prerequisites for that feat.
+As before, the benefits of the ranger’s chosen style apply only
+when he wears light or no armor. He loses all benefits of his combat
+style when wearing medium or heavy armor.
+**Camouflage (Ex):** A ranger of 13th level or higher can use the
+Hide skill in any sort of natural terrain, even if the terrain doesn’t
+grant cover or concealment.
+**Hide in Plain Sight (Ex):** While in any sort of natural terrain, a
+ranger of 17th level or higher can use the Hide skill even while
+being observed.
+
+Elf Ranger Starting Package
+
+**Armor:** Studded leather (+3 AC, armor check penalty –1, speed
+30 ft., 20 lb.).
+**Weapons:** Longsword (1d8, crit 19–20/×2, 4 lb., one-handed,
+slashing).
+Short sword, off hand (1d6, crit 19–20/×2, 2 lb., light, piercing).
+_Note:_ When striking with both swords, the ranger takes a –4
+penalty with his longsword and a –8 penalty with his short sword. If
+he has a Strength bonus, add only one-half of it to his damage roll
+with the short sword, which is in his off hand, but add the full
+Strength bonus to his damage roll with the longsword.
+Longbow (1d8, crit ×3, range inc. 100 ft., 3 lb., piercing).
+**Skill Selection:** Pick a number of skills equal to 6 + Int modifier.
+
+
+
+
+**Skill** **Ranks** **Ability** **Armor Check Penalty**
+Survival 4 Wis 
+Hide 4 Dex - 1
+Move Silently 4 Dex - 1
+Listen 4 Wis Spot 4 Wis Knowledge (nature) 4 Int Climb 4 Str - 1
+
+Heal 4 Wis 
+Swim 4 Str - 2
+
+Search 4 Int 
+**Feat:** Point Blank Shot.
+**Favored Enemy:** Magical beast.
+**Gear:** Backpack with waterskin, one day’s trail rations, bedroll,
+sack, and flint and steel. Three torches. Quiver with 20 arrows.
+**Gold:** 2d4 gp.
+
+
+END RANGER TEXT

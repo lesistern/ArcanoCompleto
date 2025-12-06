@@ -1,0 +1,538 @@
+[
+  {
+    "id": "aasimar",
+    "name": "Aasimar",
+    "slug": "aasimar",
+    "shortDescription": "Descendientes de seres celestiales, los aasimar combinan herencia divina con mortalidad.",
+    "description": "Los aasimar son generalmente altos, atractivos y agradables. Algunos tienen rasgos físicos menores que sugieren su herencia, como cabello plateado, ojos dorados o una mirada intensamente penetrante. Los aasimar son decidamente buenos y luchan contra las causas del mal, intentando persuadir a otros a hacer lo correcto. No todos los aasimar son buenos, pero la mayoría lo son. Frecuentemente viven vidas solitarias, dedicados a la bondad y la justicia.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "wisdom": 2,
+      "charisma": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la oscuridad",
+        "description": "Los aasimar pueden ver en la oscuridad hasta 60 pies. La visión en la oscuridad es en blanco y negro, pero por lo demás es como la vista normal.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +2 a Avistar y Escuchar",
+        "description": "Los aasimar tienen sentidos agudos, otorgándoles un bonificador racial de +2 a las pruebas de Avistar y Escuchar.",
+        "type": "bonificador"
+      },
+      {
+        "name": "Resistencia 5 a ácido, frío y electricidad",
+        "description": "Los aasimar tienen resistencia natural de 5 puntos contra daño de ácido, frío y electricidad.",
+        "type": "resistencia"
+      },
+      {
+        "name": "Habilidad sortílega: Luz del día",
+        "description": "Un aasimar puede usar luz del día una vez al día como habilidad sortílega (nivel de lanzador igual al nivel del personaje).",
+        "type": "habilidad especial"
+      }
+    ],
+    "languages": {
+      "automatic": ["Celestial", "Común"],
+      "bonus": ["Dracónico", "Enano", "Élfico", "Gnomo", "Mediano", "Silvano"]
+    },
+    "specialAbilities": {
+      "darkvision": 60,
+      "bonusSkills": [
+        { "skill": "Avistar", "bonus": 2 },
+        { "skill": "Escuchar", "bonus": 2 }
+      ],
+      "resistances": [
+        { "type": "ácido", "value": 5 },
+        { "type": "frío", "value": 5 },
+        { "type": "electricidad", "value": 5 }
+      ],
+      "spellLikeAbilities": [
+        "Luz del día 1/día"
+      ]
+    },
+    "favoredClass": "Paladín",
+    "levelAdjustment": 1,
+    "typicalAlignment": "Generalmente Bueno. Los aasimar están inclinados hacia el bien y frecuentemente luchan contra el mal.",
+    "advantageousClasses": ["Paladín", "Clérigo", "Hechicero"],
+    "source": {
+      "book": "Races of Destiny",
+      "page": 209
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "tiefling",
+    "name": "Tiefling",
+    "slug": "tiefling",
+    "shortDescription": "Con herencia infernal en sus venas, los tiefling son astutos y traicioneros supervivientes.",
+    "description": "Los tiefling parecen humanos a primera vista, aunque todos poseen alguna característica sobrenatural que revela su herencia infernal. Muchos tienen cuernos pequeños, ojos rojos, dientes afilados como agujas y en casos extremos, colas con púas o patas hendidas. Ningún tiefling se ve igual a otro. Los tiefling son sigilosos, sutiles y generalmente astutos, prefiriendo atacar desde emboscadas. Son producto de uniones entre humanos y seres infernales, y frecuentemente son tratados con desconfianza.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "intelligence": 2,
+      "dexterity": 2,
+      "charisma": -2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la oscuridad",
+        "description": "Los tiefling pueden ver en la oscuridad hasta 60 pies. La visión en la oscuridad es en blanco y negro, pero por lo demás es como la vista normal.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +2 a Engañar y Esconderse",
+        "description": "Los tiefling son naturalmente engañosos y sigilosos, otorgándoles un bonificador racial de +2 a las pruebas de Engañar y Esconderse.",
+        "type": "bonificador"
+      },
+      {
+        "name": "Habilidad sortílega: Oscuridad",
+        "description": "Un tiefling puede usar oscuridad una vez al día como habilidad sortílega (nivel de lanzador 1 o igual al nivel del personaje, lo que sea mayor).",
+        "type": "habilidad especial"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Infernal"],
+      "bonus": ["Dracónico", "Enano", "Élfico", "Gnomo", "Goblin", "Mediano", "Orco"]
+    },
+    "specialAbilities": {
+      "darkvision": 60,
+      "bonusSkills": [
+        { "skill": "Engañar", "bonus": 2 },
+        { "skill": "Esconderse", "bonus": 2 }
+      ],
+      "spellLikeAbilities": [
+        "Oscuridad 1/día"
+      ]
+    },
+    "favoredClass": "Pícaro",
+    "levelAdjustment": 1,
+    "typicalAlignment": "Caótico o Neutral. Los tiefling tienden hacia el caos pero no necesariamente hacia el mal.",
+    "advantageousClasses": ["Pícaro", "Hechicero", "Bardo"],
+    "source": {
+      "book": "Races of Destiny",
+      "page": 209
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "goliath",
+    "name": "Goliath",
+    "slug": "goliath",
+    "shortDescription": "Gigantes humanoides de las montañas, los goliath son guerreros formidables y competitivos.",
+    "description": "Los goliath son humanoides de gran estatura que habitan en las altas montañas. Miden más de 8 pies de altura y poseen una constitución robusta y musculosa. Su piel es gris o marrón y está cubierta de manchas oscuras que los goliath consideran un registro de sus logros y experiencias de vida. Son una cultura altamente competitiva que valora la competencia justa y el mejoramiento personal. Los goliath rara vez permanecen en un lugar por mucho tiempo, prefiriendo la vida nómada de las tierras altas.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Humanoide Monstruoso",
+    "abilityModifiers": {
+      "strength": 4,
+      "dexterity": -2,
+      "constitution": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Construcción poderosa",
+        "description": "La forma física de un goliath permite que funcione como si fuera una categoría de tamaño más grande cuando sea beneficioso (como usar armas más grandes, capacidad de carga). Sin embargo, sigue siendo Mediano para efectos de CA, ataques, etc.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Movimiento montañés",
+        "description": "Los goliath pueden moverse a través de terreno montañoso rocoso sin penalización a la velocidad.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Aclimatado",
+        "description": "Los goliath están aclimatados automáticamente a la vida en grandes altitudes. No sufren penalizaciones por altitud.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +2 a Avistar",
+        "description": "Los goliath tienen vista aguda desarrollada en las montañas, otorgándoles un bonificador racial de +2 a las pruebas de Avistar.",
+        "type": "bonificador"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Gol-Kaa"],
+      "bonus": ["Enano", "Gigante", "Gnoll", "Terran"]
+    },
+    "specialAbilities": {
+      "bonusSkills": [
+        { "skill": "Avistar", "bonus": 2 }
+      ],
+      "powerfulBuild": true
+    },
+    "favoredClass": "Bárbaro",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Leal Neutral. Los goliath valoran la competencia justa y siguen códigos de honor estrictos.",
+    "advantageousClasses": ["Bárbaro", "Guerrero", "Explorador"],
+    "source": {
+      "book": "Races of Stone",
+      "page": 56
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "raptoran",
+    "name": "Raptoran",
+    "slug": "raptoran",
+    "shortDescription": "Humanoides aviares con alas, los raptoran son guerreros tribales del cielo.",
+    "description": "Los raptoran son humanoides delgados y ágiles con grandes alas emplumadas que les permiten planear y eventualmente volar. Son generalmente más delgados y ligeramente más altos que los humanos. Viven en pequeñas tribus en acantilados y montañas altas. Los raptoran son guerreros dedicados que protegen sus territorios ferozmente. Desarrollan sus habilidades de vuelo gradualmente: comienzan planeando y eventualmente dominan el vuelo verdadero. Sus alas son poderosas y sus ligamentos pueden rigidizarse para amortiguar caídas, incluso si están inconscientes.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "dexterity": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Planeo",
+        "description": "Un raptoran puede usar sus alas para planear, negando el daño de una caída de cualquier altura y permitiendo viajar horizontalmente hasta 4 veces la distancia vertical descendida. Los raptoran planean a velocidad de 40 pies (maniobralidad promedio). Incluso si está inconsciente, un raptoran puede planear automáticamente, sufriendo solo 1d6 de daño por caída sin importar la distancia.",
+        "type": "habilidad extraordinaria"
+      },
+      {
+        "name": "Vuelo (5 DG)",
+        "description": "Cuando un raptoran alcanza 5 Dados de Golpe en cualquier combinación de clases, sus alas se fortalecen lo suficiente para volar a 40 pies (maniobralidad promedio). Un raptoran no puede volar mientras lleva una carga media o pesada o mientras esté fatigado o exhausto.",
+        "type": "habilidad extraordinaria"
+      },
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los raptoran pueden ver el doble de lejos que un humano en condiciones de poca luz. En estas condiciones, pueden distinguir colores y detalles con la misma claridad que con luz del día.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +2 a Avistar",
+        "description": "Los raptoran tienen vista de águila, otorgándoles un bonificador racial de +2 a las pruebas de Avistar.",
+        "type": "bonificador"
+      },
+      {
+        "name": "Garras",
+        "description": "Los raptoran tienen garras en sus pies que pueden usar como armas naturales, infligiendo 1d4 de daño en un ataque con garra.",
+        "type": "arma natural"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Tuilvilanuue"],
+      "bonus": ["Dracónico", "Élfico", "Gnomo", "Goblin", "Orco", "Silvano"]
+    },
+    "specialAbilities": {
+      "lowLightVision": true,
+      "gliding": true,
+      "flightAt5HD": true,
+      "bonusSkills": [
+        { "skill": "Avistar", "bonus": 2 }
+      ]
+    },
+    "favoredClass": "Explorador",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Neutral. Los raptoran valoran la libertad y la vida tribal.",
+    "advantageousClasses": ["Explorador", "Guerrero", "Bárbaro"],
+    "source": {
+      "book": "Races of the Wild",
+      "page": 68
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "killoren",
+    "name": "Killoren",
+    "slug": "killoren",
+    "shortDescription": "Encarnaciones feéricas de la naturaleza, los killoren cambian sus aspectos con las estaciones.",
+    "description": "Los killoren son una raza feérica recién surgida, manifestaciones agresivas y ambiciosas de la presencia y el poder de la naturaleza. Se parecen a los semielfos, midiendo alrededor de 5 pies y medio de altura, con piel verde o tostada con la textura de una hoja joven y suave, y extremidades inusualmente largas y delgadas. El color del cabello y los ojos de un killoren individual depende del aspecto de la naturaleza que esté manifestando actualmente. Maduran rápidamente (adultos a los 10 años) pero viven vidas muy largas, apenas cambiando en apariencia durante su primer siglo. Los killoren pueden cambiar entre tres aspectos de la naturaleza, adaptándose a diferentes situaciones.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Fey",
+    "abilityModifiers": {
+      "dexterity": 2,
+      "constitution": -2
+    },
+    "racialTraits": [
+      {
+        "name": "Tipo Fey",
+        "description": "Los killoren son del tipo fey y por lo tanto no son afectados por hechizos como encantar persona y retener persona. A diferencia de otros fey, los killoren ganan Dados de Golpe solo adquiriendo niveles en una clase de personaje.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los killoren pueden ver el doble de lejos que un humano en condiciones de poca luz. En estas condiciones, pueden distinguir colores y detalles con la misma claridad que con luz del día.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Manifestar el Poder de la Naturaleza",
+        "description": "Cada mañana al amanecer, un killoren medita durante 10 minutos y elige uno de tres aspectos que manifestará hasta la mañana siguiente.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Aspecto del Ancestro",
+        "description": "El killoren gana bonificador racial en pruebas de Conocimiento (naturaleza) igual a sus DG y +2 adicional a salvaciones contra encantamientos. Cabello blanco y ojos azul cielo.",
+        "type": "aspecto"
+      },
+      {
+        "name": "Aspecto del Destructor",
+        "description": "Una vez por hora (hasta máximo igual a bonificador de Carisma al día, mínimo 1), puede hacer ataque de castigo especial que añade bonificador de Carisma al ataque e inflige 1 punto de daño extra por DG. Solo contra aberraciones, constructos, humanoides, cienos, forasteros y no-muertos. Cabello y ojos negro intenso.",
+        "type": "aspecto"
+      },
+      {
+        "name": "Aspecto del Cazador",
+        "description": "Gana bonificador racial +2 en Esconderse, Escuchar, Moverse Sigilosamente y Avistar, y +2 en iniciativa. Cabello y ojos verde bosque profundo.",
+        "type": "aspecto"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Silvano"],
+      "bonus": ["Dracónico", "Élfico", "Gnomo", "Goblin", "Halfling"]
+    },
+    "specialAbilities": {
+      "lowLightVision": true,
+      "manifestNature": true,
+      "feyType": true
+    },
+    "favoredClass": "Druida",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Neutral. Los killoren encarnan las fuerzas naturales, más allá del bien y el mal.",
+    "advantageousClasses": ["Druida", "Explorador", "Bárbaro"],
+    "source": {
+      "book": "Races of the Wild",
+      "page": 102
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "illumian",
+    "name": "Illumian",
+    "slug": "illumian",
+    "shortDescription": "Humanos transformados por el lenguaje mágico, con símbolos luminosos orbitando sus cabezas.",
+    "description": "Los illumian son humanos transformados, delgados y de piel pálida con uno o más símbolos de luz mística flotando en órbita perpetua alrededor de sus cabezas. Son la encarnación física de un lenguaje mágico y han formado una sociedad secreta dedicada al conocimiento arcano. Los símbolos de poder (power sigils) que orbitan sus cabezas definen sus habilidades y se combinan para formar palabras de poder a medida que avanzan en niveles. Los illumian son criaturas de conocimiento y ambición, frecuentemente multiclas y adaptables.",
+    "size": "Mediano",
+    "speed": 30,
+    "type": "Humanoide",
+    "abilityModifiers": {},
+    "racialTraits": [
+      {
+        "name": "Símbolos luminosos",
+        "description": "Los símbolos que orbitan la cabeza de un illumian brillan suavemente, proporcionando iluminación igual a una vela. Los illumian pueden hacer desaparecer sus símbolos concentrándose un momento (acción estándar), pero no reciben los beneficios de los símbolos mientras estén apagados.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Símbolos de poder",
+        "description": "Un illumian de 1er nivel tiene un único símbolo de poder brillante que le otorga bonificadores a habilidades específicas. Al alcanzar 2do nivel en cualquier clase, obtiene otro símbolo. Dos símbolos se combinan en una palabra de poder con efectos especiales.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Resonancia glífica",
+        "description": "Los illumian interactúan extrañamente con hechizos basados en símbolos (glifo de custodia, símbolo, etc.). Tienen penalizador racial -4 en salvaciones contra estos efectos si su nivel es menor al nivel de lanzador del hechizo. Si el nivel del illumian iguala o excede el nivel de lanzador, es inmune al efecto.",
+        "type": "habilidad extraordinaria"
+      },
+      {
+        "name": "Idiomas bonus",
+        "description": "Los illumian comienzan el juego hablando Común e Illumian, más un idioma adicional por cada punto de bonificador de Inteligencia (sin restricción).",
+        "type": "bonificador"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Illumian"],
+      "bonus": ["Cualquiera (excepto lenguajes secretos)"]
+    },
+    "specialAbilities": {
+      "luminousSigils": true,
+      "powerSigils": true,
+      "glyphicResonance": true
+    },
+    "favoredClass": "Cualquiera",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Neutral. Los illumian valoran el conocimiento por encima del bien o el mal.",
+    "advantageousClasses": ["Mago", "Hechicero", "Cualquier multiclase"],
+    "source": {
+      "book": "Races of Destiny",
+      "page": 164
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "whisper-gnome",
+    "name": "Gnomo Susurrante",
+    "slug": "whisper-gnome",
+    "shortDescription": "Gnomos sigilosos y diminutos, maestros del sigilo y el silencio.",
+    "description": "Los gnomos susurrantes son una subraza de gnomos especialmente adaptada para el sigilo y la supervivencia en ambientes peligrosos. Son aún más pequeños y delgados que los gnomos comunes, con piel que va del gris oscuro al marrón tierra. Poseen una habilidad sobrenatural para moverse en completo silencio y pueden proyectar un campo de silencio a su alrededor. A diferencia de otros gnomos, tienen tanto visión en la penumbra como visión en la oscuridad. Son criaturas tímidas y cautelosas que prefieren observar desde las sombras.",
+    "size": "Pequeño",
+    "speed": 20,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "dexterity": 2,
+      "constitution": 2,
+      "strength": -2,
+      "charisma": -2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la oscuridad",
+        "description": "Los gnomos susurrantes pueden ver en la oscuridad hasta 60 pies. La visión en la oscuridad es en blanco y negro, pero por lo demás es como la vista normal.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los gnomos susurrantes pueden ver el doble de lejos que un humano en condiciones de poca luz.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +4 a Esconderse y Moverse Sigilosamente",
+        "description": "Los gnomos susurrantes tienen una habilidad innata para el sigilo, otorgándoles un bonificador racial de +4 a las pruebas de Esconderse y Moverse Sigilosamente (además del bonificador por tamaño).",
+        "type": "bonificador"
+      },
+      {
+        "name": "Habilidad sortílega: Silencio",
+        "description": "Un gnomo susurrante puede usar silencio una vez al día como habilidad sortílega (nivel de lanzador igual al nivel del personaje). El silencio se centra en el gnomo y se mueve con él.",
+        "type": "habilidad sobrenatural"
+      },
+      {
+        "name": "Bonificador de tamaño +4 a Esconderse",
+        "description": "Como criatura Pequeña, un gnomo susurrante recibe un bonificador de tamaño +4 adicional a Esconderse (total +8 con bonificador racial).",
+        "type": "bonificador"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Gnomo"],
+      "bonus": ["Dracónico", "Enano", "Élfico", "Gigante", "Goblin", "Terran"]
+    },
+    "specialAbilities": {
+      "darkvision": 60,
+      "lowLightVision": true,
+      "bonusSkills": [
+        { "skill": "Esconderse", "bonus": 8 },
+        { "skill": "Moverse Sigilosamente", "bonus": 4 }
+      ],
+      "spellLikeAbilities": [
+        "Silencio 1/día"
+      ]
+    },
+    "favoredClass": "Pícaro",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Neutral Bueno. Los gnomos susurrantes son generalmente buenos pero valoran la supervivencia.",
+    "advantageousClasses": ["Pícaro", "Explorador", "Ninja"],
+    "source": {
+      "book": "Races of Stone",
+      "page": 94
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "centaur",
+    "name": "Centauro",
+    "slug": "centaur",
+    "shortDescription": "Mitad humano, mitad caballo, los centauros son guerreros y rastreadores formidables.",
+    "description": "Los centauros son criaturas con el torso, brazos y cabeza de un humano unidos al cuerpo de un caballo de gran tamaño. Son criaturas orgullosas de las tierras salvajes, viviendo en manadas nómadas que patrullan vastas praderas y bosques. Los centauros son excelentes arqueros y rastreadores, capaces de correr grandes distancias sin cansarse. Su naturaleza salvaje y su tamaño los hacen inadecuados para la vida en ciudades, prefiriendo los espacios abiertos. Son guerreros honrados pero fieramente independientes.",
+    "size": "Grande",
+    "speed": 50,
+    "type": "Humanoide Monstruoso",
+    "abilityModifiers": {
+      "strength": 8,
+      "dexterity": 4,
+      "constitution": 4,
+      "intelligence": -2,
+      "wisdom": 2,
+      "charisma": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los centauros pueden ver el doble de lejos que un humano en condiciones de poca luz.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Patas con cascos",
+        "description": "Los centauros pueden atacar con sus cascos como armas secundarias, infligiendo 1d6 de daño cada uno.",
+        "type": "arma natural"
+      },
+      {
+        "name": "Tamaño Grande",
+        "description": "Como criaturas Grandes, los centauros sufren -1 de penalizador a CA y a ataques, pero ganan +4 en pruebas de presa. Su espacio es de 10 pies y su alcance de 5 pies.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Dados de Golpe raciales",
+        "description": "Un centauro tiene 4 Dados de Golpe de Humanoide Monstruoso (d8), otorgando 4d8 DG, BAB +4, y salvaciones base Fortaleza +1, Reflejos +4, Voluntad +4.",
+        "type": "habilidad especial"
+      }
+    ],
+    "languages": {
+      "automatic": ["Silvano", "Élfico"],
+      "bonus": ["Común", "Gnomo", "Goblin"]
+    },
+    "specialAbilities": {
+      "lowLightVision": true,
+      "naturalWeapons": ["Cascos (1d6)"]
+    },
+    "favoredClass": "Explorador",
+    "levelAdjustment": 2,
+    "typicalAlignment": "Neutral Bueno. Los centauros respetan la naturaleza y valoran la libertad.",
+    "advantageousClasses": ["Explorador", "Bárbaro", "Guerrero"],
+    "source": {
+      "book": "Races of the Wild",
+      "page": 123
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  },
+  {
+    "id": "catfolk",
+    "name": "Felino (Catfolk)",
+    "slug": "catfolk",
+    "shortDescription": "Humanoides felinos ágiles, curiosos y nocturnos.",
+    "description": "Los catfolk son humanoides felinos ágiles y gráciles con cabezas de gato y colas largas. Su pelaje varía en color y patrón, similar a los grandes felinos. Son curiosos por naturaleza y excelentes trepadores y cazadores nocturnos. Los catfolk viven en pequeñas comunidades tribales y valoran la independencia y la destreza. Son criaturas sociales con sus propios clanes pero pueden ser desconfiados con extraños. Su agilidad y sentidos agudos los hacen excelentes exploradores y pícaros.",
+    "size": "Mediano",
+    "speed": 40,
+    "type": "Humanoide",
+    "abilityModifiers": {
+      "dexterity": 2
+    },
+    "racialTraits": [
+      {
+        "name": "Visión en la penumbra",
+        "description": "Los catfolk pueden ver el doble de lejos que un humano en condiciones de poca luz.",
+        "type": "habilidad especial"
+      },
+      {
+        "name": "Bonificador +2 a Equilibrio, Trepar y Moverse Sigilosamente",
+        "description": "Los catfolk son naturalmente ágiles y sigilosos, otorgándoles un bonificador racial de +2 a las pruebas de Equilibrio, Trepar y Moverse Sigilosamente.",
+        "type": "bonificador"
+      },
+      {
+        "name": "Trepar",
+        "description": "Los catfolk tienen velocidad de trepar de 20 pies y pueden usar su modificador de Destreza en lugar de Fuerza para pruebas de Trepar.",
+        "type": "habilidad especial"
+      }
+    ],
+    "languages": {
+      "automatic": ["Común", "Felino"],
+      "bonus": ["Dracónico", "Élfico", "Gnoll", "Gnomo", "Goblin", "Halfling", "Silvano"]
+    },
+    "specialAbilities": {
+      "lowLightVision": true,
+      "climbSpeed": 20,
+      "bonusSkills": [
+        { "skill": "Equilibrio", "bonus": 2 },
+        { "skill": "Trepar", "bonus": 2 },
+        { "skill": "Moverse Sigilosamente", "bonus": 2 }
+      ]
+    },
+    "favoredClass": "Explorador",
+    "levelAdjustment": 0,
+    "typicalAlignment": "Caótico Neutral. Los catfolk valoran la independencia y la curiosidad.",
+    "advantageousClasses": ["Explorador", "Pícaro", "Bárbaro"],
+    "source": {
+      "book": "Races of the Wild",
+      "page": 127
+    },
+    "requiresDMApproval": true,
+    "supplementalRace": true
+  }
+]

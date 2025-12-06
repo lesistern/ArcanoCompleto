@@ -1,0 +1,2 @@
+Found '1st' at index 3746
+Context: '1st Level:** (6 + Int modifier) × 4.\n**Skill Point'

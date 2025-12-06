@@ -8,8 +8,10 @@ export interface UserProfile {
   id: string;
   tier_code: string;
   display_name: string | null;
+  username?: string | null;
   avatar_url: string | null;
   bio: string | null;
+  theme?: string | null;
   preferred_language: string;
   translations_submitted: number;
   translations_approved: number;
@@ -17,6 +19,10 @@ export interface UserProfile {
   reputation_points: number;
   created_at: string;
   updated_at: string;
+  role?: string | null;
+  is_admin?: boolean | null;
+  experience_level?: 'novato' | 'intermedio' | 'experto';
+  preferred_system?: string;
 }
 
 export interface UserTier {

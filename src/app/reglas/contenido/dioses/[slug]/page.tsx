@@ -6,9 +6,12 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Sparkles, Sword, Shield, Skull, Crown, ArrowLeft, Book, Users, Home, Scroll, Info } from 'lucide-react';
-import { ALIGNMENT_CONFIG } from '@/lib/data/alignments';
+import { ALIGNMENT_CONFIG, getAlignmentImageGlow } from '@/lib/data/alignments';
 import { DEITY_RANK_CONFIG } from '@/lib/data/deity-ranks';
 import { getDeityImageUrl, hasDeityImage } from '@/lib/data/deity-images';
+import { DeityDebugInfo } from './debug';
+import { FormattedText } from '@/components/FormattedText';
+import type { CSSProperties } from 'react';
 
 interface Deity {
     slug: string;
@@ -28,19 +31,24 @@ interface Deity {
     temples_es?: string;
     rites_es?: string;
     herald_allies_es?: string;
+    image_url?: string | null;
 }
 
 
-function InfoCard({ title, icon: Icon, children }: { title: string; icon: any; children: React.ReactNode }) {
+function InfoCard({ title, icon: Icon, children, formatted = false }: { title: string; icon: any; children: React.ReactNode; formatted?: boolean }) {
     return (
         <div className="bg-gradient-to-br from-dungeon-800/90 to-dungeon-900/90 rounded-lg border border-dungeon-700 p-6">
             <div className="flex items-center gap-2 mb-4">
                 <Icon className="w-5 h-5 text-gold-400" />
                 <h3 className="text-lg font-semibold text-gold-400 font-cinzel">{title}</h3>
             </div>
-            <div className="text-dungeon-200 space-y-2">
-                {children}
-            </div>
+            {formatted ? (
+                <FormattedText text={typeof children === 'string' ? children : ''} className="text-dungeon-200" />
+            ) : (
+                <div className="text-dungeon-200 space-y-2">
+                    {children}
+                </div>
+            )}
         </div>
     );
 }
@@ -60,7 +68,7 @@ export default function DeityDetailPage() {
         async function fetchDeity() {
             const { data, error } = await supabase
                 .from('deities')
-                .select('*')
+                .select('slug, name_es, rank, titles_es, portfolio_es, alignment, domains, favored_weapon, symbol_es, worshipers_es, home_plane_es, description_es, teachings_es, clergy_es, temples_es, rites_es, herald_allies_es, image_url')
                 .eq('slug', slug)
                 .single();
 
@@ -100,9 +108,11 @@ export default function DeityDetailPage() {
 
     const rankConfig = DEITY_RANK_CONFIG[deity.rank];
     const RankIcon = rankConfig?.icon || Shield;
+    const alignmentGlow = getAlignmentImageGlow(deity.alignment);
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-dungeon-950 via-dungeon-900 to-dungeon-950">
+            <DeityDebugInfo slug={slug} />
             {/* Header */}
             <div className="relative overflow-hidden border-b border-gold-500/20 bg-gradient-to-r from-dungeon-900 via-dungeon-800 to-dungeon-900">
                 <div className="absolute inset-0 bg-[url('/images/texture.png')] opacity-5"></div>
@@ -115,13 +125,38 @@ export default function DeityDetailPage() {
                         Volver a dioses
                     </Link>
 
-                    <div className="flex items-start gap-6 justify-between">
-                        <div className="flex items-start gap-6">
-                            <div className="flex-shrink-0">
-                                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-500/20 to-gold-600/20 border-2 border-gold-500/50 flex items-center justify-center">
-                                    <RankIcon className="w-10 h-10" style={{ color: rankConfig?.hex || '#FFCE45' }} />
+                    <div className="flex items-stretch gap-6 justify-between">
+                        <div className="flex items-stretch gap-6">
+                            {/* Deity Image as Icon */}
+                            {(deity.image_url || hasDeityImage(deity.slug)) ? (
+                                <div className="flex-shrink-0">
+                                    <div className="relative w-40 h-72 flex-shrink-0 rounded-lg bg-transparent flex items-center justify-center overflow-hidden">
+                                        {/* Glow layer */}
+                                        <div
+                                            className="absolute inset-0 opacity-40 blur-2xl"
+                                            style={{
+                                                background: `radial-gradient(ellipse at center, ${alignmentGlow.from} 0%, ${alignmentGlow.via} 35%, ${alignmentGlow.to} 70%, transparent 100%)`
+                                            } as CSSProperties}
+                                        />
+                                        {/* Image */}
+                                        <Image
+                                            src={deity.image_url || getDeityImageUrl(deity.slug) || ''}
+                                            alt={deity.name_es}
+                                            width={160}
+                                            height={300}
+                                            className="object-contain p-2 relative z-10 drop-shadow-2xl"
+                                            sizes="160px"
+                                            priority
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="flex-shrink-0">
+                                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-500/20 to-gold-600/20 border-2 border-gold-500/50 flex items-center justify-center">
+                                        <RankIcon className="w-10 h-10" style={{ color: rankConfig?.hex || '#FFCE45' }} />
+                                    </div>
+                                </div>
+                            )}
 
                             <div className="flex-1">
                                 <h1 className="text-5xl font-bold text-gold-400 font-cinzel mb-2">
@@ -133,22 +168,20 @@ export default function DeityDetailPage() {
 
                                 <div className="flex flex-wrap gap-2">
                                     <span
-                                        className={`px-3 py-1.5 rounded-lg border bg-dungeon-900/50 cursor-help transition-all hover:shadow-lg`}
+                                        className={`px-3 py-1.5 rounded-lg border bg-dungeon-900/50 cursor-help `}
                                         style={{
                                             color: rankConfig?.hex || '#B8BBC2',
-                                            borderColor: `${rankConfig?.hex || '#B8BBC2'}80`,
-                                            boxShadow: `0 0 12px ${rankConfig?.hex || '#B8BBC2'}40`
+                                            borderColor: `${rankConfig?.hex || '#B8BBC2'}80`
                                         }}
                                         title={rankConfig?.justification || 'Rango desconocido'}
                                     >
                                         {rankConfig?.label || deity.rank}
                                     </span>
                                     <span
-                                        className={`px-3 py-1.5 rounded-lg border bg-dungeon-900/50 cursor-help transition-all hover:shadow-lg`}
+                                        className={`px-3 py-1.5 rounded-lg border bg-dungeon-900/50 cursor-help `}
                                         style={{
                                             color: ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2',
-                                            borderColor: `${ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2'}80`,
-                                            boxShadow: `0 0 12px ${ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2'}40`
+                                            borderColor: `${ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2'}80`
                                         }}
                                         title={ALIGNMENT_CONFIG[deity.alignment]?.description || 'Alineamiento desconocido'}
                                     >
@@ -157,22 +190,6 @@ export default function DeityDetailPage() {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Deity Image */}
-                        {hasDeityImage(deity.slug) && (
-                            <div className="flex-shrink-0 hidden md:block">
-                                <div className="relative w-40 h-40 rounded-lg border-2 border-gold-500/30 bg-gradient-to-br from-gold-500/10 to-gold-600/10 overflow-hidden shadow-lg hover:shadow-xl hover:border-gold-500/50 transition-all duration-300">
-                                    <Image
-                                        src={getDeityImageUrl(deity.slug) || ''}
-                                        alt={deity.name_es}
-                                        fill
-                                        className="object-contain p-2"
-                                        sizes="160px"
-                                        priority
-                                    />
-                                </div>
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
@@ -180,78 +197,43 @@ export default function DeityDetailPage() {
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-6">
-                        {/* Alignment Info Card */}
-                        {ALIGNMENT_CONFIG[deity.alignment] && (
-                            <div
-                                className="rounded-lg border p-6 bg-dungeon-900/30"
-                                style={{
-                                    borderColor: `${ALIGNMENT_CONFIG[deity.alignment].hex}80`,
-                                    boxShadow: `inset 0 0 20px ${ALIGNMENT_CONFIG[deity.alignment].hex}10`
-                                }}
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div
-                                        className="p-3 rounded-lg flex-shrink-0"
-                                        style={{
-                                            backgroundColor: `${ALIGNMENT_CONFIG[deity.alignment].hex}20`,
-                                            borderLeft: `4px solid ${ALIGNMENT_CONFIG[deity.alignment].hex}`
-                                        }}
-                                    >
-                                        <Info
-                                            className="w-5 h-5"
-                                            style={{ color: ALIGNMENT_CONFIG[deity.alignment].hex }}
-                                        />
-                                    </div>
-                                    <div className="flex-1">
-                                        <h3 className="font-semibold mb-2" style={{ color: ALIGNMENT_CONFIG[deity.alignment].hex }}>
-                                            Alineamiento: {ALIGNMENT_CONFIG[deity.alignment].label}
-                                        </h3>
-                                        <p className="text-sm text-dungeon-300">
-                                            {ALIGNMENT_CONFIG[deity.alignment].description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Description */}
-                        <InfoCard title="Descripción" icon={Book}>
-                            <p className="text-dungeon-200 leading-relaxed">{deity.description_es}</p>
+                    <div className="lg:col-span-2 space-y-6">{/* Description */}
+                        <InfoCard title="Descripción" icon={Book} formatted={true}>
+                            {deity.description_es}
                         </InfoCard>
 
                         {/* Teachings */}
                         {deity.teachings_es && (
-                            <InfoCard title="Enseñanzas" icon={Scroll}>
-                                <p className="text-dungeon-200 leading-relaxed">{deity.teachings_es}</p>
+                            <InfoCard title="Enseñanzas" icon={Scroll} formatted={true}>
+                                {deity.teachings_es}
                             </InfoCard>
                         )}
 
                         {/* Clergy */}
                         {deity.clergy_es && (
-                            <InfoCard title="Clero" icon={Users}>
-                                <p className="text-dungeon-200 leading-relaxed">{deity.clergy_es}</p>
+                            <InfoCard title="Clero" icon={Users} formatted={true}>
+                                {deity.clergy_es}
                             </InfoCard>
                         )}
 
                         {/* Temples */}
                         {deity.temples_es && (
-                            <InfoCard title="Templos" icon={Home}>
-                                <p className="text-dungeon-200 leading-relaxed">{deity.temples_es}</p>
+                            <InfoCard title="Templos" icon={Home} formatted={true}>
+                                {deity.temples_es}
                             </InfoCard>
                         )}
 
                         {/* Rites */}
                         {deity.rites_es && (
-                            <InfoCard title="Ritos" icon={Sparkles}>
-                                <p className="text-dungeon-200 leading-relaxed">{deity.rites_es}</p>
+                            <InfoCard title="Ritos" icon={Sparkles} formatted={true}>
+                                {deity.rites_es}
                             </InfoCard>
                         )}
 
                         {/* Herald & Allies */}
                         {deity.herald_allies_es && (
-                            <InfoCard title="Heraldos y Aliados Planares" icon={Shield}>
-                                <p className="text-dungeon-200 leading-relaxed">{deity.herald_allies_es}</p>
+                            <InfoCard title="Heraldos y Aliados Planares" icon={Shield} formatted={true}>
+                                {deity.herald_allies_es}
                             </InfoCard>
                         )}
                     </div>

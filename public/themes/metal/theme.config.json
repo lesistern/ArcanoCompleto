@@ -1,0 +1,12 @@
+{
+    "systemName": "metal",
+    "name": "Burnished Steel",
+    "diceColor": "#7f8c8d",
+    "labelColor": "#000000",
+    "material": {
+        "type": "phong",
+        "specular": 16777215,
+        "shininess": 300,
+        "shading": 2
+    }
+}

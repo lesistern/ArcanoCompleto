@@ -1,0 +1,2276 @@
+{
+  "books": [
+    {
+      "slug": "cityscape",
+      "name": "Cityscape",
+      "filename": "Cityscape.pdf",
+      "toc_count": 8,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Prelude",
+          "page": 5
+        },
+        {
+          "title": "Introduction",
+          "page": 7
+        },
+        {
+          "title": "Chapter 1 - The Scope of the City",
+          "page": 8
+        },
+        {
+          "title": "Chapter 2 - The Urban Adventurer",
+          "page": 50
+        },
+        {
+          "title": "Chapter 3 - Politics and Power",
+          "page": 70
+        },
+        {
+          "title": "Chapter 4 - Events and Encounters",
+          "page": 110
+        },
+        {
+          "title": "Chapter 5 - Running the City",
+          "page": 142
+        }
+      ]
+    },
+    {
+      "slug": "complete-adventurer",
+      "name": "Complete Adventurer",
+      "filename": "Complete Adventurer.pdf",
+      "toc_count": 613,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Classes",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Prestige Classes",
+          "page": 21
+        },
+        {
+          "title": "Chapter 3: Skills and Feats",
+          "page": 95
+        },
+        {
+          "title": "Chapter 4: Tools and Equipment",
+          "page": 115
+        },
+        {
+          "title": "Chapter 5: Spells",
+          "page": 137
+        },
+        {
+          "title": "Chapter 6: Organizations",
+          "page": 159
+        },
+        {
+          "title": "Appendix: The Epic Adventurer",
+          "page": 189
+        },
+        {
+          "title": "Back Cover",
+          "page": 193
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        },
+        {
+          "title": "WE: Secrets of the Fochlucan College",
+          "page": 194
+        }
+      ]
+    },
+    {
+      "slug": "complete-arcane",
+      "name": "Complete Arcane",
+      "filename": "Complete Arcane.pdf",
+      "toc_count": 777,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Classes",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Prestige Classes",
+          "page": 17
+        },
+        {
+          "title": "Chapter 3: Arcane Feats",
+          "page": 71
+        },
+        {
+          "title": "Chapter 4: Spells and Invocations",
+          "page": 85
+        },
+        {
+          "title": "Chapter 5: Magic Items",
+          "page": 137
+        },
+        {
+          "title": "Chapter 6: Arcane Monsters",
+          "page": 151
+        },
+        {
+          "title": "Chapter 7: Arcane Campaigns",
+          "page": 163
+        },
+        {
+          "title": "Appendix",
+          "page": 192
+        },
+        {
+          "title": "WE: Tarth Moorda",
+          "page": 193
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "completechampion",
+      "name": "CompleteChampion",
+      "filename": "CompleteChampion.pdf",
+      "toc_count": 26,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "1 - Religion",
+          "page": 5
+        },
+        {
+          "title": "2 - Divine Character Options",
+          "page": 45
+        },
+        {
+          "title": "3 - New Spells",
+          "page": 113
+        },
+        {
+          "title": "4 - Divine Items",
+          "page": 131
+        },
+        {
+          "title": "5 - Divine Quests & Sites",
+          "page": 145
+        },
+        {
+          "title": "Back Cover",
+          "page": 159
+        }
+      ]
+    },
+    {
+      "slug": "completedivine",
+      "name": "CompleteDivine",
+      "filename": "CompleteDivine.pdf",
+      "toc_count": 717,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Chapter 1: The Devoted",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Prestige Classes",
+          "page": 19
+        },
+        {
+          "title": "Chapter 3: Supplemental Rules",
+          "page": 77
+        },
+        {
+          "title": "Chapter 4: Magic Items",
+          "page": 91
+        },
+        {
+          "title": "Chapter 5: Deities",
+          "page": 107
+        },
+        {
+          "title": "Chapter 6: The Divine World",
+          "page": 125
+        },
+        {
+          "title": "Chapter 7: Domains and Spells",
+          "page": 135
+        },
+        {
+          "title": "Appendix",
+          "page": 191
+        },
+        {
+          "title": "Back Cover",
+          "page": 192
+        },
+        {
+          "title": "We: More Divinity",
+          "page": 193
+        },
+        {
+          "title": "Diagrams:",
+          "page": 1
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "completemage",
+      "name": "CompleteMage",
+      "filename": "CompleteMage.pdf",
+      "toc_count": 667,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Fundamentals",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Character Options",
+          "page": 31
+        },
+        {
+          "title": "Chapter 3: Prestige Classes",
+          "page": 49
+        },
+        {
+          "title": "Chapter 4: Spells and Innvocations",
+          "page": 89
+        },
+        {
+          "title": "Chapter 5: Arcane Items",
+          "page": 125
+        },
+        {
+          "title": "Chapter 6: Arcane Adventures",
+          "page": 137
+        },
+        {
+          "title": "Back Cover",
+          "page": 158
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "completepsionic",
+      "name": "CompletePsionic",
+      "filename": "CompletePsionic.pdf",
+      "toc_count": 838,
+      "chapters": [
+        {
+          "title": "Complete Psionic",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "completescoundrel",
+      "name": "CompleteScoundrel",
+      "filename": "CompleteScoundrel.pdf",
+      "toc_count": 257,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1 - Scoundrels of all Types",
+          "page": 8
+        },
+        {
+          "title": "Chapter 2 - Prestige Classes",
+          "page": 24
+        },
+        {
+          "title": "Chapter 3 - Feats and Skill Tricks",
+          "page": 72
+        },
+        {
+          "title": "Chapter 4 - New Spells",
+          "page": 92
+        },
+        {
+          "title": "Chapter 5 - Scoundrel Equipment",
+          "page": 108
+        },
+        {
+          "title": "Chapter 6 - Scoundrel Adventures",
+          "page": 122
+        }
+      ]
+    },
+    {
+      "slug": "d-d-3-5-manual-del-jugador-espa-ol",
+      "name": "D&D 3.5 - Manual del Jugador español",
+      "filename": "D&D 3.5 - Manual del Jugador español.pdf",
+      "toc_count": 169,
+      "chapters": [
+        {
+          "title": "Índice",
+          "page": 4
+        },
+        {
+          "title": "Dotes",
+          "page": 87
+        },
+        {
+          "title": "Hechicero",
+          "page": 44
+        },
+        {
+          "title": "Armas y herramientas",
+          "page": 117
+        },
+        {
+          "title": "Conjuros 181",
+          "page": 192
+        }
+      ]
+    },
+    {
+      "slug": "deities-and-demigods",
+      "name": "Deities And Demigods",
+      "filename": "Deities And Demigods.pdf",
+      "toc_count": 1031,
+      "chapters": [
+        {
+          "title": "Deities And Demigods",
+          "page": 1
+        },
+        {
+          "title": "wtc881650000.-.deities.and.demigods.-.update.to.3.5.pdf",
+          "page": 225
+        },
+        {
+          "title": "wtc881650000.-.deities.and.demigods.-.we.-.erbin.-.the.beggar.god.pdf",
+          "page": 232
+        }
+      ]
+    },
+    {
+      "slug": "draconomicon",
+      "name": "Draconomicon",
+      "filename": "Draconomicon.pdf",
+      "toc_count": 913,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter 1: All about Dragons",
+          "page": 6
+        },
+        {
+          "title": "Chapter 2: A DM's Guide to Dragons",
+          "page": 58
+        },
+        {
+          "title": "Chapter 3: The Player's Perspective",
+          "page": 102
+        },
+        {
+          "title": "Chapter 4: New Monsters",
+          "page": 146
+        },
+        {
+          "title": "Chapter 5: Sample Dragons",
+          "page": 200
+        },
+        {
+          "title": "Appendix 1: The Dragon's Hoard",
+          "page": 278
+        },
+        {
+          "title": "Appendix 2: Index of Dragons",
+          "page": 287
+        },
+        {
+          "title": "WE: Sventsorggviresh's Volcano Lair",
+          "page": 1
+        },
+        {
+          "title": "WE: Half-Dragons: Twice as Much Fun",
+          "page": 1
+        },
+        {
+          "title": "Back Cover",
+          "page": 290
+        }
+      ]
+    },
+    {
+      "slug": "dragon-magic",
+      "name": "Dragon Magic",
+      "filename": "Dragon Magic.pdf",
+      "toc_count": 593,
+      "chapters": [
+        {
+          "title": "Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "CHAPTER 1: DRAGONBOUND HEROES",
+          "page": 6
+        },
+        {
+          "title": "CHAPTER 2: DRAGON ASPIRANTS",
+          "page": 24
+        },
+        {
+          "title": "CHAPTER 3: DRACONIC MAGIC",
+          "page": 60
+        },
+        {
+          "title": "CHAPTER 4: DRACONIC BEASTS",
+          "page": 108
+        },
+        {
+          "title": "CHAPTER 5: DRACONIC CAMPAIGNS",
+          "page": 132
+        },
+        {
+          "title": "-------------------------------------------------",
+          "page": -1
+        },
+        {
+          "title": "As always: If you like it, buy it.",
+          "page": -1
+        },
+        {
+          "title": "Have fun.... socke",
+          "page": -1
+        },
+        {
+          "title": "P.S. Sorry for the fucked up TOC.",
+          "page": -1
+        },
+        {
+          "title": "I tried everything, but FR doesn't",
+          "page": -1
+        },
+        {
+          "title": "export that page properly",
+          "page": -1
+        },
+        {
+          "title": "-------------------------------------------------",
+          "page": -1
+        }
+      ]
+    },
+    {
+      "slug": "drow-of-the-underdark",
+      "name": "Drow of the Underdark",
+      "filename": "Drow of the Underdark.pdf",
+      "toc_count": 746,
+      "chapters": [
+        {
+          "title": "Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter 1: All about the Drow",
+          "page": 8
+        },
+        {
+          "title": "Chapter 2: Drow Options",
+          "page": 46
+        },
+        {
+          "title": "Chapter 3: Prestige Classes",
+          "page": 65
+        },
+        {
+          "title": "Chapter 4: Drow Equipment",
+          "page": 92
+        },
+        {
+          "title": "Chapter 5: Monsters of the Underdark",
+          "page": 106
+        },
+        {
+          "title": "Chapter 6: Campaigns and Adventures",
+          "page": 151
+        },
+        {
+          "title": "Chapter 7: Erelhei-Cinlu",
+          "page": 192
+        },
+        {
+          "title": "Appendix: For Player Characters",
+          "page": 216
+        }
+      ]
+    },
+    {
+      "slug": "dungeonmastersguide",
+      "name": "DungeonMastersGuide",
+      "filename": "DungeonMastersGuide.pdf",
+      "toc_count": 330,
+      "chapters": [
+        {
+          "title": "Dungeon Master's Guide v 3.5",
+          "page": 1
+        },
+        {
+          "title": "Web Enhancement",
+          "page": 323
+        },
+        {
+          "title": "Back Cover",
+          "page": 322
+        },
+        {
+          "title": "Errata",
+          "page": 334
+        }
+      ]
+    },
+    {
+      "slug": "dungeonmastersguideii",
+      "name": "DungeonMastersGuideII",
+      "filename": "DungeonMastersGuideII.pdf",
+      "toc_count": 870,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Running a Game",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Adventures",
+          "page": 37
+        },
+        {
+          "title": "Chapter 3: The Campaign",
+          "page": 73
+        },
+        {
+          "title": "Chapter 4: Saltmarsh",
+          "page": 119
+        },
+        {
+          "title": "Chapter 5: Nonplayer Characters",
+          "page": 153
+        },
+        {
+          "title": "Chapter 6: Characters",
+          "page": 175
+        },
+        {
+          "title": "Chapter 7: Magic Items",
+          "page": 229
+        },
+        {
+          "title": "Index",
+          "page": 285
+        },
+        {
+          "title": "Back Cover",
+          "page": 286
+        },
+        {
+          "title": "Maps",
+          "page": 1
+        },
+        {
+          "title": "Sidebars",
+          "page": 1
+        },
+        {
+          "title": "Tables",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "dungeonscape",
+      "name": "Dungeonscape",
+      "filename": "Dungeonscape.pdf",
+      "toc_count": 502,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter 1 - The Dungeon As Enemy",
+          "page": 6
+        },
+        {
+          "title": "Chapter 2 - Tools of the Trade",
+          "page": 30
+        },
+        {
+          "title": "Chapter 3 - Character Options",
+          "page": 45
+        },
+        {
+          "title": "Chapter 4 - Dungeon Design",
+          "page": 64
+        },
+        {
+          "title": "Chapter 5 - Dungeon Encounters",
+          "page": 94
+        },
+        {
+          "title": "Chapter 6 - Traps",
+          "page": 118
+        },
+        {
+          "title": "Chapter 7 - Dungeon Features",
+          "page": 142
+        }
+      ]
+    },
+    {
+      "slug": "elder-evils",
+      "name": "Elder Evils",
+      "filename": "Elder Evils.pdf",
+      "toc_count": 11,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1 - Evil Does Not Sleep",
+          "page": 6
+        },
+        {
+          "title": "Chapter 2 - Atropus",
+          "page": 17
+        },
+        {
+          "title": "Chapter 3 - Father Llymic",
+          "page": 33
+        },
+        {
+          "title": "Chapter 4 - The Hulks of Zoretha",
+          "page": 49
+        },
+        {
+          "title": "Chapter 5 - The Leviathan",
+          "page": 65
+        },
+        {
+          "title": "Chapter 6 - Pandorym",
+          "page": 81
+        },
+        {
+          "title": "Chapter 7 - Ragnorra",
+          "page": 97
+        },
+        {
+          "title": "Chapter 8 - Sertrous",
+          "page": 113
+        },
+        {
+          "title": "Chapter 9 - The Worm That Walks",
+          "page": 129
+        },
+        {
+          "title": "Chapter 10 - Zargon",
+          "page": 145
+        }
+      ]
+    },
+    {
+      "slug": "exemplars-of-evil",
+      "name": "Exemplars of Evil",
+      "filename": "Exemplars of Evil.pdf",
+      "toc_count": 13,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter 1 - Great Villains",
+          "page": 6
+        },
+        {
+          "title": "Chapter 2 - Zargath Human-Bane",
+          "page": 34
+        },
+        {
+          "title": "Chapter 3 - The Tolstoffs",
+          "page": 49
+        },
+        {
+          "title": "Chapter 4 - Captain Gnash",
+          "page": 65
+        },
+        {
+          "title": "Chapter 5 - Calais Archwinter",
+          "page": 81
+        },
+        {
+          "title": "Chapter 6 - Emmara Ishandrenn",
+          "page": 97
+        },
+        {
+          "title": "Chapter 7 - Valbryn Morlydd",
+          "page": 111
+        },
+        {
+          "title": "Chapter 8 - Kastya Zurith-Movya",
+          "page": 129
+        },
+        {
+          "title": "Chapter 9 - Borak, Thunder Tyrant",
+          "page": 145
+        },
+        {
+          "title": "Appendix",
+          "page": 159
+        },
+        {
+          "title": "Lawbringer Hemtose",
+          "page": 163
+        }
+      ]
+    },
+    {
+      "slug": "expanded-psionics-handbook",
+      "name": "Expanded Psionics Handbook",
+      "filename": "Expanded Psionics Handbook.pdf",
+      "toc_count": 876,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Races",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Classes",
+          "page": 17
+        },
+        {
+          "title": "Chapter 3: Skills and Feats",
+          "page": 35
+        },
+        {
+          "title": "Chapter 4: Psionics",
+          "page": 53
+        },
+        {
+          "title": "Chapter 5: Powers",
+          "page": 69
+        },
+        {
+          "title": "Chapter 6: Prestige Classes",
+          "page": 141
+        },
+        {
+          "title": "Chapter 7: Psionic Items",
+          "page": 157
+        },
+        {
+          "title": "Chapter 8: Monsters",
+          "page": 183
+        },
+        {
+          "title": "Appendix: Spells and Deities",
+          "page": 219
+        },
+        {
+          "title": "Index",
+          "page": 223
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "fiend-folio",
+      "name": "Fiend Folio",
+      "filename": "Fiend Folio.pdf",
+      "toc_count": 638,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Credits",
+          "page": 2
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "A",
+          "page": 12
+        },
+        {
+          "title": "B",
+          "page": 18
+        },
+        {
+          "title": "C",
+          "page": 25
+        },
+        {
+          "title": "D",
+          "page": 37
+        },
+        {
+          "title": "E",
+          "page": 63
+        },
+        {
+          "title": "F",
+          "page": 68
+        },
+        {
+          "title": "G",
+          "page": 80
+        },
+        {
+          "title": "H",
+          "page": 89
+        },
+        {
+          "title": "I",
+          "page": 97
+        },
+        {
+          "title": "J",
+          "page": 105
+        },
+        {
+          "title": "K",
+          "page": 108
+        }
+      ]
+    },
+    {
+      "slug": "fiendish-codex-i-hordes-of-the-abyss",
+      "name": "Fiendish Codex I - Hordes of the Abyss",
+      "filename": "Fiendish Codex I - Hordes of the Abyss.pdf",
+      "toc_count": 566,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Demonic Lore",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Demons",
+          "page": 27
+        },
+        {
+          "title": "Chapter 3: Demon Lords",
+          "page": 57
+        },
+        {
+          "title": "Chapter 4: Trafficking with Demons",
+          "page": 81
+        },
+        {
+          "title": "Chapter 5: Into the Abyss",
+          "page": 105
+        },
+        {
+          "title": "Appendix I: Lords of the Abyss",
+          "page": 155
+        },
+        {
+          "title": "Appendix II: Layers of the Abyss",
+          "page": 156
+        },
+        {
+          "title": "Appendix III: Index of Demons",
+          "page": 157
+        },
+        {
+          "title": "Back Cover",
+          "page": 158
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "fiendish-codex-ii-tyrants-of-the-nine-hells",
+      "name": "Fiendish Codex II - Tyrants of the Nine Hells",
+      "filename": "Fiendish Codex II - Tyrants of the Nine Hells.pdf",
+      "toc_count": 930,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Preface: The Pact Primeval",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 6
+        },
+        {
+          "title": "Chapter 1: All about Devils",
+          "page": 7
+        },
+        {
+          "title": "Chapter 2: The Nine Hells",
+          "page": 33
+        },
+        {
+          "title": "Chapter 3: Game Rules",
+          "page": 77
+        },
+        {
+          "title": "Chapter 4: Devils",
+          "page": 107
+        },
+        {
+          "title": "Chapter 5: The Lords of the Nine",
+          "page": 141
+        },
+        {
+          "title": "Appendix",
+          "page": 158
+        },
+        {
+          "title": "Back Cover",
+          "page": 183
+        },
+        {
+          "title": "WE: Fiendish Aspects II",
+          "page": 159
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "frostburn",
+      "name": "Frostburn",
+      "filename": "Frostburn.pdf",
+      "toc_count": 930,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: The Frostfell",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Races, Classes, and Feats",
+          "page": 31
+        },
+        {
+          "title": "Chapter 3: Prestige Classes",
+          "page": 51
+        },
+        {
+          "title": "Chapter 4: Equipment",
+          "page": 75
+        },
+        {
+          "title": "Chapter 5: Magic of the Frostfell",
+          "page": 83
+        },
+        {
+          "title": "Chapter 6: Monsters of the Frostfell",
+          "page": 113
+        },
+        {
+          "title": "Chapter 7: Adventure Sites",
+          "page": 167
+        },
+        {
+          "title": "Appendix: Encounter Tables",
+          "page": 199
+        },
+        {
+          "title": "Maps",
+          "page": 1
+        },
+        {
+          "title": "Sidebars",
+          "page": 1
+        },
+        {
+          "title": "Tables",
+          "page": 1
+        },
+        {
+          "title": "WE - Curse of the Rusty Walrus",
+          "page": 225
+        }
+      ]
+    },
+    {
+      "slug": "heroes-of-horror",
+      "name": "Heroes of Horror",
+      "filename": "Heroes of Horror.pdf",
+      "toc_count": 566,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Content",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Dread Encounters",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Dread Adventures",
+          "page": 21
+        },
+        {
+          "title": "Chapter 3: A Horror Campaign",
+          "page": 39
+        },
+        {
+          "title": "Chapter 4: Rules of Horror",
+          "page": 59
+        },
+        {
+          "title": "Chapter 5: Heroes and Antiheroes",
+          "page": 81
+        },
+        {
+          "title": "Chapter 6: Creatures of the Night",
+          "page": 135
+        },
+        {
+          "title": "Back Cover",
+          "page": 158
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Optional Rule:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables:",
+          "page": 1
+        },
+        {
+          "title": "Variant:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "heroesbattle",
+      "name": "HeroesBattle",
+      "filename": "HeroesBattle.pdf",
+      "toc_count": 1,
+      "chapters": [
+        {
+          "title": "Web Enhancement: Theaters of Death",
+          "page": 159
+        }
+      ]
+    },
+    {
+      "slug": "libris-mortis",
+      "name": "Libris Mortis",
+      "filename": "Libris Mortis.pdf",
+      "toc_count": 874,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: All about Undead",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Character Options",
+          "page": 23
+        },
+        {
+          "title": "Chapter 3: Prestige Classes",
+          "page": 41
+        },
+        {
+          "title": "Chapter 4: Spells",
+          "page": 59
+        },
+        {
+          "title": "Chapter 5: Equipment",
+          "page": 73
+        },
+        {
+          "title": "Chapter 6: New Monsters",
+          "page": 81
+        },
+        {
+          "title": "Chapter 7: Undead in the Campaign",
+          "page": 133
+        },
+        {
+          "title": "WE: Tarus's Banquet",
+          "page": 191
+        },
+        {
+          "title": "Back Cover",
+          "page": 207
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        },
+        {
+          "title": "Tables",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "lords-of-madness",
+      "name": "Lords of Madness",
+      "filename": "Lords of Madness.pdf",
+      "toc_count": 738,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: What is an Aberration?",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: The Deep Masters",
+          "page": 15
+        },
+        {
+          "title": "Chapter 3: The Eye Tyrants",
+          "page": 37
+        },
+        {
+          "title": "Chapter 4: The Mind Flayers",
+          "page": 61
+        },
+        {
+          "title": "Chapter 5: The Slave Takers",
+          "page": 89
+        },
+        {
+          "title": "Chapter 6: The Eaters",
+          "page": 107
+        },
+        {
+          "title": "Chapter 7: The Weavers of Flesh",
+          "page": 121
+        },
+        {
+          "title": "Chapter 8: New Monsters",
+          "page": 135
+        },
+        {
+          "title": "Chapter 9: The Aberration Hunter",
+          "page": 173
+        },
+        {
+          "title": "WE: The Flow of Fresh Brains",
+          "page": 223
+        },
+        {
+          "title": "Back Cover",
+          "page": 235
+        },
+        {
+          "title": "Diagrams:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "magic-item-compendium",
+      "name": "Magic Item Compendium",
+      "filename": "Magic Item Compendium.pdf",
+      "toc_count": 9,
+      "chapters": [
+        {
+          "title": "Table of Contents / Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1 - Armor",
+          "page": 6
+        },
+        {
+          "title": "Chapter 2 - Weapons",
+          "page": 28
+        },
+        {
+          "title": "Chapter 3 - Clothing",
+          "page": 68
+        },
+        {
+          "title": "Chapter 4 - Tools",
+          "page": 150
+        },
+        {
+          "title": "Chapter 5 - Magic Item Sets",
+          "page": 192
+        },
+        {
+          "title": "Chapter 6 - Using Magic Items",
+          "page": 218
+        },
+        {
+          "title": "Appendix 1 - Magic Items By Price",
+          "page": 236
+        },
+        {
+          "title": "Appendix 2 - Random Treasure",
+          "page": 266
+        }
+      ]
+    },
+    {
+      "slug": "manual-of-the-planes",
+      "name": "Manual Of The Planes",
+      "filename": "Manual Of The Planes.pdf",
+      "toc_count": 1013,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Nature of the Planes",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Connecting the Planes",
+          "page": 15
+        },
+        {
+          "title": "Chapter 3: Characters and Magic",
+          "page": 23
+        },
+        {
+          "title": "Chapter 4: The Material Plane",
+          "page": 41
+        },
+        {
+          "title": "Chapter 5: The Transitive Planes",
+          "page": 45
+        },
+        {
+          "title": "Chapter 6: The Inner Planes",
+          "page": 65
+        },
+        {
+          "title": "Chapter 7: The Outer Planes",
+          "page": 85
+        },
+        {
+          "title": "Chapter 8: Demiplanes",
+          "page": 153
+        },
+        {
+          "title": "Chapter 9: Monsters",
+          "page": 159
+        },
+        {
+          "title": "Appendix: Variant Planes & Cosmologies",
+          "page": 201
+        },
+        {
+          "title": "Index",
+          "page": 222
+        },
+        {
+          "title": "WE: The Modrons",
+          "page": 225
+        }
+      ]
+    },
+    {
+      "slug": "manual-jugador-ocr-v2",
+      "name": "Manual_Jugador_OCR_v2",
+      "filename": "Manual_Jugador_OCR_v2.pdf",
+      "toc_count": 169,
+      "chapters": [
+        {
+          "title": "Índice",
+          "page": 4
+        },
+        {
+          "title": "Dotes",
+          "page": 87
+        },
+        {
+          "title": "Hechicero",
+          "page": 44
+        },
+        {
+          "title": "Armas y herramientas",
+          "page": 117
+        },
+        {
+          "title": "Conjuros 181",
+          "page": 192
+        }
+      ]
+    },
+    {
+      "slug": "miniatureshandbook",
+      "name": "MiniaturesHandbook",
+      "filename": "MiniaturesHandbook.pdf",
+      "toc_count": 25,
+      "chapters": [
+        {
+          "title": "d20 - Miniatures Handbook.pdf",
+          "page": -1
+        }
+      ]
+    },
+    {
+      "slug": "monstermanuali",
+      "name": "MonsterManualI",
+      "filename": "MonsterManualI.pdf",
+      "toc_count": 1155,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Alphabeticallisting of Monsters",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter 1: Monsters A to Z",
+          "page": 8
+        },
+        {
+          "title": "Chapter 2: Animals",
+          "page": 268
+        },
+        {
+          "title": "Chapter 3: Vermin",
+          "page": 284
+        },
+        {
+          "title": "Chapter 4: Improving Monsters",
+          "page": 290
+        },
+        {
+          "title": "Chapter 5: Making Monsters",
+          "page": 295
+        },
+        {
+          "title": "Chapter 6: Monster Skills and Feats",
+          "page": 303
+        },
+        {
+          "title": "Chapter 7: Glossary",
+          "page": 305
+        },
+        {
+          "title": "Monsters ranked by Challenge Ratings",
+          "page": 318
+        },
+        {
+          "title": "WE: Hobgoblin Outpost",
+          "page": 321
+        },
+        {
+          "title": "Errata",
+          "page": 329
+        },
+        {
+          "title": "Back Cover",
+          "page": 320
+        }
+      ]
+    },
+    {
+      "slug": "monstermanualii",
+      "name": "MonsterManualII",
+      "filename": "MonsterManualII.pdf",
+      "toc_count": 657,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Alphabetical Listing of Monsters",
+          "page": 3
+        },
+        {
+          "title": "Monsters by Type (and Subtype)",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "A",
+          "page": 22
+        },
+        {
+          "title": "B",
+          "page": 30
+        },
+        {
+          "title": "C",
+          "page": 41
+        },
+        {
+          "title": "D",
+          "page": 54
+        },
+        {
+          "title": "E",
+          "page": 89
+        },
+        {
+          "title": "F",
+          "page": 96
+        },
+        {
+          "title": "G",
+          "page": 107
+        },
+        {
+          "title": "H",
+          "page": 124
+        },
+        {
+          "title": "I",
+          "page": 127
+        },
+        {
+          "title": "J",
+          "page": 130
+        },
+        {
+          "title": "K",
+          "page": 134
+        }
+      ]
+    },
+    {
+      "slug": "monstermanualiii",
+      "name": "MonsterManualIII",
+      "filename": "MonsterManualIII.pdf",
+      "toc_count": 757,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Monsters A to Z",
+          "page": 8
+        },
+        {
+          "title": "Monser Feats",
+          "page": 206
+        },
+        {
+          "title": "Glossary",
+          "page": 208
+        },
+        {
+          "title": "Monsters Ranked by Challange Ratings",
+          "page": 224
+        },
+        {
+          "title": "Back Cover",
+          "page": 235
+        },
+        {
+          "title": "WE: Troll Outpost",
+          "page": 225
+        },
+        {
+          "title": "Map:",
+          "page": 1
+        },
+        {
+          "title": "Sidebars:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "monstermanualiv",
+      "name": "MonsterManualIV",
+      "filename": "MonsterManualIV.pdf",
+      "toc_count": 26,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "A",
+          "page": 8
+        },
+        {
+          "title": "B",
+          "page": 16
+        },
+        {
+          "title": "C",
+          "page": 29
+        },
+        {
+          "title": "D",
+          "page": 39
+        },
+        {
+          "title": "E",
+          "page": 56
+        },
+        {
+          "title": "G",
+          "page": 61
+        },
+        {
+          "title": "H",
+          "page": 75
+        },
+        {
+          "title": "I",
+          "page": 77
+        },
+        {
+          "title": "J",
+          "page": 79
+        },
+        {
+          "title": "L",
+          "page": 84
+        },
+        {
+          "title": "M",
+          "page": 99
+        },
+        {
+          "title": "N",
+          "page": 103
+        },
+        {
+          "title": "O",
+          "page": 107
+        },
+        {
+          "title": "P",
+          "page": 121
+        }
+      ]
+    },
+    {
+      "slug": "monstermanualv",
+      "name": "MonsterManualV",
+      "filename": "MonsterManualV.pdf",
+      "toc_count": 22,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 6
+        },
+        {
+          "title": "A",
+          "page": 9
+        },
+        {
+          "title": "B",
+          "page": 11
+        },
+        {
+          "title": "D",
+          "page": 17
+        },
+        {
+          "title": "E",
+          "page": 49
+        },
+        {
+          "title": "F",
+          "page": 57
+        },
+        {
+          "title": "G",
+          "page": 61
+        },
+        {
+          "title": "H",
+          "page": 79
+        },
+        {
+          "title": "I",
+          "page": 91
+        },
+        {
+          "title": "J",
+          "page": 93
+        },
+        {
+          "title": "K",
+          "page": 95
+        },
+        {
+          "title": "M",
+          "page": 101
+        },
+        {
+          "title": "P",
+          "page": 131
+        },
+        {
+          "title": "R",
+          "page": 133
+        }
+      ]
+    },
+    {
+      "slug": "planar-handbook-a-player-s-guide-to-the-planes",
+      "name": "Planar Handbook. A Player's Guide To The Planes",
+      "filename": "Planar Handbook. A Player's Guide To The Planes.pdf",
+      "toc_count": 619,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 3
+        },
+        {
+          "title": "Introduction",
+          "page": 4
+        },
+        {
+          "title": "Chapter 1: Races",
+          "page": 5
+        },
+        {
+          "title": "Chapter 2: Classes and Feats",
+          "page": 27
+        },
+        {
+          "title": "Chapter 3: Prestige Classes",
+          "page": 43
+        },
+        {
+          "title": "Chapter 4: Equipment & Magic Items",
+          "page": 67
+        },
+        {
+          "title": "Chapter 5: Spells",
+          "page": 85
+        },
+        {
+          "title": "Chapter 6: Creatures of the Planes",
+          "page": 107
+        },
+        {
+          "title": "Chapter 7: Planar Sites",
+          "page": 135
+        },
+        {
+          "title": "Appendix: Planar Encounters",
+          "page": 187
+        },
+        {
+          "title": "WE: More Planar Touchstones",
+          "page": 193
+        },
+        {
+          "title": "Back Cover",
+          "page": 198
+        }
+      ]
+    },
+    {
+      "slug": "playershandbooki",
+      "name": "PlayersHandbookI",
+      "filename": "PlayersHandbookI.pdf",
+      "toc_count": 429,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter One: Abilities",
+          "page": 8
+        },
+        {
+          "title": "Chapter Two: Races",
+          "page": 12
+        },
+        {
+          "title": "Chapter Three: Classes",
+          "page": 22
+        },
+        {
+          "title": "Chapter Four: Skills",
+          "page": 62
+        },
+        {
+          "title": "Chapter Five: Feats",
+          "page": 88
+        },
+        {
+          "title": "Chapter Six: Description",
+          "page": 104
+        },
+        {
+          "title": "Chapter Seven: Equipment",
+          "page": 112
+        },
+        {
+          "title": "Chapter Eight: Combat",
+          "page": 134
+        },
+        {
+          "title": "Chapter Nine: Adventuring",
+          "page": 162
+        },
+        {
+          "title": "Chapter Ten: Magic",
+          "page": 170
+        },
+        {
+          "title": "Chapter Eleven: Spells",
+          "page": 182
+        },
+        {
+          "title": "General Guidelines and Glossary",
+          "page": 305
+        },
+        {
+          "title": "Index",
+          "page": 316
+        }
+      ]
+    },
+    {
+      "slug": "playershandbookii",
+      "name": "PlayersHandbookII",
+      "filename": "PlayersHandbookII.pdf",
+      "toc_count": 64,
+      "chapters": [
+        {
+          "title": "Player's Handbook II",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "races-of-stone",
+      "name": "Races of Stone",
+      "filename": "Races of Stone.pdf",
+      "toc_count": 647,
+      "chapters": [
+        {
+          "title": "Front Cover",
+          "page": 1
+        },
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 5
+        },
+        {
+          "title": "Chapter 1: Dwarves",
+          "page": 6
+        },
+        {
+          "title": "Chapter 2: Gnomes",
+          "page": 32
+        },
+        {
+          "title": "Chapter 3: Goliaths",
+          "page": 54
+        },
+        {
+          "title": "Chapter 4: Other Races of Stone",
+          "page": 86
+        },
+        {
+          "title": "Chapter 5: Prestige Classes",
+          "page": 98
+        },
+        {
+          "title": "Chapter 6: Character Options",
+          "page": 130
+        },
+        {
+          "title": "Chapter 7: Equipment and Magic",
+          "page": 154
+        },
+        {
+          "title": "Chapter 8: Campaigns of Stone",
+          "page": 172
+        },
+        {
+          "title": "Appendix: One Hundred Adventure Ideas",
+          "page": 192
+        },
+        {
+          "title": "Back Cover",
+          "page": 194
+        },
+        {
+          "title": "WE: Raiders of the High Citadel",
+          "page": 1
+        },
+        {
+          "title": "Maps:",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "races-of-the-wild",
+      "name": "Races of the Wild",
+      "filename": "Races of the Wild.pdf",
+      "toc_count": 96,
+      "chapters": [
+        {
+          "title": "Races of the Wild",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "rules-compendium",
+      "name": "Rules Compendium",
+      "filename": "Rules Compendium.pdf",
+      "toc_count": 26,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Introduction",
+          "page": 6
+        },
+        {
+          "title": "A",
+          "page": 7
+        },
+        {
+          "title": "Interlude: Birth of a Rule",
+          "page": 14
+        },
+        {
+          "title": "B",
+          "page": 21
+        },
+        {
+          "title": "C",
+          "page": 25
+        },
+        {
+          "title": "Interlude: The Living Game",
+          "page": 38
+        },
+        {
+          "title": "D",
+          "page": 42
+        },
+        {
+          "title": "E",
+          "page": 48
+        },
+        {
+          "title": "F",
+          "page": 53
+        },
+        {
+          "title": "G",
+          "page": 59
+        },
+        {
+          "title": "H",
+          "page": 63
+        },
+        {
+          "title": "Interlude: Rules and Fun",
+          "page": 64
+        },
+        {
+          "title": "I",
+          "page": 65
+        },
+        {
+          "title": "L",
+          "page": 79
+        }
+      ]
+    },
+    {
+      "slug": "sandstorm",
+      "name": "Sandstorm",
+      "filename": "Sandstorm.pdf",
+      "toc_count": 160,
+      "chapters": [
+        {
+          "title": "Sandstorm",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "spell-compendium",
+      "name": "Spell Compendium",
+      "filename": "Spell Compendium.pdf",
+      "toc_count": 40,
+      "chapters": [
+        {
+          "title": "Spell Compendium",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "tome-of-battle",
+      "name": "Tome of Battle",
+      "filename": "Tome of Battle.pdf",
+      "toc_count": 9,
+      "chapters": [
+        {
+          "title": "Table of Contents",
+          "page": 4
+        },
+        {
+          "title": "Disciples of the Sword",
+          "page": 8
+        },
+        {
+          "title": "Skills and Feats",
+          "page": 28
+        },
+        {
+          "title": "Blade Magic",
+          "page": 38
+        },
+        {
+          "title": "Maneuvers and Stances",
+          "page": 48
+        },
+        {
+          "title": "Prestige Classes",
+          "page": 96
+        },
+        {
+          "title": "The Nine Swords",
+          "page": 132
+        },
+        {
+          "title": "Magic Items",
+          "page": 148
+        },
+        {
+          "title": "Nine Swords Monsters",
+          "page": 152
+        }
+      ]
+    },
+    {
+      "slug": "tome-of-magic",
+      "name": "Tome of Magic",
+      "filename": "Tome of Magic.pdf",
+      "toc_count": 90,
+      "chapters": [
+        {
+          "title": "Tome of Magic",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "slug": "unearthed-arcana",
+      "name": "Unearthed Arcana",
+      "filename": "Unearthed Arcana.pdf",
+      "toc_count": 173,
+      "chapters": [
+        {
+          "title": "Unearthed Arcana",
+          "page": -1
+        }
+      ]
+    }
+  ]
+}

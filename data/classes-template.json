@@ -1,0 +1,61 @@
+{
+  "_comentario": "Este es un archivo de ejemplo. Copia este archivo como 'classes-to-import.json' y modifica los datos.",
+  "_instrucciones": [
+    "1. Copia este archivo como 'classes-to-import.json'",
+    "2. Modifica o agrega las clases que necesites",
+    "3. Ejecuta: node scripts/import-classes-from-json.mjs",
+    "4. Los campos opcionales pueden omitirse",
+    "5. Los arrays pueden ser strings separados por coma: 'Trepar, Saltar, Nadar'"
+  ],
+  "classes": [
+    {
+      "titulo": "Bárbaro",
+      "subtitulo": "Guerrero salvaje de las tierras fronterizas",
+      "descripcion": "<p>El bárbaro es un guerrero feroz que canaliza su ira para devastar a sus enemigos.</p>",
+      "hit_die": "d12",
+      "skill_points": 4,
+      "bab_progression": "good",
+      "fort_save": "good",
+      "ref_save": "poor",
+      "will_save": "poor",
+      "class_skills": ["Trepar", "Artesanía", "Trato con animales", "Intimidar", "Saltar", "Escuchar", "Montar", "Supervivencia", "Nadar"],
+      "weapon_proficiencies": ["Simples", "Marciales"],
+      "armor_proficiencies": ["Ligeras", "Medias", "Escudos (excepto de torre)"],
+      "spell_type": null,
+      "spell_ability": null,
+      "image_url": null
+    },
+    {
+      "titulo": "Bardo",
+      "subtitulo": "Artista versátil y maestro del conocimiento",
+      "descripcion": "<p>El bardo usa la música y las palabras para inspirar aliados y desmoralizar enemigos.</p>",
+      "hit_die": "d6",
+      "skill_points": 6,
+      "bab_progression": "medium",
+      "fort_save": "poor",
+      "ref_save": "good",
+      "will_save": "good",
+      "class_skills": "Tasación, Equilibrio, Engañar, Concentración, Artesanía, Descifrar escritura, Diplomacia, Disfrazarse, Escapismo, Reunir información, Esconderse, Saltar, Conocimiento, Escuchar, Moverse en silencio, Interpretar, Profesión, Sentir motivaciones, Saber de conjuros, Hablar idioma, Averiguar intenciones, Juego de manos, Piruetas, Uso de objetos mágicos",
+      "weapon_proficiencies": "Simples, Espada larga, Estoque, Porra, Espada corta, Arco corto, Látigo",
+      "armor_proficiencies": "Ligeras, Escudos (excepto de torre)",
+      "spell_type": "arcanos",
+      "spell_ability": "Carisma"
+    },
+    {
+      "titulo": "Clérigo",
+      "subtitulo": "Siervo divino y sanador",
+      "descripcion": "<p>El clérigo canaliza el poder de su deidad para curar, proteger y castigar.</p>",
+      "hit_die": "d8",
+      "skill_points": 2,
+      "bab_progression": "medium",
+      "fort_save": "good",
+      "ref_save": "poor",
+      "will_save": "good",
+      "class_skills": ["Concentración", "Artesanía", "Diplomacia", "Sanar", "Conocimiento (arcano)", "Conocimiento (historia)", "Conocimiento (religión)", "Conocimiento (los planos)", "Profesión", "Saber de conjuros"],
+      "weapon_proficiencies": ["Simples"],
+      "armor_proficiencies": ["Ligeras", "Medias", "Pesadas", "Escudos (excepto de torre)"],
+      "spell_type": "divinos",
+      "spell_ability": "Sabiduría"
+    }
+  ]
+}

@@ -1,0 +1,1952 @@
+{
+  "stats": {
+    "total": 243,
+    "fixed": 103
+  },
+  "translations": [
+    {
+      "id": 194,
+      "slug": "acid-flask",
+      "category": "goods",
+      "name_en": "Acid (flask)",
+      "name_es": "Ácido (frasco)",
+      "status": "final_fix"
+    },
+    {
+      "id": 195,
+      "slug": "alchemist-rsquo-s-fire-flask",
+      "category": "goods",
+      "name_en": "Alchemist's fire (flask)",
+      "name_es": "Alchemist's fire (Frasco)",
+      "status": "final_fix"
+    },
+    {
+      "id": 204,
+      "slug": "alchemist-rsquo-s-lab",
+      "category": "goods",
+      "name_en": "Alchemist's lab",
+      "name_es": "Laboratorio de alquimista",
+      "status": "final_fix"
+    },
+    {
+      "id": 236,
+      "slug": "ale",
+      "category": "goods",
+      "name_en": "Ale",
+      "name_es": "Cerveza",
+      "status": "final_fix"
+    },
+    {
+      "id": 196,
+      "slug": "antitoxin-vial",
+      "category": "goods",
+      "name_en": "Antitoxin (vial)",
+      "name_es": "Antitoxina (vial)",
+      "status": "final_fix"
+    },
+    {
+      "id": 405,
+      "slug": "arrows-20",
+      "category": "weapon",
+      "name_en": "Arrows (20)",
+      "name_es": "Flechas (20)",
+      "status": "final_fix"
+    },
+    {
+      "id": 224,
+      "slug": "artisan-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Artisan's outfit",
+      "name_es": "Vestimenta de artesano",
+      "status": "final_fix"
+    },
+    {
+      "id": 205,
+      "slug": "artisan-rsquo-s-tools",
+      "category": "goods",
+      "name_en": "Artisan's tools",
+      "name_es": "Herramientas de artesano",
+      "status": "final_fix"
+    },
+    {
+      "id": 206,
+      "slug": "artisan-rsquo-s-tools-masterwork",
+      "category": "goods",
+      "name_en": "Artisan's tools, masterwork",
+      "name_es": "De artesano herramientas, Obra maestra",
+      "status": "final_fix"
+    },
+    {
+      "id": 419,
+      "slug": "axe-orc-double5",
+      "category": "weapon",
+      "name_en": "Axe, orc double5",
+      "name_es": "Hacha orco doble",
+      "status": "final_fix"
+    },
+    {
+      "id": 373,
+      "slug": "axe-throwing",
+      "category": "weapon",
+      "name_en": "Axe, throwing",
+      "name_es": "Hacha arrojadiza",
+      "status": "final_fix"
+    },
+    {
+      "id": 127,
+      "slug": "backpack-empty",
+      "category": "goods",
+      "name_en": "Backpack (empty)",
+      "name_es": "Mochila",
+      "status": "final_fix"
+    },
+    {
+      "id": 52,
+      "slug": "banded-mail",
+      "category": "armor",
+      "name_en": "Banded mail",
+      "name_es": "Armadura de bandas",
+      "status": "final_fix"
+    },
+    {
+      "id": 239,
+      "slug": "banquet-per-person",
+      "category": "goods",
+      "name_en": "Banquet (per person)",
+      "name_es": "Banquete (por persona)",
+      "status": "final_fix"
+    },
+    {
+      "id": 254,
+      "slug": "barding",
+      "category": "goods",
+      "name_en": "Barding",
+      "name_es": "Barda",
+      "status": "final_fix"
+    },
+    {
+      "id": 128,
+      "slug": "barrel-empty",
+      "category": "goods",
+      "name_en": "Barrel (empty)",
+      "name_es": "Barril",
+      "status": "final_fix"
+    },
+    {
+      "id": 129,
+      "slug": "basket-empty",
+      "category": "goods",
+      "name_en": "Basket (empty)",
+      "name_es": "Cesta",
+      "status": "final_fix"
+    },
+    {
+      "id": 383,
+      "slug": "battleaxe",
+      "category": "weapon",
+      "name_en": "Battleaxe",
+      "name_es": "Hacha de batalla",
+      "status": "final_fix"
+    },
+    {
+      "id": 130,
+      "slug": "bedroll",
+      "category": "goods",
+      "name_en": "Bedroll",
+      "name_es": "Saco de dormir",
+      "status": "final_fix"
+    },
+    {
+      "id": 131,
+      "slug": "bell",
+      "category": "goods",
+      "name_en": "Bell",
+      "name_es": "Campana",
+      "status": "final_fix"
+    },
+    {
+      "id": 132,
+      "slug": "blanket-winter",
+      "category": "goods",
+      "name_en": "Blanket, winter",
+      "name_es": "Manta de invierno",
+      "status": "final_fix"
+    },
+    {
+      "id": 133,
+      "slug": "block-and-tackle",
+      "category": "goods",
+      "name_en": "Block and tackle",
+      "name_es": "Polea y aparejo",
+      "status": "final_fix"
+    },
+    {
+      "id": 425,
+      "slug": "bolas",
+      "category": "weapon",
+      "name_en": "Bolas",
+      "name_es": "Bolas",
+      "status": "final_fix"
+    },
+    {
+      "id": 427,
+      "slug": "bolts-10",
+      "category": "weapon",
+      "name_en": "Bolts (10)",
+      "name_es": "Virotes (10)",
+      "status": "final_fix"
+    },
+    {
+      "id": 429,
+      "slug": "bolts-5",
+      "category": "weapon",
+      "name_en": "Bolts (5)",
+      "name_es": "Virotes (5)",
+      "status": "final_fix"
+    },
+    {
+      "id": 366,
+      "slug": "bolts-crossbow-10",
+      "category": "weapon",
+      "name_en": "Bolts, crossbow (10)",
+      "name_es": "Virotes de ballesta (10)",
+      "status": "final_fix"
+    },
+    {
+      "id": 134,
+      "slug": "bottle-wine-glass",
+      "category": "goods",
+      "name_en": "Bottle, wine glass",
+      "name_es": "Botella de vino de vidrio",
+      "status": "final_fix"
+    },
+    {
+      "id": 240,
+      "slug": "bread-per-loaf",
+      "category": "goods",
+      "name_en": "Bread, per loaf",
+      "name_es": "Pan (hogaza)",
+      "status": "final_fix"
+    },
+    {
+      "id": 50,
+      "slug": "breastplate",
+      "category": "armor",
+      "name_en": "Breastplate",
+      "name_es": "Coraza",
+      "status": "final_fix"
+    },
+    {
+      "id": 135,
+      "slug": "bucket-empty",
+      "category": "goods",
+      "name_en": "Bucket (empty)",
+      "name_es": "Cubo",
+      "status": "final_fix"
+    },
+    {
+      "id": 55,
+      "slug": "buckler",
+      "category": "armor",
+      "name_en": "Buckler",
+      "name_es": "Rodela",
+      "status": "final_fix"
+    },
+    {
+      "id": 372,
+      "slug": "bullets-sling-10",
+      "category": "weapon",
+      "name_en": "Bullets, sling (10)",
+      "name_es": "Balas de honda (10)",
+      "status": "final_fix"
+    },
+    {
+      "id": 136,
+      "slug": "caltrops",
+      "category": "goods",
+      "name_en": "Caltrops",
+      "name_es": "Abrojos",
+      "status": "final_fix"
+    },
+    {
+      "id": 137,
+      "slug": "candle",
+      "category": "goods",
+      "name_en": "Candle",
+      "name_es": "Vela",
+      "status": "final_fix"
+    },
+    {
+      "id": 138,
+      "slug": "canvas-sq-yd",
+      "category": "goods",
+      "name_en": "Canvas (sq. yd.)",
+      "name_es": "Lona (yarda cuadrada)",
+      "status": "final_fix"
+    },
+    {
+      "id": 279,
+      "slug": "carriage",
+      "category": "goods",
+      "name_en": "Carriage",
+      "name_es": "Carruaje",
+      "status": "final_fix"
+    },
+    {
+      "id": 280,
+      "slug": "cart",
+      "category": "goods",
+      "name_en": "Cart",
+      "name_es": "Carro",
+      "status": "final_fix"
+    },
+    {
+      "id": 139,
+      "slug": "case-map-or-scroll",
+      "category": "goods",
+      "name_en": "Case, map or scroll",
+      "name_es": "Estuche de mapas o pergaminos",
+      "status": "final_fix"
+    },
+    {
+      "id": 140,
+      "slug": "chain-10-ft",
+      "category": "goods",
+      "name_en": "Chain (10 ft.)",
+      "name_es": "Cadena (10 ft.)",
+      "status": "final_fix"
+    },
+    {
+      "id": 46,
+      "slug": "chain-shirt",
+      "category": "armor",
+      "name_en": "Chain shirt",
+      "name_es": "Camisote de mallas",
+      "status": "final_fix"
+    },
+    {
+      "id": 420,
+      "slug": "chain-spiked4",
+      "category": "weapon",
+      "name_en": "Chain, spiked4",
+      "name_es": "Cadena con púas",
+      "status": "final_fix"
+    },
+    {
+      "id": 49,
+      "slug": "chainmail",
+      "category": "armor",
+      "name_en": "Chainmail",
+      "name_es": "Cota de mallas",
+      "status": "final_fix"
+    },
+    {
+      "id": 141,
+      "slug": "chalk-1-piece",
+      "category": "goods",
+      "name_en": "Chalk, 1 piece",
+      "name_es": "Tiza (1 pieza)",
+      "status": "final_fix"
+    },
+    {
+      "id": 241,
+      "slug": "cheese-hunk-of",
+      "category": "goods",
+      "name_en": "Cheese, hunk of",
+      "name_es": "Queso (trozo)",
+      "status": "final_fix"
+    },
+    {
+      "id": 142,
+      "slug": "chest-empty",
+      "category": "goods",
+      "name_en": "Chest (empty)",
+      "name_es": "Cofre",
+      "status": "final_fix"
+    },
+    {
+      "id": 225,
+      "slug": "cleric-rsquo-s-vestments",
+      "category": "goods",
+      "name_en": "Cleric's vestments",
+      "name_es": "De clérigo vestments",
+      "status": "final_fix"
+    },
+    {
+      "id": 207,
+      "slug": "climber-rsquo-s-kit",
+      "category": "goods",
+      "name_en": "Climber's kit",
+      "name_es": "Kit de escalador",
+      "status": "final_fix"
+    },
+    {
+      "id": 358,
+      "slug": "club",
+      "category": "weapon",
+      "name_en": "Club",
+      "name_es": "Garrote",
+      "status": "final_fix"
+    },
+    {
+      "id": 290,
+      "slug": "coach-cab",
+      "category": "goods",
+      "name_en": "Coach cab",
+      "name_es": "Cabina de carruaje",
+      "status": "final_fix"
+    },
+    {
+      "id": 226,
+      "slug": "cold-weather-outfit",
+      "category": "goods",
+      "name_en": "Cold weather outfit",
+      "name_es": "Cold weather vestimenta",
+      "status": "final_fix"
+    },
+    {
+      "id": 227,
+      "slug": "courtier-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Courtier's outfit",
+      "name_es": "Courtier's vestimenta",
+      "status": "final_fix"
+    },
+    {
+      "id": 426,
+      "slug": "crossbow-hand",
+      "category": "weapon",
+      "name_en": "Crossbow, hand",
+      "name_es": "Ballesta de mano",
+      "status": "final_fix"
+    },
+    {
+      "id": 365,
+      "slug": "crossbow-heavy",
+      "category": "weapon",
+      "name_en": "Crossbow, heavy",
+      "name_es": "Ballesta pesada",
+      "status": "final_fix"
+    },
+    {
+      "id": 367,
+      "slug": "crossbow-light",
+      "category": "weapon",
+      "name_en": "Crossbow, light",
+      "name_es": "Ballesta ligera",
+      "status": "final_fix"
+    },
+    {
+      "id": 428,
+      "slug": "crossbow-repeating-heavy",
+      "category": "weapon",
+      "name_en": "Crossbow, repeating heavy",
+      "name_es": "Ballesta pesada de repetición",
+      "status": "final_fix"
+    },
+    {
+      "id": 430,
+      "slug": "crossbow-repeating-light",
+      "category": "weapon",
+      "name_en": "Crossbow, repeating light",
+      "name_es": "Ballesta ligera de repetición",
+      "status": "final_fix"
+    },
+    {
+      "id": 143,
+      "slug": "crowbar",
+      "category": "goods",
+      "name_en": "Crowbar",
+      "name_es": "Palanca",
+      "status": "final_fix"
+    },
+    {
+      "id": 353,
+      "slug": "dagger",
+      "category": "weapon",
+      "name_en": "Dagger",
+      "name_es": "Daga",
+      "status": "final_fix"
+    },
+    {
+      "id": 354,
+      "slug": "dagger-punching",
+      "category": "weapon",
+      "name_en": "Dagger, punching",
+      "name_es": "Daga de puño",
+      "status": "final_fix"
+    },
+    {
+      "id": 369,
+      "slug": "dart",
+      "category": "weapon",
+      "name_en": "Dart",
+      "name_es": "Dardo",
+      "status": "final_fix"
+    },
+    {
+      "id": 208,
+      "slug": "disguise-kit",
+      "category": "goods",
+      "name_en": "Disguise kit",
+      "name_es": "Disfraz kit",
+      "status": "final_fix"
+    },
+    {
+      "id": 228,
+      "slug": "entertainer-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Entertainer's outfit",
+      "name_es": "Vestimenta de artista",
+      "status": "final_fix"
+    },
+    {
+      "id": 197,
+      "slug": "everburning-torch",
+      "category": "goods",
+      "name_en": "Everburning torch",
+      "name_es": "Perpetua Antorcha",
+      "status": "final_fix"
+    },
+    {
+      "id": 229,
+      "slug": "explorer-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Explorer's outfit",
+      "name_es": "Vestimenta de explorador",
+      "status": "final_fix"
+    },
+    {
+      "id": 393,
+      "slug": "falchion",
+      "category": "weapon",
+      "name_en": "Falchion",
+      "name_es": "Falcata",
+      "status": "final_fix"
+    },
+    {
+      "id": 144,
+      "slug": "firewood-per-day",
+      "category": "goods",
+      "name_en": "Firewood (per day)",
+      "name_es": "Leña (día)",
+      "status": "final_fix"
+    },
+    {
+      "id": 145,
+      "slug": "fishhook",
+      "category": "goods",
+      "name_en": "Fishhook",
+      "name_es": "Anzuelo",
+      "status": "final_fix"
+    },
+    {
+      "id": 146,
+      "slug": "fishing-net-25-sq-ft",
+      "category": "goods",
+      "name_en": "Fishing net, 25 sq. ft.",
+      "name_es": "Red de pesca (25 pies cd.)",
+      "status": "final_fix"
+    },
+    {
+      "id": 384,
+      "slug": "flail",
+      "category": "weapon",
+      "name_en": "Flail",
+      "name_es": "Mangual",
+      "status": "final_fix"
+    },
+    {
+      "id": 421,
+      "slug": "flail-dire5",
+      "category": "weapon",
+      "name_en": "Flail, dire5",
+      "name_es": "Mangual, dire5",
+      "status": "final_fix"
+    },
+    {
+      "id": 397,
+      "slug": "flail-heavy",
+      "category": "weapon",
+      "name_en": "Flail, heavy",
+      "name_es": "Mangual, pesada",
+      "status": "final_fix"
+    },
+    {
+      "id": 147,
+      "slug": "flask-empty",
+      "category": "goods",
+      "name_en": "Flask (empty)",
+      "name_es": "Frasco",
+      "status": "final_fix"
+    },
+    {
+      "id": 148,
+      "slug": "flint-and-steel",
+      "category": "goods",
+      "name_en": "Flint and steel",
+      "name_es": "Pedernal y eslabón",
+      "status": "final_fix"
+    },
+    {
+      "id": 54,
+      "slug": "full-plate",
+      "category": "armor",
+      "name_en": "Full plate",
+      "name_es": "Armadura completa",
+      "status": "final_fix"
+    },
+    {
+      "id": 281,
+      "slug": "galley",
+      "category": "goods",
+      "name_en": "Galley",
+      "name_es": "Galera",
+      "status": "final_fix"
+    },
+    {
+      "id": 351,
+      "slug": "gauntlet",
+      "category": "weapon",
+      "name_en": "Gauntlet",
+      "name_es": "Guantelete",
+      "status": "final_fix"
+    },
+    {
+      "id": 355,
+      "slug": "gauntlet-spiked",
+      "category": "weapon",
+      "name_en": "Gauntlet, spiked",
+      "name_es": "Guantelete con púas",
+      "status": "final_fix"
+    },
+    {
+      "id": 394,
+      "slug": "glaive4",
+      "category": "weapon",
+      "name_en": "Glaive4",
+      "name_es": "Guja",
+      "status": "final_fix"
+    },
+    {
+      "id": 149,
+      "slug": "grappling-hook",
+      "category": "goods",
+      "name_en": "Grappling hook",
+      "name_es": "Garfio",
+      "status": "final_fix"
+    },
+    {
+      "id": 395,
+      "slug": "greataxe",
+      "category": "weapon",
+      "name_en": "Greataxe",
+      "name_es": "Hacha grande",
+      "status": "final_fix"
+    },
+    {
+      "id": 396,
+      "slug": "greatclub",
+      "category": "weapon",
+      "name_en": "Greatclub",
+      "name_es": "Garrote grande",
+      "status": "final_fix"
+    },
+    {
+      "id": 398,
+      "slug": "greatsword",
+      "category": "weapon",
+      "name_en": "Greatsword",
+      "name_es": "Espadón",
+      "status": "final_fix"
+    },
+    {
+      "id": 399,
+      "slug": "guisarme4",
+      "category": "weapon",
+      "name_en": "Guisarme4",
+      "name_es": "Guisarma",
+      "status": "final_fix"
+    },
+    {
+      "id": 400,
+      "slug": "halberd",
+      "category": "weapon",
+      "name_en": "Halberd",
+      "name_es": "Alabarda",
+      "status": "final_fix"
+    },
+    {
+      "id": 53,
+      "slug": "half-plate",
+      "category": "armor",
+      "name_en": "Half-plate",
+      "name_es": "Semiplacas",
+      "status": "final_fix"
+    },
+    {
+      "id": 150,
+      "slug": "hammer",
+      "category": "goods",
+      "name_en": "Hammer",
+      "name_es": "Martillo",
+      "status": "final_fix"
+    },
+    {
+      "id": 422,
+      "slug": "hammer-gnome-hooked5",
+      "category": "weapon",
+      "name_en": "Hammer, gnome hooked5",
+      "name_es": "Martillo ganchudo gnomo",
+      "status": "final_fix"
+    },
+    {
+      "id": 374,
+      "slug": "hammer-light",
+      "category": "weapon",
+      "name_en": "Hammer, light",
+      "name_es": "Martillo ligero",
+      "status": "final_fix"
+    },
+    {
+      "id": 375,
+      "slug": "handaxe",
+      "category": "weapon",
+      "name_en": "Handaxe",
+      "name_es": "Hacha de mano",
+      "status": "final_fix"
+    },
+    {
+      "id": 209,
+      "slug": "healer-rsquo-s-kit",
+      "category": "goods",
+      "name_en": "Healer's kit",
+      "name_es": "Kit de sanador",
+      "status": "final_fix"
+    },
+    {
+      "id": 47,
+      "slug": "hide",
+      "category": "armor",
+      "name_en": "Hide",
+      "name_es": "Pieles",
+      "status": "final_fix"
+    },
+    {
+      "id": 291,
+      "slug": "hireling-trained",
+      "category": "goods",
+      "name_en": "Hireling, trained",
+      "name_es": "Escudero entrenado",
+      "status": "final_fix"
+    },
+    {
+      "id": 292,
+      "slug": "hireling-untrained",
+      "category": "goods",
+      "name_en": "Hireling, untrained",
+      "name_es": "Escudero sin entrenar",
+      "status": "final_fix"
+    },
+    {
+      "id": 210,
+      "slug": "holly-and-mistletoe",
+      "category": "goods",
+      "name_en": "Holly and mistletoe",
+      "name_es": "Acebo y muérdago",
+      "status": "final_fix"
+    },
+    {
+      "id": 212,
+      "slug": "holy-symbol-silver",
+      "category": "goods",
+      "name_en": "Holy symbol, silver",
+      "name_es": "Símbolo sagrado (plata)",
+      "status": "final_fix"
+    },
+    {
+      "id": 211,
+      "slug": "holy-symbol-wooden",
+      "category": "goods",
+      "name_en": "Holy symbol, wooden",
+      "name_es": "Símbolo sagrado (madera)",
+      "status": "final_fix"
+    },
+    {
+      "id": 198,
+      "slug": "holy-water-flask",
+      "category": "goods",
+      "name_en": "Holy water (flask)",
+      "name_es": "Agua bendita (frasco)",
+      "status": "final_fix"
+    },
+    {
+      "id": 262,
+      "slug": "horse",
+      "category": "goods",
+      "name_en": "Horse",
+      "name_es": "Caballo",
+      "status": "final_fix"
+    },
+    {
+      "id": 213,
+      "slug": "hourglass",
+      "category": "goods",
+      "name_en": "Hourglass",
+      "name_es": "Reloj de arena",
+      "status": "final_fix"
+    },
+    {
+      "id": 151,
+      "slug": "ink-1-oz-vial",
+      "category": "goods",
+      "name_en": "Ink (1 oz. vial)",
+      "name_es": "Tinta (vial de 1 oz.)",
+      "status": "final_fix"
+    },
+    {
+      "id": 152,
+      "slug": "inkpen",
+      "category": "goods",
+      "name_en": "Inkpen",
+      "name_es": "Pluma",
+      "status": "final_fix"
+    },
+    {
+      "id": 242,
+      "slug": "inn-stay-per-day",
+      "category": "goods",
+      "name_en": "Inn stay (per day)",
+      "name_es": "Estancia en posada (día)",
+      "status": "final_fix"
+    },
+    {
+      "id": 370,
+      "slug": "javelin",
+      "category": "weapon",
+      "name_en": "Javelin",
+      "name_es": "Jabalina",
+      "status": "final_fix"
+    },
+    {
+      "id": 153,
+      "slug": "jug-clay",
+      "category": "goods",
+      "name_en": "Jug, clay",
+      "name_es": "Jarra de arcilla",
+      "status": "final_fix"
+    },
+    {
+      "id": 412,
+      "slug": "kama",
+      "category": "weapon",
+      "name_en": "Kama",
+      "name_es": "Kama",
+      "status": "final_fix"
+    },
+    {
+      "id": 282,
+      "slug": "keelboat",
+      "category": "goods",
+      "name_en": "Keelboat",
+      "name_es": "Barcaza",
+      "status": "final_fix"
+    },
+    {
+      "id": 376,
+      "slug": "kukri",
+      "category": "weapon",
+      "name_en": "Kukri",
+      "name_es": "Kukri",
+      "status": "final_fix"
+    },
+    {
+      "id": 154,
+      "slug": "ladder-10-foot",
+      "category": "goods",
+      "name_en": "Ladder, 10-foot",
+      "name_es": "Escalera de 10 pies",
+      "status": "final_fix"
+    },
+    {
+      "id": 155,
+      "slug": "lamp-common",
+      "category": "goods",
+      "name_en": "Lamp, common",
+      "name_es": "Lámpara común",
+      "status": "final_fix"
+    },
+    {
+      "id": 401,
+      "slug": "lance4",
+      "category": "weapon",
+      "name_en": "Lance4",
+      "name_es": "Lanza de caballería",
+      "status": "final_fix"
+    },
+    {
+      "id": 156,
+      "slug": "lantern-bullseye",
+      "category": "goods",
+      "name_en": "Lantern, bullseye",
+      "name_es": "Linterna ojo de buey",
+      "status": "final_fix"
+    },
+    {
+      "id": 157,
+      "slug": "lantern-hooded",
+      "category": "goods",
+      "name_en": "Lantern, hooded",
+      "name_es": "Linterna con capucha",
+      "status": "final_fix"
+    },
+    {
+      "id": 44,
+      "slug": "leather",
+      "category": "armor",
+      "name_en": "Leather",
+      "name_es": "Cuero",
+      "status": "final_fix"
+    },
+    {
+      "id": 158,
+      "slug": "lock",
+      "category": "goods",
+      "name_en": "Lock",
+      "name_es": "Cerradura",
+      "status": "final_fix"
+    },
+    {
+      "id": 404,
+      "slug": "longbow",
+      "category": "weapon",
+      "name_en": "Longbow",
+      "name_es": "Arco largo",
+      "status": "final_fix"
+    },
+    {
+      "id": 406,
+      "slug": "longbow-composite",
+      "category": "weapon",
+      "name_en": "Longbow, composite",
+      "name_es": "Arco largo compuesto",
+      "status": "final_fix"
+    },
+    {
+      "id": 283,
+      "slug": "longship",
+      "category": "goods",
+      "name_en": "Longship",
+      "name_es": "Barco largo",
+      "status": "final_fix"
+    },
+    {
+      "id": 362,
+      "slug": "longspear4",
+      "category": "weapon",
+      "name_en": "Longspear4",
+      "name_es": "Lanza larga",
+      "status": "final_fix"
+    },
+    {
+      "id": 385,
+      "slug": "longsword",
+      "category": "weapon",
+      "name_en": "Longsword",
+      "name_es": "Espada larga",
+      "status": "final_fix"
+    },
+    {
+      "id": 359,
+      "slug": "mace-heavy",
+      "category": "weapon",
+      "name_en": "Mace, heavy",
+      "name_es": "Maza pesada",
+      "status": "final_fix"
+    },
+    {
+      "id": 356,
+      "slug": "mace-light",
+      "category": "weapon",
+      "name_en": "Mace, light",
+      "name_es": "Maza ligera",
+      "status": "final_fix"
+    },
+    {
+      "id": 214,
+      "slug": "magnifying-glass",
+      "category": "goods",
+      "name_en": "Magnifying glass",
+      "name_es": "Lupa",
+      "status": "final_fix"
+    },
+    {
+      "id": 163,
+      "slug": "manacles",
+      "category": "goods",
+      "name_en": "Manacles",
+      "name_es": "Grilletes",
+      "status": "final_fix"
+    },
+    {
+      "id": 164,
+      "slug": "manacles-masterwork",
+      "category": "goods",
+      "name_en": "Manacles, masterwork",
+      "name_es": "Grilletes, Obra maestra",
+      "status": "final_fix"
+    },
+    {
+      "id": 246,
+      "slug": "meals-per-day",
+      "category": "goods",
+      "name_en": "Meals (per day)",
+      "name_es": "Comidas (día)",
+      "status": "final_fix"
+    },
+    {
+      "id": 250,
+      "slug": "meat-chunk-of",
+      "category": "goods",
+      "name_en": "Meat, chunk of",
+      "name_es": "Carne (trozo)",
+      "status": "final_fix"
+    },
+    {
+      "id": 293,
+      "slug": "messenger",
+      "category": "goods",
+      "name_en": "Messenger",
+      "name_es": "Mensajero",
+      "status": "final_fix"
+    },
+    {
+      "id": 165,
+      "slug": "mirror-small-steel",
+      "category": "goods",
+      "name_en": "Mirror, small steel",
+      "name_es": "Espejo pequeño de acero",
+      "status": "final_fix"
+    },
+    {
+      "id": 230,
+      "slug": "monk-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Monk's outfit",
+      "name_es": "Vestimenta de monje",
+      "status": "final_fix"
+    },
+    {
+      "id": 360,
+      "slug": "morningstar",
+      "category": "weapon",
+      "name_en": "Morningstar",
+      "name_es": "Lucero del alba",
+      "status": "final_fix"
+    },
+    {
+      "id": 166,
+      "slug": "mug-tankard-clay",
+      "category": "goods",
+      "name_en": "Mug/Tankard, clay",
+      "name_es": "Jarra de arcilla",
+      "status": "final_fix"
+    },
+    {
+      "id": 215,
+      "slug": "musical-instrument-common",
+      "category": "goods",
+      "name_en": "Musical instrument, common",
+      "name_es": "Instrumento musical (común)",
+      "status": "final_fix"
+    },
+    {
+      "id": 216,
+      "slug": "musical-instrument-masterwork",
+      "category": "goods",
+      "name_en": "Musical instrument, masterwork",
+      "name_es": "Instrumento musical (obra maestra)",
+      "status": "final_fix"
+    },
+    {
+      "id": 432,
+      "slug": "net",
+      "category": "weapon",
+      "name_en": "Net",
+      "name_es": "Red",
+      "status": "final_fix"
+    },
+    {
+      "id": 231,
+      "slug": "noble-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Noble's outfit",
+      "name_es": "Vestimenta de noble",
+      "status": "final_fix"
+    },
+    {
+      "id": 413,
+      "slug": "nunchaku",
+      "category": "weapon",
+      "name_en": "Nunchaku",
+      "name_es": "Nunchaku",
+      "status": "final_fix"
+    },
+    {
+      "id": 285,
+      "slug": "oar",
+      "category": "goods",
+      "name_en": "Oar",
+      "name_es": "Oar",
+      "status": "final_fix"
+    },
+    {
+      "id": 167,
+      "slug": "oil-1-pint-flask",
+      "category": "goods",
+      "name_en": "Oil (1-pint flask)",
+      "name_es": "Aceite (frasco de 1 pinta)",
+      "status": "final_fix"
+    },
+    {
+      "id": 43,
+      "slug": "padded",
+      "category": "armor",
+      "name_en": "Padded",
+      "name_es": "Acolchada",
+      "status": "final_fix"
+    },
+    {
+      "id": 168,
+      "slug": "paper-sheet",
+      "category": "goods",
+      "name_en": "Paper (sheet)",
+      "name_es": "Papel (sheet)",
+      "status": "final_fix"
+    },
+    {
+      "id": 169,
+      "slug": "parchment-sheet",
+      "category": "goods",
+      "name_en": "Parchment (sheet)",
+      "name_es": "Pergamino (sheet)",
+      "status": "final_fix"
+    },
+    {
+      "id": 232,
+      "slug": "peasant-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Peasant's outfit",
+      "name_es": "Vestimenta de campesino",
+      "status": "final_fix"
+    },
+    {
+      "id": 386,
+      "slug": "pick-heavy",
+      "category": "weapon",
+      "name_en": "Pick, heavy",
+      "name_es": "Pico pesado",
+      "status": "final_fix"
+    },
+    {
+      "id": 377,
+      "slug": "pick-light",
+      "category": "weapon",
+      "name_en": "Pick, light",
+      "name_es": "Pico ligero",
+      "status": "final_fix"
+    },
+    {
+      "id": 170,
+      "slug": "pick-miner-rsquo-s",
+      "category": "goods",
+      "name_en": "Pick, miner's",
+      "name_es": "Pico de minero",
+      "status": "final_fix"
+    },
+    {
+      "id": 171,
+      "slug": "pitcher-clay",
+      "category": "goods",
+      "name_en": "Pitcher, clay",
+      "name_es": "Jarra de arcilla",
+      "status": "final_fix"
+    },
+    {
+      "id": 172,
+      "slug": "piton",
+      "category": "goods",
+      "name_en": "Piton",
+      "name_es": "Pitón",
+      "status": "final_fix"
+    },
+    {
+      "id": 173,
+      "slug": "pole-10-foot",
+      "category": "goods",
+      "name_en": "Pole 10-foot",
+      "name_es": "Pértiga de 10 pies",
+      "status": "final_fix"
+    },
+    {
+      "id": 174,
+      "slug": "pot-iron",
+      "category": "goods",
+      "name_en": "Pot, iron",
+      "name_es": "Olla de hierro",
+      "status": "final_fix"
+    },
+    {
+      "id": 175,
+      "slug": "pouch-belt-empty",
+      "category": "goods",
+      "name_en": "Pouch, belt (empty)",
+      "name_es": "Bolsa de cinturón",
+      "status": "final_fix"
+    },
+    {
+      "id": 363,
+      "slug": "quarterstaff5",
+      "category": "weapon",
+      "name_en": "Quarterstaff5",
+      "name_es": "Bastón",
+      "status": "final_fix"
+    },
+    {
+      "id": 176,
+      "slug": "ram-portable",
+      "category": "goods",
+      "name_en": "Ram, portable",
+      "name_es": "Ariete portátil",
+      "status": "final_fix"
+    },
+    {
+      "id": 402,
+      "slug": "ranseur4",
+      "category": "weapon",
+      "name_en": "Ranseur4",
+      "name_es": "Ranseur",
+      "status": "final_fix"
+    },
+    {
+      "id": 387,
+      "slug": "rapier",
+      "category": "weapon",
+      "name_en": "Rapier",
+      "name_es": "Estoque",
+      "status": "final_fix"
+    },
+    {
+      "id": 177,
+      "slug": "rations-trail-per-day",
+      "category": "goods",
+      "name_en": "Rations, trail (per day)",
+      "name_es": "Raciones, trail (por día)",
+      "status": "final_fix"
+    },
+    {
+      "id": 294,
+      "slug": "road-or-gate-toll",
+      "category": "goods",
+      "name_en": "Road or gate toll",
+      "name_es": "Peaje de camino o puerta",
+      "status": "final_fix"
+    },
+    {
+      "id": 178,
+      "slug": "rope-hempen-50-ft",
+      "category": "goods",
+      "name_en": "Rope, hempen (50 ft.)",
+      "name_es": "Cuerda, hempen (50 ft.)",
+      "status": "final_fix"
+    },
+    {
+      "id": 179,
+      "slug": "rope-silk-50-ft",
+      "category": "goods",
+      "name_en": "Rope, silk (50 ft.)",
+      "name_es": "Cuerda, silk (50 ft.)",
+      "status": "final_fix"
+    },
+    {
+      "id": 284,
+      "slug": "rowboat",
+      "category": "goods",
+      "name_en": "Rowboat",
+      "name_es": "Bote de remos",
+      "status": "final_fix"
+    },
+    {
+      "id": 233,
+      "slug": "royal-outfit",
+      "category": "goods",
+      "name_en": "Royal outfit",
+      "name_es": "Real vestimenta",
+      "status": "final_fix"
+    },
+    {
+      "id": 180,
+      "slug": "sack-empty",
+      "category": "goods",
+      "name_en": "Sack (empty)",
+      "name_es": "Saco",
+      "status": "final_fix"
+    },
+    {
+      "id": 269,
+      "slug": "saddle",
+      "category": "goods",
+      "name_en": "Saddle",
+      "name_es": "Silla de montar",
+      "status": "final_fix"
+    },
+    {
+      "id": 273,
+      "slug": "saddle-exotic",
+      "category": "goods",
+      "name_en": "Saddle, Exotic",
+      "name_es": "Silla de montar exótica",
+      "status": "final_fix"
+    },
+    {
+      "id": 277,
+      "slug": "saddlebags",
+      "category": "goods",
+      "name_en": "Saddlebags",
+      "name_es": "Alforjas",
+      "status": "final_fix"
+    },
+    {
+      "id": 414,
+      "slug": "sai",
+      "category": "weapon",
+      "name_en": "Sai",
+      "name_es": "Sai",
+      "status": "final_fix"
+    },
+    {
+      "id": 286,
+      "slug": "sailing-ship",
+      "category": "goods",
+      "name_en": "Sailing ship",
+      "name_es": "Velero",
+      "status": "final_fix"
+    },
+    {
+      "id": 378,
+      "slug": "sap",
+      "category": "weapon",
+      "name_en": "Sap",
+      "name_es": "Sap",
+      "status": "final_fix"
+    },
+    {
+      "id": 48,
+      "slug": "scale-mail",
+      "category": "armor",
+      "name_en": "Scale mail",
+      "name_es": "Cota de escamas",
+      "status": "final_fix"
+    },
+    {
+      "id": 217,
+      "slug": "scale-merchant-rsquo-s",
+      "category": "goods",
+      "name_en": "Scale, merchant's",
+      "name_es": "Balanza de mercader",
+      "status": "final_fix"
+    },
+    {
+      "id": 234,
+      "slug": "scholar-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Scholar's outfit",
+      "name_es": "Vestimenta de erudito",
+      "status": "final_fix"
+    },
+    {
+      "id": 388,
+      "slug": "scimitar",
+      "category": "weapon",
+      "name_en": "Scimitar",
+      "name_es": "Cimitarra",
+      "status": "final_fix"
+    },
+    {
+      "id": 403,
+      "slug": "scythe",
+      "category": "weapon",
+      "name_en": "Scythe",
+      "name_es": "Guadaña",
+      "status": "final_fix"
+    },
+    {
+      "id": 181,
+      "slug": "sealing-wax",
+      "category": "goods",
+      "name_en": "Sealing wax",
+      "name_es": "Lacre",
+      "status": "final_fix"
+    },
+    {
+      "id": 182,
+      "slug": "sewing-needle",
+      "category": "goods",
+      "name_en": "Sewing needle",
+      "name_es": "Aguja de coser",
+      "status": "final_fix"
+    },
+    {
+      "id": 389,
+      "slug": "shield-heavy",
+      "category": "weapon",
+      "name_en": "Shield, heavy",
+      "name_es": "Escudo, pesada",
+      "status": "final_fix"
+    },
+    {
+      "id": 59,
+      "slug": "shield-heavy-steel",
+      "category": "armor",
+      "name_en": "Shield, heavy steel",
+      "name_es": "Escudo pesado de acero",
+      "status": "final_fix"
+    },
+    {
+      "id": 58,
+      "slug": "shield-heavy-wooden",
+      "category": "armor",
+      "name_en": "Shield, heavy wooden",
+      "name_es": "Escudo pesado de madera",
+      "status": "final_fix"
+    },
+    {
+      "id": 379,
+      "slug": "shield-light",
+      "category": "weapon",
+      "name_en": "Shield, light",
+      "name_es": "Escudo, ligera",
+      "status": "final_fix"
+    },
+    {
+      "id": 57,
+      "slug": "shield-light-steel",
+      "category": "armor",
+      "name_en": "Shield, light steel",
+      "name_es": "Escudo ligero de acero",
+      "status": "final_fix"
+    },
+    {
+      "id": 56,
+      "slug": "shield-light-wooden",
+      "category": "armor",
+      "name_en": "Shield, light wooden",
+      "name_es": "Escudo ligero de madera",
+      "status": "final_fix"
+    },
+    {
+      "id": 60,
+      "slug": "shield-tower",
+      "category": "armor",
+      "name_en": "Shield, tower",
+      "name_es": "Escudo pavés",
+      "status": "final_fix"
+    },
+    {
+      "id": 295,
+      "slug": "ship-rsquo-s-passage",
+      "category": "goods",
+      "name_en": "Ship's passage",
+      "name_es": "Pasaje de barco",
+      "status": "final_fix"
+    },
+    {
+      "id": 408,
+      "slug": "shortbow",
+      "category": "weapon",
+      "name_en": "Shortbow",
+      "name_es": "Arco corto",
+      "status": "final_fix"
+    },
+    {
+      "id": 410,
+      "slug": "shortbow-composite",
+      "category": "weapon",
+      "name_en": "Shortbow, composite",
+      "name_es": "Arco corto compuesto",
+      "status": "final_fix"
+    },
+    {
+      "id": 361,
+      "slug": "shortspear",
+      "category": "weapon",
+      "name_en": "Shortspear",
+      "name_es": "Lanza corta",
+      "status": "final_fix"
+    },
+    {
+      "id": 433,
+      "slug": "shuriken-5",
+      "category": "weapon",
+      "name_en": "Shuriken (5)",
+      "name_es": "Shuriken (5)",
+      "status": "final_fix"
+    },
+    {
+      "id": 415,
+      "slug": "siangham",
+      "category": "weapon",
+      "name_en": "Siangham",
+      "name_es": "Siangham",
+      "status": "final_fix"
+    },
+    {
+      "id": 357,
+      "slug": "sickle",
+      "category": "weapon",
+      "name_en": "Sickle",
+      "name_es": "Hoz",
+      "status": "final_fix"
+    },
+    {
+      "id": 183,
+      "slug": "signal-whistle",
+      "category": "goods",
+      "name_en": "Signal whistle",
+      "name_es": "Silbato",
+      "status": "final_fix"
+    },
+    {
+      "id": 184,
+      "slug": "signet-ring",
+      "category": "goods",
+      "name_en": "Signet ring",
+      "name_es": "Anillo de sello",
+      "status": "final_fix"
+    },
+    {
+      "id": 287,
+      "slug": "sled",
+      "category": "goods",
+      "name_en": "Sled",
+      "name_es": "Trineo",
+      "status": "final_fix"
+    },
+    {
+      "id": 185,
+      "slug": "sledge",
+      "category": "goods",
+      "name_en": "Sledge",
+      "name_es": "Trineo",
+      "status": "final_fix"
+    },
+    {
+      "id": 371,
+      "slug": "sling",
+      "category": "weapon",
+      "name_en": "Sling",
+      "name_es": "Honda",
+      "status": "final_fix"
+    },
+    {
+      "id": 199,
+      "slug": "smokestick",
+      "category": "goods",
+      "name_en": "Smokestick",
+      "name_es": "Varilla de humo",
+      "status": "final_fix"
+    },
+    {
+      "id": 186,
+      "slug": "soap-per-lb",
+      "category": "goods",
+      "name_en": "Soap (per lb.)",
+      "name_es": "Jabón (por libra)",
+      "status": "final_fix"
+    },
+    {
+      "id": 187,
+      "slug": "spade-or-shovel",
+      "category": "goods",
+      "name_en": "Spade or shovel",
+      "name_es": "Spade or shovel",
+      "status": "final_fix"
+    },
+    {
+      "id": 364,
+      "slug": "spear",
+      "category": "weapon",
+      "name_en": "Spear",
+      "name_es": "Lanza",
+      "status": "final_fix"
+    },
+    {
+      "id": 218,
+      "slug": "spell-component-pouch",
+      "category": "goods",
+      "name_en": "Spell component pouch",
+      "name_es": "Bolsa de componentes de conjuro",
+      "status": "final_fix"
+    },
+    {
+      "id": 296,
+      "slug": "spell-0-level",
+      "category": "goods",
+      "name_en": "Spell, 0-level",
+      "name_es": "Spell, 0-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 297,
+      "slug": "spell-1st-level",
+      "category": "goods",
+      "name_en": "Spell, 1st-level",
+      "name_es": "Spell, 1st-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 298,
+      "slug": "spell-2nd-level",
+      "category": "goods",
+      "name_en": "Spell, 2nd-level",
+      "name_es": "Spell, 2nd-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 299,
+      "slug": "spell-3rd-level",
+      "category": "goods",
+      "name_en": "Spell, 3rd-level",
+      "name_es": "Spell, 3rd-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 300,
+      "slug": "spell-4th-level",
+      "category": "goods",
+      "name_en": "Spell, 4th-level",
+      "name_es": "Spell, 4th-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 301,
+      "slug": "spell-5th-level",
+      "category": "goods",
+      "name_en": "Spell, 5th-level",
+      "name_es": "Spell, 5th-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 302,
+      "slug": "spell-6th-level",
+      "category": "goods",
+      "name_en": "Spell, 6th-level",
+      "name_es": "Spell, 6th-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 303,
+      "slug": "spell-7th-level",
+      "category": "goods",
+      "name_en": "Spell, 7th-level",
+      "name_es": "Spell, 7th-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 304,
+      "slug": "spell-8th-level",
+      "category": "goods",
+      "name_en": "Spell, 8th-level",
+      "name_es": "Spell, 8th-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 305,
+      "slug": "spell-9th-level",
+      "category": "goods",
+      "name_en": "Spell, 9th-level",
+      "name_es": "Spell, 9th-level",
+      "status": "final_fix"
+    },
+    {
+      "id": 219,
+      "slug": "spellbook-wizard-rsquo-s-blank",
+      "category": "goods",
+      "name_en": "Spellbook, wizard's (blank)",
+      "name_es": "Libro de conjuros (en blanco)",
+      "status": "final_fix"
+    },
+    {
+      "id": 380,
+      "slug": "spiked-armor",
+      "category": "weapon",
+      "name_en": "Spiked armor",
+      "name_es": "Armadura con púas",
+      "status": "final_fix"
+    },
+    {
+      "id": 390,
+      "slug": "spiked-shield-heavy",
+      "category": "weapon",
+      "name_en": "Spiked shield, heavy",
+      "name_es": "Escudo pesado con púas",
+      "status": "final_fix"
+    },
+    {
+      "id": 381,
+      "slug": "spiked-shield-light",
+      "category": "weapon",
+      "name_en": "Spiked, shield light",
+      "name_es": "Escudo ligero con púas",
+      "status": "final_fix"
+    },
+    {
+      "id": 51,
+      "slug": "splint-mail",
+      "category": "armor",
+      "name_en": "Splint mail",
+      "name_es": "Armadura de bandas",
+      "status": "final_fix"
+    },
+    {
+      "id": 188,
+      "slug": "spyglass",
+      "category": "goods",
+      "name_en": "Spyglass",
+      "name_es": "Catalejo",
+      "status": "final_fix"
+    },
+    {
+      "id": 278,
+      "slug": "stabling-per-day",
+      "category": "goods",
+      "name_en": "Stabling (per day)",
+      "name_es": "Establo (día)",
+      "status": "final_fix"
+    },
+    {
+      "id": 45,
+      "slug": "studded-leather",
+      "category": "armor",
+      "name_en": "Studded leather",
+      "name_es": "Cuero tachonado",
+      "status": "final_fix"
+    },
+    {
+      "id": 200,
+      "slug": "sunrod",
+      "category": "goods",
+      "name_en": "Sunrod",
+      "name_es": "Vara solar",
+      "status": "final_fix"
+    },
+    {
+      "id": 382,
+      "slug": "sword-short",
+      "category": "weapon",
+      "name_en": "Sword short",
+      "name_es": "Espada corta",
+      "status": "final_fix"
+    },
+    {
+      "id": 416,
+      "slug": "sword-bastard",
+      "category": "weapon",
+      "name_en": "Sword, bastard",
+      "name_es": "Espada bastarda",
+      "status": "final_fix"
+    },
+    {
+      "id": 423,
+      "slug": "sword-two-bladed5",
+      "category": "weapon",
+      "name_en": "Sword, two-bladed5",
+      "name_es": "Espada de dos hojas",
+      "status": "final_fix"
+    },
+    {
+      "id": 201,
+      "slug": "tanglefoot-bag",
+      "category": "goods",
+      "name_en": "Tanglefoot bag",
+      "name_es": "Bolsa de liga",
+      "status": "final_fix"
+    },
+    {
+      "id": 189,
+      "slug": "tent",
+      "category": "goods",
+      "name_en": "Tent",
+      "name_es": "Tienda de campaña",
+      "status": "final_fix"
+    },
+    {
+      "id": 220,
+      "slug": "thieves-rsquo-tools",
+      "category": "goods",
+      "name_en": "Thieves' tools",
+      "name_es": "Herramientas de ladrones",
+      "status": "final_fix"
+    },
+    {
+      "id": 221,
+      "slug": "thieves-rsquo-tools-masterwork",
+      "category": "goods",
+      "name_en": "Thieves' tools, masterwork",
+      "name_es": "De ladrones herramientas, Obra maestra",
+      "status": "final_fix"
+    },
+    {
+      "id": 202,
+      "slug": "thunderstone",
+      "category": "goods",
+      "name_en": "Thunderstone",
+      "name_es": "Thunderstone",
+      "status": "final_fix"
+    },
+    {
+      "id": 203,
+      "slug": "tindertwig",
+      "category": "goods",
+      "name_en": "Tindertwig",
+      "name_es": "Tindertwig",
+      "status": "final_fix"
+    },
+    {
+      "id": 222,
+      "slug": "tool-masterwork",
+      "category": "goods",
+      "name_en": "Tool, masterwork",
+      "name_es": "Herramienta de obra maestra",
+      "status": "final_fix"
+    },
+    {
+      "id": 190,
+      "slug": "torch",
+      "category": "goods",
+      "name_en": "Torch",
+      "name_es": "Antorcha",
+      "status": "final_fix"
+    },
+    {
+      "id": 235,
+      "slug": "traveler-rsquo-s-outfit",
+      "category": "goods",
+      "name_en": "Traveler's outfit",
+      "name_es": "Vestimenta de viajero",
+      "status": "final_fix"
+    },
+    {
+      "id": 391,
+      "slug": "trident",
+      "category": "weapon",
+      "name_en": "Trident",
+      "name_es": "Tridente",
+      "status": "final_fix"
+    },
+    {
+      "id": 350,
+      "slug": "unarmed-attacks",
+      "category": "weapon",
+      "name_en": "Unarmed Attacks",
+      "name_es": "Unarmed Attacks",
+      "status": "final_fix"
+    },
+    {
+      "id": 352,
+      "slug": "unarmed-strike",
+      "category": "weapon",
+      "name_en": "Unarmed strike",
+      "name_es": "Unarmed strike",
+      "status": "final_fix"
+    },
+    {
+      "id": 424,
+      "slug": "urgrosh-dwarven5",
+      "category": "weapon",
+      "name_en": "Urgrosh, dwarven5",
+      "name_es": "Urgrosh enano",
+      "status": "final_fix"
+    },
+    {
+      "id": 191,
+      "slug": "vial-ink-or-potion",
+      "category": "goods",
+      "name_en": "Vial ink or potion",
+      "name_es": "Vial para tinta o poción",
+      "status": "final_fix"
+    },
+    {
+      "id": 288,
+      "slug": "wagon",
+      "category": "goods",
+      "name_en": "Wagon",
+      "name_es": "Carreta",
+      "status": "final_fix"
+    },
+    {
+      "id": 417,
+      "slug": "waraxe-dwarven",
+      "category": "weapon",
+      "name_en": "Waraxe, dwarven",
+      "name_es": "Hacha de guerra enana",
+      "status": "final_fix"
+    },
+    {
+      "id": 392,
+      "slug": "warhammer",
+      "category": "weapon",
+      "name_en": "Warhammer",
+      "name_es": "Martillo de guerra",
+      "status": "final_fix"
+    },
+    {
+      "id": 289,
+      "slug": "warship",
+      "category": "goods",
+      "name_en": "Warship",
+      "name_es": "Barco de guerra",
+      "status": "final_fix"
+    },
+    {
+      "id": 223,
+      "slug": "water-clock",
+      "category": "goods",
+      "name_en": "Water clock",
+      "name_es": "Reloj de agua",
+      "status": "final_fix"
+    },
+    {
+      "id": 192,
+      "slug": "waterskin",
+      "category": "goods",
+      "name_en": "Waterskin",
+      "name_es": "Odre",
+      "status": "final_fix"
+    },
+    {
+      "id": 193,
+      "slug": "whetstone",
+      "category": "goods",
+      "name_en": "Whetstone",
+      "name_es": "Piedra de afilar",
+      "status": "final_fix"
+    },
+    {
+      "id": 418,
+      "slug": "whip4",
+      "category": "weapon",
+      "name_en": "Whip4",
+      "name_es": "Látigo",
+      "status": "final_fix"
+    },
+    {
+      "id": 251,
+      "slug": "wine",
+      "category": "goods",
+      "name_en": "Wine",
+      "name_es": "Vino",
+      "status": "final_fix"
+    }
+  ]
+}

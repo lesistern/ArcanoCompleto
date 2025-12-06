@@ -256,3 +256,49 @@ export function rollAbilityScores(): AbilityScores {
  * console.log(`Fuerza: ${finalScores.str} (${formatModifier(modifiers.str)})`);
  * ```
  */
+
+/**
+ * Calcula los puntos de habilidad disponibles para un nivel dado
+ * @param classSkillPoints - Puntos base de la clase (ej. 2, 4, 6, 8)
+ * @param intModifier - Modificador de Inteligencia
+ * @param level - Nivel de personaje (1 para el primer nivel, >1 para siguientes)
+ * @param isHuman - Si la raza es humano (bonificador +1 por nivel, +4 a nivel 1)
+ */
+export function calculateSkillPoints(
+  classSkillPoints: number,
+  intModifier: number,
+  level: number,
+  isHuman: boolean
+): number {
+  const basePoints = Math.max(1, classSkillPoints + intModifier);
+
+  if (level === 1) {
+    return (basePoints * 4) + (isHuman ? 4 : 0);
+  } else {
+    return basePoints + (isHuman ? 1 : 0);
+  }
+}
+
+/**
+ * Calcula el total de puntos de habilidad para un personaje
+ * Nota: Asume que todos los niveles son de la misma clase (limitación actual)
+ */
+export function calculateTotalSkillPoints(
+  classSkillPoints: number,
+  intModifier: number,
+  totalLevels: number,
+  isHuman: boolean
+): number {
+  let total = 0;
+
+  // Nivel 1
+  total += calculateSkillPoints(classSkillPoints, intModifier, 1, isHuman);
+
+  // Niveles subsiguientes
+  if (totalLevels > 1) {
+    const pointsPerLevel = calculateSkillPoints(classSkillPoints, intModifier, 2, isHuman);
+    total += pointsPerLevel * (totalLevels - 1);
+  }
+
+  return total;
+}

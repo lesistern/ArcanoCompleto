@@ -1,14 +1,24 @@
 import { MetadataRoute } from 'next';
-import { getAllClassSlugs, getAllRaceSlugs, getAllFeatSlugs } from '@/lib/supabase/cached-queries';
+import {
+  getAllClassSlugs,
+  getAllRaceSlugs,
+  getAllFeatSlugs,
+  getAllSpellSlugs,
+  getAllItemSlugs,
+  getAllMonsterSlugs
+} from '@/lib/supabase/cached-queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://arcanocompleto.vercel.app';
 
   // Obtener slugs de contenido dinámico
-  const [classes, races, feats] = await Promise.all([
+  const [classes, races, feats, spells, items, monsters] = await Promise.all([
     getAllClassSlugs(),
     getAllRaceSlugs(),
     getAllFeatSlugs(),
+    getAllSpellSlugs(),
+    getAllItemSlugs(),
+    getAllMonsterSlugs(),
   ]);
 
   // Rutas estáticas principales
@@ -38,6 +48,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/conjuros`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/objetos`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/monstruos`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/habilidades`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
@@ -57,7 +85,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Rutas dinámicas de clases
+  // Rutas dinámicas
   const classRoutes: MetadataRoute.Sitemap = classes.map((c) => ({
     url: `${baseUrl}/clases/${c.slug}`,
     lastModified: new Date(),
@@ -65,7 +93,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Rutas dinámicas de razas
   const raceRoutes: MetadataRoute.Sitemap = races.map((r) => ({
     url: `${baseUrl}/razas/${r.slug}`,
     lastModified: new Date(),
@@ -73,7 +100,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Rutas dinámicas de dotes
   const featRoutes: MetadataRoute.Sitemap = feats.map((f) => ({
     url: `${baseUrl}/dotes/${f.slug}`,
     lastModified: new Date(),
@@ -81,5 +107,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...classRoutes, ...raceRoutes, ...featRoutes];
+  const spellRoutes: MetadataRoute.Sitemap = spells.map((s) => ({
+    url: `${baseUrl}/conjuros/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  const itemRoutes: MetadataRoute.Sitemap = items.map((i) => ({
+    url: `${baseUrl}/objetos/${i.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  const monsterRoutes: MetadataRoute.Sitemap = monsters.map((m) => ({
+    url: `${baseUrl}/monstruos/${m.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...classRoutes,
+    ...raceRoutes,
+    ...featRoutes,
+    ...spellRoutes,
+    ...itemRoutes,
+    ...monsterRoutes
+  ];
 }

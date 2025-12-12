@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Sparkles, Lock } from 'lucide-react';
 import { generateFantasyName } from '@/lib/utils/name-generator';
 import { DnDRace } from '@/lib/types/race';
+import { formatRaceName, formatClassName } from '@/lib/utils/formatters';
 
 interface BasicInfoStepProps {
     data: any;
@@ -53,13 +54,13 @@ export function BasicInfoStep({ data, updateData, selectedRace, selectedClass }:
                 <div className="bg-indigo-900/20 border border-indigo-500/30 p-4 rounded-lg flex gap-4 text-sm text-indigo-200">
                     {selectedRace && (
                         <div>
-                            <span className="font-bold text-indigo-400">Raza:</span> {selectedRace.name}
+                            <span className="font-bold text-indigo-400">Raza:</span> {formatRaceName(selectedRace.name)}
                             <span className="opacity-70 ml-1">(Define Tám. y Edad)</span>
                         </div>
                     )}
                     {selectedClass && (
                         <div>
-                            <span className="font-bold text-red-400">Clase:</span> {selectedClass.name}
+                            <span className="font-bold text-red-400">Clase:</span> {formatClassName(selectedClass.name)}
                             <span className="opacity-70 ml-1">(Restringe Alineamiento)</span>
                         </div>
                     )}

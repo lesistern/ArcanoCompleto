@@ -5,11 +5,12 @@ import { createClient, createStaticClient } from '@/lib/supabase/server';
 import { DnDRace } from '@/lib/types/race';
 import { getRaceIcon, getRaceColor, extractTextColor } from '@/lib/utils/icons';
 import { convertSupabaseRace } from '@/lib/data/races-management';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import { FormattedDistance } from '@/components/ui/FormattedDistance';
 import {
+  ArrowLeft,
   Users,
-  TrendingUp,
+  Footprints,
   Shield,
   BookOpen,
   MessageCircle,
@@ -17,7 +18,12 @@ import {
   Eye,
   Moon,
   Zap,
-  ChevronRight,
+  Swords,
+  Heart,
+  Brain,
+  Star,
+  TrendingUp,
+  Award
 } from 'lucide-react';
 
 export const revalidate = 3600;
@@ -62,6 +68,13 @@ export async function generateMetadata({ params }: RacePageProps): Promise<Metad
       title: `${raceName} - Raza de D&D 3.5`,
       description,
       type: 'article',
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(raceName)}&type=Raza&description=${encodeURIComponent(description)}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   };
 }
@@ -100,228 +113,276 @@ export default async function RacePage({ params }: RacePageProps) {
   // Check if race is supplemental
   const isSupplemental = raceData.source?.book !== "Player's Handbook" && raceData.source?.book !== 'Manual del Jugador';
 
-  // Format ability modifiers
-  const abilityMods = Object.entries(raceData.abilityModifiers || {}).map(([key, value]) => {
-    const abilityNames: Record<string, string> = {
-      strength: 'Fuerza',
-      dexterity: 'Destreza',
-      constitution: 'Constitución',
-      intelligence: 'Inteligencia',
-      wisdom: 'Sabiduría',
-      charisma: 'Carisma',
-    };
-    return {
-      ability: abilityNames[key] || key,
-      modifier: value as number,
-    };
-  });
+  // Format ability modifiers with icons
+  const abilityMods = [
+    {
+      name: 'Fuerza',
+      value: raceData.abilityModifiers.strength || 0,
+      icon: Swords,
+      color: 'text-red-400'
+    },
+    {
+      name: 'Destreza',
+      value: raceData.abilityModifiers.dexterity || 0,
+      icon: Zap,
+      color: 'text-green-400'
+    },
+    {
+      name: 'Constitución',
+      value: raceData.abilityModifiers.constitution || 0,
+      icon: Heart,
+      color: 'text-pink-400'
+    },
+    {
+      name: 'Inteligencia',
+      value: raceData.abilityModifiers.intelligence || 0,
+      icon: Brain,
+      color: 'text-blue-400'
+    },
+    {
+      name: 'Sabiduría',
+      value: raceData.abilityModifiers.wisdom || 0,
+      icon: Eye,
+      color: 'text-purple-400'
+    },
+    {
+      name: 'Carisma',
+      value: raceData.abilityModifiers.charisma || 0,
+      icon: Star,
+      color: 'text-yellow-400'
+    },
+  ];
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-sm text-dungeon-400 mb-6">
-        <Link href="/" className="hover:text-dungeon-200 transition-colors">
-          Inicio
-        </Link>
-        <ChevronRight className="h-4 w-4" />
-        <Link href="/razas" className="hover:text-dungeon-200 transition-colors">
-          Razas
-        </Link>
-        <ChevronRight className="h-4 w-4" />
-        <span className="text-dungeon-200">{raceData.name}</span>
-      </nav>
+    <div className="container mx-auto px-4 py-8 max-w-5xl">
+      {/* Back Button */}
+      <Link href="/razas">
+        <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-300">
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Volver a Razas
+        </Button>
+      </Link>
 
-      {/* Hero Section */}
-      <div className="flex flex-col md:flex-row gap-8 items-start mb-10 overflow-visible">
-        <div className="w-full md:flex-1 space-y-6">
+      {/* Hero Section - Igual que guia-principiante */}
+      <div className="relative rounded-xl overflow-hidden bg-dungeon-900 border border-dungeon-800 shadow-2xl mb-8">
+        <div className={`absolute inset-0 bg-gradient-to-br from-dungeon-950 via-dungeon-900/90 ${colorClasses.replace('text-', 'to-')}/30`} />
+        <div className="relative p-8 md:p-12">
           <div className="flex items-center gap-4 mb-4">
-            <Icon className={`h-10 w-10 md:h-12 md:w-12 ${iconColor}`} />
+            <Icon className={`h-12 w-12 ${iconColor}`} />
             <div>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-dungeon-100">
+              <div className={`text-xs font-mono uppercase tracking-wider ${iconColor} mb-2`}>
+                {isSupplemental ? 'Raza Suplementaria' : 'Raza del Player\'s Handbook'}
+              </div>
+              <h1 className={`text-4xl md:text-5xl font-bold ${iconColor}`}>
                 {raceData.name}
               </h1>
-              {/* Source Book Badge */}
-              {raceData.source?.book && (
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-900/40 border border-amber-700/50 text-amber-300 text-xs font-semibold">
-                    <BookOpen className="h-3.5 w-3.5" />
-                    {raceData.source.book}
-                  </span>
-                  {isSupplemental && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-900/40 border border-amber-700/50 text-amber-300 text-xs font-semibold">
-                      <Sparkles className="h-3.5 w-3.5" />
-                      Suplementaria
-                    </span>
-                  )}
-                </div>
-              )}
             </div>
           </div>
-          <div className="prose prose-invert max-w-none">
-            <p className="text-dungeon-200 text-base md:text-lg leading-relaxed">
-              {raceData.description.split('\n\n')[0]}
-            </p>
-            {raceData.description.split('\n\n').length > 1 && (
-              <div className="mt-4 text-dungeon-300 text-sm md:text-base whitespace-pre-line">
-                {raceData.description.split('\n\n').slice(1).join('\n\n')}
-              </div>
-            )}
-          </div>
+          <p className="text-lg text-gray-400 leading-relaxed max-w-3xl">
+            {raceData.description.split('\n\n')[0]}
+          </p>
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <Card className="border-dungeon-700 bg-dungeon-900/50">
-          <CardHeader>
-            <CardTitle className="text-sm font-semibold text-dungeon-400 uppercase tracking-wider flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              Tamaño y Velocidad
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="flex justify-between items-center">
-              <span className="text-dungeon-400">Tamaño:</span>
-              <span className="text-dungeon-100 font-semibold">{raceData.size}</span>
+      <div className="space-y-10">
+        {/* Warning Banner for Supplemental Races */}
+        {isSupplemental && (
+          <div className="bg-gradient-to-r from-amber-900/30 via-orange-900/30 to-amber-900/30 border border-amber-500/30 rounded-lg p-6">
+            <div className="flex gap-4 items-start">
+              <Sparkles className="h-8 w-8 text-amber-400 flex-shrink-0 animate-pulse" />
+              <div>
+                <h2 className="text-xl font-bold text-amber-300 mb-2">Raza Suplementaria</h2>
+                <p className="text-gray-400 leading-relaxed">
+                  Esta raza proviene del libro <strong>{raceData.source?.book}</strong>. Las opciones pueden tener ajuste de nivel y requieren aprobación del DM antes de usarse en una campaña.
+                </p>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-dungeon-400">Velocidad:</span>
-              <span className="text-dungeon-100 font-semibold">
-                <FormattedDistance feet={raceData.speed} />
-              </span>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+        )}
 
-        <Card className="border-dungeon-700 bg-dungeon-900/50">
-          <CardHeader>
-            <CardTitle className="text-sm font-semibold text-dungeon-400 uppercase tracking-wider flex items-center gap-2">
-              <TrendingUp className="h-4 w-4" />
-              Modificadores
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {abilityMods.length > 0 ? (
-              abilityMods.map(({ ability, modifier }) => (
-                <div key={ability} className="flex justify-between items-center">
-                  <span className="text-dungeon-400">{ability}:</span>
-                  <span className={`font-semibold ${modifier > 0 ? 'text-green-400' : modifier < 0 ? 'text-red-400' : 'text-dungeon-400'}`}>
-                    {modifier > 0 ? '+' : ''}{modifier}
-                  </span>
+        {/* Características Básicas */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-400 mb-4 flex items-center gap-2">
+            <Users className="h-6 w-6" />
+            Características Básicas
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4 hover:border-gold-400/50 transition-colors">
+              <div className="flex gap-3">
+                <Users className="h-6 w-6 text-cyan-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-gray-300 mb-1">Tamaño</h3>
+                  <p className="text-sm text-gray-400">{raceData.size}</p>
                 </div>
-              ))
-            ) : (
-              <p className="text-sm text-dungeon-400">Sin modificadores</p>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card className="border-dungeon-700 bg-dungeon-900/50">
-          <CardHeader>
-            <CardTitle className="text-sm font-semibold text-dungeon-400 uppercase tracking-wider flex items-center gap-2">
-              <Shield className="h-4 w-4" />
-              Clase y Nivel
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="flex justify-between items-center">
-              <span className="text-dungeon-400">Clase Favorita:</span>
-              <span className="text-dungeon-100 font-semibold">
-                {Array.isArray(raceData.favoredClass)
-                  ? raceData.favoredClass.join(', ')
-                  : raceData.favoredClass}
-              </span>
+              </div>
             </div>
+
+            <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4 hover:border-gold-400/50 transition-colors">
+              <div className="flex gap-3">
+                <Footprints className="h-6 w-6 text-green-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-gray-300 mb-1">Velocidad</h3>
+                  <p className="text-sm text-gray-400">
+                    <FormattedDistance feet={raceData.speed} />
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4 hover:border-gold-400/50 transition-colors">
+              <div className="flex gap-3">
+                <Shield className="h-6 w-6 text-gold-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-gray-300 mb-1">Clase Favorita</h3>
+                  <p className="text-sm text-gray-400">
+                    {Array.isArray(raceData.favoredClass)
+                      ? raceData.favoredClass.join(', ')
+                      : raceData.favoredClass}
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {raceData.levelAdjustment > 0 && (
-              <div className="flex justify-between items-center">
-                <span className="text-dungeon-400">Ajuste de Nivel:</span>
-                <span className="text-amber-400 font-semibold">+{raceData.levelAdjustment}</span>
+              <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4 hover:border-gold-400/50 transition-colors">
+                <div className="flex gap-3">
+                  <Award className="h-6 w-6 text-amber-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-bold text-gray-300 mb-1">Ajuste de Nivel</h3>
+                    <p className="text-sm text-amber-300 font-bold">+{raceData.levelAdjustment}</p>
+                  </div>
+                </div>
               </div>
             )}
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </section>
 
-      {/* Special Abilities */}
-      {(raceData.specialAbilities?.darkvision || raceData.specialAbilities?.lowLightVision) && (
-        <div className="mb-10">
-          <h2 className="text-2xl font-heading font-bold text-dungeon-100 mb-4 flex items-center gap-2">
-            <Eye className="h-6 w-6 text-purple-400" />
-            Habilidades Especiales de Visión
+        {/* Modificadores de Habilidad */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-400 mb-4 flex items-center gap-2">
+            <TrendingUp className="h-6 w-6" />
+            Modificadores de Habilidad
           </h2>
-          <Card className="border-dungeon-700 bg-dungeon-900/50">
-            <CardContent className="pt-6 space-y-3">
-              {raceData.specialAbilities.darkvision && (
-                <div className="flex items-start gap-3">
-                  <Moon className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
+          <p className="text-gray-400 mb-6">
+            Bonificadores raciales que se aplican a las puntuaciones de habilidad de tu personaje.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {abilityMods.map((mod, idx) => (
+              <div key={idx} className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4">
+                <div className="flex gap-3">
+                  <mod.icon className={`h-5 w-5 ${mod.color} flex-shrink-0 mt-1`} />
                   <div>
-                    <p className="font-semibold text-dungeon-100">Visión en la Oscuridad</p>
-                    <p className="text-sm text-dungeon-400">
-                      <FormattedDistance feet={raceData.specialAbilities.darkvision} /> de rango
+                    <h3 className="font-bold text-gray-300 mb-1">{mod.name}</h3>
+                    <p className={`text-sm font-semibold ${mod.value > 0 ? 'text-green-400' : mod.value < 0 ? 'text-red-400' : 'text-gray-400'}`}>
+                      {mod.value > 0 ? '+' : ''}{mod.value}
                     </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Habilidades Especiales de Visión */}
+        {(raceData.specialAbilities?.darkvision || raceData.specialAbilities?.lowLightVision) && (
+          <section>
+            <h2 className="text-2xl font-bold text-gold-400 mb-4 flex items-center gap-2">
+              <Eye className="h-6 w-6" />
+              Habilidades Especiales de Visión
+            </h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {raceData.specialAbilities.darkvision && (
+                <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4">
+                  <div className="flex gap-3">
+                    <Moon className="h-5 w-5 text-purple-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-bold text-gray-300 mb-1">Visión en la Oscuridad</h3>
+                      <p className="text-sm text-gray-400">
+                        Rango de <FormattedDistance feet={raceData.specialAbilities.darkvision} />
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
               {raceData.specialAbilities.lowLightVision && (
-                <div className="flex items-start gap-3">
-                  <Zap className="h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-dungeon-100">Visión con Poca Luz</p>
-                    <p className="text-sm text-dungeon-400">
-                      Puede ver el doble de lejos que un humano en condiciones de poca luz
-                    </p>
+                <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-4">
+                  <div className="flex gap-3">
+                    <Zap className="h-5 w-5 text-yellow-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-bold text-gray-300 mb-1">Visión con Poca Luz</h3>
+                      <p className="text-sm text-gray-400">
+                        Puede ver el doble de lejos que un humano en condiciones de poca luz
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
-            </CardContent>
-          </Card>
-        </div>
-      )}
+            </div>
+          </section>
+        )}
 
-      {/* Languages */}
-      {(raceData.languages?.automatic?.length || raceData.languages?.bonus?.length) && (
-        <div className="mb-10">
-          <h2 className="text-2xl font-heading font-bold text-dungeon-100 mb-4 flex items-center gap-2">
-            <MessageCircle className="h-6 w-6 text-blue-400" />
-            Idiomas
-          </h2>
-          <Card className="border-dungeon-700 bg-dungeon-900/50">
-            <CardContent className="pt-6 space-y-3">
-              {raceData.languages.automatic && raceData.languages.automatic.length > 0 && (
-                <div>
-                  <p className="font-semibold text-dungeon-100 mb-1">Idiomas Automáticos:</p>
-                  <p className="text-sm text-dungeon-400">{raceData.languages.automatic.join(', ')}</p>
-                </div>
-              )}
-              {raceData.languages.bonus && raceData.languages.bonus.length > 0 && (
-                <div>
-                  <p className="font-semibold text-dungeon-100 mb-1">Idiomas Bonus:</p>
-                  <p className="text-sm text-dungeon-400">{raceData.languages.bonus.join(', ')}</p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
-      {/* Warning Banner for Supplemental Races */}
-      {isSupplemental && (
-        <Card className="bg-amber-900/20 border-amber-800/50 mt-8">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <p className="text-sm font-semibold text-amber-300">
-                  Raza Suplementaria
-                </p>
-                <p className="text-sm text-amber-200/80">
-                  Esta raza proviene de un libro suplementario. Algunas opciones pueden tener ajuste de nivel y requieren aprobación del DM antes de usarse en una campaña.
-                </p>
+        {/* Idiomas */}
+        {(raceData.languages?.automatic?.length || raceData.languages?.bonus?.length) && (
+          <section>
+            <h2 className="text-2xl font-bold text-gold-400 mb-4 flex items-center gap-2">
+              <MessageCircle className="h-6 w-6" />
+              Idiomas
+            </h2>
+            <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-6">
+              <div className="space-y-4">
+                {raceData.languages.automatic && raceData.languages.automatic.length > 0 && (
+                  <div className="flex gap-3">
+                    <BookOpen className="h-5 w-5 text-blue-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-bold text-gray-300 mb-1">Idiomas Automáticos</h3>
+                      <p className="text-sm text-gray-400">{raceData.languages.automatic.join(', ')}</p>
+                    </div>
+                  </div>
+                )}
+                {raceData.languages.bonus && raceData.languages.bonus.length > 0 && (
+                  <div className="flex gap-3">
+                    <Sparkles className="h-5 w-5 text-amber-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-bold text-gray-300 mb-1">Idiomas Bonus</h3>
+                      <p className="text-sm text-gray-400">{raceData.languages.bonus.join(', ')}</p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </CardContent>
-        </Card>
-      )}
+          </section>
+        )}
+
+        {/* Descripción Completa */}
+        {raceData.description.split('\n\n').length > 1 && (
+          <section>
+            <h2 className="text-2xl font-bold text-gold-400 mb-4 flex items-center gap-2">
+              <BookOpen className="h-6 w-6" />
+              Descripción Completa
+            </h2>
+            <div className="bg-dungeon-900/50 border border-dungeon-700/50 rounded-lg p-6">
+              <div className="prose prose-invert max-w-none">
+                <div className="text-gray-400 text-sm md:text-base whitespace-pre-line leading-relaxed">
+                  {raceData.description.split('\n\n').slice(1).join('\n\n')}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* CTA */}
+        <div className="text-center pt-8 border-t border-dungeon-700">
+          <p className="text-gray-400 mb-6 text-lg">
+            ¿Listo para crear un personaje de esta raza?
+          </p>
+          <Link href="/editor-personajes">
+            <Button size="lg" className={`bg-gradient-to-r ${colorClasses.replace('text-', 'from-')}/80 ${colorClasses.replace('text-', 'to-')}/60 hover:${colorClasses.replace('text-', 'from-')}/70 hover:${colorClasses.replace('text-', 'to-')}/50 text-white border-0`}>
+              <Users className="h-5 w-5 mr-2" />
+              Crear Personaje
+            </Button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

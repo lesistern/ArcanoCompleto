@@ -109,7 +109,7 @@ export default async function RuleDetailPage({ params }: PageProps) {
     return (
         <div className="container mx-auto px-4 py-12 max-w-4xl">
             <Link href="/reglas">
-                <Button variant="ghost" className="mb-8 pl-0 hover:pl-2 transition-all text-dungeon-300 hover:text-gold-400">
+                <Button variant="ghost" className="mb-8 pl-0 hover:pl-2 transition-all text-gray-300 hover:text-gold-400">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Volver a Reglas
                 </Button>
@@ -119,36 +119,36 @@ export default async function RuleDetailPage({ params }: PageProps) {
                 <div className="h-2 bg-gradient-to-r from-gold-600 to-gold-400" />
                 <CardHeader className="pb-4">
                     <div className="flex items-center gap-3 mb-2">
-                        <span className="text-xs font-mono uppercase tracking-wider text-gold-500 bg-dungeon-900/50 px-2 py-1 rounded">
+                        <span className="text-xs font-mono uppercase tracking-wider text-gold-500 bg-gray-900/50 px-2 py-1 rounded">
                             {categoryTitle}
                         </span>
                         {item.abbreviation && (
-                            <span className="text-xs font-mono text-dungeon-400 bg-dungeon-900/50 px-2 py-1 rounded">
+                            <span className="text-xs font-mono text-gray-400 bg-gray-900/50 px-2 py-1 rounded">
                                 {item.abbreviation}
                             </span>
                         )}
                     </div>
-                    <CardTitle className="text-3xl md:text-4xl font-bold text-dungeon-100">
+                    <CardTitle className="text-3xl md:text-4xl font-bold text-gray-100">
                         {item.name}
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <div className="prose prose-invert max-w-none">
-                        <p className="text-lg text-dungeon-200 leading-relaxed">
+                        <p className="text-lg text-gray-200 leading-relaxed">
                             {item.description}
                         </p>
                     </div>
 
                     {/* Specific content based on category */}
                     {category === 'dados' && (
-                        <div className="flex items-center gap-4 p-4 bg-dungeon-900/30 rounded-lg border border-dungeon-700/50">
+                        <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg border border-gray-700/50">
                             {(() => {
                                 const DiceIcon = getDiceIcon(item.sides);
                                 return <DiceIcon className="h-8 w-8 text-gold-500" />;
                             })()}
                             <div>
-                                <p className="text-sm font-medium text-dungeon-300">Caras</p>
-                                <p className="text-xl font-bold text-dungeon-100">{item.sides}</p>
+                                <p className="text-sm font-medium text-gray-300">Caras</p>
+                                <p className="text-xl font-bold text-gray-100">{item.sides}</p>
                             </div>
                         </div>
                     )}
@@ -156,28 +156,28 @@ export default async function RuleDetailPage({ params }: PageProps) {
 
 
                     {category === 'puntuaciones-caracteristica' && (
-                        <div className="flex items-center gap-4 p-4 bg-dungeon-900/30 rounded-lg border border-dungeon-700/50">
+                        <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg border border-gray-700/50">
                             {(() => {
                                 const AbilityIcon = getAbilityIconById(item.id);
                                 return <AbilityIcon className="h-8 w-8 text-gold-500" />;
                             })()}
                             <div>
-                                <p className="text-sm font-medium text-dungeon-300">Abreviación</p>
-                                <p className="text-xl font-bold text-dungeon-100 font-mono">{item.abbreviation}</p>
+                                <p className="text-sm font-medium text-gray-300">Abreviación</p>
+                                <p className="text-xl font-bold text-gray-100 font-mono">{item.abbreviation}</p>
                             </div>
                         </div>
                     )}
 
                     {category === 'salvaciones' && relatedAbility && (
-                        <div className="flex items-center gap-4 p-4 bg-dungeon-900/30 rounded-lg border border-dungeon-700/50">
+                        <div className="flex items-center gap-4 p-4 bg-gray-900/30 rounded-lg border border-gray-700/50">
                             {(() => {
                                 const Icon = getAbilityIconById(relatedAbility.id);
                                 return <Icon className="h-8 w-8 text-gold-500" />;
                             })()}
                             <div>
-                                <p className="text-sm font-medium text-dungeon-300">Característica Clave</p>
+                                <p className="text-sm font-medium text-gray-300">Característica Clave</p>
                                 <Link href={`/reglas/puntuaciones-caracteristica/${relatedAbility.slug}`} className="hover:underline">
-                                    <p className="text-xl font-bold text-dungeon-100">{relatedAbility.name}</p>
+                                    <p className="text-xl font-bold text-gray-100">{relatedAbility.name}</p>
                                 </Link>
                             </div>
                         </div>

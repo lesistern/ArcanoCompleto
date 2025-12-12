@@ -129,7 +129,7 @@ export default function EpicoPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -139,20 +139,20 @@ export default function EpicoPage() {
                         <Flame className="h-8 w-8 text-yellow-500" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Reglas Épicas</h1>
-                        <p className="text-dungeon-400">Contenido para personajes de nivel 21 y superior</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Reglas Épicas</h1>
+                        <p className="text-gray-400">Contenido para personajes de nivel 21 y superior</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                Las <strong className="text-dungeon-100">reglas épicas</strong> extienden el juego más allá
+                                Las <strong className="text-gray-100">reglas épicas</strong> extienden el juego más allá
                                 del nivel 20. Los personajes épicos enfrentan desafíos cósmicos, pueden lanzar conjuros
                                 que alteran la realidad y obtienen dotes de poder legendario.
                             </p>
@@ -167,16 +167,16 @@ export default function EpicoPage() {
 
             {/* Epic Progression Table */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Crown className="h-6 w-6 text-gold-400" />
                     Progresión Épica (Niveles 21-30)
                 </h2>
-                <Card className="bg-dungeon-900/50 border-dungeon-700 overflow-hidden">
+                <Card className="bg-gray-900/50 border-gray-700 overflow-hidden">
                     <CardContent className="p-0">
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm">
-                                <thead className="bg-dungeon-800">
-                                    <tr className="text-dungeon-300">
+                                <thead className="bg-gray-800">
+                                    <tr className="text-gray-300">
                                         <th className="px-4 py-3 text-left">Nivel</th>
                                         <th className="px-4 py-3 text-center">BAB</th>
                                         <th className="px-4 py-3 text-center">Fort</th>
@@ -187,13 +187,13 @@ export default function EpicoPage() {
                                 </thead>
                                 <tbody>
                                     {EPIC_PROGRESSION.map((row, idx) => (
-                                        <tr key={row.level} className={idx % 2 === 0 ? 'bg-dungeon-900/30' : ''}>
+                                        <tr key={row.level} className={idx % 2 === 0 ? 'bg-gray-900/30' : ''}>
                                             <td className="px-4 py-2 font-bold text-gold-400">{row.level}</td>
-                                            <td className="px-4 py-2 text-center text-dungeon-200">{row.bab}</td>
+                                            <td className="px-4 py-2 text-center text-gray-200">{row.bab}</td>
                                             <td className="px-4 py-2 text-center text-green-400">{row.fort}</td>
                                             <td className="px-4 py-2 text-center text-blue-400">{row.ref}</td>
                                             <td className="px-4 py-2 text-center text-purple-400">{row.will}</td>
-                                            <td className="px-4 py-2 text-dungeon-300">
+                                            <td className="px-4 py-2 text-gray-300">
                                                 {row.feats !== '-' ? (
                                                     <span className="text-yellow-400">{row.feats}</span>
                                                 ) : '-'}
@@ -205,20 +205,20 @@ export default function EpicoPage() {
                         </div>
                     </CardContent>
                 </Card>
-                <p className="text-sm text-dungeon-400 mt-2">
+                <p className="text-sm text-gray-400 mt-2">
                     * Las salvaciones mostradas son para clases con buena progresión. Las salvaciones pobres usan +1 por cada 3 niveles.
                 </p>
             </section>
 
             {/* Epic Feats */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Star className="h-6 w-6 text-gold-400" />
                     Dotes Épicas Destacadas
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
                     {EPIC_FEATS.map((feat) => (
-                        <Card key={feat.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={feat.name} className="bg-gray-900/50 border-gray-700">
                             <CardContent className="p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <h3 className="font-semibold text-gold-400">{feat.name}</h3>
@@ -231,10 +231,10 @@ export default function EpicoPage() {
                                         {feat.category}
                                     </span>
                                 </div>
-                                <p className="text-xs text-dungeon-500 mb-2">
+                                <p className="text-xs text-gray-500 mb-2">
                                     <strong>Requisitos:</strong> {feat.prerequisites}
                                 </p>
-                                <p className="text-sm text-dungeon-300">{feat.benefit}</p>
+                                <p className="text-sm text-gray-300">{feat.benefit}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -243,16 +243,16 @@ export default function EpicoPage() {
 
             {/* Epic Spellcasting */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Wand2 className="h-6 w-6 text-purple-400" />
                     Conjuros Épicos
                 </h2>
                 <div className="space-y-4">
                     {EPIC_SPELLCASTING.map((section) => (
-                        <Card key={section.title} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={section.title} className="bg-gray-900/50 border-gray-700">
                             <CardContent className="p-4">
                                 <h3 className="font-semibold text-purple-400 mb-2">{section.title}</h3>
-                                <p className="text-sm text-dungeon-300">{section.content}</p>
+                                <p className="text-sm text-gray-300">{section.content}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -261,20 +261,20 @@ export default function EpicoPage() {
 
             {/* Epic Challenges */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Swords className="h-6 w-6 text-red-400" />
                     Desafíos Épicos
                 </h2>
-                <Card className="bg-dungeon-900/50 border-dungeon-700">
+                <Card className="bg-gray-900/50 border-gray-700">
                     <CardContent className="p-6 space-y-4">
-                        <p className="text-dungeon-300">
+                        <p className="text-gray-300">
                             Los encuentros épicos involucran amenazas de escala cósmica. Aquí una guía de CR:
                         </p>
                         <div className="grid md:grid-cols-2 gap-4">
                             {EPIC_CHALLENGES.map((challenge) => (
-                                <div key={challenge.cr} className="bg-dungeon-800/50 p-4 rounded-lg">
+                                <div key={challenge.cr} className="bg-gray-800/50 p-4 rounded-lg">
                                     <div className="text-lg font-bold text-red-400 mb-1">CR {challenge.cr}</div>
-                                    <p className="text-sm text-dungeon-300">{challenge.description}</p>
+                                    <p className="text-sm text-gray-300">{challenge.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -284,42 +284,42 @@ export default function EpicoPage() {
 
             {/* Special Rules */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Shield className="h-6 w-6 text-blue-400" />
                     Reglas Especiales Épicas
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-blue-400 mb-2">Puntos de Golpe</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Después del nivel 20, los personajes ganan puntos de golpe fijos (sin tirar dados):
                                 normalmente el promedio del dado de golpe de su clase + modificador de Constitución.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-blue-400 mb-2">Incremento de Características</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Los personajes continúan ganando +1 a una característica cada 4 niveles
                                 (nivel 24, 28, 32, etc.).
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-blue-400 mb-2">Conjuros por Día</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 La cantidad de conjuros por día sigue aumentando según las tablas de clase,
                                 pero no se ganan nuevos niveles de conjuro más allá del 9º.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-blue-400 mb-2">Nivel de Lanzador</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 El nivel de lanzador sigue subiendo, aumentando la efectividad de
                                 conjuros que dependen del nivel (duración, daño, etc.).
                             </p>
@@ -333,7 +333,7 @@ export default function EpicoPage() {
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Zap className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p className="font-semibold text-amber-400">Nota para DMs</p>
                             <p className="text-sm">
                                 El juego épico requiere una planificación cuidadosa. Los personajes de nivel 21+

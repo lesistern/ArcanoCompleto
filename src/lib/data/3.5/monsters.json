@@ -3,7 +3,9 @@
     "id": "goblin",
     "name": "Goblin",
     "type": "humanoide",
-    "subtypes": ["goblinoide"],
+    "subtypes": [
+      "goblinoide"
+    ],
     "size": "Small",
     "hit_dice": "1d8+1",
     "hp": 5,
@@ -15,7 +17,7 @@
       "total": 15,
       "touch": 12,
       "flat_footed": 14,
-      "breakdown": "10 +1 tamaño +1 Des +3 armadura de cuero +1 escudo ligero"
+      "breakdown": "10 +1 tamaño +1 Des +2 armadura de cuero +1 escudo ligero"
     },
     "base_attack": 1,
     "grapple": -3,
@@ -36,6 +38,10 @@
         "range": 30
       }
     ],
+    "full_attack": "Maza de armas +2 cuerpo a cuerpo (1d6) o jabalina +3 a distancia (1d4)",
+    "special_qualities": [
+      "Visión en la oscuridad 60 pies"
+    ],
     "abilities": {
       "str": 11,
       "dex": 13,
@@ -50,13 +56,30 @@
       "will": -1
     },
     "skills": [
-      { "name": "Esconderse", "bonus": 5 },
-      { "name": "Escuchar", "bonus": 3 },
-      { "name": "Moverse Sigilosamente", "bonus": 5 },
-      { "name": "Montar", "bonus": 5 },
-      { "name": "Avistar", "bonus": 3 }
+      {
+        "name": "Esconderse",
+        "bonus": 5
+      },
+      {
+        "name": "Escuchar",
+        "bonus": 2
+      },
+      {
+        "name": "Moverse Sigilosamente",
+        "bonus": 5
+      },
+      {
+        "name": "Montar",
+        "bonus": 4
+      },
+      {
+        "name": "Avistar",
+        "bonus": 2
+      }
     ],
-    "feats": ["Alerta"],
+    "feats": [
+      "Alerta"
+    ],
     "environment": "Llanuras templadas",
     "organization": "Pandilla (4-9), banda (10-100 más 100% no combatientes más 1 sargento de nivel 3 por cada 20 adultos y 1 líder de nivel 4-6), partida de guerra (10-24 con monturas wargo), o tribu (40-400 más 100% no combatientes más 1 sargento de nivel 3 por cada 20 adultos, 1 o 2 tenientes de nivel 4 o 5, 1 líder de nivel 6-8, 10-24 wargos montados, y 2-4 lobos terribles)",
     "challenge_rating": "1/3",
@@ -71,14 +94,20 @@
         "page": 133
       }
     ],
-    "tags": ["común", "bajo-nivel", "goblinoide"],
-    "description": "Los goblins son humanoides pequeños y astutos que disfrutan atormentando a otras criaturas. Son cobardes y prefieren superar en número a sus enemigos."
+    "tags": [
+      "común",
+      "bajo-nivel",
+      "goblinoide"
+    ],
+    "description": "Este pequeños humanoides tiene la cara plana, una nariz ancha, orejas puntiagudas, boca ancha y colmillos pequeños y afilados. Camina erguido, pero sus brazos cuelgan casi hasta las rodillas.\n\nLos goblins son humanoides pequeños y astutos que disfrutan atormentando a otras criaturas. Son cobardes y prefieren superar en número a sus enemigos.\n\n### COMBATE\nSer intimidados por criaturas más grandes y fuertes ha enseñado a los goblins a explotar las pocas ventajas que tienen: superioridad numérica e ingenio malicioso. El concepto de una pelea justa no tiene sentido en su sociedad. Prefieren emboscadas, probabilidades abrumadoras, trucos sucios y cualquier otra ventaja que puedan idear.\n\nLos goblins tienen una pobre comprensión de la estrategia y son cobardes por naturaleza, tendiendo a huir del campo si la batalla se vuelve en su contra. Con una supervisión adecuada, sin embargo, pueden implementar planes razonablemente complejos, y en tales circunstancias sus números pueden ser una ventaja mortal.\n\n**Habilidades:** Los goblins tienen un bonificador racial de +4 en pruebas de Moverse Sigilosamente y Montar. La caballería goblin (montada en wargos) usualmente selecciona la dote Combate Montado en lugar de Alerta, lo cual reduce sus modificadores de Avistar y Escuchar de +3 a +1.\n\n**Desafío:** Los goblins con niveles en clases de PNJ tienen un VD igual a su nivel de personaje -2.\n\n### SOCIEDAD GOBLIN\nLos goblins son tribales. Sus líderes son generalmente los más grandes y fuertes del grupo. Casi no tienen concepto de privacidad, viviendo y durmiendo en grandes áreas comunales; solo los líderes viven por separado. Sobreviven asaltando y robando (cuando pueden salirse con la suya), colándose en guaridas, pueblos y ciudades para llevarse todo lo que puedan encontrar.\n\nMaglubiyet, quien conquista en la batalla, es su deidad principal y empuja a los goblins a expandir constantemente su territorio.\n\n### GOBLINS COMO PERSONAJES\nLos personajes goblins poseen los siguientes rasgos raciales.\n–2 Fuerza, +2 Destreza, –2 Carisma.\nTamaño Pequeño: +1 bonificador a la Clase de Armadura, +1 bonificador a las tiradas de ataque, +4 bonificador en pruebas de Esconderse, –4 penalizador en pruebas de presa, límites de levantamiento y carga 3/4 de los de personajes Medianos.\nVelocidad base en tierra de un personaje goblin es 30 pies.\nVisión en la oscuridad 60 pies.\nClase Predilecta: Pícaro."
   },
   {
     "id": "orco",
     "name": "Orco",
     "type": "humanoide",
-    "subtypes": ["orco"],
+    "subtypes": [
+      "orco"
+    ],
     "size": "Medium",
     "hit_dice": "1d8+1",
     "hp": 5,
@@ -111,7 +140,10 @@
         "range": 30
       }
     ],
-    "special_qualities": ["Visión en la oscuridad 60 pies", "Sensibilidad a la luz"],
+    "special_qualities": [
+      "Visión en la oscuridad 60 pies",
+      "Sensibilidad a la luz"
+    ],
     "abilities": {
       "str": 17,
       "dex": 11,
@@ -126,10 +158,18 @@
       "will": -1
     },
     "skills": [
-      { "name": "Escuchar", "bonus": 2 },
-      { "name": "Avistar", "bonus": 1 }
+      {
+        "name": "Escuchar",
+        "bonus": 2
+      },
+      {
+        "name": "Avistar",
+        "bonus": 1
+      }
     ],
-    "feats": ["Soltura con un arma (hacha grande)"],
+    "feats": [
+      "Soltura con un arma (hacha grande)"
+    ],
     "environment": "Llanuras, montañas y subterráneo templados",
     "organization": "Pandilla (2-4), escuadra (11-20 más 2 sargentos de nivel 3 y 1 líder de nivel 3-6), o banda (30-100 más 150% no combatientes más 1 sargento de nivel 3 por cada 10 adultos, 5 tenientes de nivel 5, y 3 capitanes de nivel 7)",
     "challenge_rating": "1/2",
@@ -144,14 +184,21 @@
         "page": 203
       }
     ],
-    "tags": ["común", "bajo-nivel", "orco", "sensible-luz"],
-    "description": "Los orcos son guerreros salvajes y brutales que viven para la batalla. Son más fuertes que los humanos promedio pero menos inteligentes."
+    "tags": [
+      "común",
+      "bajo-nivel",
+      "orco",
+      "sensible-luz"
+    ],
+    "description": "Los orcos son guerreros salvajes y brutales que viven para la batalla. Son más fuertes que los humanos promedio pero menos inteligentes.\n\nLos orcos varían ampliamente en apariencia, ya que frecuentemente se cruzan con otras razas. En general, se parecen a humanos primitivos con postura encorvada, frentes bajas y caras porcinas con prominentes dientes inferiores que parecen colmillos.\n\n### COMBATE\nLos orcos confían en la batalla, creyendo que para sobrevivir deben conquistar tanto como sea posible. Atacan con furia, lanzando jabalinas antes de cerrar para el combate cuerpo a cuerpo con sus hachas. Usan tácticas simples pero efectivas, como flanquear a los oponentes y concentrar sus ataques en los enemigos más peligrosos.\n\n**Sensibilidad a la luz:** Los orcos están *deslumbrados* a la luz del sol brillante o en el radio de un conjuro de *luz del día*.\n\n### SOCIEDAD ORCO\nLos orcos creen que para sobrevivir deben conquistar tanto territorio y recursos como sea posible, lo que los pone en desacuerdo con la mayoría de las otras razas. Viven en tribus patriarcales donde el guerrero más fuerte manda. Las mujeres, los ancianos y los enfermos son tratados como bienes o cargas.\n\nGruumsh es el dios principal de los orcos. Es una deidad de guerra y conquista de un solo ojo.\n\n### ORCOS COMO PERSONAJES\n+4 Fuerza, –2 Inteligencia, –2 Sabiduría, –2 Carisma.\nTamaño Mediano.\nVelocidad base 30 pies.\nVisión en la oscuridad 60 pies.\n**Sensibilidad a la luz:** (ver arriba).\nClase Predilecta: Bárbaro."
   },
   {
     "id": "kobold",
     "name": "Kobold",
     "type": "humanoide",
-    "subtypes": ["reptil"],
+    "subtypes": [
+      "reptil"
+    ],
     "size": "Small",
     "hit_dice": "1d8",
     "hp": 4,
@@ -184,7 +231,10 @@
         "range": 50
       }
     ],
-    "special_qualities": ["Visión en la oscuridad 60 pies", "Sensibilidad a la luz"],
+    "special_qualities": [
+      "Visión en la oscuridad 60 pies",
+      "Sensibilidad a la luz"
+    ],
     "abilities": {
       "str": 9,
       "dex": 13,
@@ -199,13 +249,30 @@
       "will": -1
     },
     "skills": [
-      { "name": "Arte de la Búsqueda", "bonus": 1 },
-      { "name": "Escuchar", "bonus": 1 },
-      { "name": "Avistar", "bonus": 1 },
-      { "name": "Oficio (trampas)", "bonus": 2 },
-      { "name": "Buscar", "bonus": 1 }
+      {
+        "name": "Arte de la Búsqueda",
+        "bonus": 1
+      },
+      {
+        "name": "Escuchar",
+        "bonus": 1
+      },
+      {
+        "name": "Avistar",
+        "bonus": 1
+      },
+      {
+        "name": "Oficio (trampas)",
+        "bonus": 2
+      },
+      {
+        "name": "Buscar",
+        "bonus": 1
+      }
     ],
-    "feats": ["Alerta"],
+    "feats": [
+      "Alerta"
+    ],
     "environment": "Bosques, llanuras y montañas cálidos",
     "organization": "Pandilla (4-9), partida de guerra (10-40 más 100% no combatientes más 1 sargento de nivel 3 por cada 20 adultos y 1 líder de nivel 4-6), tribu (40-400 más 1 sargento de nivel 3 por cada 20 adultos, 1 o 2 tenientes de nivel 4 o 5, 1 líder de nivel 6-8, y 5-8 lobos terribles)",
     "challenge_rating": "1/4",
@@ -220,8 +287,13 @@
         "page": 161
       }
     ],
-    "tags": ["común", "bajo-nivel", "reptil", "trampa"],
-    "description": "Los kobolds son criaturas reptilianas cobardes que confían en la superioridad numérica y las trampas para vencer a sus enemigos."
+    "tags": [
+      "común",
+      "bajo-nivel",
+      "reptil",
+      "trampa"
+    ],
+    "description": "Los kobolds son criaturas reptilianas cobardes y sádicas que confían en la superioridad numérica y las trampas para vencer a sus enemigos. Son diminutos y recuerdan a pequeños dragones humanoides.\n\nHablan Dracónico con una voz aguda que suena como perros ladrando.\n\n### COMBATE\nLos kobolds son guerreros cautelosos que evitan peleas justas siempre que es posible. Prefieren preparar emboscadas y trampas, atacando desde la distancia con hondas antes de retirarse para atraer al enemigo a terreno peligroso.\n\n**Sensibilidad a la luz:** Los kobolds quedan *deslumbrados* a la luz del sol brillante o en el radio de un conjuro de *luz del día*.\n\n**Habilidades:** Los kobolds tienen un bonificador racial de +2 en pruebas de Artesanía (trampas), Buscar y Profesión (minero).\n\n### SOCIEDAD KOBOLD\nLos kobolds viven en lugares oscuros, usualmente bajo tierra y en bosques espesos. Son excelentes mineros y constructores de trampas. Veneran a los dragones y a menudo sirven como sus secuaces.\n\n### KOBOLDS COMO PERSONAJES\n–4 Fuerza, +2 Destreza, –2 Constitución.\nTamaño Pequeño.\nVelocidad base 30 pies.\n**Armadura natural:** +1.\n**Sensibilidad a la luz:** (ver arriba).\nClase Predilecta: Hechicero."
   },
   {
     "id": "esqueleto-humano",
@@ -278,7 +350,9 @@
       "will": 2
     },
     "skills": [],
-    "feats": ["Iniciativa mejorada"],
+    "feats": [
+      "Iniciativa mejorada"
+    ],
     "environment": "Cualquiera",
     "organization": "Cualquiera",
     "challenge_rating": "1/3",
@@ -292,8 +366,13 @@
         "page": 225
       }
     ],
-    "tags": ["no-muerto", "común", "bajo-nivel", "sin-mente"],
-    "description": "Los esqueletos son los restos animados de los muertos, creados mediante magia nigromántica. No tienen mente propia y obedecen las órdenes de su creador."
+    "tags": [
+      "no-muerto",
+      "común",
+      "bajo-nivel",
+      "sin-mente"
+    ],
+    "description": "Los esqueletos son los restos animados de los muertos, creados mediante magia nigromántica. No tienen mente propia y obedecen las órdenes de su creador sin dudar.\n\nUn esqueleto humano mide lo mismo que en vida y es muy ligero, pesando solo de 30 a 40 libras.\n\n### COMBATE\nUn esqueleto ataca hasta que es destruido, por lo general con armas oxidadas o sus propias garras huesudas. No tienen instinto de autopreservación ni capacidad para planear tácticas complejas a menos que sean dirigidos.\n\n**Inmunidad al frio:** Los esqueletos no sufren daño por ataques de *frío*.\n\n**Desplazamiento silencioso:** Los esqueletos no hacen ruido al moverse a menos que lleven armadura ruidosa.\n\n**Reducción de daño:** Los esqueletos tienen RD 5/contundente. Las armas cortantes y perforantes son menos efectivas contra sus huesos duros."
   },
   {
     "id": "lobo",
@@ -324,14 +403,20 @@
         "critical": "×2"
       }
     ],
-    "special_attacks": ["Derribo"],
+    "special_attacks": [
+      "Derribo"
+    ],
     "special_abilities": [
       {
         "name": "Derribo",
         "description": "Un lobo que golpee con un ataque de mordisco puede intentar derribar al oponente como acción gratuita sin provocar un ataque de oportunidad. Si el intento falla, el oponente no puede reaccionar para derribar al lobo."
       }
     ],
-    "special_qualities": ["Olfato agudo", "Visión en la oscuridad 60 pies", "Visión con poca luz"],
+    "special_qualities": [
+      "Olfato agudo",
+      "Visión en la oscuridad 60 pies",
+      "Visión con poca luz"
+    ],
     "abilities": {
       "str": 13,
       "dex": 15,
@@ -346,13 +431,31 @@
       "will": 1
     },
     "skills": [
-      { "name": "Esconderse", "bonus": 2 },
-      { "name": "Escuchar", "bonus": 3 },
-      { "name": "Moverse Sigilosamente", "bonus": 3 },
-      { "name": "Avistar", "bonus": 3 },
-      { "name": "Supervivencia", "bonus": 1 }
+      {
+        "name": "Esconderse",
+        "bonus": 2
+      },
+      {
+        "name": "Escuchar",
+        "bonus": 3
+      },
+      {
+        "name": "Moverse Sigilosamente",
+        "bonus": 3
+      },
+      {
+        "name": "Avistar",
+        "bonus": 3
+      },
+      {
+        "name": "Supervivencia",
+        "bonus": 1
+      }
     ],
-    "feats": ["Soltura con un arma (mordisco)", "Rastrear"],
+    "feats": [
+      "Soltura con un arma (mordisco)",
+      "Rastrear"
+    ],
     "environment": "Bosques y llanuras templados",
     "organization": "Solitario, pareja, o manada (7-16)",
     "challenge_rating": "1",
@@ -366,7 +469,12 @@
         "page": 283
       }
     ],
-    "tags": ["animal", "común", "depredador", "manada"],
-    "description": "Los lobos son depredadores sociales que cazan en manadas. Son astutos cazadores que trabajan juntos para derribar presas más grandes que ellos."
+    "tags": [
+      "animal",
+      "común",
+      "depredador",
+      "manada"
+    ],
+    "description": "Los lobos son depredadores sociales que cazan en manadas. Son astutos cazadores que trabajan juntos para derribar presas más grandes que ellos. Un lobo tiene pelaje gris o marrón y ojos amarillos brillantes.\n\n### COMBATE\nLos lobos prefieren atacar en manada, flanqueando a sus oponentes cuando es posible. Un lobo derribará a un oponente si puede, dejando a la víctima vulnerable a los ataques de la manada.\n\n**Derribo:** Un lobo que golpee con un ataque de *mordisco* puede intentar *derribar* al oponente (+1 al modificador de prueba) como acción gratuita sin provocar un ataque de oportunidad. Si falla, el oponente no puede intentar derribarlo a él.\n\n**Olfato:** Un lobo puede detectar oponentes a una distancia de 30 pies por el olor. Alcance exacto varía con la dirección del viento.\n\n**Habilidades:** Los lobos tienen un bonificador racial de +4 en pruebas de Supervivencia al rastrear por olor."
   }
 ]

@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/Button';
 import { getPublicCharacters, copyPublicCharacter, type CharacterSummary } from '@/lib/supabase/characters';
 import { createClient } from '@/lib/supabase/client';
+import { ClassBadge } from '@/components/classes/ClassBadge';
 
 export default function ShowroomPage() {
   const [characters, setCharacters] = useState<CharacterSummary[]>([]);
@@ -215,15 +216,19 @@ export default function ShowroomPage() {
                       <Globe className="h-5 w-5 text-gold-500 flex-shrink-0 ml-2" />
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm text-dungeon-400">
+                    <div className="flex items-center gap-2 text-sm">
                       {character.race_slug && (
-                        <span className="truncate capitalize">{character.race_slug.replace('-', ' ')}</span>
+                        <span className="truncate capitalize text-dungeon-400">{character.race_slug.replace(/-/g, ' ')}</span>
                       )}
                       {character.race_slug && character.class_slug && (
-                        <span>•</span>
+                        <span className="text-dungeon-600">•</span>
                       )}
                       {character.class_slug && (
-                        <span className="truncate capitalize">{character.class_slug.replace('-', ' ')}</span>
+                        <ClassBadge
+                          classSlug={character.class_slug}
+                          size="xs"
+                          clickable={true}
+                        />
                       )}
                     </div>
 

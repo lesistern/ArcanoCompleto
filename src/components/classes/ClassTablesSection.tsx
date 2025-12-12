@@ -5,7 +5,9 @@
  */
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { baseSaveAttackTable, levelBenefitTable, wealthTable } from '@/lib/data/classes-page-data';
+import { BaseSaveAttackTable } from '@/components/classes/tables/BaseSaveAttackTable';
+import { LevelBenefitTable } from '@/components/classes/tables/LevelBenefitTable';
+import { WealthTable } from '@/components/classes/tables/WealthTable';
 
 export function ClassTablesSection() {
   return (
@@ -19,32 +21,7 @@ export function ClassTablesSection() {
           <CardContent className="text-sm text-dungeon-200 space-y-3">
             <p>El bono de salvación base depende de si la tirada es buena o pobre para tu clase. Monjes tienen las tres tiradas buenas, por ejemplo.</p>
             <p>El ataque base se usa en cada ataque. Buen ataque (guerrero, bárbaro, paladín, explorador) progresa a +20; medio (clérigo, druida, monje, pícaro) termina en +15; pobre (hechicero, mago) llega a +10.</p>
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-xs md:text-sm text-left border border-dungeon-700">
-                <thead className="bg-dungeon-900 text-dungeon-100">
-                  <tr>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Nivel</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Salvación buena</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Salvación pobre</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Ataque bueno</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Ataque medio</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Ataque pobre</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {baseSaveAttackTable.map((row) => (
-                    <tr key={row.level} className="odd:bg-dungeon-900/40">
-                      <td className="px-3 py-2 border-b border-dungeon-800 text-dungeon-100">{row.level}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.goodSave}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.poorSave}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.goodBab}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.averageBab}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.poorBab}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <BaseSaveAttackTable />
           </CardContent>
         </Card>
 
@@ -55,32 +32,7 @@ export function ClassTablesSection() {
           </CardHeader>
           <CardContent className="text-sm text-dungeon-200 space-y-3">
             <p>Máximos de rangos: habilidad de clase = nivel + 3. Habilidad cruzada = (nivel + 3) ÷ 2. Los valores de XP son acumulativos.</p>
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-xs md:text-sm text-left border border-dungeon-700">
-                <thead className="bg-dungeon-900 text-dungeon-100">
-                  <tr>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Nivel</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">XP total</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Rangos máx. (clase)</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Rangos máx. (cruzada)</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Dotes</th>
-                    <th className="px-3 py-2 border-b border-dungeon-700">Mejora de característica</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {levelBenefitTable.map((row) => (
-                    <tr key={row.level} className="odd:bg-dungeon-900/40">
-                      <td className="px-3 py-2 border-b border-dungeon-800 text-dungeon-100">{row.level}º</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.xp}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.classSkillMax}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.crossClassMax}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.feats}</td>
-                      <td className="px-3 py-2 border-b border-dungeon-800">{row.abilityIncrease}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <LevelBenefitTable />
           </CardContent>
         </Card>
       </div>
@@ -120,26 +72,7 @@ export function ClassTablesSection() {
         </CardHeader>
         <CardContent className="text-sm text-dungeon-200 space-y-3">
           <p>Los PJs nuevos empiezan con oro según su nivel. Los NPCs generan menos riqueza (funcionan con menos recursos). Estos valores son sugerencias base para el DJ.</p>
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-xs md:text-sm text-left border border-dungeon-700">
-              <thead className="bg-dungeon-900 text-dungeon-100">
-                <tr>
-                  <th className="px-3 py-2 border-b border-dungeon-700">Nivel</th>
-                  <th className="px-3 py-2 border-b border-dungeon-700">Personaje jugable</th>
-                  <th className="px-3 py-2 border-b border-dungeon-700">NPC</th>
-                </tr>
-              </thead>
-              <tbody>
-                {wealthTable.map((row) => (
-                  <tr key={row.level} className="odd:bg-dungeon-900/40">
-                    <td className="px-3 py-2 border-b border-dungeon-800 text-dungeon-100">{row.level}º</td>
-                    <td className="px-3 py-2 border-b border-dungeon-800">{row.pc}</td>
-                    <td className="px-3 py-2 border-b border-dungeon-800">{row.npc}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <WealthTable />
         </CardContent>
       </Card>
     </div>

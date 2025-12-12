@@ -60,33 +60,33 @@ export function SchoolsOfMagic({ onNextTab }: SchoolsOfMagicProps) {
     ];
 
     return (
-        <Card className="border-dungeon-700 bg-dungeon-900/50">
+        <Card className="border-gray-700 bg-gray-900/50">
             <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-dungeon-100">
+                <CardTitle className="flex items-center gap-2 text-gray-100">
                     <Flame className="h-5 w-5 text-orange-500" />
                     Los 8 Sabores de la Magia
                 </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-                <p className="text-sm text-dungeon-200">
+                <p className="text-sm text-gray-200">
                     Los magos clasifican la magia en "Escuelas". Si te especializas en una, eres muy bueno en ella pero terrible en sus opuestas.
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {schools.map((school) => (
-                        <div key={school.name} className="bg-dungeon-950/30 p-3 rounded border border-dungeon-800 hover:border-dungeon-600 transition-colors">
+                        <div key={school.name} className="bg-gray-950/30 p-3 rounded border border-gray-800 hover:border-gray-600 transition-colors">
                             <div className={`flex items-center gap-2 font-bold mb-1 ${school.color}`}>
                                 <school.icon className="h-4 w-4" />
                                 {school.name}
                             </div>
-                            <p className="text-xs text-dungeon-300 leading-tight">
+                            <p className="text-xs text-gray-300 leading-tight">
                                 {school.desc}
                             </p>
                         </div>
                     ))}
                 </div>
                 {onNextTab && (
-                    <div className="flex justify-end pt-4 border-t border-dungeon-800">
-                        <Button onClick={onNextTab} className="bg-dungeon-800 hover:bg-dungeon-700 text-dungeon-100">
+                    <div className="flex justify-end pt-4 border-t border-gray-800">
+                        <Button onClick={onNextTab} className="bg-gray-800 hover:bg-gray-700 text-gray-100">
                             Siguiente: Habilidades Especiales <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </div>

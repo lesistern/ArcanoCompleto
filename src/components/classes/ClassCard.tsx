@@ -33,7 +33,7 @@ export default function ClassCard({ classData }: ClassCardProps) {
 
   return (
     <Link href={`/clases/${classData.slug}`}>
-      <Card className="h-full transition-all hover:border-dungeon-600 cursor-pointer group">
+      <Card className="h-full transition-all hover:border-gold-400/50 cursor-pointer group">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
@@ -50,7 +50,7 @@ export default function ClassCard({ classData }: ClassCardProps) {
                 {SourceIcon && <SourceIcon className="h-4 w-4" />}
                 <span>{sourceTag.code}</span>
               </div>
-              <div className="flex items-center gap-1.5 text-sm font-mono text-dungeon-400 bg-dungeon-800 px-2.5 py-1.5 rounded">
+              <div className="flex items-center gap-1.5 text-sm font-mono text-gray-400 bg-dungeon-800 px-2.5 py-1.5 rounded">
                 <DiceIcon className="h-6 w-6" />
                 <span className="font-semibold">{classData.hitDie}</span>
               </div>
@@ -58,35 +58,35 @@ export default function ClassCard({ classData }: ClassCardProps) {
           </div>
           <div className="flex flex-wrap gap-2">
             {getSpellcastingBadge(classData)}
-            <span className="text-xs px-2 py-0.5 rounded border bg-dungeon-800/50 text-dungeon-300 border-dungeon-700">
+            <span className="text-xs px-2 py-0.5 rounded border bg-dungeon-800/50 text-gray-400 border-dungeon-700">
               {classData.skillPointsPerLevel} puntos/nivel
             </span>
           </div>
         </CardHeader>
         <CardContent className="pt-0">
-          <p className="text-sm text-dungeon-300 mb-3">
+          <p className="text-sm text-gray-400 mb-3">
             {classData.shortDescription}
           </p>
 
           <div className="space-y-2">
             <div className="flex items-start gap-2 text-xs">
-              <span className="text-dungeon-500 font-semibold min-w-[80px]">Habilidad:</span>
-              <span className="text-dungeon-400">
+              <span className="text-gray-500 font-semibold min-w-[80px]">Habilidad:</span>
+              <span className="text-gray-400">
                 {classData.primaryAbility.join(', ')}
               </span>
             </div>
 
             <div className="flex items-start gap-2 text-xs">
-              <span className="text-dungeon-500 font-semibold min-w-[80px]">Salvaciones:</span>
-              <span className="text-dungeon-400">
+              <span className="text-gray-500 font-semibold min-w-[80px]">Salvaciones:</span>
+              <span className="text-gray-400">
                 {classData.goodSaves.join(', ')}
               </span>
             </div>
 
             {classData.alignment && classData.alignment.length > 0 && (
               <div className="flex items-start gap-2 text-xs">
-                <span className="text-dungeon-500 font-semibold min-w-[80px]">Alineamiento:</span>
-                <span className="text-dungeon-400">
+                <span className="text-gray-500 font-semibold min-w-[80px]">Alineamiento:</span>
+                <span className="text-gray-400">
                   {classData.alignment.join(', ')}
                 </span>
               </div>

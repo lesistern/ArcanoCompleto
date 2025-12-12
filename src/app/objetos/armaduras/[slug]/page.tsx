@@ -36,7 +36,7 @@ function getArmorTypeIconComponent(type: string) {
     case 'shield':
       return <CircleDot className="h-10 w-10 text-gold-400" />;
     default:
-      return <Shield className="h-10 w-10 text-dungeon-400" />;
+      return <Shield className="h-10 w-10 text-gray-400" />;
   }
 }
 
@@ -114,7 +114,7 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
               <div className="flex items-center gap-3 mb-4">
                 {getArmorTypeIconComponent(armor.armor_type)}
                 <div>
-                  <h1 className="font-heading text-4xl font-bold text-dungeon-100">
+                  <h1 className="font-heading text-4xl font-bold text-gray-200">
                     {translateArmorName(armor.name)}
                   </h1>
                   <span className={`inline-block mt-2 px-3 py-1 rounded-full text-sm font-medium border ${badgeClasses}`}>
@@ -125,7 +125,7 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
             </div>
             <div className="flex flex-col items-end gap-2">
               <div className="text-right">
-                <div className="text-sm text-dungeon-400 uppercase tracking-wide">Bonif. CA</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wide">Bonif. CA</div>
                 <div className="text-4xl font-bold text-gold-400">
                   {formatArmorBonus(armor.armor_bonus)}
                 </div>
@@ -140,8 +140,8 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="border-dungeon-700">
           <CardContent className="p-4 text-center">
             <Shield className="h-6 w-6 mx-auto mb-2 text-blue-400" />
-            <div className="text-sm text-dungeon-400 mb-1">Bonificador CA</div>
-            <div className="text-2xl font-bold text-dungeon-100">
+            <div className="text-sm text-gray-400 mb-1">Bonificador CA</div>
+            <div className="text-2xl font-bold text-gray-200">
               {formatArmorBonus(armor.armor_bonus)}
             </div>
           </CardContent>
@@ -150,8 +150,8 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="border-dungeon-700">
           <CardContent className="p-4 text-center">
             <Zap className="h-6 w-6 mx-auto mb-2 text-yellow-400" />
-            <div className="text-sm text-dungeon-400 mb-1">Máx. DES</div>
-            <div className="text-2xl font-bold text-dungeon-100">
+            <div className="text-sm text-gray-400 mb-1">Máx. DES</div>
+            <div className="text-2xl font-bold text-gray-200">
               {formatMaxDexBonus(armor.max_dex_bonus)}
             </div>
           </CardContent>
@@ -160,8 +160,8 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="border-dungeon-700">
           <CardContent className="p-4 text-center">
             <Scale className="h-6 w-6 mx-auto mb-2 text-red-400" />
-            <div className="text-sm text-dungeon-400 mb-1">Penalización</div>
-            <div className="text-2xl font-bold text-dungeon-100">
+            <div className="text-sm text-gray-400 mb-1">Penalización</div>
+            <div className="text-2xl font-bold text-gray-200">
               {formatArmorCheckPenalty(armor.armor_check_penalty)}
             </div>
           </CardContent>
@@ -170,8 +170,8 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="border-dungeon-700">
           <CardContent className="p-4 text-center">
             <Eye className="h-6 w-6 mx-auto mb-2 text-purple-400" />
-            <div className="text-sm text-dungeon-400 mb-1">Fallo Arcano</div>
-            <div className="text-2xl font-bold text-dungeon-100">
+            <div className="text-sm text-gray-400 mb-1">Fallo Arcano</div>
+            <div className="text-2xl font-bold text-gray-200">
               {formatArcaneSpellFailure(armor.arcane_spell_failure)}
             </div>
           </CardContent>
@@ -180,8 +180,8 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="border-dungeon-700">
           <CardContent className="p-4 text-center">
             <Footprints className="h-6 w-6 mx-auto mb-2 text-green-400" />
-            <div className="text-sm text-dungeon-400 mb-1">Vel. (30 pies)</div>
-            <div className="text-2xl font-bold text-dungeon-100">
+            <div className="text-sm text-gray-400 mb-1">Vel. (30 pies)</div>
+            <div className="text-2xl font-bold text-gray-200">
               {formatSpeed30(armor.base_speed_30)}
             </div>
           </CardContent>
@@ -190,8 +190,8 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="border-dungeon-700">
           <CardContent className="p-4 text-center">
             <Footprints className="h-6 w-6 mx-auto mb-2 text-teal-400" />
-            <div className="text-sm text-dungeon-400 mb-1">Vel. (20 pies)</div>
-            <div className="text-2xl font-bold text-dungeon-100">
+            <div className="text-sm text-gray-400 mb-1">Vel. (20 pies)</div>
+            <div className="text-2xl font-bold text-gray-200">
               {formatSpeed20(armor.base_speed_20)}
             </div>
           </CardContent>
@@ -207,14 +207,14 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
           </h2>
           <div className="grid grid-cols-2 gap-8">
             <div>
-              <div className="text-sm text-dungeon-400 mb-1">Coste</div>
-              <div className="text-xl font-semibold text-dungeon-100">
+              <div className="text-sm text-gray-400 mb-1">Coste</div>
+              <div className="text-xl font-semibold text-gray-200">
                 {formatArmorCost(armor.cost_gold, armor.cost_silver)}
               </div>
             </div>
             <div>
-              <div className="text-sm text-dungeon-400 mb-1">Peso</div>
-              <div className="text-xl font-semibold text-dungeon-100">
+              <div className="text-sm text-gray-400 mb-1">Peso</div>
+              <div className="text-xl font-semibold text-gray-200">
                 {formatArmorWeight(armor.weight_lb)}
               </div>
             </div>
@@ -226,7 +226,7 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="mb-8 border-dungeon-700">
           <CardContent className="p-6">
             <h2 className="text-xl font-bold text-gold-400 mb-4">Descripción</h2>
-            <p className="text-dungeon-300 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed">
               {armor.description}
             </p>
           </CardContent>
@@ -237,7 +237,7 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
         <Card className="mb-8 border-gold-500/30 bg-gold-500/5">
           <CardContent className="p-6">
             <h2 className="text-xl font-bold text-gold-400 mb-4">Propiedades Especiales</h2>
-            <p className="text-dungeon-300 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed">
               {armor.special_properties}
             </p>
           </CardContent>
@@ -252,7 +252,7 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
               <BookOpen className="h-5 w-5" />
               Descripción del SRD
             </h2>
-            <p className="text-dungeon-300 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed">
               {srdDescription}
             </p>
           </CardContent>
@@ -267,11 +267,11 @@ export default async function ArmorDetailPage({ params }: ArmorDetailPageProps) 
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-dungeon-700">
-                  <th className="py-2 px-3 text-dungeon-400 font-medium">Estadística</th>
-                  <th className="py-2 px-3 text-dungeon-400 font-medium">Valor</th>
+                  <th className="py-2 px-3 text-gray-400 font-medium">Estadística</th>
+                  <th className="py-2 px-3 text-gray-400 font-medium">Valor</th>
                 </tr>
               </thead>
-              <tbody className="text-dungeon-200">
+              <tbody className="text-gray-300">
                 <tr className="border-b border-dungeon-800">
                   <td className="py-2 px-3">Tipo</td>
                   <td className="py-2 px-3">{typeLabel}</td>

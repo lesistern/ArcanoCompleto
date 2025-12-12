@@ -37,15 +37,15 @@ interface Deity {
 
 function InfoCard({ title, icon: Icon, children, formatted = false }: { title: string; icon: any; children: React.ReactNode; formatted?: boolean }) {
     return (
-        <div className="bg-gradient-to-br from-dungeon-800/90 to-dungeon-900/90 rounded-lg border border-dungeon-700 p-6">
+        <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-lg border border-gray-700 p-6">
             <div className="flex items-center gap-2 mb-4">
                 <Icon className="w-5 h-5 text-gold-400" />
                 <h3 className="text-lg font-semibold text-gold-400 font-cinzel">{title}</h3>
             </div>
             {formatted ? (
-                <FormattedText text={typeof children === 'string' ? children : ''} className="text-dungeon-200" />
+                <FormattedText text={typeof children === 'string' ? children : ''} className="text-gray-200" />
             ) : (
-                <div className="text-dungeon-200 space-y-2">
+                <div className="text-gray-200 space-y-2">
                     {children}
                 </div>
             )}
@@ -87,7 +87,7 @@ export default function DeityDetailPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-b from-dungeon-950 via-dungeon-900 to-dungeon-950 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center">
                 <div className="text-gold-400 text-xl">Cargando deidad...</div>
             </div>
         );
@@ -95,9 +95,9 @@ export default function DeityDetailPage() {
 
     if (!deity) {
         return (
-            <div className="min-h-screen bg-gradient-to-b from-dungeon-950 via-dungeon-900 to-dungeon-950 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center">
                 <div className="text-center">
-                    <p className="text-dungeon-400 text-xl mb-4">Deidad no encontrada</p>
+                    <p className="text-gray-400 text-xl mb-4">Deidad no encontrada</p>
                     <Link href="/reglas/contenido/dioses" className="text-gold-400 hover:text-gold-300">
                         ← Volver a dioses
                     </Link>
@@ -111,10 +111,10 @@ export default function DeityDetailPage() {
     const alignmentGlow = getAlignmentImageGlow(deity.alignment);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-dungeon-950 via-dungeon-900 to-dungeon-950">
+        <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
             <DeityDebugInfo slug={slug} />
             {/* Header */}
-            <div className="relative overflow-hidden border-b border-gold-500/20 bg-gradient-to-r from-dungeon-900 via-dungeon-800 to-dungeon-900">
+            <div className="relative overflow-hidden border-b border-gold-500/20 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
                 <div className="absolute inset-0 bg-[url('/images/texture.png')] opacity-5"></div>
                 <div className="container mx-auto px-4 py-12 relative">
                     <Link
@@ -162,13 +162,13 @@ export default function DeityDetailPage() {
                                 <h1 className="text-5xl font-bold text-gold-400 font-cinzel mb-2">
                                     {deity.name_es}
                                 </h1>
-                                <p className="text-xl text-dungeon-300 italic mb-4">
+                                <p className="text-xl text-gray-300 italic mb-4">
                                     {deity.titles_es}
                                 </p>
 
                                 <div className="flex flex-wrap gap-2">
                                     <span
-                                        className={`px-3 py-1.5 rounded-lg border bg-dungeon-900/50 cursor-help `}
+                                        className={`px-3 py-1.5 rounded-lg border bg-gray-900/50 cursor-help `}
                                         style={{
                                             color: rankConfig?.hex || '#B8BBC2',
                                             borderColor: `${rankConfig?.hex || '#B8BBC2'}80`
@@ -178,7 +178,7 @@ export default function DeityDetailPage() {
                                         {rankConfig?.label || deity.rank}
                                     </span>
                                     <span
-                                        className={`px-3 py-1.5 rounded-lg border bg-dungeon-900/50 cursor-help `}
+                                        className={`px-3 py-1.5 rounded-lg border bg-gray-900/50 cursor-help `}
                                         style={{
                                             color: ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2',
                                             borderColor: `${ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2'}80`
@@ -241,46 +241,46 @@ export default function DeityDetailPage() {
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Quick Info */}
-                        <div className="bg-gradient-to-br from-dungeon-800/90 to-dungeon-900/90 rounded-lg border border-dungeon-700 p-6">
+                        <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-lg border border-gray-700 p-6">
                             <h3 className="text-lg font-semibold text-gold-400 font-cinzel mb-4">Información Rápida</h3>
 
                             <div className="space-y-4">
                                 <div>
                                     <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Portafolio:</h4>
-                                    <p className="text-sm text-dungeon-200">{deity.portfolio_es}</p>
+                                    <p className="text-sm text-gray-200">{deity.portfolio_es}</p>
                                 </div>
 
                                 <div>
                                     <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Símbolo:</h4>
-                                    <p className="text-sm text-dungeon-200">{deity.symbol_es}</p>
+                                    <p className="text-sm text-gray-200">{deity.symbol_es}</p>
                                 </div>
 
                                 <div>
                                     <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Arma Predilecta:</h4>
-                                    <p className="text-sm text-dungeon-200">{deity.favored_weapon}</p>
+                                    <p className="text-sm text-gray-200">{deity.favored_weapon}</p>
                                 </div>
 
                                 <div>
                                     <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Adoradores:</h4>
-                                    <p className="text-sm text-dungeon-200">{deity.worshipers_es}</p>
+                                    <p className="text-sm text-gray-200">{deity.worshipers_es}</p>
                                 </div>
 
                                 <div>
                                     <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Plano Hogar:</h4>
-                                    <p className="text-sm text-dungeon-200">{deity.home_plane_es}</p>
+                                    <p className="text-sm text-gray-200">{deity.home_plane_es}</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Domains */}
                         {deity.domains && deity.domains.length > 0 && (
-                            <div className="bg-gradient-to-br from-dungeon-800/90 to-dungeon-900/90 rounded-lg border border-dungeon-700 p-6">
+                            <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-lg border border-gray-700 p-6">
                                 <h3 className="text-lg font-semibold text-gold-400 font-cinzel mb-4">Dominios</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {deity.domains.map((domain, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-3 py-1.5 rounded-lg bg-dungeon-900/70 border border-dungeon-600 text-dungeon-200 text-sm"
+                                            className="px-3 py-1.5 rounded-lg bg-gray-900/70 border border-gray-600 text-gray-200 text-sm"
                                         >
                                             {domain}
                                         </span>

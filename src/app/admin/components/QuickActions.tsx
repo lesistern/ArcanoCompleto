@@ -16,7 +16,7 @@ interface QuickActionsProps {
 
 export function QuickActions({ actions }: QuickActionsProps) {
     return (
-        <div className="bg-dungeon-800 rounded-lg border border-dungeon-700 p-6">
+        <div className="bg-gray-800 rounded-lg border border-gray-700 p-6">
             <h2 className="text-xl font-bold text-gold-400 mb-4 flex items-center gap-2">
                 <Plus className="h-5 w-5" />
                 Acciones Rápidas
@@ -30,8 +30,8 @@ export function QuickActions({ actions }: QuickActionsProps) {
                         className="
               group relative overflow-hidden
               flex items-center gap-3 p-4
-              bg-dungeon-900 rounded-lg border border-dungeon-700
-              hover:border-gold-400 hover:bg-dungeon-800
+              bg-gray-900 rounded-lg border border-gray-700
+              hover:border-gold-400 hover:bg-gray-800
               transition-all duration-200
             "
                     >
@@ -39,11 +39,11 @@ export function QuickActions({ actions }: QuickActionsProps) {
                             <action.icon className="h-5 w-5 text-gold-400" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-dungeon-100 group-hover:text-gold-400 transition-colors">
+                            <div className="font-semibold text-gray-100 group-hover:text-gold-400 transition-colors">
                                 {action.label}
                             </div>
                             {action.description && (
-                                <div className="text-xs text-dungeon-400 truncate">
+                                <div className="text-xs text-gray-400 truncate">
                                     {action.description}
                                 </div>
                             )}

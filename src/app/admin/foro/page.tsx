@@ -139,7 +139,7 @@ export default async function ModerationPage() {
             Panel de Moderación
           </h1>
         </div>
-        <p className="text-lg text-dungeon-300">
+        <p className="text-lg text-gray-300">
           Gestión y administración del foro de la comunidad
         </p>
       </div>
@@ -160,11 +160,11 @@ export default async function ModerationPage() {
       )}
 
       {/* Reportes Pendientes */}
-      <div className="bg-dungeon-800 rounded-lg border border-dungeon-700 mb-8">
-        <div className="p-6 border-b border-dungeon-700">
+      <div className="bg-gray-800 rounded-lg border border-gray-700 mb-8">
+        <div className="p-6 border-b border-gray-700">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-red-400" />
-            <h2 className="text-2xl font-bold text-dungeon-100">
+            <h2 className="text-2xl font-bold text-gray-100">
               Reportes Pendientes ({reports.length})
             </h2>
           </div>
@@ -173,12 +173,12 @@ export default async function ModerationPage() {
         {reports.length === 0 ? (
           <div className="p-8 text-center">
             <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-3" />
-            <p className="text-dungeon-400">
+            <p className="text-gray-400">
               No hay reportes pendientes. ¡Todo en orden! 🎉
             </p>
           </div>
         ) : (
-          <div className="divide-y divide-dungeon-700">
+          <div className="divide-y divide-gray-700">
             {reports.map((report) => (
               <ForumReportCard key={report.id} report={report} />
             ))}

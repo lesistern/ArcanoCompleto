@@ -9,7 +9,7 @@ import { ClassData } from '@/types/admin-classes';
 
 // Lazy-load heavy form editor component
 const ClassFormEditor = dynamic(() => import('@/components/admin/ClassFormEditor').then(mod => ({ default: mod.ClassFormEditor })), {
-  loading: () => <div className="h-96 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-96 bg-gray-800 rounded animate-pulse" />
 });
 
 export default function ClassesAdminPage() {
@@ -247,7 +247,7 @@ export default function ClassesAdminPage() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
             <div className="container mx-auto px-4 py-8">
                 <ClassEditorHeader
                     classesCount={classes.length}

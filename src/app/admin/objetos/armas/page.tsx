@@ -19,10 +19,10 @@ import {
 
 // Lazy-load heavy editors (only needed when editing)
 const RichTextEditor = dynamic(() => import('@/components/RichTextEditor').then(mod => ({ default: mod.RichTextEditor })), {
-  loading: () => <div className="h-64 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-64 bg-gray-800 rounded animate-pulse" />
 });
 const ProficienciesEditor = dynamic(() => import('@/components/admin/ProficienciesEditor').then(mod => ({ default: mod.ProficienciesEditor })), {
-  loading: () => <div className="h-32 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-32 bg-gray-800 rounded animate-pulse" />
 });
 
 interface WeaponData {
@@ -199,12 +199,12 @@ export default function WeaponsAdminPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
             <div className="container mx-auto px-4 py-8">
                 <div className="flex items-center gap-4 mb-8">
                     <Link
                         href="/admin/objetos"
-                        className="p-2 rounded-lg bg-dungeon-700 hover:bg-dungeon-600 transition-colors"
+                        className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors"
                     >
                         <ArrowLeft className="h-5 w-5 text-gold-400" />
                     </Link>
@@ -212,7 +212,7 @@ export default function WeaponsAdminPage() {
                         <h1 className="text-4xl font-bold text-gold-400 mb-2">
                             {UI_TEXT.pageTitle}
                         </h1>
-                        <p className="text-dungeon-300">
+                        <p className="text-gray-300">
                             {UI_TEXT.totalWeapons}: {weapons.length} {UI_TEXT.newWeaponButton.toLowerCase()}
                         </p>
                         {syncStatus !== 'idle' && (
@@ -229,7 +229,7 @@ export default function WeaponsAdminPage() {
                     </div>
                     <button
                         onClick={handleCreateNew}
-                        className="px-4 py-2 bg-gold-600 hover:bg-gold-700 rounded-lg flex items-center gap-2 transition-colors font-bold text-dungeon-900"
+                        className="px-4 py-2 bg-gold-600 hover:bg-gold-700 rounded-lg flex items-center gap-2 transition-colors font-bold text-gray-900"
                     >
                         <Plus className="h-5 w-5" />
                         {UI_TEXT.newWeaponButton}
@@ -237,20 +237,20 @@ export default function WeaponsAdminPage() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-1 bg-dungeon-800 rounded-lg p-4 flex flex-col h-[calc(100vh-200px)]">
+                    <div className="lg:col-span-1 bg-gray-800 rounded-lg p-4 flex flex-col h-[calc(100vh-200px)]">
                         <div className="relative mb-4">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-dungeon-400 h-4 w-4" />
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                             <input
                                 type="text"
                                 placeholder={UI_TEXT.searchPlaceholder}
                                 value={searchTerm}
                                 onChange={(e) => handleSearch(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 placeholder-dungeon-400 focus:outline-none focus:border-gold-400"
+                                className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gold-400"
                             />
                         </div>
                         <div className="space-y-2 overflow-y-auto flex-1 pr-2 custom-scrollbar">
                             {isLoading ? (
-                                <div className="text-center py-4 text-dungeon-400">
+                                <div className="text-center py-4 text-gray-400">
                                     <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
                                     {UI_TEXT.loadingMessage}
                                 </div>
@@ -264,7 +264,7 @@ export default function WeaponsAdminPage() {
                                     }}
                                     className={`p-3 rounded-lg cursor-pointer transition-all ${selectedWeapon?.id === weapon.id
                                             ? 'bg-gold-900/30 border border-gold-400'
-                                            : 'bg-dungeon-700 hover:bg-dungeon-600'
+                                            : 'bg-gray-700 hover:bg-gray-600'
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
@@ -272,7 +272,7 @@ export default function WeaponsAdminPage() {
                                             <div className="font-semibold text-gold-300">
                                                 {weapon.name}
                                             </div>
-                                            <div className="text-xs text-dungeon-400">
+                                            <div className="text-xs text-gray-400">
                                                 {weapon.weapon_type || UI_TEXT.noType} • {weapon.damage_medium || UI_TEXT.noDamage}
                                             </div>
                                         </div>
@@ -283,7 +283,7 @@ export default function WeaponsAdminPage() {
                                                 setIsEditing(true);
                                                 setIsCreating(false);
                                             }}
-                                            className="p-1 hover:bg-dungeon-600 rounded"
+                                            className="p-1 hover:bg-gray-600 rounded"
                                         >
                                             <Pencil className="h-4 w-4 text-gold-400" />
                                         </button>
@@ -294,7 +294,7 @@ export default function WeaponsAdminPage() {
                     </div>
 
                     {selectedWeapon && (
-                        <div className="lg:col-span-2 bg-dungeon-800 rounded-lg p-6 overflow-y-auto h-[calc(100vh-200px)] custom-scrollbar">
+                        <div className="lg:col-span-2 bg-gray-800 rounded-lg p-6 overflow-y-auto h-[calc(100vh-200px)] custom-scrollbar">
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-2xl font-bold text-gold-400">
                                     {isCreating ? UI_TEXT.createTitle : `${UI_TEXT.editTitle}: ${selectedWeapon.name}`}
@@ -307,7 +307,7 @@ export default function WeaponsAdminPage() {
                                                 setIsCreating(false);
                                                 if (isCreating) setSelectedWeapon(null);
                                             }}
-                                            className="px-4 py-2 bg-dungeon-700 hover:bg-dungeon-600 rounded-lg transition-colors"
+                                            className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
                                         >
                                             {UI_TEXT.cancelButton}
                                         </button>
@@ -344,7 +344,7 @@ export default function WeaponsAdminPage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-4">
                                         <div>
-                                            <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-300 mb-2">
                                                 Nombre de Arma
                                             </label>
                                             <input
@@ -354,18 +354,18 @@ export default function WeaponsAdminPage() {
                                                     setSelectedWeapon({ ...selectedWeapon, name: e.target.value })
                                                 }
                                                 disabled={!isEditing}
-                                                className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-300 mb-2">
                                                 Tipo de Arma
                                             </label>
                                             <select
                                                 value={selectedWeapon.weapon_type || WEAPON_TYPES[0].value}
                                                 onChange={(e) => setSelectedWeapon({ ...selectedWeapon, weapon_type: e.target.value })}
                                                 disabled={!isEditing}
-                                                className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                             >
                                                 {WEAPON_TYPES.map((type) => (
                                                     <option key={type.value} value={type.value}>
@@ -375,14 +375,14 @@ export default function WeaponsAdminPage() {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-300 mb-2">
                                                 Tamaño
                                             </label>
                                             <select
                                                 value={selectedWeapon.size || SIZES[2].value}
                                                 onChange={(e) => setSelectedWeapon({ ...selectedWeapon, size: e.target.value })}
                                                 disabled={!isEditing}
-                                                className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                             >
                                                 {SIZES.map((size) => (
                                                     <option key={size.value} value={size.value}>
@@ -406,7 +406,7 @@ export default function WeaponsAdminPage() {
 
                                 <div className="grid grid-cols-3 gap-4">
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {DAMAGE_FIELDS.smallLabel}
                                         </label>
                                         <input
@@ -415,11 +415,11 @@ export default function WeaponsAdminPage() {
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, damage_small: e.target.value })}
                                             disabled={!isEditing}
                                             placeholder={DAMAGE_FIELDS.smallPlaceholder}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {DAMAGE_FIELDS.mediumLabel}
                                         </label>
                                         <input
@@ -428,11 +428,11 @@ export default function WeaponsAdminPage() {
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, damage_medium: e.target.value })}
                                             disabled={!isEditing}
                                             placeholder={DAMAGE_FIELDS.mediumPlaceholder}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {DAMAGE_FIELDS.largeLabel}
                                         </label>
                                         <input
@@ -441,14 +441,14 @@ export default function WeaponsAdminPage() {
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, damage_large: e.target.value })}
                                             disabled={!isEditing}
                                             placeholder={DAMAGE_FIELDS.largePlaceholder}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {STAT_FIELDS.criticalLabel}
                                         </label>
                                         <input
@@ -457,11 +457,11 @@ export default function WeaponsAdminPage() {
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, critical: e.target.value })}
                                             disabled={!isEditing}
                                             placeholder={STAT_FIELDS.criticalPlaceholder}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {STAT_FIELDS.rangeLabel}
                                         </label>
                                         <input
@@ -469,11 +469,11 @@ export default function WeaponsAdminPage() {
                                             value={selectedWeapon.range_increment || ''}
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, range_increment: parseInt(e.target.value) || undefined })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {STAT_FIELDS.weightLabel}
                                         </label>
                                         <input
@@ -482,11 +482,11 @@ export default function WeaponsAdminPage() {
                                             value={selectedWeapon.weight || ''}
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, weight: parseFloat(e.target.value) || undefined })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">
                                             {STAT_FIELDS.costLabel}
                                         </label>
                                         <input
@@ -494,12 +494,12 @@ export default function WeaponsAdminPage() {
                                             value={selectedWeapon.cost_gold || ''}
                                             onChange={(e) => setSelectedWeapon({ ...selectedWeapon, cost_gold: parseFloat(e.target.value) || undefined })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-4 p-4 bg-dungeon-900/30 rounded-lg border border-dungeon-700">
+                                <div className="space-y-4 p-4 bg-gray-900/30 rounded-lg border border-gray-700">
                                     <ProficienciesEditor
                                         title={SPECIAL_FIELDS.damageTypesTitle}
                                         items={selectedWeapon.damage_type || []}
@@ -515,7 +515,7 @@ export default function WeaponsAdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-dungeon-300 mb-2">
+                                    <label className="block text-sm font-semibold text-gray-300 mb-2">
                                         {SPECIAL_FIELDS.descriptionLabel}
                                     </label>
                                     <RichTextEditor

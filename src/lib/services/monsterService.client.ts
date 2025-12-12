@@ -4,18 +4,86 @@
 
 import { createClient } from '@/lib/supabase/client';
 
+export interface HitDice {
+  dice: string;
+  modifier: number;
+  average: number;
+}
+
+export interface ArmorClass {
+  total: number;
+  touch: number;
+  flatFooted: number;
+  breakdown: string;
+}
+
+export interface Saves {
+  fort: number;
+  ref: number;
+  will: number;
+}
+
+export interface Abilities {
+  str: number;
+  dex: number;
+  con: number;
+  int: number;
+  wis: number;
+  cha: number;
+}
+
+export interface Skill {
+  name: string;
+  bonus: number;
+}
+
+export interface Source {
+  book: string;
+  abbreviation?: string;
+  page?: number;
+}
+
+export interface SpecialAbility {
+  name: string;
+  description: string;
+}
+
 export interface Monster {
   id: string;
   slug: string;
   name: string;
-  creature_type: string;
   size: string;
-  challenge_rating: string;
-  armor_class: number;
-  hit_dice: string;
-  alignment: string;
+  creature_type: string;
+  subtypes?: string[];
+  hit_dice: HitDice | string;
+  initiative?: string;
+  speed?: string | any;
+  armor_class: ArmorClass | number;
+  base_attack?: string;
+  grapple?: string;
+  attack?: string;
+  full_attack?: string;
+  attacks?: any;
+  space_reach?: string;
+  special_attacks?: string;
+  special_qualities?: string | any;
+  saves: Saves | any;
+  abilities: Abilities | any;
+  skills?: Skill[] | string;
+  feats?: string[] | string;
   environment?: string;
+  organization?: string;
+  challenge_rating: string;
+  treasure?: string;
+  alignment: string;
+  advancement?: string;
+  level_adjustment?: number | string;
+  description?: string;
+  special_abilities?: SpecialAbility[] | any;
   source_book?: string;
+  source_page?: number;
+  sources?: Source[];
+  tags?: string[];
 }
 
 /**

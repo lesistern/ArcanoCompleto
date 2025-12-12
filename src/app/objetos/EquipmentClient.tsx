@@ -75,10 +75,10 @@ export default function EquipmentClient({ items }: EquipmentClientProps) {
             {/* Header */}
             <ScrollReveal direction="down">
                 <div className="border-l-4 border-amber-500 pl-6 mb-12">
-                    <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100 mb-3">
+                    <h1 className="font-heading text-4xl md:text-5xl font-bold text-gray-200 mb-3">
                         Equipo y Objetos
                     </h1>
-                    <p className="text-lg text-dungeon-300">
+                    <p className="text-lg text-gray-400">
                         Armas, armaduras, bienes y servicios del SRD 3.5
                     </p>
                 </div>
@@ -89,12 +89,12 @@ export default function EquipmentClient({ items }: EquipmentClientProps) {
                 <div className="mb-6">
                     <button
                         onClick={() => setFiltersOpen(!filtersOpen)}
-                        className="w-full flex items-center justify-between bg-dungeon-800 border border-dungeon-700 rounded-lg px-4 py-3 text-dungeon-200 hover:border-amber-500 transition-colors"
+                        className="w-full flex items-center justify-between bg-dungeon-800 border border-dungeon-700 rounded-lg px-4 py-3 text-gray-300 hover:border-amber-500 transition-colors"
                     >
                         <div className="flex items-center gap-2">
                             <Filter className="h-4 w-4 text-amber-500" />
                             <span className="font-semibold">Filtros</span>
-                            <span className="text-sm text-dungeon-400">
+                            <span className="text-sm text-gray-400">
                                 ({filteredItems.length} de {items.length})
                             </span>
                         </div>
@@ -152,7 +152,7 @@ export default function EquipmentClient({ items }: EquipmentClientProps) {
                 <ScrollReveal delay={200}>
                     <Card className="card mb-16">
                         <CardContent className="text-center py-12">
-                            <p className="text-dungeon-400">No se encontraron objetos con los filtros seleccionados</p>
+                            <p className="text-gray-400">No se encontraron objetos con los filtros seleccionados</p>
                         </CardContent>
                     </Card>
                 </ScrollReveal>
@@ -183,11 +183,11 @@ export default function EquipmentClient({ items }: EquipmentClientProps) {
                                                         href={`/objetos/${item.slug}`}
                                                         className="block group bg-dungeon-800/50 hover:bg-dungeon-800 border border-dungeon-700 hover:border-amber-500 rounded-lg p-4 transition-all duration-200"
                                                     >
-                                                        <h3 className="font-semibold text-dungeon-100 group-hover:text-amber-400 mb-2 transition-colors">
+                                                        <h3 className="font-semibold text-gray-200 group-hover:text-amber-400 mb-2 transition-colors">
                                                             {item.name}
                                                         </h3>
                                                         {item.price_text && (
-                                                            <p className="text-xs text-dungeon-400 mb-1">
+                                                            <p className="text-xs text-gray-400 mb-1">
                                                                 {item.price_text}
                                                             </p>
                                                         )}
@@ -214,7 +214,7 @@ export default function EquipmentClient({ items }: EquipmentClientProps) {
                     <h3 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-3">
                         Información de Equipo
                     </h3>
-                    <div className="space-y-3 text-sm text-dungeon-300">
+                    <div className="space-y-3 text-sm text-gray-400">
                         <p>
                             El equipo es esencial para la supervivencia de los aventureros. Desde armas y armaduras
                             hasta herramientas y provisiones, cada objeto tiene su propósito.

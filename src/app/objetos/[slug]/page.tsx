@@ -44,6 +44,38 @@ interface ItemPageProps {
   }>;
 }
 
+export async function generateMetadata({ params }: ItemPageProps) {
+  const { slug } = await params;
+  const supabase = await createClient();
+  const { data: item } = await supabase
+    .from('srd_items')
+    .select('name, short_description, item_category')
+    .eq('slug', slug)
+    .single();
+
+  if (!item) {
+    return {
+      title: 'Objeto no encontrado',
+    };
+  }
+
+  return {
+    title: `${item.name} | Compendio D&D 3.5`,
+    description: item.short_description,
+    openGraph: {
+      title: item.name,
+      description: item.short_description || `Detalles y estadísticas de ${item.name}`,
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(item.name)}&type=Objeto&description=${encodeURIComponent(item.short_description || '')}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  };
+}
+
 export default async function ItemPage({ params }: ItemPageProps) {
   const { slug } = await params;
 
@@ -103,7 +135,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
       <div className="border-l-4 border-amber-500 pl-6 mb-12">
         <div className="flex items-center gap-4 mb-3">
           <Icon className="h-10 w-10 md:h-12 md:w-12 text-amber-400" />
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-dungeon-100">
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-200">
             {item.name}
           </h1>
         </div>
@@ -113,17 +145,17 @@ export default async function ItemPage({ params }: ItemPageProps) {
           </span>
           {weapon && (
             <>
-              <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
-                <span className="text-dungeon-500">Categoría:</span> {weapon.weapon_category}
+              <span className="px-3 py-1 rounded bg-dungeon-800 text-gray-400 border border-dungeon-700">
+                <span className="text-gray-500">Categoría:</span> {weapon.weapon_category}
               </span>
-              <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
-                <span className="text-dungeon-500">Tipo:</span> {weapon.weapon_type}
+              <span className="px-3 py-1 rounded bg-dungeon-800 text-gray-400 border border-dungeon-700">
+                <span className="text-gray-500">Tipo:</span> {weapon.weapon_type}
               </span>
             </>
           )}
           {armor && (
-            <span className="px-3 py-1 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
-              <span className="text-dungeon-500">Categoría:</span> {armor.armor_category}
+            <span className="px-3 py-1 rounded bg-dungeon-800 text-gray-400 border border-dungeon-700">
+              <span className="text-gray-500">Categoría:</span> {armor.armor_category}
             </span>
           )}
         </div>
@@ -145,7 +177,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-dungeon-200 font-semibold">{priceData.cleanText}</p>
+              <p className="text-gray-300 font-semibold">{priceData.cleanText}</p>
             </CardContent>
           </Card>
         )}
@@ -164,7 +196,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-dungeon-200">{weightData.cleanText}</p>
+              <p className="text-gray-300">{weightData.cleanText}</p>
             </CardContent>
           </Card>
         )}
@@ -182,44 +214,44 @@ export default async function ItemPage({ params }: ItemPageProps) {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Empuñadura</h3>
-                <p className="text-dungeon-200">{weapon.handedness}</p>
+                <h3 className="text-sm font-semibold text-gray-500 mb-2">Empuñadura</h3>
+                <p className="text-gray-300">{weapon.handedness}</p>
               </div>
 
               {weapon.damage_by_size && (
                 <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Daño (Medio)</h3>
-                  <p className="text-dungeon-200 font-bold">
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Daño (Medio)</h3>
+                  <p className="text-gray-300 font-bold">
                     {weapon.damage_by_size.M || weapon.damage_by_size.S || 'N/A'}
                   </p>
                 </div>
               )}
 
               <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Crítico</h3>
-                <p className="text-dungeon-200 font-bold text-red-400">
+                <h3 className="text-sm font-semibold text-gray-500 mb-2">Crítico</h3>
+                <p className="text-gray-300 font-bold text-red-400">
                   {weapon.critical_range}/{weapon.critical_mult}
                 </p>
               </div>
 
               {weapon.damage_type && weapon.damage_type.length > 0 && (
                 <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Tipo de daño</h3>
-                  <p className="text-dungeon-200">{weapon.damage_type.join(', ')}</p>
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Tipo de daño</h3>
+                  <p className="text-gray-300">{weapon.damage_type.join(', ')}</p>
                 </div>
               )}
 
               {weapon.range_increment_ft && (
                 <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Alcance</h3>
-                  <p className="text-dungeon-200"><FormattedDistance feet={weapon.range_increment_ft} /></p>
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Alcance</h3>
+                  <p className="text-gray-300"><FormattedDistance feet={weapon.range_increment_ft} /></p>
                 </div>
               )}
 
               {weapon.special_rules && (
                 <div className="md:col-span-2 bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Especial</h3>
-                  <p className="text-dungeon-200">{weapon.special_rules}</p>
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Especial</h3>
+                  <p className="text-gray-300">{weapon.special_rules}</p>
                 </div>
               )}
             </div>
@@ -239,25 +271,25 @@ export default async function ItemPage({ params }: ItemPageProps) {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Bonificador de armadura</h3>
-                <p className="text-dungeon-200 font-bold text-blue-400">+{armor.armor_bonus}</p>
+                <h3 className="text-sm font-semibold text-gray-500 mb-2">Bonificador de armadura</h3>
+                <p className="text-gray-300 font-bold text-blue-400">+{armor.armor_bonus}</p>
               </div>
 
               {armor.max_dex_bonus !== null && (
                 <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                  <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Bonificador máx. de Des</h3>
-                  <p className="text-dungeon-200">+{armor.max_dex_bonus}</p>
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Bonificador máx. de Des</h3>
+                  <p className="text-gray-300">+{armor.max_dex_bonus}</p>
                 </div>
               )}
 
               <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Penalizador de armadura</h3>
-                <p className="text-dungeon-200">{armor.armor_check_penalty}</p>
+                <h3 className="text-sm font-semibold text-gray-500 mb-2">Penalizador de armadura</h3>
+                <p className="text-gray-300">{armor.armor_check_penalty}</p>
               </div>
 
               <div className="bg-dungeon-800/30 rounded-lg p-4 border border-dungeon-700">
-                <h3 className="text-sm font-semibold text-dungeon-500 mb-2">Fallo de conjuros arcanos</h3>
-                <p className="text-dungeon-200">{armor.arcane_spell_failure}%</p>
+                <h3 className="text-sm font-semibold text-gray-500 mb-2">Fallo de conjuros arcanos</h3>
+                <p className="text-gray-300">{armor.arcane_spell_failure}%</p>
               </div>
             </div>
           </CardContent>
@@ -275,7 +307,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
           </CardHeader>
           <CardContent>
             <div
-              className="prose prose-invert prose-sm max-w-none prose-headings:text-amber-400 prose-p:text-dungeon-200 prose-strong:text-dungeon-100 prose-table:border-dungeon-700 [&_table]:w-full [&_th]:text-left [&_th]:text-amber-400 [&_td]:text-dungeon-200"
+              className="prose prose-invert prose-sm max-w-none prose-headings:text-amber-400 prose-p:text-gray-300 prose-strong:text-gray-200 prose-table:border-dungeon-700 [&_table]:w-full [&_th]:text-left [&_th]:text-amber-400 [&_td]:text-gray-300"
               dangerouslySetInnerHTML={{ __html: item.description_full }}
             />
           </CardContent>
@@ -290,7 +322,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
             <div className="space-y-2">
               <h4 className="text-sm font-semibold text-blue-400">Notas del SRD</h4>
               {allFootnotes.map(num => (
-                <p key={num} className="text-xs text-dungeon-300">
+                <p key={num} className="text-xs text-gray-400">
                   <span className="text-blue-400 font-bold">[{num}]</span>{' '}
                   {FOOTNOTES[num]}
                 </p>
@@ -302,7 +334,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
       {/* Source */}
       <div className="bg-dungeon-800/30 border border-dungeon-700 rounded-lg p-4 mb-8">
-        <p className="text-xs text-dungeon-500">
+        <p className="text-xs text-gray-500">
           Fuente: Manual del Jugador 3.5
         </p>
       </div>

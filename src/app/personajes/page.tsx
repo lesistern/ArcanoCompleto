@@ -21,6 +21,7 @@ import { getUserCharacters, duplicateCharacter, deleteCharacter, toggleFavorite,
 import type { CharacterSummary } from '@/lib/supabase/characters';
 import { useCharacterStore } from '@/lib/store/characterStore';
 import { pageContainerPadding } from '@/lib/utils/responsive-spacing';
+import { ClassBadge, formatClassName } from '@/components/classes/ClassBadge';
 
 export default function PersonajesPage() {
   const router = useRouter();
@@ -249,15 +250,19 @@ export default function PersonajesPage() {
                     </button>
                   </div>
 
-                  <div className="flex items-center gap-2 text-sm text-dungeon-400">
+                  <div className="flex items-center gap-2 text-sm">
                     {character.race_slug && (
-                      <span className="truncate">{character.race_slug}</span>
+                      <span className="truncate capitalize text-dungeon-400">{character.race_slug.replace(/-/g, ' ')}</span>
                     )}
                     {character.race_slug && character.class_slug && (
-                      <span>•</span>
+                      <span className="text-dungeon-600">•</span>
                     )}
                     {character.class_slug && (
-                      <span className="truncate">{character.class_slug}</span>
+                      <ClassBadge
+                        classSlug={character.class_slug}
+                        size="xs"
+                        clickable={false}
+                      />
                     )}
                   </div>
 

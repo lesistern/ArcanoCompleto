@@ -7,7 +7,7 @@ import { useRacesAdmin } from '@/hooks/useRacesAdmin';
 
 // Lazy-load heavy form editor component (only needed when editing)
 const RaceFormEditor = dynamic(() => import('@/components/admin/RaceFormEditor').then(mod => ({ default: mod.RaceFormEditor })), {
-  loading: () => <div className="h-96 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-96 bg-gray-800 rounded animate-pulse" />
 });
 
 export default function RacesAdminPage() {
@@ -32,7 +32,7 @@ export default function RacesAdminPage() {
   } = useRacesAdmin();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
       <div className="container mx-auto px-4 py-8">
         <RacesHeader
           racesCount={races.length}

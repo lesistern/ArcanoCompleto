@@ -192,7 +192,7 @@ export default function PlanosPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -202,20 +202,20 @@ export default function PlanosPage() {
                         <Globe className="h-8 w-8 text-sky-400" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Planos de Existencia</h1>
-                        <p className="text-dungeon-400">Los múltiples mundos de la cosmología de D&D</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Planos de Existencia</h1>
+                        <p className="text-gray-400">Los múltiples mundos de la cosmología de D&D</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                El <strong className="text-dungeon-100">multiverso de D&D</strong> está compuesto por
+                                El <strong className="text-gray-100">multiverso de D&D</strong> está compuesto por
                                 múltiples planos de existencia. Cada plano tiene sus propias reglas físicas, habitantes
                                 y conexiones con otros planos.
                             </p>
@@ -230,13 +230,13 @@ export default function PlanosPage() {
 
             {/* Categories Overview */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4">Categorías de Planos</h2>
+                <h2 className="text-2xl font-bold text-gray-100 mb-4">Categorías de Planos</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                     {PLANE_CATEGORIES.map((cat) => (
-                        <Card key={cat.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={cat.name} className="bg-gray-900/50 border-gray-700">
                             <CardContent className="p-4">
                                 <h3 className={`font-semibold mb-1 ${cat.color}`}>{cat.name}</h3>
-                                <p className="text-sm text-dungeon-300">{cat.description}</p>
+                                <p className="text-sm text-gray-300">{cat.description}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -245,13 +245,13 @@ export default function PlanosPage() {
 
             {/* Transitive Planes */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Sparkles className="h-6 w-6 text-purple-400" />
                     Planos Transicionales
                 </h2>
                 <div className="space-y-4">
                     {TRANSITIVE_PLANES.map((plane) => (
-                        <Card key={plane.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={plane.name} className="bg-gray-900/50 border-gray-700">
                             <CardHeader className="pb-2">
                                 <CardTitle className={`flex items-center gap-2 text-lg ${plane.color}`}>
                                     <plane.icon className="h-5 w-5" />
@@ -259,15 +259,15 @@ export default function PlanosPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-3">
-                                <p className="text-sm text-dungeon-300">{plane.description}</p>
+                                <p className="text-sm text-gray-300">{plane.description}</p>
                                 <div className="flex flex-wrap gap-1">
                                     {plane.traits.map((trait) => (
-                                        <span key={trait} className="text-xs bg-dungeon-800 text-dungeon-300 px-2 py-1 rounded">
+                                        <span key={trait} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                                             {trait}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="text-xs text-dungeon-400">
+                                <div className="text-xs text-gray-400">
                                     <strong>Habitantes:</strong> {plane.inhabitants.join(', ')}
                                 </div>
                             </CardContent>
@@ -278,13 +278,13 @@ export default function PlanosPage() {
 
             {/* Inner Planes */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Flame className="h-6 w-6 text-cyan-400" />
                     Planos Interiores (Elementales)
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
                     {INNER_PLANES.map((plane) => (
-                        <Card key={plane.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={plane.name} className="bg-gray-900/50 border-gray-700">
                             <CardHeader className="pb-2">
                                 <CardTitle className={`flex items-center gap-2 text-lg ${plane.color}`}>
                                     <plane.icon className="h-5 w-5" />
@@ -292,15 +292,15 @@ export default function PlanosPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-3">
-                                <p className="text-sm text-dungeon-300">{plane.description}</p>
+                                <p className="text-sm text-gray-300">{plane.description}</p>
                                 <div className="flex flex-wrap gap-1">
                                     {plane.traits.map((trait) => (
-                                        <span key={trait} className="text-xs bg-dungeon-800 text-dungeon-300 px-2 py-1 rounded">
+                                        <span key={trait} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                                             {trait}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="text-xs text-dungeon-400">
+                                <div className="text-xs text-gray-400">
                                     <strong>Habitantes:</strong> {plane.inhabitants.join(', ')}
                                 </div>
                             </CardContent>
@@ -311,27 +311,27 @@ export default function PlanosPage() {
 
             {/* Outer Planes */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Sun className="h-6 w-6 text-amber-400" />
                     Planos Exteriores (Alineamiento)
                 </h2>
-                <p className="text-dungeon-300 mb-4">
+                <p className="text-gray-300 mb-4">
                     Los Planos Exteriores están organizados según la Gran Rueda, con cada plano representando una
                     combinación de ley/caos y bien/mal.
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {OUTER_PLANES.map((plane) => (
-                        <Card key={plane.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={plane.name} className="bg-gray-900/50 border-gray-700">
                             <CardHeader className="pb-2">
                                 <CardTitle className={`flex items-center gap-2 text-base ${plane.color}`}>
                                     <plane.icon className="h-5 w-5" />
                                     {plane.name}
                                 </CardTitle>
-                                <span className="text-xs text-dungeon-500">{plane.category}</span>
+                                <span className="text-xs text-gray-500">{plane.category}</span>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <p className="text-xs text-dungeon-300">{plane.description}</p>
-                                <div className="text-xs text-dungeon-400">
+                                <p className="text-xs text-gray-300">{plane.description}</p>
+                                <div className="text-xs text-gray-400">
                                     <strong>Habitantes:</strong> {plane.inhabitants.join(', ')}
                                 </div>
                             </CardContent>
@@ -345,13 +345,13 @@ export default function PlanosPage() {
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Globe className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p className="font-semibold text-blue-400">Viaje entre Planos</p>
                             <p className="text-sm">
                                 Los métodos más comunes de viajar entre planos incluyen conjuros como
-                                <strong className="text-dungeon-200"> Desplazamiento entre planos</strong> (5º nivel),
-                                <strong className="text-dungeon-200"> Puerta</strong> (9º nivel) y
-                                <strong className="text-dungeon-200"> Viaje astral</strong> (9º nivel).
+                                <strong className="text-gray-200"> Desplazamiento entre planos</strong> (5º nivel),
+                                <strong className="text-gray-200"> Puerta</strong> (9º nivel) y
+                                <strong className="text-gray-200"> Viaje astral</strong> (9º nivel).
                                 También existen portales naturales, objetos mágicos y rituales específicos.
                             </p>
                         </div>

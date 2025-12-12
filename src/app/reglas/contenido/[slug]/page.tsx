@@ -82,15 +82,15 @@ export default async function RuleDetailPage({ params }: { params?: { slug?: str
                 <div className="flex-1 space-y-6">
                     <div className="flex items-center gap-3 text-gold-500 mb-4">
                         <BookOpen className="h-6 w-6" />
-                        <span className="text-sm font-bold uppercase tracking-wider text-dungeon-300">
+                        <span className="text-sm font-bold uppercase tracking-wider text-gray-300">
                             {rule.category || 'Reglas Básicas'}
                         </span>
                     </div>
-                    <h1 className="font-heading text-5xl md:text-6xl font-bold text-dungeon-100 leading-tight">
+                    <h1 className="font-heading text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
                         {rule.title}
                     </h1>
                     {rule.description && (
-                        <p className="text-xl md:text-2xl text-dungeon-300 max-w-3xl leading-relaxed">
+                        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl leading-relaxed">
                             {rule.description}
                         </p>
                     )}
@@ -98,18 +98,18 @@ export default async function RuleDetailPage({ params }: { params?: { slug?: str
             </div>
 
             {/* Content Card */}
-            <Card className="bg-dungeon-800/50 border-dungeon-700 backdrop-blur-sm overflow-hidden shadow-2xl mb-16">
+            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm overflow-hidden shadow-2xl mb-16">
                 <CardContent className="p-10 md:p-16">
                     <div className="prose prose-invert prose-lg max-w-none
-                        prose-headings:font-heading prose-headings:text-dungeon-100
+                        prose-headings:font-heading prose-headings:text-gray-100
                         prose-h1:text-4xl prose-h1:text-gold-500 prose-h1:mb-12 prose-h1:font-bold
-                        prose-h2:text-3xl prose-h2:text-dungeon-100 prose-h2:mt-16 prose-h2:mb-8 prose-h2:border-b prose-h2:border-dungeon-700 prose-h2:pb-4
+                        prose-h2:text-3xl prose-h2:text-gray-100 prose-h2:mt-16 prose-h2:mb-8 prose-h2:border-b prose-h2:border-gray-700 prose-h2:pb-4
                         prose-h3:text-2xl prose-h3:text-gold-400 prose-h3:mt-12 prose-h3:mb-6
-                        prose-p:text-dungeon-200 prose-p:leading-loose prose-p:mb-6 prose-p:text-lg
-                        prose-strong:text-dungeon-100 prose-strong:font-bold
+                        prose-p:text-gray-200 prose-p:leading-loose prose-p:mb-6 prose-p:text-lg
+                        prose-strong:text-gray-100 prose-strong:font-bold
                         prose-ul:my-8 prose-li:my-3 prose-li:marker:text-gold-500
-                        prose-blockquote:border-l-4 prose-blockquote:border-gold-500 prose-blockquote:bg-dungeon-900/50 prose-blockquote:py-4 prose-blockquote:px-8 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:my-10
-                        prose-hr:border-dungeon-700 prose-hr:my-12
+                        prose-blockquote:border-l-4 prose-blockquote:border-gold-500 prose-blockquote:bg-gray-900/50 prose-blockquote:py-4 prose-blockquote:px-8 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:my-10
+                        prose-hr:border-gray-700 prose-hr:my-12
                         ">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>{rule.content}</ReactMarkdown>
                     </div>
@@ -119,7 +119,7 @@ export default async function RuleDetailPage({ params }: { params?: { slug?: str
             {/* Alignment Grid (Only for alignment page) */}
             {sortedAlignments && sortedAlignments.length > 0 && (
                 <div className="mb-16">
-                    <h2 className="text-3xl font-heading font-bold text-dungeon-100 mb-8 border-l-4 border-gold-500 pl-4">
+                    <h2 className="text-3xl font-heading font-bold text-gray-100 mb-8 border-l-4 border-gold-500 pl-4">
                         Los 9 Alineamientos
                     </h2>
                     <div className="grid gap-6 md:grid-cols-3">

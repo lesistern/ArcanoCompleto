@@ -82,10 +82,10 @@ export default async function EquipmentPage() {
       {/* Header */}
       <ScrollReveal direction="down">
         <div className="border-l-4 border-amber-500 pl-6 mb-12">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100 mb-3">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-gray-200 mb-3">
             Equipo y objetos
           </h1>
-          <p className="text-lg text-dungeon-300">
+          <p className="text-lg text-gray-400">
             Armas, armaduras, bienes y servicios del SRD 3.5
           </p>
         </div>
@@ -107,7 +107,7 @@ export default async function EquipmentPage() {
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
                           <span>{category.title}</span>
-                          <span className="text-sm font-normal text-dungeon-400">
+                          <span className="text-sm font-normal text-gray-400">
                             {category.count} {category.count === 1 ? 'objeto' : 'objetos'}
                           </span>
                         </div>
@@ -115,7 +115,7 @@ export default async function EquipmentPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-dungeon-300">{category.description}</p>
+                    <p className="text-gray-400">{category.description}</p>
                   </CardContent>
                 </Card>
               </Link>

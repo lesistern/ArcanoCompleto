@@ -42,7 +42,7 @@ const getSpecialItemStyle = (text: string): { color: string; icon: 'positive' | 
 
   // Si tiene ambos, es neutral
   if (isPositive && isNegative) {
-    return { color: 'text-dungeon-200', icon: 'neutral' };
+    return { color: 'text-gray-300', icon: 'neutral' };
   }
 
   if (isPositive) {
@@ -53,7 +53,7 @@ const getSpecialItemStyle = (text: string): { color: string; icon: 'positive' | 
     return { color: 'text-red-300', icon: 'negative' };
   }
 
-  return { color: 'text-dungeon-200', icon: 'neutral' };
+  return { color: 'text-gray-300', icon: 'neutral' };
 };
 
 // Helper para obtener el estilo basado en la dificultad de CD
@@ -77,7 +77,7 @@ const getUseDifficultyStyle = (text: string): { color: string; icon: 'positive' 
   }
 
   // Sin CD explícita, usar estilo neutral
-  return { color: 'text-dungeon-200', icon: 'neutral' };
+  return { color: 'text-gray-300', icon: 'neutral' };
 };
 
 export const revalidate = 86400; // Revalidate every 24 hours
@@ -145,7 +145,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
 
           <div className="flex-1 space-y-4">
             <div className="flex flex-wrap items-center gap-3 mb-2">
-              <span className="px-3 py-1 rounded-full bg-dungeon-800 border border-dungeon-700 text-xs font-bold uppercase tracking-wider text-dungeon-300">
+              <span className="px-3 py-1 rounded-full bg-dungeon-800 border border-dungeon-700 text-xs font-bold uppercase tracking-wider text-gray-400">
                 {skillData.category}
               </span>
               {skillData.trainedOnly && (
@@ -160,17 +160,17 @@ export default async function SkillPage({ params }: SkillPageProps) {
               )}
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-dungeon-100 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-300 leading-tight">
               {skillData.name}
             </h1>
 
-            <p className="text-xl text-dungeon-300 leading-relaxed max-w-3xl">
+            <p className="text-xl text-gray-400 leading-relaxed max-w-3xl">
               {skillData.shortDescription}
             </p>
 
             <div className="flex items-center gap-4 pt-2">
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-dungeon-950/50 border border-dungeon-800">
-                <span className="text-sm text-dungeon-400 uppercase tracking-wider font-bold">Característica Clave:</span>
+                <span className="text-sm text-gray-500 uppercase tracking-wider font-bold">Característica Clave:</span>
                 <span className="text-gold-500 font-bold flex items-center gap-2">
                   <AbilityIcon className="h-4 w-4" />
                   {skillData.keyAbility}
@@ -244,7 +244,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                 // Renderizar como tabla de objetos SkillUse
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
-                    <thead className="bg-dungeon-950/50 text-dungeon-400 uppercase tracking-wider text-xs font-bold">
+                    <thead className="bg-dungeon-950/50 text-gray-400 uppercase tracking-wider text-xs font-bold">
                       <tr>
                         <th className="px-6 py-4">Tarea / Uso</th>
                         <th className="px-6 py-4 w-32">CD</th>
@@ -255,9 +255,9 @@ export default async function SkillPage({ params }: SkillPageProps) {
                       {skillData.uses.map((use: SkillUse, index: number) => (
                         <tr key={index} className="hover:bg-dungeon-800/30 transition-colors">
                           <td className="px-6 py-4">
-                            <div className="font-semibold text-dungeon-200 text-base mb-1">{use.description}</div>
+                            <div className="font-semibold text-gray-300 text-base mb-1">{use.description}</div>
                             {use.specialConditions && (
-                              <div className="text-dungeon-400 italic text-xs">{use.specialConditions}</div>
+                              <div className="text-gray-400 italic text-xs">{use.specialConditions}</div>
                             )}
                           </td>
                           <td className="px-6 py-4">
@@ -266,10 +266,10 @@ export default async function SkillPage({ params }: SkillPageProps) {
                                 {use.dc}
                               </span>
                             ) : (
-                              <span className="text-dungeon-500">-</span>
+                              <span className="text-gray-500">-</span>
                             )}
                           </td>
-                          <td className="px-6 py-4 text-dungeon-300">
+                          <td className="px-6 py-4 text-gray-400">
                             {use.action}
                           </td>
                         </tr>
@@ -333,14 +333,14 @@ export default async function SkillPage({ params }: SkillPageProps) {
             <CardContent className="space-y-6 pt-6">
               <div>
                 <h4 className="text-sm font-bold text-gold-500/80 uppercase tracking-wider mb-2">Tirada</h4>
-                <div className="text-dungeon-200 text-sm leading-relaxed">
+                <div className="text-gray-300 text-sm leading-relaxed">
                   <FormattedDescription text={skillData.check} className="text-sm" excludeSkillSlug={slug} />
                 </div>
               </div>
 
               <div>
                 <h4 className="text-sm font-bold text-gold-500/80 uppercase tracking-wider mb-2">Acción</h4>
-                <div className="text-dungeon-200 text-sm leading-relaxed">
+                <div className="text-gray-300 text-sm leading-relaxed">
                   <FormattedDescription text={skillData.action} className="text-sm" excludeSkillSlug={slug} />
                 </div>
               </div>
@@ -359,7 +359,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                   )}
                 </div>
                 {skillData.retryDetails && (
-                  <div className="text-dungeon-400 text-xs leading-relaxed pl-1 border-l-2 border-dungeon-700">
+                  <div className="text-gray-400 text-xs leading-relaxed pl-1 border-l-2 border-dungeon-700">
                     <FormattedDescription text={skillData.retryDetails} className="text-xs" excludeSkillSlug={slug} />
                   </div>
                 )}
@@ -368,7 +368,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
               {skillData.untrainedUse && (
                 <div>
                   <h4 className="text-sm font-bold text-gold-500/80 uppercase tracking-wider mb-2">Sin Entrenamiento</h4>
-                  <div className="text-dungeon-200 text-sm leading-relaxed">
+                  <div className="text-gray-300 text-sm leading-relaxed">
                     <FormattedDescription text={skillData.untrainedUse} className="text-sm" excludeSkillSlug={slug} />
                   </div>
                 </div>
@@ -386,7 +386,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
-                <div className="text-dungeon-200 text-sm leading-relaxed">
+                <div className="text-gray-300 text-sm leading-relaxed">
                   <FormattedDescription text={skillData.restriction} className="text-sm" excludeSkillSlug={slug} />
                 </div>
               </CardContent>
@@ -411,7 +411,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                           return (
                             <div key={index} className="text-sm p-3 rounded bg-dungeon-950/50 border border-dungeon-800">
                               {isSelf ? (
-                                <div className="font-semibold text-dungeon-200">{synergy.skill}</div>
+                                <div className="font-semibold text-gray-300">{synergy.skill}</div>
                               ) : (
                                 <Link
                                   href={`/habilidades/${synergySlug}`}
@@ -421,7 +421,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                                 </Link>
                               )}
                               {synergy.condition && (
-                                <div className="text-dungeon-500 text-xs mt-1">{synergy.condition}</div>
+                                <div className="text-gray-500 text-xs mt-1">{synergy.condition}</div>
                               )}
                             </div>
                           );
@@ -440,7 +440,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                           return (
                             <div key={index} className="text-sm p-3 rounded bg-dungeon-950/50 border border-dungeon-800">
                               {isSelf ? (
-                                <div className="font-semibold text-dungeon-200">{synergy.skill}</div>
+                                <div className="font-semibold text-gray-300">{synergy.skill}</div>
                               ) : (
                                 <Link
                                   href={`/habilidades/${synergySlug}`}
@@ -450,7 +450,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                                 </Link>
                               )}
                               {synergy.condition && (
-                                <div className="text-dungeon-500 text-xs mt-1">{synergy.condition}</div>
+                                <div className="text-gray-500 text-xs mt-1">{synergy.condition}</div>
                               )}
                             </div>
                           );
@@ -479,7 +479,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
                       <Link
                         key={className}
                         href={`/clases/${getClassSlug(className)}`}
-                        className={`text-xs px-3 py-1.5 rounded border bg-dungeon-950/50 border-dungeon-800 text-dungeon-300 hover:border-gold-500/50 hover:text-gold-500 transition-all flex items-center gap-2 group`}
+                        className={`text-xs px-3 py-1.5 rounded border bg-dungeon-950/50 border-dungeon-800 text-gray-400 hover:border-gold-500/50 hover:text-gold-500 transition-all flex items-center gap-2 group`}
                       >
                         <ClassIcon className={`h-3 w-3 ${iconColor} group-hover:text-gold-500 transition-colors`} />
                         {className}
@@ -493,7 +493,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
 
           {/* Fuente */}
           <div className="text-center">
-            <p className="text-xs text-dungeon-600 font-mono">
+            <p className="text-xs text-gray-500 font-mono">
               Fuente: {skillData.source.book}, pág. {skillData.source.page}
             </p>
           </div>

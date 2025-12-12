@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Swords, Eye, Edit2, Copy, Trash2, MoreVertical, Star } from 'lucide-react';
 import { getClassIcon } from '@/lib/utils/classIcons';
 import { getClassColor, extractTextColor } from '@/lib/utils/icons';
+import { formatClassName } from '@/components/classes/ClassBadge';
 
 interface CharacterPreviewCardProps {
   character: {
@@ -41,10 +42,10 @@ export const CharacterPreviewCard = memo(function CharacterPreviewCard({
 
   // Formatear nombre de clase y raza
   const className = character.class_slug
-    ? character.class_slug.charAt(0).toUpperCase() + character.class_slug.slice(1).replace(/-/g, ' ')
+    ? formatClassName(character.class_slug)
     : 'Sin clase';
   const raceName = character.race_slug
-    ? character.race_slug.charAt(0).toUpperCase() + character.race_slug.slice(1).replace(/-/g, ' ')
+    ? character.race_slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
     : 'Sin raza';
 
   const handleAction = async (action: () => void) => {

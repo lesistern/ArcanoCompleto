@@ -84,8 +84,20 @@ export async function generateMetadata({ params }: ClassPageProps): Promise<Meta
   return {
     title,
     description,
-    openGraph: { title, description, type: 'article', siteName: 'Compendio Arcano' },
-    twitter: { card: 'summary', title, description },
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      siteName: 'Compendio Arcano',
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(classData.titulo)}&type=Clase&description=${encodeURIComponent(description)}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: { card: 'summary_large_image', title, description },
     keywords: [classData.titulo, 'D&D 3.5', 'clase', 'character class', classData.source_book].filter(Boolean),
   };
 }
@@ -301,7 +313,7 @@ export default async function ClassPage({ params }: ClassPageProps) {
           <div className="flex items-center gap-4 mb-4">
             <Icon className={`h-10 w-10 md:h-12 md:w-12 ${iconColor}`} />
             <div>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-dungeon-100">
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-200">
                 {classData.name}
               </h1>
               {/* Source Book Badge */}
@@ -312,7 +324,7 @@ export default async function ClassPage({ params }: ClassPageProps) {
                     {classesData.source_book_abbr}
                   </span>
                   {classesData.source_page && (
-                    <span className="text-dungeon-500 text-xs">
+                    <span className="text-gray-500 text-xs">
                       pág. {classesData.source_page}
                     </span>
                   )}
@@ -321,11 +333,11 @@ export default async function ClassPage({ params }: ClassPageProps) {
             </div>
           </div>
           <div className="prose prose-invert max-w-none">
-            <p className="text-dungeon-200 text-base md:text-lg leading-relaxed">
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed">
               {classesData.summary_es || classesData.subtitulo || `Clase ${classesData.titulo} de D&D 3.5`}
             </p>
             {fluffData?.intro_long && (
-              <div className="mt-4 text-dungeon-300 text-sm md:text-base whitespace-pre-line">
+              <div className="mt-4 text-gray-400 text-sm md:text-base whitespace-pre-line">
                 {fluffData.intro_long.split('\n\n')[0]}
               </div>
             )}
@@ -363,151 +375,151 @@ export default async function ClassPage({ params }: ClassPageProps) {
       {/* Lore Section - Only show if there's fluff data */}
       {hasLoreData && (
         <div className="mb-10 space-y-6">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-dungeon-100 flex items-center gap-3">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-gray-200 flex items-center gap-3">
             <BookOpen className="h-7 w-7 text-amber-400" />
             {capitalizeFirst('trasfondo y narrativa')}
           </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Adventure Motivation */}
-          {classData.motivacion_aventura && (
-            <InfoCard
-              title={capitalizeFirst("¿por qué se aventuran?")}
-              summary={extractFirstSentences(classData.motivacion_aventura, 180)}
-              fullContent={classData.motivacion_aventura}
-              icon={<Target className="h-5 w-5" />}
-              iconColor="text-emerald-400"
-            />
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Adventure Motivation */}
+            {classData.motivacion_aventura && (
+              <InfoCard
+                title={capitalizeFirst("¿por qué se aventuran?")}
+                summary={extractFirstSentences(classData.motivacion_aventura, 180)}
+                fullContent={classData.motivacion_aventura}
+                icon={<Target className="h-5 w-5" />}
+                iconColor="text-emerald-400"
+              />
+            )}
 
-          {/* Characteristics */}
-          {classData.caracteristicas && (
-            <InfoCard
-              title={capitalizeFirst("características")}
-              summary={extractFirstSentences(classData.caracteristicas, 180)}
-              fullContent={classData.caracteristicas}
-              icon={<Sparkles className="h-5 w-5" />}
-              iconColor="text-amber-400"
-            />
-          )}
+            {/* Characteristics */}
+            {classData.caracteristicas && (
+              <InfoCard
+                title={capitalizeFirst("características")}
+                summary={extractFirstSentences(classData.caracteristicas, 180)}
+                fullContent={classData.caracteristicas}
+                icon={<Sparkles className="h-5 w-5" />}
+                iconColor="text-amber-400"
+              />
+            )}
 
-          {/* Power Source */}
-          {classData.tipo_poder_principal && (
-            <InfoCard
-              title={capitalizeFirst("fuente de poder")}
-              summary={extractFirstSentences(classData.descripcion_poder || `El poder de esta clase proviene de fuentes ${classData.tipo_poder_principal.toLowerCase()}.`, 180)}
-              fullContent={classData.descripcion_poder || `El poder de esta clase proviene de fuentes ${classData.tipo_poder_principal.toLowerCase()}.`}
-              icon={<Zap className="h-5 w-5" />}
-              iconColor="text-violet-400"
-              additionalInfo={{
-                label: 'Tipo',
-                value: capitalizeFirst(classData.tipo_poder_principal)
-              }}
-            />
-          )}
+            {/* Power Source */}
+            {classData.tipo_poder_principal && (
+              <InfoCard
+                title={capitalizeFirst("fuente de poder")}
+                summary={extractFirstSentences(classData.descripcion_poder || `El poder de esta clase proviene de fuentes ${classData.tipo_poder_principal.toLowerCase()}.`, 180)}
+                fullContent={classData.descripcion_poder || `El poder de esta clase proviene de fuentes ${classData.tipo_poder_principal.toLowerCase()}.`}
+                icon={<Zap className="h-5 w-5" />}
+                iconColor="text-violet-400"
+                additionalInfo={{
+                  label: 'Tipo',
+                  value: capitalizeFirst(classData.tipo_poder_principal)
+                }}
+              />
+            )}
 
-          {/* Party Role */}
-          {classData.rol_party && (
-            <InfoCard
-              title={capitalizeFirst("rol en el grupo")}
-              summary={extractFirstSentences(classData.rol_party, 180)}
-              fullContent={classData.rol_party}
-              icon={<Users className="h-5 w-5" />}
-              iconColor="text-cyan-400"
-            />
-          )}
+            {/* Party Role */}
+            {classData.rol_party && (
+              <InfoCard
+                title={capitalizeFirst("rol en el grupo")}
+                summary={extractFirstSentences(classData.rol_party, 180)}
+                fullContent={classData.rol_party}
+                icon={<Users className="h-5 w-5" />}
+                iconColor="text-cyan-400"
+              />
+            )}
 
-          {/* Social Origin */}
-          {classData.origen_social && (
-            <InfoCard
-              title={capitalizeFirst("origen social")}
-              summary={extractFirstSentences(classData.origen_social, 180)}
-              fullContent={classData.origen_social}
-              icon={<Map className="h-5 w-5" />}
-              iconColor="text-orange-400"
-            />
-          )}
+            {/* Social Origin */}
+            {classData.origen_social && (
+              <InfoCard
+                title={capitalizeFirst("origen social")}
+                summary={extractFirstSentences(classData.origen_social, 180)}
+                fullContent={classData.origen_social}
+                icon={<Map className="h-5 w-5" />}
+                iconColor="text-orange-400"
+              />
+            )}
 
-          {/* Religious Focus */}
-          {classData.enfoque_religioso && (
-            <InfoCard
-              title={capitalizeFirst("enfoque religioso")}
-              summary={extractFirstSentences(classData.enfoque_religioso, 180)}
-              fullContent={classData.enfoque_religioso}
-              icon={<Church className="h-5 w-5" />}
-              iconColor="text-yellow-400"
-              additionalInfo={classData.deidades_tipicas ? {
-                label: capitalizeFirst('deidades típicas'),
-                value: classData.deidades_tipicas
-              } : undefined}
-            />
-          )}
+            {/* Religious Focus */}
+            {classData.enfoque_religioso && (
+              <InfoCard
+                title={capitalizeFirst("enfoque religioso")}
+                summary={extractFirstSentences(classData.enfoque_religioso, 180)}
+                fullContent={classData.enfoque_religioso}
+                icon={<Church className="h-5 w-5" />}
+                iconColor="text-yellow-400"
+                additionalInfo={classData.deidades_tipicas ? {
+                  label: capitalizeFirst('deidades típicas'),
+                  value: classData.deidades_tipicas
+                } : undefined}
+              />
+            )}
 
-          {/* Combined: Magic + Alignment Restrictions - Using Card component */}
-          <Card className="border-dungeon-700 bg-dungeon-900/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="text-amber-400">
-                  <BookOpen className="h-5 w-5" />
-                </div>
-                {capitalizeFirst("reglas de clase")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {/* Magic */}
-              <div className="flex items-start gap-3">
-                <Wand2 className={`h-5 w-5 mt-0.5 ${spellcastingColor}`} />
-                <div>
-                  <span className="text-xs font-semibold text-dungeon-400 uppercase tracking-wide">Conjuros</span>
-                  <p className={`text-sm ${spellcastingColor}`}>{spellcastingStatus}</p>
-                </div>
-              </div>
-              {/* Alignment */}
-              {alignmentRule && (
+            {/* Combined: Magic + Alignment Restrictions - Using Card component */}
+            <Card className="border-dungeon-700 bg-dungeon-900/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <div className="text-amber-400">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  {capitalizeFirst("reglas de clase")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {/* Magic */}
                 <div className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 mt-0.5 text-red-400" />
+                  <Wand2 className={`h-5 w-5 mt-0.5 ${spellcastingColor}`} />
                   <div>
-                    <span className="text-xs font-semibold text-dungeon-400 uppercase tracking-wide">Alineamiento</span>
-                    <p className="text-sm text-dungeon-200">{capitalizeFirst(alignmentRule.toLowerCase())}</p>
+                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Conjuros</span>
+                    <p className={`text-sm ${spellcastingColor}`}>{spellcastingStatus}</p>
                   </div>
                 </div>
-              )}
-            </CardContent>
-          </Card>
+                {/* Alignment */}
+                {alignmentRule && (
+                  <div className="flex items-start gap-3">
+                    <Shield className="h-5 w-5 mt-0.5 text-red-400" />
+                    <div>
+                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Alineamiento</span>
+                      <p className="text-sm text-gray-300">{capitalizeFirst(alignmentRule.toLowerCase())}</p>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-          {/* Common Races */}
-          {classData.razas_comunes && (
-            <InfoCard
-              title={capitalizeFirst("razas comunes")}
-              summary={extractFirstSentences(classData.razas_comunes, 180)}
-              fullContent={classData.razas_comunes}
-              icon={<Users className="h-5 w-5" />}
-              iconColor="text-blue-400"
-            />
-          )}
+            {/* Common Races */}
+            {classData.razas_comunes && (
+              <InfoCard
+                title={capitalizeFirst("razas comunes")}
+                summary={extractFirstSentences(classData.razas_comunes, 180)}
+                fullContent={classData.razas_comunes}
+                icon={<Users className="h-5 w-5" />}
+                iconColor="text-blue-400"
+              />
+            )}
 
-          {/* How this class views other classes */}
-          {classData.otras_clases && (
-            <InfoCard
-              title={capitalizeFirst("relación con otras clases")}
-              summary={extractFirstSentences(classData.otras_clases, 180)}
-              fullContent={classData.otras_clases}
-              icon={<UserCircle2 className="h-5 w-5" />}
-              iconColor="text-indigo-400"
-            />
-          )}
+            {/* How this class views other classes */}
+            {classData.otras_clases && (
+              <InfoCard
+                title={capitalizeFirst("relación con otras clases")}
+                summary={extractFirstSentences(classData.otras_clases, 180)}
+                fullContent={classData.otras_clases}
+                icon={<UserCircle2 className="h-5 w-5" />}
+                iconColor="text-indigo-400"
+              />
+            )}
 
-          {/* Alignment description */}
-          {classData.alineamiento_descripcion && (
-            <InfoCard
-              title={capitalizeFirst("alineamiento típico")}
-              summary={extractFirstSentences(classData.alineamiento_descripcion, 180)}
-              fullContent={classData.alineamiento_descripcion}
-              icon={<Scale className="h-5 w-5" />}
-              iconColor="text-purple-400"
-            />
-          )}
-        </div>
+            {/* Alignment description */}
+            {classData.alineamiento_descripcion && (
+              <InfoCard
+                title={capitalizeFirst("alineamiento típico")}
+                summary={extractFirstSentences(classData.alineamiento_descripcion, 180)}
+                fullContent={classData.alineamiento_descripcion}
+                icon={<Scale className="h-5 w-5" />}
+                iconColor="text-purple-400"
+              />
+            )}
+          </div>
         </div>
       )}
 

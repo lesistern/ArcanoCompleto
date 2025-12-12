@@ -34,7 +34,7 @@ export default async function ClasesPrestigioPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -44,20 +44,20 @@ export default async function ClasesPrestigioPage() {
                         <Trophy className="h-8 w-8 text-amber-400" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Clases de Prestigio</h1>
-                        <p className="text-dungeon-400">Clases avanzadas con requisitos especiales</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Clases de Prestigio</h1>
+                        <p className="text-gray-400">Clases avanzadas con requisitos especiales</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                Las <strong className="text-dungeon-100">clases de prestigio</strong> son clases
+                                Las <strong className="text-gray-100">clases de prestigio</strong> son clases
                                 especializadas que representan metas difíciles de alcanzar para muchos personajes.
                                 A diferencia de las clases base, tienen requisitos previos que deben cumplirse
                                 antes de poder tomar niveles en ellas.
@@ -73,16 +73,16 @@ export default async function ClasesPrestigioPage() {
 
             {/* Key Concepts */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Star className="h-6 w-6 text-gold-400" />
                     Conceptos Clave
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-amber-400">Requisitos Previos</CardTitle>
                         </CardHeader>
-                        <CardContent className="text-sm text-dungeon-300 space-y-2">
+                        <CardContent className="text-sm text-gray-300 space-y-2">
                             <p>Antes de tomar tu primer nivel en una clase de prestigio, debes cumplir todos sus requisitos:</p>
                             <ul className="list-disc pl-5 space-y-1">
                                 <li><strong>BAB mínimo:</strong> Ej. BAB +5, +6, +7</li>
@@ -93,11 +93,11 @@ export default async function ClasesPrestigioPage() {
                             </ul>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-amber-400">Multiclase</CardTitle>
                         </CardHeader>
-                        <CardContent className="text-sm text-dungeon-300 space-y-2">
+                        <CardContent className="text-sm text-gray-300 space-y-2">
                             <p>Las clases de prestigio se toman mediante multiclase normal:</p>
                             <ul className="list-disc pl-5 space-y-1">
                                 <li>Puedes tomar niveles en cualquier momento si cumples requisitos</li>
@@ -112,33 +112,33 @@ export default async function ClasesPrestigioPage() {
 
             {/* Requirements Guide */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Target className="h-6 w-6 text-gold-400" />
                     Tipos de Requisitos
                 </h2>
                 <div className="grid md:grid-cols-3 gap-4">
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-green-400 mb-2">Combate</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Requisitos como BAB +5 o más, dotes de combate específicas,
                                 o competencia con armas/armaduras.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-blue-400 mb-2">Magia</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Capacidad de lanzar conjuros de cierto nivel, conocer conjuros
                                 específicos, o tener nivel de lanzador mínimo.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardContent className="p-4">
                             <h3 className="font-semibold text-purple-400 mb-2">Habilidades</h3>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Rangos mínimos en habilidades específicas, típicamente
                                 entre 5 y 13 rangos.
                             </p>
@@ -150,20 +150,20 @@ export default async function ClasesPrestigioPage() {
             {/* Example Classes */}
             {prestigeClasses && prestigeClasses.length > 0 && (
                 <section className="mb-8">
-                    <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                    <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                         <BookOpen className="h-6 w-6 text-gold-400" />
                         Ejemplos de Clases de Prestigio
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {prestigeClasses.map((cls) => (
                             <Link key={cls.slug} href={`/clases/${cls.slug}`}>
-                                <Card className="bg-dungeon-900/50 border-dungeon-700 hover:border-amber-500/50 transition-colors h-full">
+                                <Card className="bg-gray-900/50 border-gray-700 hover:border-amber-500/50 transition-colors h-full">
                                     <CardContent className="p-4">
                                         <h3 className="font-semibold text-amber-400 mb-1">{cls.titulo}</h3>
                                         {cls.source_book && (
-                                            <p className="text-xs text-dungeon-500 mb-2">{cls.source_book}</p>
+                                            <p className="text-xs text-gray-500 mb-2">{cls.source_book}</p>
                                         )}
-                                        <p className="text-sm text-dungeon-300 line-clamp-2">
+                                        <p className="text-sm text-gray-300 line-clamp-2">
                                             {cls.description_es || 'Descripción no disponible'}
                                         </p>
                                     </CardContent>
@@ -178,8 +178,8 @@ export default async function ClasesPrestigioPage() {
             <Card className="bg-gradient-to-r from-amber-900/30 to-orange-900/30 border-amber-500/30">
                 <CardContent className="p-6 text-center">
                     <Trophy className="h-12 w-12 text-amber-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-dungeon-100 mb-2">Explorar Todas las Clases</h3>
-                    <p className="text-dungeon-300 mb-4">
+                    <h3 className="text-xl font-bold text-gray-100 mb-2">Explorar Todas las Clases</h3>
+                    <p className="text-gray-300 mb-4">
                         Navega por la lista completa de clases base y de prestigio.
                     </p>
                     <Link href="/clases">

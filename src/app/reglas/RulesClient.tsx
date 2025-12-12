@@ -241,15 +241,15 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
     return (
         <div className="space-y-8">
             {/* Hero Section */}
-            <div className="relative rounded-xl overflow-hidden bg-dungeon-900 border border-dungeon-800 shadow-2xl">
+            <div className="relative rounded-xl overflow-hidden bg-gray-900 border border-gray-800 shadow-2xl">
                 <div className="absolute inset-0 bg-[url('/images/textures/parchment-dark.jpg')] opacity-20 mix-blend-overlay"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-dungeon-950 via-dungeon-900/90 to-dungeon-950/50"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900/90 to-gray-950/50"></div>
 
                 <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="max-w-2xl space-y-4">
                         <div className="flex items-center gap-3 mb-2 flex-wrap">
                             <Link href="/3.5">
-                                <Button variant="ghost" size="sm" className="text-dungeon-400 hover:text-dungeon-200 pl-0">
+                                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-200 pl-0">
                                     <ArrowLeft className="h-4 w-4 mr-2" />
                                     Volver al Inicio
                                 </Button>
@@ -261,10 +261,10 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
                                 </Button>
                             </Link>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-dungeon-100 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-100 leading-tight">
                             Reglas del Sistema
                         </h1>
-                        <p className="text-lg text-dungeon-300 leading-relaxed">
+                        <p className="text-lg text-gray-300 leading-relaxed">
                             Guía completa del sistema d20: mecánicas básicas, creación de personajes, combate y todo lo que necesitas para tu aventura.
                         </p>
                     </div>
@@ -277,25 +277,25 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
             </div>
 
             {/* Control Panel / Filters */}
-            <div className="sticky top-4 z-30 bg-dungeon-950/95 backdrop-blur-md border border-dungeon-800 rounded-xl shadow-lg p-4 transition-all duration-300">
+            <div className="sticky top-4 z-30 bg-gray-950/95 backdrop-blur-md border border-gray-800 rounded-xl shadow-lg p-4 transition-all duration-300">
                 <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
                     {/* Search Bar */}
                     <div className="relative w-full md:w-96 group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-dungeon-500 group-focus-within:text-gold-500 transition-colors" />
+                            <Search className="h-5 w-5 text-gray-500 group-focus-within:text-gold-500 transition-colors" />
                         </div>
                         <input
                             type="text"
                             placeholder="Buscar reglas..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 placeholder-dungeon-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
                         />
                     </div>
 
                     {/* Filter Toggle (Mobile) & Active Filters Summary */}
                     <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-                        <div className="hidden md:flex items-center gap-2 text-sm text-dungeon-400">
+                        <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
                             <Sparkles className="h-4 w-4 text-gold-500" />
                             <span>{totalResults} resultados</span>
                         </div>
@@ -304,7 +304,7 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
                             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${mobileFiltersOpen
                                 ? 'bg-gold-500/10 border-gold-500 text-gold-500'
-                                : 'bg-dungeon-800 border-dungeon-700 text-dungeon-300 hover:border-dungeon-600'
+                                : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-600'
                                 }`}
                         >
                             <Filter className="h-4 w-4" />
@@ -316,7 +316,7 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
 
                 {/* Expanded Filters */}
                 {mobileFiltersOpen && (
-                    <div className="mt-6 pt-6 border-t border-dungeon-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in slide-in-from-top-2">
+                    <div className="mt-6 pt-6 border-t border-gray-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in slide-in-from-top-2">
                         <div className="space-y-2 col-span-full">
                             <label className="text-xs font-bold text-gold-500 uppercase tracking-wider block mb-2">
                                 Filtrar por Sección
@@ -325,8 +325,8 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
                                 <button
                                     onClick={() => setSelectedSection('Todas')}
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedSection === 'Todas'
-                                        ? 'bg-gold-600 text-dungeon-950'
-                                        : 'bg-dungeon-800 border border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                                        ? 'bg-gold-600 text-gray-950'
+                                        : 'bg-gray-800 border border-gray-700 text-gray-300 hover:border-gold-500/50'
                                         }`}
                                 >
                                     Todas
@@ -336,8 +336,8 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
                                         key={section.id}
                                         onClick={() => setSelectedSection(section.id)}
                                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedSection === section.id
-                                            ? 'bg-gold-600 text-dungeon-950'
-                                            : 'bg-dungeon-800 border border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                                            ? 'bg-gold-600 text-gray-950'
+                                            : 'bg-gray-800 border border-gray-700 text-gray-300 hover:border-gold-500/50'
                                             }`}
                                     >
                                         {section.label} ({section.count})
@@ -351,12 +351,12 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
 
             {/* Empty State */}
             {totalResults === 0 && (
-                <div className="text-center py-16 bg-dungeon-900/50 rounded-xl border border-dungeon-800 border-dashed">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dungeon-800 mb-4">
-                        <Search className="h-8 w-8 text-dungeon-500" />
+                <div className="text-center py-16 bg-gray-900/50 rounded-xl border border-gray-800 border-dashed">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800 mb-4">
+                        <Search className="h-8 w-8 text-gray-500" />
                     </div>
-                    <h3 className="text-xl font-heading font-semibold text-dungeon-200 mb-2">No se encontraron reglas</h3>
-                    <p className="text-dungeon-400 max-w-md mx-auto">
+                    <h3 className="text-xl font-heading font-semibold text-gray-200 mb-2">No se encontraron reglas</h3>
+                    <p className="text-gray-400 max-w-md mx-auto">
                         Intenta ajustar los filtros o buscar con otros términos.
                     </p>
                     <button
@@ -376,7 +376,7 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
                 <section id="guias-principales">
                     <div className="flex items-center gap-3 mb-6">
                         <BookOpen className="h-8 w-8 text-gold-500" />
-                        <h2 className="text-2xl font-bold text-dungeon-100">Guías principales</h2>
+                        <h2 className="text-2xl font-bold text-gray-100">Guías principales</h2>
                     </div>
                     <div className="grid gap-6 md:grid-cols-3">
                         {filteredGuides.map((guide) => (
@@ -390,12 +390,12 @@ export default function RulesClient({ dice, abilityScores, savingThrows, rulesCo
                                         <div className="flex justify-center mb-3">
                                             <guide.icon className={`h-12 w-12 ${guide.color}`} />
                                         </div>
-                                        <CardTitle className="text-xl text-center text-dungeon-100">
+                                        <CardTitle className="text-xl text-center text-gray-100">
                                             {guide.title}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-sm text-dungeon-300 text-center">
+                                        <p className="text-sm text-gray-300 text-center">
                                             {guide.description}
                                         </p>
                                         <div className="mt-4 text-center">

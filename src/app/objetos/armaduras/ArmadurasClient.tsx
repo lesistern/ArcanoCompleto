@@ -47,7 +47,7 @@ function getTypeTextColor(armorType: string): string {
     case 'medium': return 'text-blue-400';
     case 'heavy': return 'text-red-400';
     case 'shield': return 'text-gold-400';
-    default: return 'text-dungeon-300';
+    default: return 'text-gray-400';
   }
 }
 
@@ -67,13 +67,13 @@ function ArmorTableRow({ armor, isExpanded, onToggle }: {
         <td className="py-3 px-4">
           <div className="flex items-center gap-2">
             {description && (
-              <button className="text-dungeon-400 hover:text-gold-400 transition-colors">
+              <button className="text-gray-400 hover:text-gold-400 transition-colors">
                 {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
               </button>
             )}
             <Link
               href={`/objetos/armaduras/${armor.slug}`}
-              className="font-semibold text-dungeon-100 hover:text-gold-400 transition-colors"
+              className="font-semibold text-gray-200 hover:text-gold-400 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
               {armorNameEs}
@@ -92,13 +92,13 @@ function ArmorTableRow({ armor, isExpanded, onToggle }: {
         <td className="py-3 px-3 text-center text-purple-400">
           {formatArcaneSpellFailure(armor.arcane_spell_failure)}
         </td>
-        <td className="py-3 px-3 text-center text-dungeon-300 text-sm">
+        <td className="py-3 px-3 text-center text-gray-400 text-sm">
           {armor.base_speed_30 ? `${formatSpeed30(armor.base_speed_30)}/${formatSpeed20(armor.base_speed_20)}` : '—'}
         </td>
         <td className="py-3 px-3 text-center text-gold-400 font-medium">
           {formatArmorCost(armor.cost_gold, armor.cost_silver)}
         </td>
-        <td className="py-3 px-3 text-center text-dungeon-400">
+        <td className="py-3 px-3 text-center text-gray-400">
           {formatArmorWeight(armor.weight_lb)}
         </td>
         <td className="py-3 px-3 text-center">
@@ -115,7 +115,7 @@ function ArmorTableRow({ armor, isExpanded, onToggle }: {
       {isExpanded && description && (
         <tr className={`${rowClasses.replace('hover:', '')} border-l-4 border-transparent`}>
           <td colSpan={9} className="py-3 px-4 pl-12">
-            <p className="text-dungeon-300 text-sm leading-relaxed max-w-4xl">
+            <p className="text-gray-400 text-sm leading-relaxed max-w-4xl">
               {description}
             </p>
           </td>
@@ -141,9 +141,11 @@ function getArmorTypeIconComponent(type: string) {
     case 'Escudo':
       return <CircleDot className="h-7 w-7 text-gold-400" />;
     default:
-      return <Shield className="h-7 w-7 text-dungeon-400" />;
+      return <Shield className="h-7 w-7 text-gray-400" />;
   }
 }
+
+import { ArmorCardMobile } from '@/components/armor/ArmorCardMobile';
 
 function ArmorTable({ armors, title, typeKey }: {
   armors: ArmorItem[];
@@ -172,22 +174,37 @@ function ArmorTable({ armors, title, typeKey }: {
       <div className="flex items-center gap-3 mb-4">
         {getArmorTypeIconComponent(typeKey)}
         <h2 className={`text-2xl font-bold ${typeColor}`}>{title}</h2>
-        <span className="text-sm text-dungeon-500">({armors.length})</span>
+        <span className="text-sm text-gray-500">({armors.length})</span>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-dungeon-700">
+      {/* Mobile View: Cards */}
+      <div className="block md:hidden">
+        {armors.map((armor) => (
+          <ArmorCardMobile
+            key={armor.id}
+            armor={armor}
+            getRowColorClasses={getRowColorClasses}
+            getTypeTextColor={getTypeTextColor}
+            isExpanded={expandedRows.has(armor.id)}
+            onToggle={() => toggleRow(armor.id)}
+          />
+        ))}
+      </div>
+
+      {/* Desktop View: Table */}
+      <div className="hidden md:block overflow-x-auto rounded-lg border border-dungeon-700">
         <table className="w-full text-sm">
           <thead className="bg-dungeon-800">
             <tr className="border-b border-dungeon-700">
-              <th className="py-3 px-4 text-left text-dungeon-300 font-semibold">Armadura</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">CA</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">Máx DES</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">Penaliz.</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">F. Arcano</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">Velocidad</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">Coste</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold">Peso</th>
-              <th className="py-3 px-3 text-center text-dungeon-300 font-semibold"></th>
+              <th className="py-3 px-4 text-left text-gray-400 font-semibold">Armadura</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">CA</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">Máx DES</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">Penaliz.</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">F. Arcano</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">Velocidad</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">Coste</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold">Peso</th>
+              <th className="py-3 px-3 text-center text-gray-400 font-semibold"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-dungeon-800">
@@ -225,16 +242,16 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
           <div className="max-w-2xl space-y-4">
             <div className="flex items-center gap-3 mb-2">
               <Link href="/objetos">
-                <Button variant="ghost" size="sm" className="text-dungeon-400 hover:text-dungeon-200 pl-0">
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-300 pl-0">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Volver
                 </Button>
               </Link>
             </div>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-dungeon-100 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-200 leading-tight">
               Armaduras y Escudos
             </h1>
-            <p className="text-lg text-dungeon-300 leading-relaxed">
+            <p className="text-lg text-gray-400 leading-relaxed">
               Protege tu vida con la mejor defensa. Encuentra armaduras ligeras para moverte con sigilo,
               o pesadas placas para resistir los golpes más duros.
             </p>
@@ -245,7 +262,7 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
             <Shield className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
             <div className="text-left">
               <div className="text-sm font-bold text-blue-500 uppercase tracking-wider">Reglas de Armadura</div>
-              <div className="text-xs text-dungeon-400">CA, Penalizadores y más</div>
+              <div className="text-xs text-gray-400">CA, Penalizadores y más</div>
             </div>
           </Link>
         </div>
@@ -257,20 +274,20 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
           {/* Search Bar */}
           <div className="relative w-full md:w-96 group">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-dungeon-500 group-focus-within:text-gold-500 transition-colors" />
+              <Search className="h-5 w-5 text-gray-500 group-focus-within:text-gold-500 transition-colors" />
             </div>
             <input
               type="text"
               placeholder="Buscar armadura..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 placeholder-dungeon-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
+              className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
             />
           </div>
 
           {/* Filter Toggle (Mobile) & Active Filters Summary */}
           <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-            <div className="hidden md:flex items-center gap-2 text-sm text-dungeon-400">
+            <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
               <Sparkles className="h-4 w-4 text-gold-500" />
               <span>Mostrando {filteredArmors.length} objetos</span>
             </div>
@@ -279,7 +296,7 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
               onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${mobileFiltersOpen
                 ? 'bg-gold-500/10 border-gold-500 text-gold-500'
-                : 'bg-dungeon-800 border-dungeon-700 text-dungeon-300 hover:border-dungeon-600'
+                : 'bg-dungeon-800 border-dungeon-700 text-gray-300 hover:border-dungeon-600'
                 }`}
             >
               <Filter className="h-4 w-4" />
@@ -303,8 +320,8 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
                     key={type}
                     onClick={() => setSelectedType(type)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedType === type
-                      ? 'bg-gold-600 text-dungeon-950'
-                      : 'bg-dungeon-800 border border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                      ? 'bg-gold-600 text-gray-950'
+                      : 'bg-dungeon-800 border border-dungeon-700 text-gray-300 hover:border-gold-500/50'
                       }`}
                   >
                     {type}
@@ -320,19 +337,19 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
       <div className="flex flex-wrap gap-4 text-sm px-2">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          <span className="text-dungeon-400">Ligera</span>
+          <span className="text-gray-400">Ligera</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-          <span className="text-dungeon-400">Media</span>
+          <span className="text-gray-400">Media</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <span className="text-dungeon-400">Pesada</span>
+          <span className="text-gray-400">Pesada</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-gold-500"></div>
-          <span className="text-dungeon-400">Escudo</span>
+          <span className="text-gray-400">Escudo</span>
         </div>
       </div>
 
@@ -373,10 +390,10 @@ export default function ArmadurasClient({ armors }: ArmadurasClientProps) {
       {filteredArmors.length === 0 && (
         <div className="text-center py-16 bg-dungeon-900/50 rounded-xl border border-dungeon-800 border-dashed">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dungeon-800 mb-4">
-            <Search className="h-8 w-8 text-dungeon-500" />
+            <Search className="h-8 w-8 text-gray-500" />
           </div>
-          <h3 className="text-xl font-heading font-semibold text-dungeon-200 mb-2">No se encontraron armaduras</h3>
-          <p className="text-dungeon-400 max-w-md mx-auto">
+          <h3 className="text-xl font-heading font-semibold text-gray-300 mb-2">No se encontraron armaduras</h3>
+          <p className="text-gray-400 max-w-md mx-auto">
             Intenta ajustar los filtros o buscar con otros términos.
           </p>
           <button

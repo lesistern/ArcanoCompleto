@@ -147,16 +147,16 @@ export default function DeitiesPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-b from-dungeon-950 via-dungeon-900 to-dungeon-950 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center">
                 <div className="text-gold-400 text-xl">Cargando dioses...</div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-dungeon-950 via-dungeon-900 to-dungeon-950">
+        <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
             {/* Header */}
-            <div className="relative overflow-hidden border-b border-gold-500/20 bg-gradient-to-r from-dungeon-900 via-dungeon-800 to-dungeon-900">
+            <div className="relative overflow-hidden border-b border-gold-500/20 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
                 <div className="absolute inset-0 bg-[url('/images/texture.png')] opacity-5"></div>
                 <div className="container mx-auto px-4 py-16 relative">
                     <div className="flex items-center gap-4 mb-4">
@@ -165,7 +165,7 @@ export default function DeitiesPage() {
                             Dioses y Deidades
                         </h1>
                     </div>
-                    <p className="text-dungeon-300 text-lg max-w-3xl">
+                    <p className="text-gray-300 text-lg max-w-3xl">
                         Los dioses de D&D 3.5 otorgan poder a sus clérigos y guían a sus seguidores. Cada deidad tiene su propio dominio, alineamiento y filosofía.
                     </p>
                 </div>
@@ -173,7 +173,7 @@ export default function DeitiesPage() {
 
             <div className="container mx-auto px-4 py-8">
                 {/* TL;DR - Resumen Rápido */}
-                <div className="bg-gradient-to-r from-green-900/30 via-emerald-900/20 to-dungeon-900 border-2 border-green-500/40 rounded-xl p-6 mb-8">
+                <div className="bg-gradient-to-r from-green-900/30 via-emerald-900/20 to-gray-900 border-2 border-green-500/40 rounded-xl p-6 mb-8">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="bg-green-500/20 rounded-full p-2">
                             <Zap className="h-6 w-6 text-green-400" />
@@ -184,49 +184,49 @@ export default function DeitiesPage() {
                         <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
                             <Shield className="h-8 w-8 text-blue-400 mb-2" />
                             <div className="font-bold text-blue-400 mb-1">Clérigos Necesitan Dios</div>
-                            <div className="text-dungeon-400 text-xs">
+                            <div className="text-gray-400 text-xs">
                                 Clérigos y paladines DEBEN elegir una deidad para obtener poderes
                             </div>
                         </div>
                         <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4 hover:bg-red-900/30 transition-colors">
                             <Sword className="h-8 w-8 text-red-400 mb-2" />
                             <div className="font-bold text-red-400 mb-1">Arma Predilecta Gratis</div>
-                            <div className="text-dungeon-400 text-xs">
+                            <div className="text-gray-400 text-xs">
                                 Tu dios te da competencia con su arma favorita (ej: Pelor = maza)
                             </div>
                         </div>
                         <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 hover:bg-purple-900/30 transition-colors">
                             <Users className="h-8 w-8 text-purple-400 mb-2" />
                             <div className="font-bold text-purple-400 mb-1">Alineamiento Similar</div>
-                            <div className="text-dungeon-400 text-xs">
+                            <div className="text-gray-400 text-xs">
                                 Tu alineamiento debe estar a 1 paso del de tu dios (no opuesto)
                             </div>
                         </div>
                         <div className="bg-gold-900/20 border border-gold-500/30 rounded-lg p-4 hover:bg-gold-900/30 transition-colors">
                             <BookOpen className="h-8 w-8 text-gold-400 mb-2" />
                             <div className="font-bold text-gold-400 mb-1">2 Dominios = 2 Poderes</div>
-                            <div className="text-dungeon-400 text-xs">
+                            <div className="text-gray-400 text-xs">
                                 Eliges 2 dominios de tu dios: conjuros extra + poder especial
                             </div>
                         </div>
                     </div>
 
                     {/* Ejemplo Visual de Clérigo */}
-                    <div className="mt-6 bg-dungeon-950/50 border border-dungeon-700 rounded-lg p-4">
-                        <div className="text-sm text-dungeon-400 mb-2 flex items-center gap-2">
+                    <div className="mt-6 bg-gray-950/50 border border-gray-700 rounded-lg p-4">
+                        <div className="text-sm text-gray-400 mb-2 flex items-center gap-2">
                             <BarChart3 className="h-4 w-4" />
                             <span>Ejemplo: Clérigo de Pelor (Dios del Sol):</span>
                         </div>
                         <div className="flex flex-wrap items-center gap-2 text-sm">
-                            <span className="bg-dungeon-800 px-3 py-1 rounded font-mono">Clérigo LB</span>
-                            <span className="text-dungeon-500">+</span>
+                            <span className="bg-gray-800 px-3 py-1 rounded font-mono">Clérigo LB</span>
+                            <span className="text-gray-500">+</span>
                             <span className="bg-blue-900/40 border border-blue-500/30 px-3 py-1 rounded">Pelor (NB) <span className="text-green-400 text-xs">alineamiento compatible</span></span>
-                            <span className="text-dungeon-500">=</span>
+                            <span className="text-gray-500">=</span>
                             <span className="bg-gold-900/40 border border-gold-500/30 px-3 py-1 rounded">Dominios: Sol + Bien</span>
-                            <span className="text-dungeon-500">+</span>
+                            <span className="text-gray-500">+</span>
                             <span className="bg-red-900/40 border border-red-500/30 px-3 py-1 rounded">Arma: Maza pesada</span>
                         </div>
-                        <p className="text-xs text-dungeon-500 mt-2">Un clérigo Legal Bueno puede servir a Pelor (Neutral Bueno) porque están a 1 paso de distancia.</p>
+                        <p className="text-xs text-gray-500 mt-2">Un clérigo Legal Bueno puede servir a Pelor (Neutral Bueno) porque están a 1 paso de distancia.</p>
                     </div>
                 </div>
 
@@ -241,7 +241,7 @@ export default function DeitiesPage() {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onFocus={() => searchTerm && setShowDropdown(true)}
-                            className="w-full pl-10 pr-10 py-3 bg-dungeon-800 border-2 border-dungeon-600 rounded-lg text-dungeon-100 placeholder-dungeon-400 focus:outline-none focus:border-gold-400 transition-colors"
+                            className="w-full pl-10 pr-10 py-3 bg-gray-800 border-2 border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gold-400 transition-colors"
                         />
                         {searchTerm && (
                             <button
@@ -249,7 +249,7 @@ export default function DeitiesPage() {
                                     setSearchTerm('');
                                     searchInputRef.current?.focus();
                                 }}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dungeon-400 hover:text-gold-400 transition-colors"
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gold-400 transition-colors"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -260,7 +260,7 @@ export default function DeitiesPage() {
                     {showDropdown && searchResults.length > 0 && (
                         <div
                             ref={dropdownRef}
-                            className="absolute top-full left-0 right-0 mt-2 bg-dungeon-800 border-2 border-gold-400/50 rounded-lg shadow-lg max-h-96 overflow-y-auto"
+                            className="absolute top-full left-0 right-0 mt-2 bg-gray-800 border-2 border-gold-400/50 rounded-lg shadow-lg max-h-96 overflow-y-auto"
                         >
                             {searchResults.map((deity) => {
                                 const rankConfig = DEITY_RANK_CONFIG[deity.rank];
@@ -272,14 +272,14 @@ export default function DeitiesPage() {
                                             setSearchTerm('');
                                             setShowDropdown(false);
                                         }}
-                                        className="block px-4 py-3 border-b border-dungeon-700 last:border-b-0 hover:bg-dungeon-700 transition-colors group"
+                                        className="block px-4 py-3 border-b border-gray-700 last:border-b-0 hover:bg-gray-700 transition-colors group"
                                     >
                                         <div className="flex items-center justify-between">
                                             <div className="flex-1">
                                                 <p className="font-semibold text-gold-400 group-hover:text-gold-300">
                                                     {deity.name_es}
                                                 </p>
-                                                <p className="text-xs text-dungeon-400">
+                                                <p className="text-xs text-gray-400">
                                                     {rankConfig?.label} • {ALIGNMENT_CONFIG[deity.alignment]?.label}
                                                 </p>
                                             </div>
@@ -292,7 +292,7 @@ export default function DeitiesPage() {
 
                     {/* No results message */}
                     {showDropdown && searchTerm && searchResults.length === 0 && (
-                        <div className="absolute top-full left-0 right-0 mt-2 bg-dungeon-800 border-2 border-red-400/50 rounded-lg p-4 text-center text-dungeon-400">
+                        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 border-2 border-red-400/50 rounded-lg p-4 text-center text-gray-400">
                             No se encontraron deidades para "{searchTerm}"
                         </div>
                     )}
@@ -308,7 +308,7 @@ export default function DeitiesPage() {
                                 onClick={() => setFilter('all')}
                                 className={`px-4 py-2 rounded-lg border transition-all ${filter === 'all'
                                         ? 'bg-gold-500/20 border-gold-500 text-gold-400'
-                                        : 'bg-dungeon-800/50 border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                                        : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:border-gold-500/50'
                                     }`}
                             >
                                 Todos
@@ -318,8 +318,8 @@ export default function DeitiesPage() {
                                     key={key}
                                     onClick={() => setFilter(key)}
                                     className={`px-4 py-2 rounded-lg border transition-all group relative ${filter === key
-                                            ? `border-2 text-dungeon-100`
-                                            : 'bg-dungeon-800/50 border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                                            ? `border-2 text-gray-100`
+                                            : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:border-gold-500/50'
                                         }`}
                                     style={filter === key ? {
                                         borderColor: config.hex,
@@ -342,7 +342,7 @@ export default function DeitiesPage() {
                                 onClick={() => setAlignmentFilter('all')}
                                 className={`px-4 py-2 rounded-lg border transition-all ${alignmentFilter === 'all'
                                         ? 'bg-gold-500/20 border-gold-500 text-gold-400'
-                                        : 'bg-dungeon-800/50 border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                                        : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:border-gold-500/50'
                                     }`}
                             >
                                 Todos
@@ -352,8 +352,8 @@ export default function DeitiesPage() {
                                     key={key}
                                     onClick={() => setAlignmentFilter(key)}
                                     className={`px-4 py-2 rounded-lg border transition-all group relative ${alignmentFilter === key
-                                            ? `border-2 text-dungeon-100`
-                                            : 'bg-dungeon-800/50 border-dungeon-700 text-dungeon-300 hover:border-gold-500/50'
+                                            ? `border-2 text-gray-100`
+                                            : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:border-gold-500/50'
                                         }`}
                                     style={alignmentFilter === key ? {
                                         borderColor: config.hex,
@@ -380,7 +380,7 @@ export default function DeitiesPage() {
                                 href={`/reglas/contenido/dioses/${deity.slug}`}
                                 className="block group deity-card-wrapper"
                             >
-                                <div className="h-full bg-gradient-to-br from-dungeon-800/90 to-dungeon-900/90 rounded-lg border border-dungeon-700 overflow-hidden deity-card relative">
+                                <div className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-lg border border-gray-700 overflow-hidden deity-card relative">
                                     {/* Image */}
                                     {deity.image_url && (
                                         <div className="relative h-48 w-full overflow-hidden">
@@ -424,7 +424,7 @@ export default function DeitiesPage() {
                                                 }}
                                             />
                                             {/* Capa base oscura con transparencia */}
-                                            <div className="absolute inset-0 bg-gradient-to-b from-dungeon-800/60 to-dungeon-900/80" />
+                                            <div className="absolute inset-0 bg-gradient-to-b from-gray-800/60 to-gray-900/80" />
                                             {/* Imagen de la deidad */}
                                             <Image
                                                 src={deity.image_url}
@@ -437,13 +437,13 @@ export default function DeitiesPage() {
                                     )}
 
                                     {/* Header */}
-                                    <div className="p-6 border-b border-dungeon-700/50">
+                                    <div className="p-6 border-b border-gray-700/50">
                                         <div className="flex items-start justify-between mb-3">
                                             <div className="flex-1">
                                                 <h3 className="text-xl font-bold text-gold-400 group-hover:text-gold-300 transition-colors font-cinzel mb-1">
                                                     {deity.name_es}
                                                 </h3>
-                                                <p className="text-sm text-dungeon-400 italic">
+                                                <p className="text-sm text-gray-400 italic">
                                                     {deity.titles_es}
                                                 </p>
                                             </div>
@@ -452,7 +452,7 @@ export default function DeitiesPage() {
 
                                         <div className="flex items-center gap-2">
                                             <span
-                                                className={`text-xs px-2 py-1 rounded bg-dungeon-900/50 border cursor-help`}
+                                                className={`text-xs px-2 py-1 rounded bg-gray-900/50 border cursor-help`}
                                                 style={{
                                                     color: rankConfig?.hex || '#B8BBC2',
                                                     borderColor: `${rankConfig?.hex || '#B8BBC2'}80`
@@ -462,7 +462,7 @@ export default function DeitiesPage() {
                                                 {rankConfig?.label || deity.rank}
                                             </span>
                                             <span
-                                                className={`text-xs px-2 py-1 rounded border bg-dungeon-900/50 cursor-help`}
+                                                className={`text-xs px-2 py-1 rounded border bg-gray-900/50 cursor-help`}
                                                 style={{
                                                     color: ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2',
                                                     borderColor: `${ALIGNMENT_CONFIG[deity.alignment]?.hex || '#B8BBC2'}80`
@@ -478,12 +478,12 @@ export default function DeitiesPage() {
                                     <div className="p-6 space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Portafolio:</h4>
-                                            <p className="text-sm text-dungeon-300">{deity.portfolio_es}</p>
+                                            <p className="text-sm text-gray-300">{deity.portfolio_es}</p>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gold-400/80 mb-1">Símbolo:</h4>
-                                            <p className="text-sm text-dungeon-300">{deity.symbol_es}</p>
+                                            <p className="text-sm text-gray-300">{deity.symbol_es}</p>
                                         </div>
 
                                         {deity.domains && deity.domains.length > 0 && (
@@ -493,13 +493,13 @@ export default function DeitiesPage() {
                                                     {deity.domains.slice(0, 5).map((domain, idx) => (
                                                         <span
                                                             key={idx}
-                                                            className="text-xs px-2 py-1 rounded-full bg-dungeon-900/70 border border-dungeon-600 text-dungeon-300"
+                                                            className="text-xs px-2 py-1 rounded-full bg-gray-900/70 border border-gray-600 text-gray-300"
                                                         >
                                                             {domain}
                                                         </span>
                                                     ))}
                                                     {deity.domains.length > 5 && (
-                                                        <span className="text-xs px-2 py-1 text-dungeon-400">
+                                                        <span className="text-xs px-2 py-1 text-gray-400">
                                                             +{deity.domains.length - 5} más
                                                         </span>
                                                     )}
@@ -509,7 +509,7 @@ export default function DeitiesPage() {
                                     </div>
 
                                     {/* Footer */}
-                                    <div className="px-6 py-3 bg-dungeon-900/50 border-t border-dungeon-700/50">
+                                    <div className="px-6 py-3 bg-gray-900/50 border-t border-gray-700/50">
                                         <span className="text-xs text-gold-400/70 group-hover:text-gold-400 transition-colors">
                                             Ver detalles →
                                         </span>
@@ -522,7 +522,7 @@ export default function DeitiesPage() {
 
                 {filteredDeities.length === 0 && (
                     <div className="text-center py-16">
-                        <p className="text-dungeon-400 text-lg">
+                        <p className="text-gray-400 text-lg">
                             No se encontraron deidades con los filtros seleccionados.
                         </p>
                     </div>

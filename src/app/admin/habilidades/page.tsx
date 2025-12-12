@@ -9,7 +9,7 @@ import { SkillData } from '@/types/admin-skills';
 
 // Lazy-load heavy form editor component
 const SkillFormEditor = dynamic(() => import('@/components/admin/SkillFormEditor').then(mod => ({ default: mod.SkillFormEditor })), {
-  loading: () => <div className="h-96 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-96 bg-gray-800 rounded animate-pulse" />
 });
 
 export default function SkillsAdminPage() {
@@ -159,7 +159,7 @@ export default function SkillsAdminPage() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
             <div className="container mx-auto px-4 py-8">
                 <SkillEditorHeader
                     skillsCount={skills.length}

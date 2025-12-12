@@ -12,6 +12,40 @@ interface FeatPageProps {
   }>;
 }
 
+export async function generateMetadata({ params }: FeatPageProps) {
+  const { slug } = await params;
+  const supabase = await createStaticClient();
+  const { data: feat } = await supabase
+    .from('feats')
+    .select('name, short_description')
+    .eq('slug', slug)
+    .single();
+
+  if (!feat) {
+    return {
+      title: 'Dote no encontrada',
+    };
+  }
+
+  const description = feat.short_description || `Detalles de la dote ${feat.name}`;
+
+  return {
+    title: `${feat.name} | Dotes D&D 3.5`,
+    description,
+    openGraph: {
+      title: feat.name,
+      description,
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(feat.name)}&type=Dote&description=${encodeURIComponent(description)}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  };
+}
+
 export default async function FeatPage({ params }: FeatPageProps) {
   const { slug } = await params;
 
@@ -65,7 +99,7 @@ export default async function FeatPage({ params }: FeatPageProps) {
         <div className="flex items-center gap-4 mb-4">
           <Icon className={`h-10 w-10 md:h-12 md:w-12 ${iconColor}`} />
           <div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-dungeon-100">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-300">
               {featData.name}
             </h1>
             <span className={`inline-block mt-2 px-3 py-1 rounded text-sm font-semibold ${colorClasses}`}>
@@ -74,7 +108,7 @@ export default async function FeatPage({ params }: FeatPageProps) {
           </div>
         </div>
         {featData.shortDescription && (
-          <p className="text-dungeon-300 text-lg max-w-3xl">
+          <p className="text-gray-400 text-lg max-w-3xl">
             {featData.shortDescription}
           </p>
         )}
@@ -82,13 +116,13 @@ export default async function FeatPage({ params }: FeatPageProps) {
 
       <div className="bg-dungeon-900/30 border border-dungeon-700 rounded-lg p-8 shadow-lg relative overflow-hidden">
 
-        <div className="space-y-6 text-dungeon-200">
+        <div className="space-y-6 text-gray-300">
 
           {/* Requisito */}
           {featData.prerequisites && featData.prerequisites.length > 0 && (
             <div>
               <h3 className="font-bold text-gold-500 text-lg mb-1">Requisito:</h3>
-              <div className="text-dungeon-300">
+              <div className="text-gray-400">
                 {featData.prerequisites.map((prereq, index) => (
                   <span key={index}>
                     {prereq.description}
@@ -132,7 +166,7 @@ export default async function FeatPage({ params }: FeatPageProps) {
           )}
 
           {/* Source Footer */}
-          <div className="mt-8 pt-4 border-t border-dungeon-700/50 text-xs text-dungeon-500 text-right">
+          <div className="mt-8 pt-4 border-t border-dungeon-700/50 text-xs text-gray-500 text-right">
             Fuente: {featData.source.book}, pág. {featData.source.page}
           </div>
 

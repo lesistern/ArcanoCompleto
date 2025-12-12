@@ -116,7 +116,7 @@ export default function ClasesPNJPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -126,20 +126,20 @@ export default function ClasesPNJPage() {
                         <Users className="h-8 w-8 text-stone-400" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Clases de PNJ</h1>
-                        <p className="text-dungeon-400">Clases para personajes no jugadores</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Clases de PNJ</h1>
+                        <p className="text-gray-400">Clases para personajes no jugadores</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                Las <strong className="text-dungeon-100">clases de PNJ</strong> representan a la gente
+                                Las <strong className="text-gray-100">clases de PNJ</strong> representan a la gente
                                 común del mundo. Son más débiles que las clases de personaje jugador y están diseñadas
                                 para poblar el mundo con personajes realistas pero no heroicos.
                             </p>
@@ -155,7 +155,7 @@ export default function ClasesPNJPage() {
             {/* Class Cards */}
             <div className="space-y-6">
                 {NPC_CLASSES.map((cls) => (
-                    <Card key={cls.name} className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card key={cls.name} className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className={`flex items-center gap-3 text-xl ${cls.color}`}>
                                 <cls.icon className="h-6 w-6" />
@@ -163,34 +163,34 @@ export default function ClasesPNJPage() {
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <p className="text-dungeon-300">{cls.description}</p>
+                            <p className="text-gray-300">{cls.description}</p>
 
                             {/* Stats Grid */}
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                    <div className="text-xs text-dungeon-400 uppercase">Dado de Golpe</div>
-                                    <div className="text-lg font-bold text-dungeon-100">{cls.hitDie}</div>
+                                <div className="bg-gray-800/50 p-3 rounded-lg">
+                                    <div className="text-xs text-gray-400 uppercase">Dado de Golpe</div>
+                                    <div className="text-lg font-bold text-gray-100">{cls.hitDie}</div>
                                 </div>
-                                <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                    <div className="text-xs text-dungeon-400 uppercase">BAB</div>
-                                    <div className="text-sm font-medium text-dungeon-200">{cls.bab}</div>
+                                <div className="bg-gray-800/50 p-3 rounded-lg">
+                                    <div className="text-xs text-gray-400 uppercase">BAB</div>
+                                    <div className="text-sm font-medium text-gray-200">{cls.bab}</div>
                                 </div>
-                                <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                    <div className="text-xs text-dungeon-400 uppercase">Salv. Buenas</div>
-                                    <div className="text-sm font-medium text-dungeon-200">
+                                <div className="bg-gray-800/50 p-3 rounded-lg">
+                                    <div className="text-xs text-gray-400 uppercase">Salv. Buenas</div>
+                                    <div className="text-sm font-medium text-gray-200">
                                         {cls.goodSaves.length > 0 ? cls.goodSaves.join(', ') : 'Ninguna'}
                                     </div>
                                 </div>
-                                <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                    <div className="text-xs text-dungeon-400 uppercase">Puntos Hab.</div>
-                                    <div className="text-sm font-medium text-dungeon-200">{cls.skillPoints} + Int</div>
+                                <div className="bg-gray-800/50 p-3 rounded-lg">
+                                    <div className="text-xs text-gray-400 uppercase">Puntos Hab.</div>
+                                    <div className="text-sm font-medium text-gray-200">{cls.skillPoints} + Int</div>
                                 </div>
                             </div>
 
                             {/* Features */}
-                            <div className="pt-3 border-t border-dungeon-700">
-                                <h4 className="text-sm font-semibold text-dungeon-400 uppercase mb-2">Características</h4>
-                                <ul className="text-sm text-dungeon-200 space-y-1">
+                            <div className="pt-3 border-t border-gray-700">
+                                <h4 className="text-sm font-semibold text-gray-400 uppercase mb-2">Características</h4>
+                                <ul className="text-sm text-gray-200 space-y-1">
                                     {cls.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start gap-2">
                                             <span className={`mt-1 ${cls.color}`}>•</span>
@@ -200,8 +200,8 @@ export default function ClasesPNJPage() {
                                 </ul>
                             </div>
 
-                            <div className="text-xs text-dungeon-500">
-                                Característica principal: <span className="text-dungeon-300">{cls.keyAbility}</span>
+                            <div className="text-xs text-gray-500">
+                                Característica principal: <span className="text-gray-300">{cls.keyAbility}</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -213,7 +213,7 @@ export default function ClasesPNJPage() {
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <BookOpen className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p className="font-semibold text-blue-400">Uso para Dungeon Masters</p>
                             <p className="text-sm">
                                 Estas clases son ideales para crear rápidamente PNJs como guardias de ciudad (Guerrero 2),

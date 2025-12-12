@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
 import { Sword, Shield, Zap, Book } from 'lucide-react';
 import SelectableClassCard from '../SelectableClassCard';
+import { formatClassName } from '@/lib/utils/formatters';
 
 interface ClassSelectionStepProps {
     classes: any[];
@@ -38,7 +39,7 @@ export function ClassSelectionStep({ classes, selectedClass, onSelect }: ClassSe
 
             {selectedClass && (
                 <div className="mt-8 p-6 bg-dungeon-900 border border-dungeon-700 rounded-lg animate-in fade-in">
-                    <h3 className="text-xl font-bold text-indigo-400 mb-2">{selectedClass.name}</h3>
+                    <h3 className="text-xl font-bold text-indigo-400 mb-2">{formatClassName(selectedClass.name)}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-dungeon-300">
                         <div className="p-3 bg-dungeon-950 rounded border border-dungeon-800">
                             <strong className="block text-dungeon-200 mb-1">Ataque Base</strong>

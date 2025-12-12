@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 // import { LanguageSelector } from '@/components/LanguageSelector'; // Deshabilitado temporalmente
 import UserMenu from '@/components/header/UserMenu';
 import { useUnitPreference } from '@/lib/hooks/useUnitPreference';
+import NotificationBell from '@/components/notifications/NotificationBell';
 
 // Lazy-load auth modals (only needed when user interacts)
 const AuthModal = dynamic(() => import('@/components/auth/AuthModal'));
@@ -156,6 +157,9 @@ export default function Header() {
 
             {/* Language selector - Deshabilitado temporalmente */}
             {/* <LanguageSelector /> */}
+
+            {/* Notification Bell (solo usuarios autenticados) */}
+            {user && <NotificationBell />}
 
             {/* User menu (derecha) */}
             <UserMenu

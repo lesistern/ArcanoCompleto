@@ -9,7 +9,7 @@ import { ToastProvider } from '@/contexts/ToastContext';
 
 // Lazy-load search and help components (not critical for initial load)
 const GlobalSearch = dynamic(() => import('./components/GlobalSearch').then(mod => ({ default: mod.GlobalSearch })), {
-  loading: () => <div className="h-10 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-10 bg-gray-800 rounded animate-pulse" />
 });
 const ShortcutsHelpLazy = dynamic(() => import('@/components/admin/ShortcutsHelp').then(mod => ({ default: mod.ShortcutsHelp })), {
   loading: () => null
@@ -60,10 +60,10 @@ export default function AdminLayout({
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-dungeon-950 flex items-center justify-center">
+            <div className="min-h-screen bg-gray-950 flex items-center justify-center">
                 <div className="text-center">
                     <div className="w-12 h-12 border-4 border-gold-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-                    <p className="text-dungeon-400">Verificando permisos...</p>
+                    <p className="text-gray-400">Verificando permisos...</p>
                 </div>
             </div>
         );
@@ -74,7 +74,7 @@ export default function AdminLayout({
     return (
         <ToastProvider>
             {/* Main flexbox container - Full screen, no scroll */}
-            <div className="flex h-screen overflow-hidden bg-dungeon-950">
+            <div className="flex h-screen overflow-hidden bg-gray-950">
 
                 {/* Sidebar - AdminSidebar Component handles its own styling */}
                 <AdminSidebar />
@@ -86,7 +86,7 @@ export default function AdminLayout({
                     <header className="
           sticky top-0 z-40
           flex-shrink-0
-          bg-dungeon-900 border-b border-dungeon-700
+          bg-gray-900 border-b border-gray-700
           px-6 py-4
         ">
                         <div className="flex items-center justify-between">

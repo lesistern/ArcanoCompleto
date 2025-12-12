@@ -28,8 +28,8 @@ export function StatsCard({
     const cardContent = (
         <div
             className={`
-        relative overflow-hidden rounded-lg border border-dungeon-700 
-        bg-gradient-to-br from-dungeon-800 to-dungeon-900 p-6
+        relative overflow-hidden rounded-lg border border-gray-700
+        bg-gradient-to-br from-gray-800 to-gray-900 p-6
         transition-all duration-200
         ${href ? 'hover:border-gold-400 hover:shadow-lg hover:shadow-gold-900/20 cursor-pointer' : ''}
       `}
@@ -46,7 +46,7 @@ export function StatsCard({
                         <div className="p-2 rounded-lg bg-gold-900/30 border border-gold-400/30">
                             <Icon className="h-5 w-5 text-gold-400" />
                         </div>
-                        <h3 className="text-sm font-semibold text-dungeon-300">
+                        <h3 className="text-sm font-semibold text-gray-300">
                             {title}
                         </h3>
                     </div>
@@ -61,7 +61,7 @@ export function StatsCard({
 
                 {loading ? (
                     <div className="h-10 flex items-center">
-                        <div className="h-8 w-24 bg-dungeon-700 animate-pulse rounded" />
+                        <div className="h-8 w-24 bg-gray-700 animate-pulse rounded" />
                     </div>
                 ) : (
                     <>
@@ -69,7 +69,7 @@ export function StatsCard({
                             {value.toLocaleString()}
                         </div>
                         {description && (
-                            <p className="text-xs text-dungeon-400">
+                            <p className="text-xs text-gray-400">
                                 {description}
                             </p>
                         )}

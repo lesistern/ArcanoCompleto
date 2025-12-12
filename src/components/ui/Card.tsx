@@ -7,7 +7,7 @@ export function Card({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={`bg-dungeon-800 border border-dungeon-700 rounded-lg ${className}`}
+      className={`bg-gradient-to-br from-dungeon-800 to-dungeon-900 border border-dungeon-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ${className}`}
       {...props}
     >
       {children}
@@ -37,7 +37,7 @@ export function CardTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h2
-      className={`text-2xl font-bold text-white ${className}`}
+      className={`text-2xl font-bold text-gray-300 ${className}`}
       {...props}
     >
       {children}
@@ -52,7 +52,7 @@ export function CardDescription({
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={`text-sm text-dungeon-400 ${className}`}
+      className={`text-sm text-gray-400 ${className}`}
       {...props}
     >
       {children}

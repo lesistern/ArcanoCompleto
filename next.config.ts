@@ -1,8 +1,56 @@
 import type { NextConfig } from "next";
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import withPWAInit from "@ducanh2912/next-pwa";
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
+});
+
+// Configuración de PWA con @ducanh2912/next-pwa (soporta Next.js 15+)
+const withPWA = withPWAInit({
+  dest: 'public',
+  register: true,
+  disable: process.env.NODE_ENV === 'development',
+  workboxOptions: {
+    skipWaiting: true,
+    clientsClaim: true,
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/.*\.supabase\.co\/.*/i,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'supabase-api',
+          expiration: {
+            maxEntries: 200,
+            maxAgeSeconds: 24 * 60 * 60 // 24 horas
+          },
+          networkTimeoutSeconds: 10
+        }
+      },
+      {
+        urlPattern: /^https?.*\.(png|jpg|jpeg|webp|svg|gif|ico)$/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'image-cache',
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 días
+          }
+        }
+      },
+      {
+        urlPattern: /^https?.*\.(woff|woff2|ttf|eot)$/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'font-cache',
+          expiration: {
+            maxEntries: 20,
+            maxAgeSeconds: 365 * 24 * 60 * 60 // 1 año
+          }
+        }
+      }
+    ]
+  }
 });
 
 const nextConfig: NextConfig = {
@@ -48,8 +96,8 @@ const nextConfig: NextConfig = {
               "worker-src 'self' blob:",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://*.supabase.co https://ui-avatars.com https://*.readyplayer.me https://readyplayer.me",
-              "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://vercel.live https://*.vercel-scripts.com https://*.readyplayer.me https://readyplayer.me",
+              "img-src 'self' data: blob: https://*.supabase.co https://ui-avatars.com https://*.readyplayer.me https://readyplayer.me https://staticimgly.com https://*.staticimgly.com",
+              "connect-src 'self' blob: https://*.supabase.co wss://*.supabase.co https://vercel.live https://*.vercel-scripts.com https://*.readyplayer.me https://readyplayer.me https://staticimgly.com https://*.staticimgly.com",
               "frame-src 'self' https://*.readyplayer.me https://readyplayer.me",
               "frame-ancestors 'self'",
               "form-action 'self'",
@@ -60,6 +108,15 @@ const nextConfig: NextConfig = {
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
+          },
+          // Habilitar SharedArrayBuffer para WASM multithreading (requerido por @imgly/background-removal)
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
           },
           {
             key: 'Strict-Transport-Security',
@@ -111,4 +168,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default bundleAnalyzer(nextConfig);
+export default withPWA(bundleAnalyzer(nextConfig));

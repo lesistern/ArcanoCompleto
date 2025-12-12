@@ -71,16 +71,16 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
                     <div className="max-w-2xl space-y-4">
                         <div className="flex items-center gap-3 mb-2">
                             <Link href="/objetos">
-                                <Button variant="ghost" size="sm" className="text-dungeon-400 hover:text-dungeon-200 pl-0">
+                                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-300 pl-0">
                                     <ArrowLeft className="h-4 w-4 mr-2" />
                                     Volver
                                 </Button>
                             </Link>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-dungeon-100 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-200 leading-tight">
                             Objetos Mágicos
                         </h1>
-                        <p className="text-lg text-dungeon-300 leading-relaxed">
+                        <p className="text-lg text-gray-400 leading-relaxed">
                             Descubre tesoros arcanos y divinos. Desde pociones curativas hasta artefactos legendarios,
                             el poder de la magia está a tu alcance.
                         </p>
@@ -99,20 +99,20 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
                     {/* Search Bar */}
                     <div className="relative w-full md:w-96 group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-dungeon-500 group-focus-within:text-gold-500 transition-colors" />
+                            <Search className="h-5 w-5 text-gray-500 group-focus-within:text-gold-500 transition-colors" />
                         </div>
                         <input
                             type="text"
                             placeholder="Buscar objeto mágico..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 placeholder-dungeon-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
                         />
                     </div>
 
                     {/* Filter Toggle (Mobile) & Active Filters Summary */}
                     <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-                        <div className="hidden md:flex items-center gap-2 text-sm text-dungeon-400">
+                        <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
                             <Sparkles className="h-4 w-4 text-gold-500" />
                             <span>Mostrando {filteredItems.length} objetos</span>
                         </div>
@@ -121,7 +121,7 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
                             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${mobileFiltersOpen
                                 ? 'bg-gold-500/10 border-gold-500 text-gold-500'
-                                : 'bg-dungeon-800 border-dungeon-700 text-dungeon-300 hover:border-dungeon-600'
+                                : 'bg-dungeon-800 border-dungeon-700 text-gray-300 hover:border-dungeon-600'
                                 }`}
                         >
                             <Filter className="h-4 w-4" />
@@ -138,7 +138,7 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
                     <h3 className="text-sm font-semibold text-purple-500 uppercase tracking-wider mb-3">
                         Información de Objetos Mágicos
                     </h3>
-                    <div className="space-y-3 text-sm text-dungeon-300">
+                    <div className="space-y-3 text-sm text-gray-400">
                         <p>
                             Los objetos mágicos son tesoros codiciados por los aventureros. Desde anillos encantados
                             hasta poderosos artefactos, cada objeto tiene propiedades únicas.
@@ -164,10 +164,10 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
             {filteredItems.length === 0 && (
                 <div className="text-center py-16 bg-dungeon-900/50 rounded-xl border border-dungeon-800 border-dashed">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dungeon-800 mb-4">
-                        <Search className="h-8 w-8 text-dungeon-500" />
+                        <Search className="h-8 w-8 text-gray-500" />
                     </div>
-                    <h3 className="text-xl font-heading font-semibold text-dungeon-200 mb-2">No se encontraron objetos mágicos</h3>
-                    <p className="text-dungeon-400 max-w-md mx-auto">
+                    <h3 className="text-xl font-heading font-semibold text-gray-300 mb-2">No se encontraron objetos mágicos</h3>
+                    <p className="text-gray-400 max-w-md mx-auto">
                         Intenta ajustar los filtros o buscar con otros términos.
                     </p>
                     <button
@@ -189,7 +189,7 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
                                     <CardTitle className="flex items-center gap-3 text-purple-400">
                                         <Sparkles className="h-5 w-5" />
                                         {typeLabels[type] || type}
-                                        <span className="text-sm font-normal text-dungeon-400">
+                                        <span className="text-sm font-normal text-gray-400">
                                             ({typeItems.length})
                                         </span>
                                     </CardTitle>
@@ -203,7 +203,7 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
                                                 className="block group bg-purple-500/5 hover:bg-purple-500/10 border border-dungeon-700 hover:border-purple-500/50 rounded-lg p-4 transition-all duration-200"
                                             >
                                                 <div className="flex items-start justify-between mb-2">
-                                                    <h3 className="font-semibold text-dungeon-100 group-hover:text-purple-400 transition-colors">
+                                                    <h3 className="font-semibold text-gray-200 group-hover:text-purple-400 transition-colors">
                                                         {item.name}
                                                     </h3>
                                                     {item.caster_level && (
@@ -215,18 +215,18 @@ export default function MagicItemsClient({ magicItems }: MagicItemsClientProps) 
 
                                                 <div className="flex flex-wrap gap-2 mb-3">
                                                     {item.aura && (
-                                                        <span className="text-xs px-2 py-0.5 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
+                                                        <span className="text-xs px-2 py-0.5 rounded bg-dungeon-800 text-gray-400 border border-dungeon-700">
                                                             {item.aura}
                                                         </span>
                                                     )}
                                                     {item.item_slot && (
-                                                        <span className="text-xs px-2 py-0.5 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700">
+                                                        <span className="text-xs px-2 py-0.5 rounded bg-dungeon-800 text-gray-400 border border-dungeon-700">
                                                             {item.item_slot}
                                                         </span>
                                                     )}
                                                 </div>
 
-                                                <div className="flex items-center justify-between text-xs text-dungeon-400">
+                                                <div className="flex items-center justify-between text-xs text-gray-400">
                                                     <span className="text-gold-500 font-semibold">
                                                         {formatPrice(item.price_gold)}
                                                     </span>

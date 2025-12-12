@@ -271,7 +271,7 @@ export default function CondicionesPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -281,20 +281,20 @@ export default function CondicionesPage() {
                         <AlertTriangle className="h-8 w-8 text-rose-400" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Condiciones</h1>
-                        <p className="text-dungeon-400">Estados y efectos que afectan a las criaturas</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Condiciones</h1>
+                        <p className="text-gray-400">Estados y efectos que afectan a las criaturas</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                Las <strong className="text-dungeon-100">condiciones</strong> son estados que afectan
+                                Las <strong className="text-gray-100">condiciones</strong> son estados que afectan
                                 las capacidades de una criatura. Pueden ser causadas por conjuros, habilidades
                                 especiales, trampas, venenos o el entorno.
                             </p>
@@ -311,15 +311,15 @@ export default function CondicionesPage() {
             {/* Conditions Grid */}
             <div className="grid gap-4 md:grid-cols-2">
                 {CONDITIONS.map((condition) => (
-                    <Card key={condition.name} className="bg-dungeon-900/50 border-dungeon-700 hover:border-rose-500/30 transition-colors">
+                    <Card key={condition.name} className="bg-gray-900/50 border-gray-700 hover:border-rose-500/30 transition-colors">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-rose-400">{condition.name}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
-                            <p className="text-sm text-dungeon-300">{condition.description}</p>
+                            <p className="text-sm text-gray-300">{condition.description}</p>
                             <div className="space-y-1">
-                                <p className="text-xs font-semibold text-dungeon-400 uppercase">Efectos:</p>
-                                <ul className="text-sm text-dungeon-200 space-y-1">
+                                <p className="text-xs font-semibold text-gray-400 uppercase">Efectos:</p>
+                                <ul className="text-sm text-gray-200 space-y-1">
                                     {condition.effects.map((effect, idx) => (
                                         <li key={idx} className="flex items-start gap-2">
                                             <span className="text-rose-500 mt-1">•</span>
@@ -329,8 +329,8 @@ export default function CondicionesPage() {
                                 </ul>
                             </div>
                             {condition.cure && (
-                                <div className="pt-2 border-t border-dungeon-700">
-                                    <p className="text-xs text-dungeon-400">
+                                <div className="pt-2 border-t border-gray-700">
+                                    <p className="text-xs text-gray-400">
                                         <strong className="text-green-400">Cura:</strong> {condition.cure}
                                     </p>
                                 </div>

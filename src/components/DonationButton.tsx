@@ -16,27 +16,11 @@ import { Heart, ExternalLink, Coffee, DollarSign } from 'lucide-react';
  * Siempre visible para todos los usuarios
  */
 export default function DonationButton() {
-  const [showTooltip, setShowTooltip] = useState(false);
+
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mostrar tooltip automáticamente al cargar
-  useEffect(() => {
-    // Esperar 2 segundos antes de mostrar el tooltip (después de FeedbackButton)
-    const showTimer = setTimeout(() => {
-      setShowTooltip(true);
-    }, 2000);
 
-    // Ocultar tooltip después de 7 segundos
-    const hideTimer = setTimeout(() => {
-      setShowTooltip(false);
-    }, 9000); // 2s de delay + 7s de duración
-
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-    };
-  }, []);
 
   // Cerrar menú cuando se hace click fuera
   useEffect(() => {
@@ -83,35 +67,7 @@ export default function DonationButton() {
     <div className="flex justify-end">
       {/* Contenedor relativo para posicionar el tooltip */}
       <div className="relative" ref={containerRef}>
-        {/* Globo de texto (tooltip) - Solo cuando está colapsado */}
-        {!isExpanded && (
-          <div
-            className={`
-              absolute bottom-0 right-full mr-3
-              bg-dungeon-800 border-2 border-gold-500 rounded-lg shadow-xl
-              px-3 py-2 w-[240px]
-              transition-all duration-300 ease-in-out
-              pointer-events-none
-              ${showTooltip ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'}
-            `}
-          >
-            {/* Flecha derecha */}
-            <div className="absolute right-0 top-1/2 translate-x-full -translate-y-1/2">
-              <div className="border-8 border-transparent border-l-gold-500" />
-              <div className="absolute top-1/2 right-[2px] -translate-y-1/2 border-8 border-transparent border-l-dungeon-800" />
-            </div>
 
-            {/* Contenido del tooltip */}
-            <div className="relative z-10">
-              <p className="text-gold-400 font-semibold text-[11px] mb-1">
-                ¿Te gusta el proyecto?
-              </p>
-              <p className="text-dungeon-300 text-[10px] leading-tight">
-                Apoya el desarrollo con una donación
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Menú expandido de donaciones */}
         {isExpanded && (
@@ -207,18 +163,16 @@ export default function DonationButton() {
         {/* Botón principal - Más grande y llamativo */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          onMouseEnter={() => !isExpanded && setShowTooltip(true)}
-          onMouseLeave={() => !isExpanded && setShowTooltip(false)}
+
           className={`
             flex items-center justify-center
             rounded-full shadow-lg
             transition-all duration-300 ease-in-out
             hover:scale-110 active:scale-95
             focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dungeon-900
-            ${
-              isExpanded
-                ? 'w-14 h-14 bg-gradient-to-br from-pink-500 to-red-500'
-                : 'w-14 h-14 bg-gradient-to-br from-gold-500 to-orange-500'
+            ${isExpanded
+              ? 'w-14 h-14 bg-gradient-to-br from-pink-500 to-red-500'
+              : 'w-14 h-14 bg-gradient-to-br from-gold-500 to-orange-500'
             }
           `}
           aria-label={isExpanded ? 'Cerrar menú de donaciones' : 'Abrir menú de donaciones'}

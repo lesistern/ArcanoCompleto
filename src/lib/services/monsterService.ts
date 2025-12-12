@@ -4,17 +4,70 @@
 
 import { createClient } from '@/lib/supabase/server';
 
+export interface HitDice {
+  dice: string;
+  modifier: number;
+  average: number;
+}
+
+export interface ArmorClass {
+  total: number;
+  touch: number;
+  flatFooted: number;
+  breakdown: string;
+}
+
+export interface Saves {
+  fortitude: number;
+  reflex: number;
+  will: number;
+}
+
+export interface Abilities {
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
+}
+
+export interface SpecialAbility {
+  name: string;
+  description: string;
+}
+
 export interface Monster {
   id: string;
   slug: string;
   name: string;
-  creature_type: string;
   size: string;
-  challenge_rating: string;
-  armor_class: number;
-  hit_dice: string;
-  alignment: string;
+  creature_type: string;
+  subtypes?: string[];
+  hit_dice: HitDice;
+  initiative: string;
+  speed: string;
+  armor_class: ArmorClass;
+  base_attack: string;
+  grapple: string;
+  attack: string;
+  full_attack: string;
+  space_reach: string;
+  special_attacks?: string;
+  special_qualities?: string;
+  saves: Saves;
+  abilities: Abilities;
+  skills?: string;
+  feats?: string;
   environment?: string;
+  organization?: string;
+  challenge_rating: number;
+  treasure?: string;
+  alignment: string;
+  advancement?: string;
+  level_adjustment?: string;
+  description?: string;
+  special_abilities?: SpecialAbility[];
   source_book?: string;
 }
 
@@ -100,7 +153,7 @@ export async function getMonstersByType(creatureType: string): Promise<Monster[]
 /**
  * Filtra monstruos por CR (Challenge Rating)
  */
-export async function getMonstersByCR(challengeRating: string): Promise<Monster[]> {
+export async function getMonstersByCR(challengeRating: number): Promise<Monster[]> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -115,4 +168,11 @@ export async function getMonstersByCR(challengeRating: string): Promise<Monster[
   }
 
   return data || [];
+}
+
+/**
+ * Calcula el modificador de habilidad
+ */
+export function getAbilityModifier(score: number): number {
+  return Math.floor((score - 10) / 2);
 }

@@ -281,7 +281,7 @@ export default function TiposCriaturasPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -291,20 +291,20 @@ export default function TiposCriaturasPage() {
                         <Skull className="h-8 w-8 text-purple-500" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Tipos de Criaturas</h1>
-                        <p className="text-dungeon-400">Clasificación de monstruos y seres del juego</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Tipos de Criaturas</h1>
+                        <p className="text-gray-400">Clasificación de monstruos y seres del juego</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                El <strong className="text-dungeon-100">tipo de criatura</strong> determina muchas de sus
+                                El <strong className="text-gray-100">tipo de criatura</strong> determina muchas de sus
                                 características básicas: dado de golpe, base de ataque, salvaciones buenas, puntos de
                                 habilidad e inmunidades especiales.
                             </p>
@@ -319,10 +319,10 @@ export default function TiposCriaturasPage() {
 
             {/* Creature Types */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4">Tipos de Criaturas ({CREATURE_TYPES.length})</h2>
+                <h2 className="text-2xl font-bold text-gray-100 mb-4">Tipos de Criaturas ({CREATURE_TYPES.length})</h2>
                 <div className="space-y-4">
                     {CREATURE_TYPES.map((type) => (
-                        <Card key={type.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={type.name} className="bg-gray-900/50 border-gray-700">
                             <CardHeader className="pb-2">
                                 <CardTitle className={`flex items-center gap-3 text-xl ${type.color}`}>
                                     <type.icon className="h-6 w-6" />
@@ -332,30 +332,30 @@ export default function TiposCriaturasPage() {
                             <CardContent className="space-y-4">
                                 {/* Stats Grid */}
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                        <div className="text-xs text-dungeon-400 uppercase">Dado de Golpe</div>
-                                        <div className="text-lg font-bold text-dungeon-100">{type.hitDie}</div>
+                                    <div className="bg-gray-800/50 p-3 rounded-lg">
+                                        <div className="text-xs text-gray-400 uppercase">Dado de Golpe</div>
+                                        <div className="text-lg font-bold text-gray-100">{type.hitDie}</div>
                                     </div>
-                                    <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                        <div className="text-xs text-dungeon-400 uppercase">BAB</div>
-                                        <div className="text-sm font-medium text-dungeon-200">{type.bab}</div>
+                                    <div className="bg-gray-800/50 p-3 rounded-lg">
+                                        <div className="text-xs text-gray-400 uppercase">BAB</div>
+                                        <div className="text-sm font-medium text-gray-200">{type.bab}</div>
                                     </div>
-                                    <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                        <div className="text-xs text-dungeon-400 uppercase">Salv. Buenas</div>
-                                        <div className="text-sm font-medium text-dungeon-200">
+                                    <div className="bg-gray-800/50 p-3 rounded-lg">
+                                        <div className="text-xs text-gray-400 uppercase">Salv. Buenas</div>
+                                        <div className="text-sm font-medium text-gray-200">
                                             {type.goodSaves.join(', ')}
                                         </div>
                                     </div>
-                                    <div className="bg-dungeon-800/50 p-3 rounded-lg">
-                                        <div className="text-xs text-dungeon-400 uppercase">Puntos Hab.</div>
-                                        <div className="text-sm font-medium text-dungeon-200">{type.skillPoints}</div>
+                                    <div className="bg-gray-800/50 p-3 rounded-lg">
+                                        <div className="text-xs text-gray-400 uppercase">Puntos Hab.</div>
+                                        <div className="text-sm font-medium text-gray-200">{type.skillPoints}</div>
                                     </div>
                                 </div>
 
                                 {/* Traits */}
                                 <div>
-                                    <h4 className="text-sm font-semibold text-dungeon-400 uppercase mb-2">Rasgos</h4>
-                                    <ul className="text-sm text-dungeon-200 space-y-1">
+                                    <h4 className="text-sm font-semibold text-gray-400 uppercase mb-2">Rasgos</h4>
+                                    <ul className="text-sm text-gray-200 space-y-1">
                                         {type.traits.map((trait, idx) => (
                                             <li key={idx} className="flex items-start gap-2">
                                                 <span className={`mt-1 ${type.color}`}>•</span>
@@ -366,10 +366,10 @@ export default function TiposCriaturasPage() {
                                 </div>
 
                                 {/* Examples */}
-                                <div className="flex flex-wrap gap-1 pt-2 border-t border-dungeon-700">
-                                    <span className="text-xs text-dungeon-500 mr-1">Ejemplos:</span>
+                                <div className="flex flex-wrap gap-1 pt-2 border-t border-gray-700">
+                                    <span className="text-xs text-gray-500 mr-1">Ejemplos:</span>
                                     {type.examples.map((ex) => (
-                                        <span key={ex} className="text-xs bg-dungeon-800 text-dungeon-300 px-2 py-1 rounded">
+                                        <span key={ex} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                                             {ex}
                                         </span>
                                     ))}
@@ -382,13 +382,13 @@ export default function TiposCriaturasPage() {
 
             {/* Subtypes */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4">Subtipos Comunes</h2>
+                <h2 className="text-2xl font-bold text-gray-100 mb-4">Subtipos Comunes</h2>
                 <div className="grid md:grid-cols-2 gap-3">
                     {SUBTYPES.map((subtype) => (
-                        <Card key={subtype.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={subtype.name} className="bg-gray-900/50 border-gray-700">
                             <CardContent className="p-4">
                                 <h3 className="font-semibold text-purple-400 mb-1">{subtype.name}</h3>
-                                <p className="text-sm text-dungeon-300">{subtype.description}</p>
+                                <p className="text-sm text-gray-300">{subtype.description}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -399,8 +399,8 @@ export default function TiposCriaturasPage() {
             <Card className="bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border-purple-500/30">
                 <CardContent className="p-6 text-center">
                     <Skull className="h-12 w-12 text-purple-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-dungeon-100 mb-2">Explorar Bestiario</h3>
-                    <p className="text-dungeon-300 mb-4">
+                    <h3 className="text-xl font-bold text-gray-100 mb-2">Explorar Bestiario</h3>
+                    <p className="text-gray-300 mb-4">
                         Navega por nuestra base de datos de más de 275 criaturas.
                     </p>
                     <Link href="/monstruos">

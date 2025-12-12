@@ -17,7 +17,7 @@ import {
 
 // Lazy-load heavy editor (only needed when editing)
 const RichTextEditor = dynamic(() => import('@/components/RichTextEditor').then(mod => ({ default: mod.RichTextEditor })), {
-  loading: () => <div className="h-64 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-64 bg-gray-800 rounded animate-pulse" />
 });
 
 interface ScrollData {
@@ -166,15 +166,15 @@ export default function ScrollsAdminPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
             <div className="container mx-auto px-4 py-8">
                 <div className="flex items-center gap-4 mb-8">
-                    <Link href="/admin/objetos" className="p-2 rounded-lg bg-dungeon-700 hover:bg-dungeon-600 transition-colors">
+                    <Link href="/admin/objetos" className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors">
                         <ArrowLeft className="h-5 w-5 text-gold-400" />
                     </Link>
                     <div className="flex-1">
                         <h1 className="text-4xl font-bold text-gold-400 mb-2">{UI_TEXT.pageTitle}</h1>
-                        <p className="text-dungeon-300">{UI_TEXT.totalItems}: {scrolls.length} pergaminos</p>
+                        <p className="text-gray-300">{UI_TEXT.totalItems}: {scrolls.length} pergaminos</p>
                         {syncStatus !== 'idle' && (
                             <div className={`mt-2 flex items-center gap-2 text-sm ${syncStatus === 'syncing' ? 'text-blue-400' :
                                     syncStatus === 'success' ? 'text-green-400' :
@@ -189,7 +189,7 @@ export default function ScrollsAdminPage() {
                     </div>
                     <button
                         onClick={handleCreateNew}
-                        className="px-4 py-2 bg-gold-600 hover:bg-gold-700 rounded-lg flex items-center gap-2 transition-colors font-bold text-dungeon-900"
+                        className="px-4 py-2 bg-gold-600 hover:bg-gold-700 rounded-lg flex items-center gap-2 transition-colors font-bold text-gray-900"
                     >
                         <Plus className="h-5 w-5" />
                         {UI_TEXT.newItemButton}
@@ -197,20 +197,20 @@ export default function ScrollsAdminPage() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-1 bg-dungeon-800 rounded-lg p-4 flex flex-col h-[calc(100vh-200px)]">
+                    <div className="lg:col-span-1 bg-gray-800 rounded-lg p-4 flex flex-col h-[calc(100vh-200px)]">
                         <div className="relative mb-4">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-dungeon-400 h-4 w-4" />
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                             <input
                                 type="text"
                                 placeholder={UI_TEXT.searchPlaceholder}
                                 value={searchTerm}
                                 onChange={(e) => handleSearch(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 placeholder-dungeon-400 focus:outline-none focus:border-gold-400"
+                                className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gold-400"
                             />
                         </div>
                         <div className="space-y-2 overflow-y-auto flex-1 pr-2 custom-scrollbar">
                             {isLoading ? (
-                                <div className="text-center py-4 text-dungeon-400">
+                                <div className="text-center py-4 text-gray-400">
                                     <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
                                     {UI_TEXT.loadingMessage}
                                 </div>
@@ -224,13 +224,13 @@ export default function ScrollsAdminPage() {
                                     }}
                                     className={`p-3 rounded-lg cursor-pointer transition-all ${selectedScroll?.id === scroll.id
                                             ? 'bg-gold-900/30 border border-gold-400'
-                                            : 'bg-dungeon-700 hover:bg-dungeon-600'
+                                            : 'bg-gray-700 hover:bg-gray-600'
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <div className="font-semibold text-gold-300">{scroll.name}</div>
-                                            <div className="text-xs text-dungeon-400">
+                                            <div className="text-xs text-gray-400">
                                                 {scroll.scroll_type || UI_TEXT.noType} • Nivel {scroll.spell_level || 1}
                                             </div>
                                         </div>
@@ -241,7 +241,7 @@ export default function ScrollsAdminPage() {
                                                 setIsEditing(true);
                                                 setIsCreating(false);
                                             }}
-                                            className="p-1 hover:bg-dungeon-600 rounded"
+                                            className="p-1 hover:bg-gray-600 rounded"
                                         >
                                             <Pencil className="h-4 w-4 text-gold-400" />
                                         </button>
@@ -252,7 +252,7 @@ export default function ScrollsAdminPage() {
                     </div>
 
                     {selectedScroll && (
-                        <div className="lg:col-span-2 bg-dungeon-800 rounded-lg p-6 overflow-y-auto h-[calc(100vh-200px)] custom-scrollbar">
+                        <div className="lg:col-span-2 bg-gray-800 rounded-lg p-6 overflow-y-auto h-[calc(100vh-200px)] custom-scrollbar">
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-2xl font-bold text-gold-400">
                                     {isCreating ? UI_TEXT.createTitle : `${UI_TEXT.editTitle}: ${selectedScroll.name}`}
@@ -265,7 +265,7 @@ export default function ScrollsAdminPage() {
                                                 setIsCreating(false);
                                                 if (isCreating) setSelectedScroll(null);
                                             }}
-                                            className="px-4 py-2 bg-dungeon-700 hover:bg-dungeon-600 rounded-lg transition-colors"
+                                            className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
                                         >
                                             {UI_TEXT.cancelButton}
                                         </button>
@@ -301,22 +301,22 @@ export default function ScrollsAdminPage() {
                             <div className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{BASIC_FIELDS.nameLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{BASIC_FIELDS.nameLabel}</label>
                                         <input
                                             type="text"
                                             value={selectedScroll.name}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, name: e.target.value })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{BASIC_FIELDS.typeLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{BASIC_FIELDS.typeLabel}</label>
                                         <select
                                             value={selectedScroll.scroll_type || 'Arcano'}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, scroll_type: e.target.value })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         >
                                             {SCROLL_TYPES.map((type) => (
                                                 <option key={type.value} value={type.value}>{type.label}</option>
@@ -327,51 +327,51 @@ export default function ScrollsAdminPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                     <div className="md:col-span-2">
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SPELL_FIELDS.spellNameLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{SPELL_FIELDS.spellNameLabel}</label>
                                         <input
                                             type="text"
                                             value={selectedScroll.spell_name || ''}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, spell_name: e.target.value })}
                                             disabled={!isEditing}
                                             placeholder={SPELL_FIELDS.spellNamePlaceholder}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SPELL_FIELDS.spellLevelLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{SPELL_FIELDS.spellLevelLabel}</label>
                                         <input
                                             type="number"
                                             value={selectedScroll.spell_level || 1}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, spell_level: parseInt(e.target.value) || 1 })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SPELL_FIELDS.casterLevelLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{SPELL_FIELDS.casterLevelLabel}</label>
                                         <input
                                             type="number"
                                             value={selectedScroll.caster_level || 1}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, caster_level: parseInt(e.target.value) || 1 })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SPELL_FIELDS.priceLabel}</label>
+                                    <label className="block text-sm font-semibold text-gray-300 mb-2">{SPELL_FIELDS.priceLabel}</label>
                                     <input
                                         type="number"
                                         value={selectedScroll.price_gold || 0}
                                         onChange={(e) => setSelectedScroll({ ...selectedScroll, price_gold: parseFloat(e.target.value) || 0 })}
                                         disabled={!isEditing}
-                                        className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SOURCE_FIELDS.descriptionLabel}</label>
+                                    <label className="block text-sm font-semibold text-gray-300 mb-2">{SOURCE_FIELDS.descriptionLabel}</label>
                                     <RichTextEditor
                                         value={selectedScroll.description || ''}
                                         onChange={(value) => setSelectedScroll({ ...selectedScroll, description: value })}
@@ -382,23 +382,23 @@ export default function ScrollsAdminPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SOURCE_FIELDS.sourceBookLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{SOURCE_FIELDS.sourceBookLabel}</label>
                                         <input
                                             type="text"
                                             value={selectedScroll.source_book || ''}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, source_book: e.target.value })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-dungeon-300 mb-2">{SOURCE_FIELDS.sourcePageLabel}</label>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">{SOURCE_FIELDS.sourcePageLabel}</label>
                                         <input
                                             type="number"
                                             value={selectedScroll.source_page || ''}
                                             onChange={(e) => setSelectedScroll({ ...selectedScroll, source_page: parseInt(e.target.value) || undefined })}
                                             disabled={!isEditing}
-                                            className="w-full px-3 py-2 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
+                                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 disabled:opacity-50 focus:outline-none focus:border-gold-400"
                                         />
                                     </div>
                                 </div>

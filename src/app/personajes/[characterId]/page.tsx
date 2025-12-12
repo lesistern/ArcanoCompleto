@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/Button';
 import { getCharacter, copyPublicCharacter, type CharacterRow } from '@/lib/supabase/characters';
 import { createClient } from '@/lib/supabase/client';
 import { getAlignmentLabel } from '@/lib/utils/alignment';
+import { ClassBadge, formatClassName } from '@/components/classes/ClassBadge';
 
 export default function CharacterDetailPage() {
   const router = useRouter();
@@ -233,14 +234,18 @@ export default function CharacterDetailPage() {
           </div>
 
           {/* Character Info */}
-          <div className="flex items-center gap-3 text-dungeon-400">
+          <div className="flex flex-wrap items-center gap-3 text-dungeon-400">
             {character.race_slug && (
-              <span className="capitalize">{character.race_slug.replace('-', ' ')}</span>
+              <span className="capitalize">{character.race_slug.replace(/-/g, ' ')}</span>
             )}
             {character.class_slug && (
               <>
                 <span>•</span>
-                <span className="capitalize">{character.class_slug.replace('-', ' ')}</span>
+                <ClassBadge
+                  classSlug={character.class_slug}
+                  size="sm"
+                  clickable={true}
+                />
               </>
             )}
             {character.level > 1 && (

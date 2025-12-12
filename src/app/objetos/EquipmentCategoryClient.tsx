@@ -104,16 +104,16 @@ export default function EquipmentCategoryClient({ items, category }: EquipmentCa
                     <div className="max-w-2xl space-y-4">
                         <div className="flex items-center gap-3 mb-2">
                             <Link href="/objetos">
-                                <Button variant="ghost" size="sm" className="text-dungeon-400 hover:text-dungeon-200 pl-0">
+                                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-300 pl-0">
                                     <ArrowLeft className="h-4 w-4 mr-2" />
                                     Volver
                                 </Button>
                             </Link>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-dungeon-100 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-200 leading-tight">
                             {title}
                         </h1>
-                        <p className="text-lg text-dungeon-300 leading-relaxed">
+                        <p className="text-lg text-gray-400 leading-relaxed">
                             {description}
                         </p>
                     </div>
@@ -131,20 +131,20 @@ export default function EquipmentCategoryClient({ items, category }: EquipmentCa
                     {/* Search Bar */}
                     <div className="relative w-full md:w-96 group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-dungeon-500 group-focus-within:text-gold-500 transition-colors" />
+                            <Search className="h-5 w-5 text-gray-500 group-focus-within:text-gold-500 transition-colors" />
                         </div>
                         <input
                             type="text"
                             placeholder="Buscar objeto..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-dungeon-100 placeholder-dungeon-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-dungeon-900 border border-dungeon-700 rounded-lg text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-all"
                         />
                     </div>
 
                     {/* Filter Toggle (Mobile) & Active Filters Summary */}
                     <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-                        <div className="hidden md:flex items-center gap-2 text-sm text-dungeon-400">
+                        <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
                             <Sparkles className="h-4 w-4 text-gold-500" />
                             <span>Mostrando {filteredItems.length} objetos</span>
                         </div>
@@ -153,7 +153,7 @@ export default function EquipmentCategoryClient({ items, category }: EquipmentCa
                             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${mobileFiltersOpen
                                 ? 'bg-gold-500/10 border-gold-500 text-gold-500'
-                                : 'bg-dungeon-800 border-dungeon-700 text-dungeon-300 hover:border-dungeon-600'
+                                : 'bg-dungeon-800 border-dungeon-700 text-gray-300 hover:border-dungeon-600'
                                 }`}
                         >
                             <Filter className="h-4 w-4" />
@@ -168,10 +168,10 @@ export default function EquipmentCategoryClient({ items, category }: EquipmentCa
             {filteredItems.length === 0 ? (
                 <div className="text-center py-16 bg-dungeon-900/50 rounded-xl border border-dungeon-800 border-dashed">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dungeon-800 mb-4">
-                        <Search className="h-8 w-8 text-dungeon-500" />
+                        <Search className="h-8 w-8 text-gray-500" />
                     </div>
-                    <h3 className="text-xl font-heading font-semibold text-dungeon-200 mb-2">No se encontraron objetos</h3>
-                    <p className="text-dungeon-400 max-w-md mx-auto">
+                    <h3 className="text-xl font-heading font-semibold text-gray-300 mb-2">No se encontraron objetos</h3>
+                    <p className="text-gray-400 max-w-md mx-auto">
                         Intenta ajustar los filtros o buscar con otros términos.
                     </p>
                     <button
@@ -192,7 +192,7 @@ export default function EquipmentCategoryClient({ items, category }: EquipmentCa
                                         <CardTitle className={`flex items-center gap-2 text-${color}-400`}>
                                             <Icon className="h-5 w-5" />
                                             {subcategory}
-                                            <span className="text-sm font-normal text-dungeon-400">
+                                            <span className="text-sm font-normal text-gray-400">
                                                 ({subcatItems.length})
                                             </span>
                                         </CardTitle>
@@ -205,8 +205,8 @@ export default function EquipmentCategoryClient({ items, category }: EquipmentCa
                                                     href={`/objetos/${category}/${item.slug}`}
                                                     className={`block group bg-dungeon-800/50 hover:bg-dungeon-800 border border-dungeon-700 hover:border-${color}-500 rounded-lg p-4 transition-all duration-200`}
                                                 >
-                                                    <h3 className={`font-semibold text-dungeon-100 group-hover:text-${color}-400 mb-2 transition-colors`}>{item.name}</h3>
-                                                    {item.price_text && <p className="text-xs text-dungeon-400 mb-1">{item.price_text}</p>}
+                                                    <h3 className={`font-semibold text-gray-200 group-hover:text-${color}-400 mb-2 transition-colors`}>{item.name}</h3>
+                                                    {item.price_text && <p className="text-xs text-gray-400 mb-1">{item.price_text}</p>}
                                                     {item.weight_text && <p className="text-xs text-amber-500">{item.weight_text}</p>}
                                                 </Link>
                                             ))}

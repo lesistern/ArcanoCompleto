@@ -53,7 +53,7 @@ export default function FeatCard({ featData }: FeatCardProps) {
           </div>
         </CardHeader>
         <CardContent className="pt-0">
-          <p className="text-sm text-dungeon-300 mb-3 line-clamp-2">
+          <p className="text-sm text-gray-400 mb-3 line-clamp-2">
             {featData.shortDescription}
           </p>
 
@@ -61,7 +61,7 @@ export default function FeatCard({ featData }: FeatCardProps) {
             {featData.prerequisites && featData.prerequisites.length > 0 && (
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-red-400 font-semibold min-w-[80px]">Requisitos:</span>
-                <span className="text-dungeon-400 line-clamp-2">
+                <span className="text-gray-500 line-clamp-2">
                   {featData.prerequisites.map(p => p.description).join(', ')}
                 </span>
               </div>

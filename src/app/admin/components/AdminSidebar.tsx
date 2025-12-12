@@ -114,7 +114,7 @@ export function AdminSidebar() {
     return (
         <aside
             className={`
-        relative bg-dungeon-900 border-r border-dungeon-700
+        relative bg-gray-900 border-r border-gray-700
         transition-all duration-300 ease-out
         z-30 flex flex-col h-screen
         ${collapsed ? 'w-20' : 'w-64'}
@@ -123,7 +123,7 @@ export function AdminSidebar() {
             {/* Collapse/Expand toggle button - Same style as public sidebar */}
             <button
                 onClick={toggleCollapsed}
-                className="absolute -right-3 top-12 z-50 w-6 h-6 rounded-full bg-dungeon-800 border border-dungeon-700 flex items-center justify-center text-dungeon-400 hover:text-gold-400 hover:bg-dungeon-700 hover:border-gold-500 transition-all duration-200 shadow-lg"
+                className="absolute -right-3 top-12 z-50 w-6 h-6 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 hover:text-gold-400 hover:bg-gray-700 hover:border-gold-500 transition-all duration-200 shadow-lg"
                 aria-label={collapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
             >
                 {collapsed ? (
@@ -134,7 +134,7 @@ export function AdminSidebar() {
             </button>
 
             {/* Header */}
-            <div className="h-16 flex items-center justify-between px-4 border-b border-dungeon-700 flex-shrink-0">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-gray-700 flex-shrink-0">
                 {!collapsed ? (
                     <div className="flex items-center gap-2">
                         <Shield className="h-6 w-6 text-red-500" />
@@ -166,7 +166,7 @@ export function AdminSidebar() {
                                                 transition-all duration-200
                                                 ${active
                                                     ? 'bg-gold-900/30 text-gold-400 border border-gold-400/30'
-                                                    : 'text-dungeon-300 hover:bg-dungeon-800 hover:text-gold-400'
+                                                    : 'text-gray-300 hover:bg-gray-800 hover:text-gold-400'
                                                 }
                                                 ${collapsed ? 'justify-center px-2' : ''}
                                             `}
@@ -185,7 +185,7 @@ export function AdminSidebar() {
                                             )}
                                         </button>
                                         {!collapsed && isExpanded && item.children && (
-                                            <ul className="ml-4 mt-1 space-y-1 border-l border-dungeon-700 pl-2">
+                                            <ul className="ml-4 mt-1 space-y-1 border-l border-gray-700 pl-2">
                                                 {item.children.map((child) => (
                                                     <li key={child.href}>
                                                         <Link
@@ -195,7 +195,7 @@ export function AdminSidebar() {
                                                                 transition-all duration-200 text-sm
                                                                 ${isActive(child.href)
                                                                     ? 'bg-gold-900/30 text-gold-400 border border-gold-400/30'
-                                                                    : 'text-dungeon-400 hover:bg-dungeon-800 hover:text-gold-400'
+                                                                    : 'text-gray-400 hover:bg-gray-800 hover:text-gold-400'
                                                                 }
                                                             `}
                                                         >
@@ -215,7 +215,7 @@ export function AdminSidebar() {
                                             transition-all duration-200
                                             ${active
                                                 ? 'bg-gold-900/30 text-gold-400 border border-gold-400/30'
-                                                : 'text-dungeon-300 hover:bg-dungeon-800 hover:text-gold-400'
+                                                : 'text-gray-300 hover:bg-gray-800 hover:text-gold-400'
                                             }
                                             ${collapsed ? 'justify-center px-2' : ''}
                                         `}

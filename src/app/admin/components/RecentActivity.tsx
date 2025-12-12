@@ -42,7 +42,7 @@ const activityLabels = {
 
 export function RecentActivity({ activities, loading = false }: RecentActivityProps) {
     return (
-        <div className="bg-dungeon-800 rounded-lg border border-dungeon-700 p-6">
+        <div className="bg-gray-800 rounded-lg border border-gray-700 p-6">
             <h2 className="text-xl font-bold text-gold-400 mb-4 flex items-center gap-2">
                 <Clock className="h-5 w-5" />
                 Actividad reciente
@@ -51,17 +51,17 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
             {loading ? (
                 <div className="space-y-3">
                     {[...Array(5)].map((_, i) => (
-                        <div key={i} className="flex items-center gap-3 p-3 bg-dungeon-900 rounded-lg animate-pulse">
-                            <div className="h-10 w-10 bg-dungeon-700 rounded-lg" />
+                        <div key={i} className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg animate-pulse">
+                            <div className="h-10 w-10 bg-gray-700 rounded-lg" />
                             <div className="flex-1 space-y-2">
-                                <div className="h-4 bg-dungeon-700 rounded w-3/4" />
-                                <div className="h-3 bg-dungeon-700 rounded w-1/2" />
+                                <div className="h-4 bg-gray-700 rounded w-3/4" />
+                                <div className="h-3 bg-gray-700 rounded w-1/2" />
                             </div>
                         </div>
                     ))}
                 </div>
             ) : activities.length === 0 ? (
-                <div className="text-center py-8 text-dungeon-400">
+                <div className="text-center py-8 text-gray-400">
                     <Clock className="h-12 w-12 mx-auto mb-2 opacity-50" />
                     <p>No hay actividad reciente</p>
                 </div>
@@ -73,12 +73,12 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
                         const actionLabel = activityLabels[activity.type];
 
                         const content = (
-                            <div className="flex items-start gap-3 p-3 bg-dungeon-900 rounded-lg hover:bg-dungeon-800 transition-colors">
+                            <div className="flex items-start gap-3 p-3 bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
                                 <div className={`p-2 rounded-lg border ${colorClass}`}>
                                     <Icon className="h-4 w-4" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <div className="text-sm text-dungeon-100">
+                                    <div className="text-sm text-gray-100">
                                         <span className="font-semibold text-gold-300">
                                             @{activity.user.username}
                                         </span>
@@ -92,7 +92,7 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
                                         </span>
                                         {'"'}
                                     </div>
-                                    <div className="text-xs text-dungeon-400 mt-1 flex items-center gap-1">
+                                    <div className="text-xs text-gray-400 mt-1 flex items-center gap-1">
                                         <Clock className="h-3 w-3" />
                                         {formatRelativeTime(activity.timestamp)}
                                     </div>

@@ -122,7 +122,42 @@ export function WeaponStatsDisplay({ weapon }: WeaponStatsDisplayProps) {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="overflow-x-auto">
+                        {/* Mobile View */}
+                        <div className="block md:hidden space-y-3">
+                            {weapon.material_enhancements.map((enh: any, idx: number) => (
+                                <div key={idx} className="bg-dungeon-950/30 rounded-lg p-3 border border-dungeon-800">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <span className="font-bold text-dungeon-200">{translateMaterial(enh.material)}</span>
+                                        <div className="text-right">
+                                            <div className="text-xs text-dungeon-400 uppercase">Dureza/PG</div>
+                                            <div className="text-dungeon-300 font-mono text-sm">
+                                                {enh.hardness === 'n/a' && enh.hp === 'n/a' ? 'n/a' : `${enh.hardness} / ${enh.hp}`}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-2 mb-2 text-xs">
+                                        <div className="bg-dungeon-900/40 p-2 rounded">
+                                            <span className="block text-dungeon-500 uppercase font-bold">Normal</span>
+                                            <span className="text-dungeon-100 font-bold">{formatCost(enh.average_cost)}</span>
+                                        </div>
+                                        <div className="bg-dungeon-900/40 p-2 rounded">
+                                            <span className="block text-dungeon-500 uppercase font-bold">Gran Calidad</span>
+                                            <span className="text-dungeon-300">{formatCost(enh.masterwork_cost)}</span>
+                                        </div>
+                                    </div>
+
+                                    {enh.special && enh.special !== '-' && (
+                                        <div className="text-xs text-dungeon-400 mt-2 pt-2 border-t border-dungeon-800/50 italic">
+                                            {translateSpecial(enh.special)}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Desktop View */}
+                        <div className="hidden md:block overflow-x-auto">
                             <table className="w-full text-sm text-left">
                                 <thead className="text-xs text-dungeon-400 uppercase bg-dungeon-950/50">
                                     <tr>
@@ -206,7 +241,47 @@ export function WeaponStatsDisplay({ weapon }: WeaponStatsDisplayProps) {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="overflow-x-auto">
+                        {/* Mobile View */}
+                        <div className="block md:hidden grid grid-cols-2 gap-3">
+                            {[
+                                { k: 'F', l: 'Minúscula' },
+                                { k: 'D', l: 'Diminuta' },
+                                { k: 'T', l: 'Menuda' },
+                                { k: 'S', l: 'Pequeña' },
+                                { k: 'M', l: 'Medio' },
+                                { k: 'L', l: 'Grande' },
+                                { k: 'H', l: 'Enorme' },
+                                { k: 'G', l: 'Gargantuesca' },
+                                { k: 'C', l: 'Colosal' }
+                            ].map(({ k, l }) => {
+                                const stats = weapon.stats_by_size[k];
+                                if (!stats) return null;
+                                return (
+                                    <div key={k} className="bg-dungeon-950/30 rounded-lg p-3 border border-dungeon-800 flex flex-col items-center text-center">
+                                        <span className="text-xs text-dungeon-400 uppercase font-bold mb-1">{l}</span>
+                                        <span className="text-xl text-gold-400 font-bold mb-2">{stats.damage}</span>
+
+                                        <div className="w-full space-y-1 text-xs text-dungeon-300">
+                                            <div className="flex justify-between w-full">
+                                                <span>Peso:</span>
+                                                <span className="font-mono">{formatWeight(stats.weight)}</span>
+                                            </div>
+                                            <div className="flex justify-between w-full">
+                                                <span>HP:</span>
+                                                <span className="font-mono">{stats.hp}</span>
+                                            </div>
+                                            <div className="flex justify-between w-full pt-1 border-t border-dungeon-800/50">
+                                                <span>Coste:</span>
+                                                <span>{formatCost(stats.cost)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Desktop View */}
+                        <div className="hidden md:block overflow-x-auto">
                             <table className="w-full text-sm text-left">
                                 <thead className="text-xs text-dungeon-400 uppercase bg-dungeon-950/50">
                                     <tr>

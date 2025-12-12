@@ -105,7 +105,7 @@ export default function MaterialesEspecialesPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -115,20 +115,20 @@ export default function MaterialesEspecialesPage() {
                         <Hammer className="h-8 w-8 text-slate-400" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Materiales Especiales</h1>
-                        <p className="text-dungeon-400">Materiales extraordinarios para armas y armaduras</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Materiales Especiales</h1>
+                        <p className="text-gray-400">Materiales extraordinarios para armas y armaduras</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                Los <strong className="text-dungeon-100">materiales especiales</strong> son sustancias
+                                Los <strong className="text-gray-100">materiales especiales</strong> son sustancias
                                 raras que proporcionan propiedades únicas a las armas y armaduras. A diferencia de los
                                 encantamientos mágicos, estas propiedades son inherentes al material.
                             </p>
@@ -144,12 +144,12 @@ export default function MaterialesEspecialesPage() {
             {/* Materials Grid */}
             <div className="space-y-6">
                 {MATERIALS.map((material) => (
-                    <Card key={material.name} className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card key={material.name} className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-xl text-slate-300">{material.name}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <p className="text-dungeon-300">{material.description}</p>
+                            <p className="text-gray-300">{material.description}</p>
 
                             <div className="grid md:grid-cols-2 gap-4">
                                 {material.weaponEffects && (
@@ -158,7 +158,7 @@ export default function MaterialesEspecialesPage() {
                                             <Swords className="h-4 w-4" />
                                             Efectos en Armas
                                         </h4>
-                                        <ul className="text-sm text-dungeon-200 space-y-1">
+                                        <ul className="text-sm text-gray-200 space-y-1">
                                             {material.weaponEffects.map((effect, idx) => (
                                                 <li key={idx} className="flex items-start gap-2">
                                                     <span className="text-red-500 mt-1">•</span>
@@ -174,7 +174,7 @@ export default function MaterialesEspecialesPage() {
                                             <Shield className="h-4 w-4" />
                                             Efectos en Armaduras
                                         </h4>
-                                        <ul className="text-sm text-dungeon-200 space-y-1">
+                                        <ul className="text-sm text-gray-200 space-y-1">
                                             {material.armorEffects.map((effect, idx) => (
                                                 <li key={idx} className="flex items-start gap-2">
                                                     <span className="text-blue-500 mt-1">•</span>
@@ -186,13 +186,13 @@ export default function MaterialesEspecialesPage() {
                                 )}
                             </div>
 
-                            <div className="pt-3 border-t border-dungeon-700 space-y-2">
+                            <div className="pt-3 border-t border-gray-700 space-y-2">
                                 <p className="text-sm">
                                     <strong className="text-gold-400">Costo:</strong>{' '}
-                                    <span className="text-dungeon-300">{material.cost}</span>
+                                    <span className="text-gray-300">{material.cost}</span>
                                 </p>
                                 {material.notes && (
-                                    <p className="text-xs text-dungeon-400 italic">{material.notes}</p>
+                                    <p className="text-xs text-gray-400 italic">{material.notes}</p>
                                 )}
                             </div>
                         </CardContent>

@@ -22,7 +22,7 @@ export default function LibrosClient() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="text-dungeon-300"
+                    className="text-gray-400"
                 >
                     {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
@@ -60,16 +60,16 @@ export default function LibrosClient() {
                                 <div className="max-w-2xl space-y-4">
                                     <div className="flex items-center gap-3 mb-2">
                                         <Link href="/3.5">
-                                            <Button variant="ghost" size="sm" className="text-dungeon-400 hover:text-dungeon-200 pl-0">
+                                            <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-300 pl-0">
                                                 <ArrowLeft className="h-4 w-4 mr-2" />
                                                 Volver al Inicio
                                             </Button>
                                         </Link>
                                     </div>
-                                    <h1 className="text-4xl md:text-5xl font-heading font-bold text-dungeon-100 leading-tight">
+                                    <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-200 leading-tight">
                                         Biblioteca de D&D 3.5
                                     </h1>
-                                    <p className="text-lg text-dungeon-300 leading-relaxed">
+                                    <p className="text-lg text-gray-400 leading-relaxed">
                                         Explora el índice completo de los manuales oficiales. Más de 19,000 entradas categorizadas para fácil referencia.
                                     </p>
                                 </div>
@@ -91,7 +91,7 @@ export default function LibrosClient() {
                                         </div>
                                         <div>
                                             <p className="text-2xl font-bold text-gold-400">47</p>
-                                            <p className="text-sm text-dungeon-400">Libros indexados</p>
+                                            <p className="text-sm text-gray-500">Libros indexados</p>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@ export default function LibrosClient() {
                                         </div>
                                         <div>
                                             <p className="text-2xl font-bold text-blue-400">19,500+</p>
-                                            <p className="text-sm text-dungeon-400">Entradas de índice</p>
+                                            <p className="text-sm text-gray-500">Entradas de índice</p>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ export default function LibrosClient() {
                                         </div>
                                         <div>
                                             <p className="text-2xl font-bold text-purple-400">10</p>
-                                            <p className="text-sm text-dungeon-400">Categorías</p>
+                                            <p className="text-sm text-gray-500">Categorías</p>
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ export default function LibrosClient() {
                                 <h2 className="text-xl font-semibold text-gold-400 mb-4">
                                     Cómo usar el índice
                                 </h2>
-                                <ul className="space-y-3 text-dungeon-300">
+                                <ul className="space-y-3 text-gray-400">
                                     <li className="flex items-start gap-3">
                                         <span className="text-gold-400 font-bold">1.</span>
                                         <span>Usa el <strong className="text-gold-300">panel izquierdo</strong> (o menú en móvil) para navegar por los libros organizados por categoría.</span>
@@ -172,8 +172,8 @@ export default function LibrosClient() {
                                             key={cat.name}
                                             className="bg-dungeon-800 border border-dungeon-700 rounded-lg p-3 text-center hover:border-gold-500/50 transition-colors cursor-pointer"
                                         >
-                                            <p className="text-sm font-medium text-dungeon-200">{cat.name}</p>
-                                            <p className="text-xs text-dungeon-500">{cat.count} libros</p>
+                                            <p className="text-sm font-medium text-gray-300">{cat.name}</p>
+                                            <p className="text-xs text-gray-500">{cat.count} libros</p>
                                         </div>
                                     ))}
                                 </div>

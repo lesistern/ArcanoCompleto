@@ -72,7 +72,7 @@ export default function ObjetosMagicosPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -82,20 +82,20 @@ export default function ObjetosMagicosPage() {
                         <Gem className="h-8 w-8 text-cyan-400" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Objetos Mágicos</h1>
-                        <p className="text-dungeon-400">Reglas para usar, identificar y crear objetos mágicos</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Objetos Mágicos</h1>
+                        <p className="text-gray-400">Reglas para usar, identificar y crear objetos mágicos</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                Los <strong className="text-dungeon-100">objetos mágicos</strong> son tesoros que
+                                Los <strong className="text-gray-100">objetos mágicos</strong> son tesoros que
                                 proporcionan bonificadores, habilidades especiales o efectos únicos. Pueden ser
                                 armas, armaduras, anillos, varitas, pergaminos, pociones u objetos maravillosos.
                             </p>
@@ -106,37 +106,37 @@ export default function ObjetosMagicosPage() {
 
             {/* Identification */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Sparkles className="h-6 w-6 text-gold-400" />
                     Identificación de Objetos
                 </h2>
-                <Card className="bg-dungeon-900/50 border-dungeon-700">
+                <Card className="bg-gray-900/50 border-gray-700">
                     <CardContent className="p-6 space-y-4">
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <h3 className="font-semibold text-gold-400">Detectar magia</h3>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Revela la presencia de auras mágicas. Tras 3 asaltos de concentración,
                                     revela la escuela de magia y la intensidad del aura.
                                 </p>
                             </div>
                             <div className="space-y-2">
                                 <h3 className="font-semibold text-gold-400">Identificar</h3>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Conjuro de nivel 1 que revela todas las propiedades mágicas de un objeto.
                                     Cuesta 100 po en componentes materiales (perla).
                                 </p>
                             </div>
                             <div className="space-y-2">
                                 <h3 className="font-semibold text-gold-400">Conocimiento Arcano</h3>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Prueba de Conocimiento (arcano) CD 20 + nivel de lanzador del objeto
                                     puede revelar propiedades básicas.
                                 </p>
                             </div>
                             <div className="space-y-2">
                                 <h3 className="font-semibold text-gold-400">Usar Objeto Mágico</h3>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Prueba de Usar Objeto Mágico CD 25 para determinar propiedades
                                     mediante experimentación.
                                 </p>
@@ -148,15 +148,15 @@ export default function ObjetosMagicosPage() {
 
             {/* Body Slots */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4">Ranuras de Cuerpo</h2>
-                <p className="text-dungeon-300 mb-4">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4">Ranuras de Cuerpo</h2>
+                <p className="text-gray-300 mb-4">
                     Un personaje solo puede beneficiarse de un número limitado de objetos mágicos debido
                     a las ranuras del cuerpo. Llevar más objetos del límite en una ranura hace que
                     ninguno funcione.
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {BODY_SLOTS.map((slot) => (
-                        <Card key={slot.slot} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={slot.slot} className="bg-gray-900/50 border-gray-700">
                             <CardContent className="p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <h3 className="font-semibold text-cyan-400">{slot.slot}</h3>
@@ -164,7 +164,7 @@ export default function ObjetosMagicosPage() {
                                         {slot.limit}
                                     </span>
                                 </div>
-                                <p className="text-xs text-dungeon-400">{slot.examples}</p>
+                                <p className="text-xs text-gray-400">{slot.examples}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -173,10 +173,10 @@ export default function ObjetosMagicosPage() {
 
             {/* Categories */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4">Categorías de Objetos</h2>
+                <h2 className="text-2xl font-bold text-gray-100 mb-4">Categorías de Objetos</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                     {ITEM_CATEGORIES.map((cat) => (
-                        <Card key={cat.name} className="bg-dungeon-900/50 border-dungeon-700 hover:border-cyan-500/30 transition-colors">
+                        <Card key={cat.name} className="bg-gray-900/50 border-gray-700 hover:border-cyan-500/30 transition-colors">
                             <CardHeader className="pb-2">
                                 <CardTitle className="flex items-center gap-2 text-lg">
                                     <cat.icon className={`h-5 w-5 ${cat.color}`} />
@@ -184,15 +184,15 @@ export default function ObjetosMagicosPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <p className="text-sm text-dungeon-300">{cat.description}</p>
+                                <p className="text-sm text-gray-300">{cat.description}</p>
                                 <div className="flex flex-wrap gap-1">
                                     {cat.examples.map((ex) => (
-                                        <span key={ex} className="text-xs bg-dungeon-800 text-dungeon-300 px-2 py-1 rounded">
+                                        <span key={ex} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                                             {ex}
                                         </span>
                                     ))}
                                 </div>
-                                <p className="text-xs text-dungeon-400 pt-2 border-t border-dungeon-700">
+                                <p className="text-xs text-gray-400 pt-2 border-t border-gray-700">
                                     {cat.bonuses}
                                 </p>
                             </CardContent>
@@ -203,47 +203,47 @@ export default function ObjetosMagicosPage() {
 
             {/* Activation */}
             <section className="mb-8">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4">Activación de Objetos</h2>
+                <h2 className="text-2xl font-bold text-gray-100 mb-4">Activación de Objetos</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-gold-400">Por Comando</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Acción estándar. Requiere decir una palabra de comando.
                                 Algunos objetos revelan su palabra al ser identificados.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-gold-400">Por Uso/Continuo</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Siempre activo mientras se lleva puesto.
                                 Ejemplo: anillo de protección, botas de velocidad.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-gold-400">Completar Conjuro</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Pergaminos. Requiere que el conjuro esté en tu lista de clase.
                                 Acción estándar, no provoca ataques de oportunidad.
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-dungeon-900/50 border-dungeon-700">
+                    <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader className="pb-2">
                             <CardTitle className="text-lg text-gold-400">Detonador de Conjuro</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Varitas y bastones. Acción estándar.
                                 No requiere componentes, pero sí que el conjuro esté en tu lista.
                             </p>
@@ -256,8 +256,8 @@ export default function ObjetosMagicosPage() {
             <Card className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 border-cyan-500/30">
                 <CardContent className="p-6 text-center">
                     <Gem className="h-12 w-12 text-cyan-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-dungeon-100 mb-2">Explorar Objetos Mágicos</h3>
-                    <p className="text-dungeon-300 mb-4">
+                    <h3 className="text-xl font-bold text-gray-100 mb-2">Explorar Objetos Mágicos</h3>
+                    <p className="text-gray-300 mb-4">
                         Navega por nuestra base de datos de más de 600 objetos mágicos.
                     </p>
                     <Link href="/objetos">

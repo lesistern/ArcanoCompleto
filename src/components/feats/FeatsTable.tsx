@@ -86,37 +86,63 @@ function BookSection({ title, feats, featsMap }: { title: string, feats: DnDFeat
             </button>
 
             {isOpen && (
-                <div className="overflow-x-auto bg-dungeon-900/20">
-                    <table className="w-full text-left border-collapse">
-                        <tbody className="divide-y divide-dungeon-800/30">
-                            <tr className="text-dungeon-500 text-xs uppercase tracking-wider">
-                                <th className="px-4 py-2 font-medium text-left w-1/3">Dote</th>
-                                <th className="px-4 py-2 font-medium text-left w-1/4">Tipo</th>
-                                <th className="px-4 py-2 font-medium text-left w-1/3">Prerrequisitos</th>
-                            </tr>
-                            {feats.map((feat) => (
-                                <tr
-                                    key={feat.id}
-                                    className="hover:bg-dungeon-800/30 transition-colors text-sm group"
-                                >
-                                    <td className="px-4 py-2 font-medium text-dungeon-100">
-                                        <Link
-                                            href={`/dotes/${feat.slug}`}
-                                            className="text-gold-500 hover:text-gold-400 hover:underline transition-colors"
-                                        >
-                                            {capitalizeFirst(feat.name)}
-                                        </Link>
-                                    </td>
-                                    <td className="px-4 py-2 text-dungeon-300">
+                <div className="bg-dungeon-900/20">
+                    {/* Mobile View */}
+                    <div className="block md:hidden divide-y divide-dungeon-800/50">
+                        {feats.map((feat) => (
+                            <div key={feat.id} className="p-4 hover:bg-dungeon-800/30 transition-colors">
+                                <div className="flex justify-between items-start mb-2 gap-2">
+                                    <Link
+                                        href={`/dotes/${feat.slug}`}
+                                        className="text-gold-500 hover:text-gold-400 font-bold text-base hover:underline transition-colors"
+                                    >
+                                        {capitalizeFirst(feat.name)}
+                                    </Link>
+                                    <span className="text-xs px-2 py-0.5 rounded bg-dungeon-800 text-dungeon-300 border border-dungeon-700 whitespace-nowrap">
                                         {translateType(feat.type)}
-                                    </td>
-                                    <td className="px-4 py-2 text-dungeon-300">
-                                        {parsePrerequisites(feat.prerequisites)}
-                                    </td>
+                                    </span>
+                                </div>
+                                <div className="text-xs text-dungeon-400">
+                                    <span className="font-semibold text-dungeon-500 uppercase mr-1">Prerrequisitos:</span>
+                                    {parsePrerequisites(feat.prerequisites)}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Desktop View */}
+                    <div className="hidden md:block overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <tbody className="divide-y divide-dungeon-800/30">
+                                <tr className="text-dungeon-500 text-xs uppercase tracking-wider bg-dungeon-950/20">
+                                    <th className="px-4 py-2 font-medium text-left w-1/3">Dote</th>
+                                    <th className="px-4 py-2 font-medium text-left w-1/4">Tipo</th>
+                                    <th className="px-4 py-2 font-medium text-left w-1/3">Prerrequisitos</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                {feats.map((feat) => (
+                                    <tr
+                                        key={feat.id}
+                                        className="hover:bg-dungeon-800/30 transition-colors text-sm group"
+                                    >
+                                        <td className="px-4 py-2 font-medium text-dungeon-100">
+                                            <Link
+                                                href={`/dotes/${feat.slug}`}
+                                                className="text-gold-500 hover:text-gold-400 hover:underline transition-colors"
+                                            >
+                                                {capitalizeFirst(feat.name)}
+                                            </Link>
+                                        </td>
+                                        <td className="px-4 py-2 text-dungeon-300">
+                                            {translateType(feat.type)}
+                                        </td>
+                                        <td className="px-4 py-2 text-dungeon-300">
+                                            {parsePrerequisites(feat.prerequisites)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )}
         </div>

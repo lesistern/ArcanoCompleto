@@ -12,10 +12,10 @@ import { useDeities } from '@/hooks/useDeities';
 
 // Lazy-load heavy editor and modal components
 const DeityFormEditor = dynamic(() => import('@/components/admin/DeityFormEditor').then(mod => ({ default: mod.DeityFormEditor })), {
-  loading: () => <div className="h-96 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-96 bg-gray-800 rounded animate-pulse" />
 });
 const DeityModal = dynamic(() => import('@/components/admin/DeityModal').then(mod => ({ default: mod.DeityModal })), {
-  loading: () => <div className="h-64 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-64 bg-gray-800 rounded animate-pulse" />
 });
 
 const alignmentLabels = Object.fromEntries(
@@ -48,7 +48,7 @@ export default function DeitiesAdminPage() {
   } = useDeities();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
       <div className="container mx-auto px-4 py-8">
         <DeityEditorHeader
           deitiesCount={deities.length}
@@ -65,7 +65,7 @@ export default function DeitiesAdminPage() {
           <button
             onClick={() => setShowGrid(false)}
             className={`px-4 py-2 rounded-lg transition-colors ${
-              !showGrid ? 'bg-gold-600 text-white' : 'bg-dungeon-700 text-dungeon-300 hover:bg-dungeon-600'
+              !showGrid ? 'bg-gold-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
             Editor
@@ -73,7 +73,7 @@ export default function DeitiesAdminPage() {
           <button
             onClick={() => setShowGrid(true)}
             className={`px-4 py-2 rounded-lg transition-colors ${
-              showGrid ? 'bg-gold-600 text-white' : 'bg-dungeon-700 text-dungeon-300 hover:bg-dungeon-600'
+              showGrid ? 'bg-gold-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
             Grid de Deidades
@@ -88,7 +88,7 @@ export default function DeitiesAdminPage() {
               placeholder="Buscar deidad..."
               value={searchTerm}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full px-4 py-2 mb-6 bg-dungeon-700 border border-dungeon-600 rounded-lg text-dungeon-100 placeholder-dungeon-400 focus:outline-none focus:border-gold-400"
+              className="w-full px-4 py-2 mb-6 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gold-400"
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredDeities.map((deity) => (

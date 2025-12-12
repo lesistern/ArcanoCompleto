@@ -120,10 +120,10 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-dungeon-950 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin mx-auto text-gold-500 mb-3" />
-          <p className="text-dungeon-400">Cargando estadísticas...</p>
+          <p className="text-gray-400">Cargando estadísticas...</p>
         </div>
       </div>
     );
@@ -137,7 +137,7 @@ export default function AdminDashboard() {
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
           Panel de Administración
         </h1>
-        <p className="text-dungeon-400">
+        <p className="text-gray-400">
           Gestiona contenido, usuarios y configuración de la plataforma
         </p>
       </div>
@@ -225,37 +225,37 @@ export default function AdminDashboard() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           <div className="card p-4 text-center">
-            <p className="text-dungeon-400 text-sm mb-2">Clases</p>
+            <p className="text-gray-400 text-sm mb-2">Clases</p>
             <p className="text-2xl font-bold text-white">
               {stats.totalClasses}
             </p>
           </div>
           <div className="card p-4 text-center">
-            <p className="text-dungeon-400 text-sm mb-2">Razas</p>
+            <p className="text-gray-400 text-sm mb-2">Razas</p>
             <p className="text-2xl font-bold text-white">
               {stats.totalRaces}
             </p>
           </div>
           <div className="card p-4 text-center">
-            <p className="text-dungeon-400 text-sm mb-2">Dotes</p>
+            <p className="text-gray-400 text-sm mb-2">Dotes</p>
             <p className="text-2xl font-bold text-white">
               {stats.totalFeats}
             </p>
           </div>
           <div className="card p-4 text-center">
-            <p className="text-dungeon-400 text-sm mb-2">Conjuros</p>
+            <p className="text-gray-400 text-sm mb-2">Conjuros</p>
             <p className="text-2xl font-bold text-white">
               {stats.totalSpells}
             </p>
           </div>
           <div className="card p-4 text-center">
-            <p className="text-dungeon-400 text-sm mb-2">Deidades</p>
+            <p className="text-gray-400 text-sm mb-2">Deidades</p>
             <p className="text-2xl font-bold text-white">
               {stats.totalDeities}
             </p>
           </div>
           <div className="card p-4 text-center">
-            <p className="text-dungeon-400 text-sm mb-2">Total Tickets</p>
+            <p className="text-gray-400 text-sm mb-2">Total Tickets</p>
             <p className="text-2xl font-bold text-white">
               {stats.totalTickets}
             </p>
@@ -273,7 +273,7 @@ export default function AdminDashboard() {
             <h3 className="text-lg font-semibold text-white mb-1">
               Acceso de Administrador
             </h3>
-            <p className="text-sm text-dungeon-400">
+            <p className="text-sm text-gray-400">
               Tienes acceso completo al panel de administración. Usa estos permisos de manera responsable para mantener la integridad de la plataforma.
             </p>
           </div>

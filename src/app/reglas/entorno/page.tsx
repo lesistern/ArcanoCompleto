@@ -331,7 +331,7 @@ export default function EntornoPage() {
             {/* Header */}
             <div className="mb-8">
                 <Link href="/reglas">
-                    <Button variant="ghost" size="sm" className="mb-4 text-dungeon-400 hover:text-dungeon-200">
+                    <Button variant="ghost" size="sm" className="mb-4 text-gray-400 hover:text-gray-200">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Volver a Reglas
                     </Button>
@@ -341,20 +341,20 @@ export default function EntornoPage() {
                         <Mountain className="h-8 w-8 text-emerald-500" />
                     </div>
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-dungeon-100">Entorno y Clima</h1>
-                        <p className="text-dungeon-400">Peligros ambientales, terreno y condiciones</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Entorno y Clima</h1>
+                        <p className="text-gray-400">Peligros ambientales, terreno y condiciones</p>
                     </div>
                 </div>
             </div>
 
             {/* Introduction */}
-            <Card className="mb-8 bg-dungeon-900/50 border-dungeon-700">
+            <Card className="mb-8 bg-gray-900/50 border-gray-700">
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Info className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p>
-                                El <strong className="text-dungeon-100">entorno</strong> puede ser tan peligroso como
+                                El <strong className="text-gray-100">entorno</strong> puede ser tan peligroso como
                                 cualquier monstruo. Desde tormentas mortales hasta desiertos abrasadores, los aventureros
                                 deben estar preparados para enfrentar los elementos.
                             </p>
@@ -368,13 +368,13 @@ export default function EntornoPage() {
 
             {/* Weather Types */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <CloudRain className="h-6 w-6 text-blue-400" />
                     Tipos de Clima
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {WEATHER_TYPES.map((weather) => (
-                        <Card key={weather.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={weather.name} className="bg-gray-900/50 border-gray-700">
                             <CardHeader className="pb-2">
                                 <CardTitle className={`flex items-center gap-2 text-lg ${weather.color}`}>
                                     <weather.icon className="h-5 w-5" />
@@ -382,8 +382,8 @@ export default function EntornoPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-sm text-dungeon-300 mb-3">{weather.description}</p>
-                                <ul className="text-xs text-dungeon-200 space-y-1">
+                                <p className="text-sm text-gray-300 mb-3">{weather.description}</p>
+                                <ul className="text-xs text-gray-200 space-y-1">
                                     {weather.effects.map((effect, idx) => (
                                         <li key={idx} className="flex items-start gap-2">
                                             <span className={`mt-0.5 ${weather.color}`}>•</span>
@@ -399,33 +399,33 @@ export default function EntornoPage() {
 
             {/* Environmental Hazards */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <AlertTriangle className="h-6 w-6 text-red-400" />
                     Peligros Ambientales
                 </h2>
                 <div className="space-y-4">
                     {ENVIRONMENTAL_HAZARDS.map((hazard) => (
-                        <Card key={hazard.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={hazard.name} className="bg-gray-900/50 border-gray-700">
                             <CardContent className="p-4">
                                 <div className="flex items-start gap-4">
-                                    <div className={`p-2 rounded-lg bg-dungeon-800 ${hazard.color}`}>
+                                    <div className={`p-2 rounded-lg bg-gray-800 ${hazard.color}`}>
                                         <hazard.icon className="h-6 w-6" />
                                     </div>
                                     <div className="flex-1">
                                         <h3 className={`font-semibold text-lg ${hazard.color}`}>{hazard.name}</h3>
-                                        <p className="text-sm text-dungeon-300 mb-2">{hazard.description}</p>
+                                        <p className="text-sm text-gray-300 mb-2">{hazard.description}</p>
                                         <div className="grid sm:grid-cols-3 gap-2 text-xs">
-                                            <div className="bg-dungeon-800/50 p-2 rounded">
-                                                <span className="text-dungeon-400 block">Daño</span>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <span className="text-gray-400 block">Daño</span>
                                                 <span className="text-red-400 font-medium">{hazard.damage}</span>
                                             </div>
-                                            <div className="bg-dungeon-800/50 p-2 rounded">
-                                                <span className="text-dungeon-400 block">Salvación</span>
+                                            <div className="bg-gray-800/50 p-2 rounded">
+                                                <span className="text-gray-400 block">Salvación</span>
                                                 <span className="text-blue-400 font-medium">{hazard.save}</span>
                                             </div>
-                                            <div className="bg-dungeon-800/50 p-2 rounded sm:col-span-1">
-                                                <span className="text-dungeon-400 block">Notas</span>
-                                                <span className="text-dungeon-200">{hazard.notes}</span>
+                                            <div className="bg-gray-800/50 p-2 rounded sm:col-span-1">
+                                                <span className="text-gray-400 block">Notas</span>
+                                                <span className="text-gray-200">{hazard.notes}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -438,20 +438,20 @@ export default function EntornoPage() {
 
             {/* Terrain Types */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Footprints className="h-6 w-6 text-amber-400" />
                     Tipos de Terreno
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
                     {TERRAIN_TYPES.map((terrain) => (
-                        <Card key={terrain.name} className="bg-dungeon-900/50 border-dungeon-700">
+                        <Card key={terrain.name} className="bg-gray-900/50 border-gray-700">
                             <CardHeader className="pb-2">
                                 <div className="flex items-center justify-between">
                                     <CardTitle className={`flex items-center gap-2 text-lg ${terrain.color}`}>
                                         <terrain.icon className="h-5 w-5" />
                                         {terrain.name}
                                     </CardTitle>
-                                    <span className="text-xs bg-dungeon-800 text-dungeon-300 px-2 py-1 rounded">
+                                    <span className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                                         Movimiento: {terrain.movementCost}
                                     </span>
                                 </div>
@@ -459,12 +459,12 @@ export default function EntornoPage() {
                             <CardContent className="space-y-3">
                                 <div className="flex flex-wrap gap-1">
                                     {terrain.examples.map((ex) => (
-                                        <span key={ex} className="text-xs bg-dungeon-800/70 text-dungeon-300 px-2 py-0.5 rounded">
+                                        <span key={ex} className="text-xs bg-gray-800/70 text-gray-300 px-2 py-0.5 rounded">
                                             {ex}
                                         </span>
                                     ))}
                                 </div>
-                                <ul className="text-xs text-dungeon-200 space-y-1">
+                                <ul className="text-xs text-gray-200 space-y-1">
                                     {terrain.specialRules.map((rule, idx) => (
                                         <li key={idx} className="flex items-start gap-2">
                                             <span className={`mt-0.5 ${terrain.color}`}>•</span>
@@ -480,35 +480,35 @@ export default function EntornoPage() {
 
             {/* Lighting Conditions */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Eye className="h-6 w-6 text-yellow-400" />
                     Condiciones de Iluminación
                 </h2>
-                <Card className="bg-dungeon-900/50 border-dungeon-700 overflow-hidden">
+                <Card className="bg-gray-900/50 border-gray-700 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full text-sm">
-                            <thead className="bg-dungeon-800/50">
+                            <thead className="bg-gray-800/50">
                                 <tr>
-                                    <th className="text-left p-3 text-dungeon-300 font-semibold">Condición</th>
-                                    <th className="text-left p-3 text-dungeon-300 font-semibold">Visibilidad</th>
-                                    <th className="text-left p-3 text-dungeon-300 font-semibold">Penalizador</th>
-                                    <th className="text-left p-3 text-dungeon-300 font-semibold">Descripción</th>
+                                    <th className="text-left p-3 text-gray-300 font-semibold">Condición</th>
+                                    <th className="text-left p-3 text-gray-300 font-semibold">Visibilidad</th>
+                                    <th className="text-left p-3 text-gray-300 font-semibold">Penalizador</th>
+                                    <th className="text-left p-3 text-gray-300 font-semibold">Descripción</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {LIGHTING_CONDITIONS.map((light, idx) => (
-                                    <tr key={light.name} className={idx % 2 === 0 ? 'bg-dungeon-800/20' : ''}>
+                                    <tr key={light.name} className={idx % 2 === 0 ? 'bg-gray-800/20' : ''}>
                                         <td className="p-3">
-                                            <span className="flex items-center gap-2 text-dungeon-100 font-medium">
+                                            <span className="flex items-center gap-2 text-gray-100 font-medium">
                                                 {light.name === 'Luz Brillante' && <Sun className="h-4 w-4 text-yellow-400" />}
                                                 {light.name === 'Luz Tenue' && <Moon className="h-4 w-4 text-blue-300" />}
                                                 {light.name.includes('Oscuridad') && <Moon className="h-4 w-4 text-purple-400" />}
                                                 {light.name}
                                             </span>
                                         </td>
-                                        <td className="p-3 text-dungeon-300">{light.visibility}</td>
+                                        <td className="p-3 text-gray-300">{light.visibility}</td>
                                         <td className="p-3 text-red-400">{light.combatPenalty}</td>
-                                        <td className="p-3 text-dungeon-400 text-xs">{light.description}</td>
+                                        <td className="p-3 text-gray-400 text-xs">{light.description}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -519,17 +519,17 @@ export default function EntornoPage() {
 
             {/* Visibility Ranges */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 flex items-center gap-2">
                     <Eye className="h-6 w-6 text-green-400" />
                     Rangos de Visibilidad
                 </h2>
-                <Card className="bg-dungeon-900/50 border-dungeon-700">
+                <Card className="bg-gray-900/50 border-gray-700">
                     <CardContent className="p-4">
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                             {VISIBILITY_RANGES.map((vis) => (
-                                <div key={vis.condition} className="bg-dungeon-800/50 p-3 rounded-lg">
-                                    <div className="text-sm text-dungeon-300 mb-1">{vis.condition}</div>
-                                    <div className="text-dungeon-100 font-medium">{vis.range}</div>
+                                <div key={vis.condition} className="bg-gray-800/50 p-3 rounded-lg">
+                                    <div className="text-sm text-gray-300 mb-1">{vis.condition}</div>
+                                    <div className="text-gray-100 font-medium">{vis.range}</div>
                                 </div>
                             ))}
                         </div>
@@ -542,7 +542,7 @@ export default function EntornoPage() {
                 <CardContent className="p-6">
                     <div className="flex gap-3">
                         <Thermometer className="h-5 w-5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-dungeon-300 space-y-2">
+                        <div className="text-gray-300 space-y-2">
                             <p className="font-semibold text-emerald-400">Consejos de Supervivencia</p>
                             <ul className="text-sm space-y-1">
                                 <li className="flex items-start gap-2">
@@ -569,7 +569,7 @@ export default function EntornoPage() {
 
             {/* CTA */}
             <div className="mt-8 text-center">
-                <p className="text-dungeon-400 mb-4">¿Listo para explorar más reglas de aventura?</p>
+                <p className="text-gray-400 mb-4">¿Listo para explorar más reglas de aventura?</p>
                 <div className="flex flex-wrap justify-center gap-4">
                     <Link href="/reglas/trampas">
                         <Button variant="outline" className="border-orange-500/50 text-orange-400 hover:bg-orange-500/10">

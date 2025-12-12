@@ -1,0 +1,106 @@
+{
+  "name": "D&D 3.5 Compendium - Compendio en Español",
+  "short_name": "D&D Compendium",
+  "description": "El compendio más completo de Dungeons & Dragons 3.5 en español. 118 libros, 605 conjuros, 143 dotes, editor de personajes y más.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#fbbf24",
+  "orientation": "portrait-primary",
+  "categories": ["entertainment", "games", "reference"],
+  "lang": "es",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vista de escritorio del compendio"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Vista móvil del editor de personajes"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Editor de Personajes",
+      "short_name": "Editor",
+      "description": "Crear y editar personajes D&D 3.5",
+      "url": "/editor-personajes",
+      "icons": [
+        {
+          "src": "/shortcut-editor.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Clases",
+      "short_name": "Clases",
+      "description": "Explorar clases base y de prestigio",
+      "url": "/clases",
+      "icons": [
+        {
+          "src": "/shortcut-classes.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Conjuros",
+      "short_name": "Conjuros",
+      "description": "Buscar conjuros por clase y nivel",
+      "url": "/conjuros",
+      "icons": [
+        {
+          "src": "/shortcut-spells.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

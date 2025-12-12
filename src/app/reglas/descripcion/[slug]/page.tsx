@@ -41,7 +41,7 @@ export default function AlignmentDetailPage({ params }: { params: { slug: string
             <div className="border-l-4 border-gold-500 pl-6 mb-12">
                 <div className="flex items-center gap-3 mb-3">
                     <Scroll className="h-8 w-8 text-gold-400" />
-                    <h1 className="font-heading text-4xl md:text-5xl font-bold text-dungeon-100">
+                    <h1 className="font-heading text-4xl md:text-5xl font-bold text-gray-100">
                         {details.name}
                     </h1>
                 </div>
@@ -55,10 +55,10 @@ export default function AlignmentDetailPage({ params }: { params: { slug: string
                 {/* Main Description */}
                 <Card className="card border-gold-500/30">
                     <CardHeader className="bg-gradient-to-r from-gold-900/20 to-transparent">
-                        <CardTitle className="text-2xl text-dungeon-100">Descripción</CardTitle>
+                        <CardTitle className="text-2xl text-gray-100">Descripción</CardTitle>
                     </CardHeader>
                     <CardContent className="p-8">
-                        <p className="text-lg text-dungeon-200 leading-relaxed">
+                        <p className="text-lg text-gray-200 leading-relaxed">
                             {details.description}
                         </p>
                     </CardContent>
@@ -76,7 +76,7 @@ export default function AlignmentDetailPage({ params }: { params: { slug: string
                             <h3 className={`font-bold text-lg mb-2 ${details.quoteType === 'best' ? 'text-green-400' : 'text-red-400'}`}>
                                 {details.quoteType === 'best' ? 'Por qué es el mejor:' : 'Por qué es peligroso:'}
                             </h3>
-                            <p className="text-dungeon-200 italic text-lg">
+                            <p className="text-gray-200 italic text-lg">
                                 &quot;{details.quote}&quot;
                             </p>
                         </div>
@@ -94,7 +94,7 @@ export default function AlignmentDetailPage({ params }: { params: { slug: string
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <p className="text-dungeon-300 text-sm">
+                            <p className="text-gray-300 text-sm">
                                 {Axis1.desc}
                             </p>
                         </CardContent>
@@ -109,7 +109,7 @@ export default function AlignmentDetailPage({ params }: { params: { slug: string
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <p className="text-dungeon-300 text-sm">
+                            <p className="text-gray-300 text-sm">
                                 {Axis2.desc}
                             </p>
                         </CardContent>

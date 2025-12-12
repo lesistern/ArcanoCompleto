@@ -9,7 +9,7 @@ import { SpellList } from '@/components/admin/SpellList';
 
 // Lazy-load heavy spell editor component (only shown when editing/creating)
 const SpellEditor = dynamic(() => import('@/components/admin/SpellEditor').then(mod => ({ default: mod.SpellEditor })), {
-  loading: () => <div className="h-80 bg-dungeon-800 rounded animate-pulse" />
+  loading: () => <div className="h-80 bg-gray-800 rounded animate-pulse" />
 });
 import type { SpellData } from '@/lib/data/spell-management';
 import {
@@ -135,13 +135,13 @@ export default function SpellsAdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dungeon-900 via-dungeon-800 to-dungeon-900">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Link
             href="/admin"
-            className="p-2 rounded-lg bg-dungeon-700 hover:bg-dungeon-600 transition-colors"
+            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors"
           >
             <ArrowLeft className="h-5 w-5 text-gold-400" />
           </Link>
@@ -149,7 +149,7 @@ export default function SpellsAdminPage() {
             <h1 className="text-4xl font-bold text-gold-400 mb-2">
               Editor de Conjuros
             </h1>
-            <p className="text-dungeon-300">
+            <p className="text-gray-300">
               Gestión de la base de datos de magia
             </p>
             {syncStatus !== 'idle' && (
@@ -171,7 +171,7 @@ export default function SpellsAdminPage() {
           </div>
           <button
             onClick={handleCreateNew}
-            className="px-4 py-2 bg-gold-600 hover:bg-gold-700 rounded-lg flex items-center gap-2 transition-colors font-bold text-dungeon-900"
+            className="px-4 py-2 bg-gold-600 hover:bg-gold-700 rounded-lg flex items-center gap-2 transition-colors font-bold text-gray-900"
           >
             <Plus className="h-5 w-5" />
             Nuevo Conjuro

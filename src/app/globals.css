@@ -63,6 +63,12 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05), inset 0 0 20px rgba(181, 137, 0, 0.05);
   }
 
+  .rendering-pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
   .text-ink {
     color: var(--color-ink-text);
     text-shadow: 0.5px 0.5px 0px rgba(0, 0, 0, 0.1);
@@ -1510,6 +1516,7 @@ html.reduce-motion * {
 
 /* Respetar preferencia del sistema operativo para reducir movimiento */
 @media (prefers-reduced-motion: reduce) {
+
   html:not(.force-motion),
   html:not(.force-motion) * {
     animation-duration: 0.01ms !important;

@@ -160,3 +160,12 @@ PROXIMO-PASO-*.md
 .turbo/
 
 .vercel
+
+# ============================================================================
+# LARGE ASSETS - DO NOT COMMIT
+# ============================================================================
+# Background removal data (272 MB compressed archive)
+bg-removal-data.tgz
+
+# LPC Character sprites (304k+ files, several GB)
+public/sprites/lpc/

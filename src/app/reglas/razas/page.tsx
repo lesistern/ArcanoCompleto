@@ -25,17 +25,17 @@ export default function RacesRulesPage() {
             <div className="border-l-4 border-green-500 pl-6 mb-12">
                 <div className="flex items-center gap-4 mb-3">
                     <Users className="h-10 w-10 md:h-12 md:w-12 text-green-400" />
-                    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-dungeon-100">
+                    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-100">
                         Razas
                     </h1>
                 </div>
-                <p className="text-lg text-dungeon-300">
+                <p className="text-lg text-gray-300">
                     Tu raza determina tu aspecto, tu herencia cultural y tus capacidades innatas.
                 </p>
             </div>
 
             {/* TL;DR - Resumen Rápido */}
-            <div className="bg-gradient-to-r from-green-900/30 via-emerald-900/20 to-dungeon-900 border-2 border-green-500/40 rounded-xl p-6 mb-8">
+            <div className="bg-gradient-to-r from-green-900/30 via-emerald-900/20 to-gray-900 border-2 border-green-500/40 rounded-xl p-6 mb-8">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="bg-green-500/20 rounded-full p-2">
                         <Zap className="h-6 w-6 text-green-400" />
@@ -46,63 +46,63 @@ export default function RacesRulesPage() {
                     <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3 hover:bg-blue-900/30 transition-colors">
                         <User className="h-6 w-6 text-blue-400 mb-1" />
                         <div className="font-bold text-blue-400">Humano</div>
-                        <div className="text-dungeon-400 text-xs">+1 dote, +4 skills</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Cualquiera</div>
+                        <div className="text-gray-400 text-xs">+1 dote, +4 skills</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Cualquiera</div>
                     </div>
                     <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-3 hover:bg-emerald-900/30 transition-colors">
                         <Leaf className="h-6 w-6 text-emerald-400 mb-1" />
                         <div className="font-bold text-emerald-400">Elfo</div>
-                        <div className="text-dungeon-400 text-xs">+2 Des, -2 Con</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Mago</div>
+                        <div className="text-gray-400 text-xs">+2 Des, -2 Con</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Mago</div>
                     </div>
                     <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-3 hover:bg-orange-900/30 transition-colors">
                         <Mountain className="h-6 w-6 text-orange-400 mb-1" />
                         <div className="font-bold text-orange-400">Enano</div>
-                        <div className="text-dungeon-400 text-xs">+2 Con, -2 Car</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Guerrero</div>
+                        <div className="text-gray-400 text-xs">+2 Con, -2 Car</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Guerrero</div>
                     </div>
                     <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3 hover:bg-yellow-900/30 transition-colors">
                         <Footprints className="h-6 w-6 text-yellow-400 mb-1" />
                         <div className="font-bold text-yellow-400">Mediano</div>
-                        <div className="text-dungeon-400 text-xs">+2 Des, -2 Fue</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Pícaro</div>
+                        <div className="text-gray-400 text-xs">+2 Des, -2 Fue</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Pícaro</div>
                     </div>
                     <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-3 hover:bg-purple-900/30 transition-colors">
                         <Sparkles className="h-6 w-6 text-purple-400 mb-1" />
                         <div className="font-bold text-purple-400">Gnomo</div>
-                        <div className="text-dungeon-400 text-xs">+2 Con, -2 Fue</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Bardo</div>
+                        <div className="text-gray-400 text-xs">+2 Con, -2 Fue</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Bardo</div>
                     </div>
                     <div className="bg-teal-900/20 border border-teal-500/30 rounded-lg p-3 hover:bg-teal-900/30 transition-colors">
                         <UserPlus className="h-6 w-6 text-teal-400 mb-1" />
                         <div className="font-bold text-teal-400">Semielfo</div>
-                        <div className="text-dungeon-400 text-xs">Sin ajustes</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Cualquiera</div>
+                        <div className="text-gray-400 text-xs">Sin ajustes</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Cualquiera</div>
                     </div>
                     <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3 hover:bg-red-900/30 transition-colors">
                         <Swords className="h-6 w-6 text-red-400 mb-1" />
                         <div className="font-bold text-red-400">Semiorco</div>
-                        <div className="text-dungeon-400 text-xs">+2 Fue, -2 Int, -2 Car</div>
-                        <div className="text-dungeon-500 text-xs">Predilecta: Bárbaro</div>
+                        <div className="text-gray-400 text-xs">+2 Fue, -2 Int, -2 Car</div>
+                        <div className="text-gray-500 text-xs">Predilecta: Bárbaro</div>
                     </div>
                 </div>
 
                 {/* Ejemplo Visual */}
-                <div className="mt-6 bg-dungeon-950/50 border border-dungeon-700 rounded-lg p-4">
-                    <div className="text-sm text-dungeon-400 mb-2 flex items-center gap-2">
+                <div className="mt-6 bg-gray-950/50 border border-gray-700 rounded-lg p-4">
+                    <div className="text-sm text-gray-400 mb-2 flex items-center gap-2">
                         <BarChart3 className="h-4 w-4" />
                         <span>Ejemplo: Elfo Mago con Inteligencia base 16:</span>
                     </div>
                     <div className="flex flex-wrap items-center gap-2 text-sm">
-                        <span className="bg-dungeon-800 px-3 py-1 rounded font-mono">Int 16</span>
-                        <span className="text-dungeon-500">+</span>
+                        <span className="bg-gray-800 px-3 py-1 rounded font-mono">Int 16</span>
+                        <span className="text-gray-500">+</span>
                         <span className="bg-emerald-900/40 border border-emerald-500/30 px-3 py-1 rounded">+2 Des <span className="text-emerald-400 text-xs">(racial)</span></span>
-                        <span className="text-dungeon-500">+</span>
+                        <span className="text-gray-500">+</span>
                         <span className="bg-red-900/40 border border-red-500/30 px-3 py-1 rounded">-2 Con <span className="text-red-400 text-xs">(racial)</span></span>
-                        <span className="text-dungeon-500">=</span>
+                        <span className="text-gray-500">=</span>
                         <span className="bg-green-900/40 border border-green-500/50 px-4 py-1 rounded font-bold text-green-400">Int 16, Des 14, Con 12</span>
                     </div>
-                    <p className="text-xs text-dungeon-500 mt-2">Los modificadores raciales se aplican DESPUÉS de tirar o asignar puntuaciones base.</p>
+                    <p className="text-xs text-gray-500 mt-2">Los modificadores raciales se aplican DESPUÉS de tirar o asignar puntuaciones base.</p>
                 </div>
             </div>
 
@@ -116,7 +116,7 @@ export default function RacesRulesPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-8 space-y-6">
-                        <p className="text-lg text-dungeon-200">
+                        <p className="text-lg text-gray-200">
                             Después de tirar tus puntuaciones de característica, elige la raza de tu personaje. Al mismo tiempo, deberías elegir una clase, ya que la raza afecta a qué tan bien puede desempeñarse un personaje en cada clase.
                         </p>
 
@@ -125,15 +125,15 @@ export default function RacesRulesPage() {
                                 <h4 className="font-bold text-green-400 mb-2 flex items-center gap-2">
                                     <Dna className="h-4 w-4" /> Diversidad
                                 </h4>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Puedes jugar un personaje de cualquier combinación de raza y clase, pero ciertas razas se desempeñan mejor en ciertas carreras.
                                 </p>
                             </div>
-                            <div className="bg-dungeon-900/30 border-l-4 border-dungeon-600 p-4 rounded">
-                                <h4 className="font-bold text-dungeon-400 mb-2 flex items-center gap-2">
+                            <div className="bg-gray-900/30 border-l-4 border-gray-600 p-4 rounded">
+                                <h4 className="font-bold text-gray-400 mb-2 flex items-center gap-2">
                                     <Star className="h-4 w-4" /> Ejemplo
                                 </h4>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Los medianos pueden ser guerreros, pero su tamaño pequeño y rasgos especiales los hacen mejores pícaros.
                                 </p>
                             </div>
@@ -150,7 +150,7 @@ export default function RacesRulesPage() {
                                 <span className="text-gold-400">Ajustes a las características</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="p-6 text-dungeon-200 space-y-4">
+                        <CardContent className="p-6 text-gray-200 space-y-4">
                             <p>
                                 Encuentra los ajustes raciales de característica de tu personaje y aplícalos a sus puntuaciones.
                             </p>
@@ -176,7 +176,7 @@ export default function RacesRulesPage() {
                                 <span className="text-purple-400">Clase predilecta</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="p-6 text-dungeon-200 space-y-4">
+                        <CardContent className="p-6 text-gray-200 space-y-4">
                             <p>
                                 La clase predilecta de un personaje no cuenta en su contra al determinar penalizaciones de puntos de experiencia por multiclase.
                             </p>
@@ -200,48 +200,48 @@ export default function RacesRulesPage() {
                     <CardContent className="p-8 space-y-6">
                         <div className="grid md:grid-cols-2 gap-8">
                             <div>
-                                <h3 className="font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                                <h3 className="font-bold text-gray-100 mb-4 flex items-center gap-2">
                                     <Languages className="h-5 w-5 text-blue-400" /> Idiomas comunes
                                 </h3>
-                                <p className="text-dungeon-200 mb-4">
+                                <p className="text-gray-200 mb-4">
                                     Todos los personajes saben hablar Común. Un enano, elfo, gnomo, semielfo, semiorco o mediano también habla un idioma racial.
                                 </p>
                                 <div className="bg-blue-900/10 p-4 rounded border-l-4 border-blue-500">
-                                    <p className="text-sm text-dungeon-300">
+                                    <p className="text-sm text-gray-300">
                                         Un personaje con un bonificador de Inteligencia a nivel 1 habla otros idiomas también, un idioma extra por punto de bonificador.
                                     </p>
                                 </div>
                             </div>
 
                             <div>
-                                <h3 className="font-bold text-dungeon-100 mb-4 flex items-center gap-2">
+                                <h3 className="font-bold text-gray-100 mb-4 flex items-center gap-2">
                                     <BookOpen className="h-5 w-5 text-blue-400" /> Alfabetización
                                 </h3>
-                                <p className="text-dungeon-200 mb-4">
+                                <p className="text-gray-200 mb-4">
                                     Cualquier personaje excepto un bárbaro puede leer y escribir todos los idiomas que habla.
                                 </p>
-                                <div className="bg-dungeon-900/30 p-4 rounded border-l-4 border-dungeon-600">
-                                    <p className="text-sm text-dungeon-300">
+                                <div className="bg-gray-900/30 p-4 rounded border-l-4 border-gray-600">
+                                    <p className="text-sm text-gray-300">
                                         Un bárbaro puede volverse alfabetizado gastando <strong>2 puntos de habilidad</strong>.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-6 pt-6 border-t border-dungeon-700">
+                        <div className="mt-6 pt-6 border-t border-gray-700">
                             <h3 className="font-bold text-gold-400 mb-4">Idiomas de clase</h3>
                             <div className="grid sm:grid-cols-3 gap-4">
-                                <div className="bg-dungeon-900/50 p-3 rounded text-center border border-dungeon-700">
-                                    <strong className="block text-dungeon-100 mb-1">Clérigo</strong>
-                                    <span className="text-xs text-dungeon-400">Abisal, Celestial, Infernal</span>
+                                <div className="bg-gray-900/50 p-3 rounded text-center border border-gray-700">
+                                    <strong className="block text-gray-100 mb-1">Clérigo</strong>
+                                    <span className="text-xs text-gray-400">Abisal, Celestial, Infernal</span>
                                 </div>
-                                <div className="bg-dungeon-900/50 p-3 rounded text-center border border-dungeon-700">
-                                    <strong className="block text-dungeon-100 mb-1">Druida</strong>
-                                    <span className="text-xs text-dungeon-400">Silvano (y Druídico gratis)</span>
+                                <div className="bg-gray-900/50 p-3 rounded text-center border border-gray-700">
+                                    <strong className="block text-gray-100 mb-1">Druida</strong>
+                                    <span className="text-xs text-gray-400">Silvano (y Druídico gratis)</span>
                                 </div>
-                                <div className="bg-dungeon-900/50 p-3 rounded text-center border border-dungeon-700">
-                                    <strong className="block text-dungeon-100 mb-1">Mago</strong>
-                                    <span className="text-xs text-dungeon-400">Dracónico</span>
+                                <div className="bg-gray-900/50 p-3 rounded text-center border border-gray-700">
+                                    <strong className="block text-gray-100 mb-1">Mago</strong>
+                                    <span className="text-xs text-gray-400">Dracónico</span>
                                 </div>
                             </div>
                         </div>

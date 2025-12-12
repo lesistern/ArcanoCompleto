@@ -12,24 +12,24 @@ export default function ReglasBasicasPage() {
     return (
         <div className="container mx-auto px-4 py-16 max-w-6xl">
             {/* Hero Section */}
-            <div className="relative rounded-xl overflow-hidden bg-dungeon-900 border border-dungeon-800 shadow-2xl mb-12">
+            <div className="relative rounded-xl overflow-hidden bg-gray-900 border border-gray-800 shadow-2xl mb-12">
                 <div className="absolute inset-0 bg-[url('/images/textures/parchment-dark.jpg')] opacity-20 mix-blend-overlay"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-dungeon-950 via-dungeon-900/90 to-dungeon-950/50"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900/90 to-gray-950/50"></div>
 
                 <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="max-w-2xl space-y-4">
                         <div className="flex items-center gap-3 mb-2">
                             <Link href="/reglas">
-                                <Button variant="ghost" size="sm" className="text-dungeon-400 hover:text-dungeon-200 pl-0">
+                                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-200 pl-0">
                                     <ArrowLeft className="h-4 w-4 mr-2" />
                                     Volver a Reglas
                                 </Button>
                             </Link>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-dungeon-100 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-gray-100 leading-tight">
                             Reglas Basicas del Sistema d20
                         </h1>
-                        <p className="text-lg text-dungeon-300 leading-relaxed">
+                        <p className="text-lg text-gray-300 leading-relaxed">
                             Todo lo que necesitas saber para empezar a jugar.
                         </p>
                     </div>
@@ -43,7 +43,7 @@ export default function ReglasBasicasPage() {
             {/* Nota para nuevos jugadores */}
             <div className="bg-blue-900/20 border-l-4 border-blue-400 p-4 rounded mb-6">
                 <p className="text-blue-300 font-semibold mb-2">¿Nuevo en D&D?</p>
-                <p className="text-dungeon-300 text-sm">
+                <p className="text-gray-300 text-sm">
                     Si es tu primera vez jugando D&D 3.5, te recomendamos leer primero la{' '}
                     <Link href="/introduccion" className="text-blue-400 hover:text-blue-300 underline">
                         Introducción
@@ -54,25 +54,25 @@ export default function ReglasBasicasPage() {
 
 
             {/* Ejemplo Visual de Tirada */}
-            <div className="bg-gradient-to-r from-blue-900/20 via-purple-900/20 to-dungeon-900 border border-blue-500/30 rounded-xl p-6 mb-8">
+            <div className="bg-gradient-to-r from-blue-900/20 via-purple-900/20 to-gray-900 border border-blue-500/30 rounded-xl p-6 mb-8">
                 <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
                     <Target className="h-5 w-5" />
                     Ejemplo: Atacar a un Goblin
                 </h3>
                 <div className="flex flex-wrap items-center justify-center gap-3 text-lg mb-4">
-                    <div className="bg-dungeon-800 border border-gold-500/50 rounded-lg px-4 py-3 text-center">
+                    <div className="bg-gray-800 border border-gold-500/50 rounded-lg px-4 py-3 text-center">
                         <div className="text-3xl font-mono text-gold-400">15</div>
-                        <div className="text-xs text-dungeon-400">Tirada d20</div>
+                        <div className="text-xs text-gray-400">Tirada d20</div>
                     </div>
                     <span className="text-gold-400 text-3xl font-bold">+</span>
-                    <div className="bg-dungeon-800 border border-green-500/50 rounded-lg px-4 py-3 text-center">
+                    <div className="bg-gray-800 border border-green-500/50 rounded-lg px-4 py-3 text-center">
                         <div className="text-3xl font-mono text-green-400">+4</div>
-                        <div className="text-xs text-dungeon-400">BAB</div>
+                        <div className="text-xs text-gray-400">BAB</div>
                     </div>
                     <span className="text-gold-400 text-3xl font-bold">+</span>
-                    <div className="bg-dungeon-800 border border-blue-500/50 rounded-lg px-4 py-3 text-center">
+                    <div className="bg-gray-800 border border-blue-500/50 rounded-lg px-4 py-3 text-center">
                         <div className="text-3xl font-mono text-blue-400">+3</div>
-                        <div className="text-xs text-dungeon-400">Mod. Fuerza</div>
+                        <div className="text-xs text-gray-400">Mod. Fuerza</div>
                     </div>
                     <span className="text-gold-400 text-3xl font-bold">=</span>
                     <div className="bg-green-900/30 border-2 border-green-500/50 rounded-lg px-4 py-3 text-center">
@@ -82,7 +82,7 @@ export default function ReglasBasicasPage() {
                     <span className="text-2xl mx-2">vs</span>
                     <div className="bg-red-900/30 border border-red-500/50 rounded-lg px-4 py-3 text-center">
                         <div className="text-3xl font-mono text-red-400">15</div>
-                        <div className="text-xs text-dungeon-400">CA Goblin</div>
+                        <div className="text-xs text-gray-400">CA Goblin</div>
                     </div>
                 </div>
                 <div className="text-center">
@@ -96,16 +96,16 @@ export default function ReglasBasicasPage() {
             {/* Content */}
             <div className="space-y-8">
                 {/* Glosario de Términos */}
-                <Card className="card border-dungeon-500/30">
+                <Card className="card border-gray-500/30">
                     <details className="group">
-                        <summary className="flex items-center justify-between p-6 cursor-pointer list-none bg-gradient-to-r from-dungeon-800/50 to-transparent rounded-t-lg hover:bg-dungeon-800/70 transition-colors">
-                            <div className="flex items-center gap-3 text-2xl font-bold text-dungeon-100">
-                                <BookOpen className="h-6 w-6 text-dungeon-200" />
+                        <summary className="flex items-center justify-between p-6 cursor-pointer list-none bg-gradient-to-r from-gray-800/50 to-transparent rounded-t-lg hover:bg-gray-800/70 transition-colors">
+                            <div className="flex items-center gap-3 text-2xl font-bold text-gray-100">
+                                <BookOpen className="h-6 w-6 text-gray-200" />
                                 Glosario de Términos Comunes
                             </div>
-                            <ChevronDown className="h-6 w-6 text-dungeon-400 transition-transform group-open:rotate-180" />
+                            <ChevronDown className="h-6 w-6 text-gray-400 transition-transform group-open:rotate-180" />
                         </summary>
-                        <CardContent className="p-6 border-t border-dungeon-700">
+                        <CardContent className="p-6 border-t border-gray-700">
                             <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
                                 {[
                                     { term: 'DG (Dados de Golpe)', def: 'Determinan tus Puntos de Golpe (PG) y reflejan tu nivel y resistencia.' },
@@ -121,7 +121,7 @@ export default function ReglasBasicasPage() {
                                 ].map((item) => (
                                     <div key={item.term} className="text-sm">
                                         <span className="font-bold text-gold-400 block mb-1">{item.term}</span>
-                                        <span className="text-dungeon-300">{item.def}</span>
+                                        <span className="text-gray-300">{item.def}</span>
                                     </div>
                                 ))}
                             </div>
@@ -137,33 +137,33 @@ export default function ReglasBasicasPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-8">
-                        <p className="text-lg text-dungeon-200 mb-6">
+                        <p className="text-lg text-gray-200 mb-6">
                             El sistema utiliza un <span className="text-gold-400 font-bold">dado de veinte caras (d20)</span> como base para resolver todas las acciones importantes.
                         </p>
 
                         <div className="bg-gradient-to-r from-gold-900/20 to-purple-900/20 border-2 border-gold-500/50 rounded-lg p-6 mb-6">
                             <h3 className="text-xl font-bold text-gold-300 mb-4">Fórmula básica:</h3>
                             <div className="flex items-center gap-3 flex-wrap justify-center text-lg font-mono">
-                                <span className="bg-dungeon-800 px-4 py-2 rounded border border-gold-500/30">1d20</span>
+                                <span className="bg-gray-800 px-4 py-2 rounded border border-gold-500/30">1d20</span>
                                 <span className="text-gold-400 text-2xl">+</span>
-                                <span className="bg-dungeon-800 px-4 py-2 rounded border border-blue-500/30">Modificadores</span>
+                                <span className="bg-gray-800 px-4 py-2 rounded border border-blue-500/30">Modificadores</span>
                                 <span className="text-gold-400 text-2xl">≥</span>
-                                <span className="bg-dungeon-800 px-4 py-2 rounded border border-green-500/30">Número objetivo</span>
+                                <span className="bg-gray-800 px-4 py-2 rounded border border-green-500/30">Número objetivo</span>
                             </div>
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-4 text-center">
-                            <div className="bg-dungeon-900/50 p-4 rounded border-l-4 border-gold-500">
+                            <div className="bg-gray-900/50 p-4 rounded border-l-4 border-gold-500">
                                 <div className="text-3xl font-bold text-gold-400 mb-2">1</div>
-                                <div className="text-sm text-dungeon-300">Tira un d20</div>
+                                <div className="text-sm text-gray-300">Tira un d20</div>
                             </div>
-                            <div className="bg-dungeon-900/50 p-4 rounded border-l-4 border-blue-500">
+                            <div className="bg-gray-900/50 p-4 rounded border-l-4 border-blue-500">
                                 <div className="text-3xl font-bold text-blue-400 mb-2">2</div>
-                                <div className="text-sm text-dungeon-300">Suma modificadores</div>
+                                <div className="text-sm text-gray-300">Suma modificadores</div>
                             </div>
-                            <div className="bg-dungeon-900/50 p-4 rounded border-l-4 border-green-500">
+                            <div className="bg-gray-900/50 p-4 rounded border-l-4 border-green-500">
                                 <div className="text-3xl font-bold text-green-400 mb-2">3</div>
-                                <div className="text-sm text-dungeon-300">Compara con CD</div>
+                                <div className="text-sm text-gray-300">Compara con CD</div>
                             </div>
                         </div>
                     </CardContent>
@@ -188,22 +188,22 @@ export default function ReglasBasicasPage() {
                                         <th className="text-left p-3 text-blue-400">Fórmula</th>
                                     </tr>
                                 </thead>
-                                <tbody className="text-dungeon-200">
-                                    <tr className="border-b border-dungeon-700 hover:bg-dungeon-900/30">
+                                <tbody className="text-gray-200">
+                                    <tr className="border-b border-gray-700 hover:bg-gray-900/30">
                                         <td className="p-3">
                                             <span className="font-bold text-green-400">Prueba de habilidad</span>
                                         </td>
                                         <td className="p-3 text-sm">Usar una habilidad entrenada</td>
                                         <td className="p-3 font-mono text-sm">1d20 + rangos + mod característica</td>
                                     </tr>
-                                    <tr className="border-b border-dungeon-700 hover:bg-dungeon-900/30">
+                                    <tr className="border-b border-gray-700 hover:bg-gray-900/30">
                                         <td className="p-3">
                                             <span className="font-bold text-yellow-400">Prueba de característica</span>
                                         </td>
                                         <td className="p-3 text-sm">Sin habilidad aplicable</td>
                                         <td className="p-3 font-mono text-sm">1d20 + mod característica</td>
                                     </tr>
-                                    <tr className="border-b border-dungeon-700 hover:bg-dungeon-900/30">
+                                    <tr className="border-b border-gray-700 hover:bg-gray-900/30">
                                         <td className="p-3">
                                             <span className="font-bold text-red-400">Tirada de ataque</span>
                                         </td>
@@ -221,7 +221,7 @@ export default function ReglasBasicasPage() {
                                     <CheckCircle className="h-4 w-4" />
                                     Pruebas no enfrentadas
                                 </h4>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     El DM establece una CD fija (típicamente 10-30). Ejemplo: escalar un muro (CD 15).
                                 </p>
                             </div>
@@ -230,7 +230,7 @@ export default function ReglasBasicasPage() {
                                     <Swords className="h-4 w-4" />
                                     Pruebas enfrentadas
                                 </h4>
-                                <p className="text-sm text-dungeon-300">
+                                <p className="text-sm text-gray-300">
                                     Tu resultado vs. el resultado del oponente. Ejemplo: esconderse vs. avistar.
                                 </p>
                             </div>
@@ -248,7 +248,7 @@ export default function ReglasBasicasPage() {
                     </CardHeader>
                     <CardContent className="p-8 space-y-4">
                         <div className="bg-blue-900/20 border-l-4 border-blue-400 p-4 rounded">
-                            <p className="text-dungeon-300 text-sm">
+                            <p className="text-gray-300 text-sm">
                                 Para ver una explicación completa de los dados básicos (d4, d6, d8, d10, d12, d20) con ejemplos,
                                 consulta la sección{' '}
                                 <Link href="/introduccion#dados" className="text-blue-400 hover:text-blue-300 underline">
@@ -257,20 +257,20 @@ export default function ReglasBasicasPage() {
                             </p>
                         </div>
 
-                        <div className="bg-dungeon-900/50 border border-dungeon-700 rounded-lg p-4">
+                        <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
                             <h4 className="font-bold text-gold-400 mb-3">Notación estándar:</h4>
                             <div className="grid md:grid-cols-3 gap-3 text-sm">
                                 <div className="flex items-center gap-2">
-                                    <code className="bg-dungeon-800 px-2 py-1 rounded text-green-400">3d6</code>
-                                    <span className="text-dungeon-300">= 3 dados de 6 caras</span>
+                                    <code className="bg-gray-800 px-2 py-1 rounded text-green-400">3d6</code>
+                                    <span className="text-gray-300">= 3 dados de 6 caras</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <code className="bg-dungeon-800 px-2 py-1 rounded text-blue-400">2d8+5</code>
-                                    <span className="text-dungeon-300">= 2 dados de 8 caras + 5</span>
+                                    <code className="bg-gray-800 px-2 py-1 rounded text-blue-400">2d8+5</code>
+                                    <span className="text-gray-300">= 2 dados de 8 caras + 5</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <code className="bg-dungeon-800 px-2 py-1 rounded text-purple-400">1d20+7</code>
-                                    <span className="text-dungeon-300">= 1 dado de 20 caras + 7</span>
+                                    <code className="bg-gray-800 px-2 py-1 rounded text-purple-400">1d20+7</code>
+                                    <span className="text-gray-300">= 1 dado de 20 caras + 7</span>
                                 </div>
                             </div>
                         </div>
@@ -280,14 +280,14 @@ export default function ReglasBasicasPage() {
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div className="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-4">
                                     <div className="text-2xl font-mono font-bold text-cyan-400 mb-2">d%</div>
-                                    <div className="text-sm text-dungeon-300">
+                                    <div className="text-sm text-gray-300">
                                         <strong>Dado percentil:</strong> Se usa para generar un número del 1 al 100.
                                         Útil para consultar tablas de tesoros, encuentros aleatorios, etc.
                                     </div>
                                 </div>
                                 <div className="bg-pink-900/20 border border-pink-500/30 rounded-lg p-4">
                                     <div className="text-2xl font-mono font-bold text-pink-400 mb-2">d100</div>
-                                    <div className="text-sm text-dungeon-300">
+                                    <div className="text-sm text-gray-300">
                                         <strong>Alternativa:</strong> Tira 2d10, uno para decenas y otro para unidades.
                                         Ejemplo: 40 + 7 = 47
                                     </div>
@@ -298,36 +298,36 @@ export default function ReglasBasicasPage() {
                 </Card>
 
                 {/* Reglas matemáticas */}
-                <Card className="card border-dungeon-500/30">
-                    <CardHeader className="bg-gradient-to-r from-dungeon-800/50 to-transparent">
+                <Card className="card border-gray-500/30">
+                    <CardHeader className="bg-gradient-to-r from-gray-800/50 to-transparent">
                         <CardTitle className="flex items-center gap-3 text-2xl">
-                            <Calculator className="h-6 w-6 text-dungeon-200" />
+                            <Calculator className="h-6 w-6 text-gray-200" />
                             Reglas matemáticas
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-8 space-y-6">
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>
-                                <h4 className="font-bold text-dungeon-100 mb-2 flex items-center gap-2">
-                                    <Divide className="h-4 w-4 text-dungeon-300" />
+                                <h4 className="font-bold text-gray-100 mb-2 flex items-center gap-2">
+                                    <Divide className="h-4 w-4 text-gray-300" />
                                     Redondeo de fracciones
                                 </h4>
-                                <p className="text-sm text-dungeon-200 mb-2">
+                                <p className="text-sm text-gray-200 mb-2">
                                     En general, si obtienes una fracción, <strong>redondea siempre hacia abajo</strong>, incluso si es 0.5 o más.
                                 </p>
-                                <div className="bg-dungeon-900/30 p-3 rounded border-l-2 border-dungeon-500 text-xs text-dungeon-300">
+                                <div className="bg-gray-900/30 p-3 rounded border-l-2 border-gray-500 text-xs text-gray-300">
                                     <strong>Excepción:</strong> Ciertas tiradas, como el daño y los puntos de golpe, tienen un mínimo de 1.
                                 </div>
                             </div>
                             <div>
-                                <h4 className="font-bold text-dungeon-100 mb-2 flex items-center gap-2">
-                                    <XCircle className="h-4 w-4 text-dungeon-300" />
+                                <h4 className="font-bold text-gray-100 mb-2 flex items-center gap-2">
+                                    <XCircle className="h-4 w-4 text-gray-300" />
                                     Multiplicadores
                                 </h4>
-                                <p className="text-sm text-dungeon-200 mb-2">
+                                <p className="text-sm text-gray-200 mb-2">
                                     Cuando aplicas dos o más multiplicadores a una tirada (ej. un crítico x2 y una espada x2), se suman los multiplicadores, no se multiplican.
                                 </p>
-                                <div className="bg-dungeon-900/30 p-3 rounded border-l-2 border-dungeon-500 text-xs font-mono text-dungeon-300">
+                                <div className="bg-gray-900/30 p-3 rounded border-l-2 border-gray-500 text-xs font-mono text-gray-300">
                                     x2 + x2 = x3<br />
                                     x2 + x3 = x4
                                 </div>
@@ -351,7 +351,7 @@ export default function ReglasBasicasPage() {
                                     <CheckCircle className="h-5 w-5 text-green-400" />
                                     <h4 className="font-bold text-green-400">TIRA dados cuando:</h4>
                                 </div>
-                                <ul className="space-y-2 text-dungeon-200">
+                                <ul className="space-y-2 text-gray-200">
                                     <li className="flex items-start gap-2">
                                         <span className="text-green-400 mt-1">•</span>
                                         <span>El resultado es incierto</span>
@@ -375,7 +375,7 @@ export default function ReglasBasicasPage() {
                                     <XCircle className="h-5 w-5 text-red-400" />
                                     <h4 className="font-bold text-red-400">NO tires dados cuando:</h4>
                                 </div>
-                                <ul className="space-y-2 text-dungeon-200">
+                                <ul className="space-y-2 text-gray-200">
                                     <li className="flex items-start gap-2">
                                         <span className="text-red-400 mt-1">•</span>
                                         <span>El éxito es automático</span>
@@ -408,7 +408,7 @@ export default function ReglasBasicasPage() {
                     </CardHeader>
                     <CardContent className="p-8 space-y-4">
                         <div className="bg-blue-900/20 border-l-4 border-blue-400 p-4 rounded mb-4">
-                            <p className="text-dungeon-300 text-sm">
+                            <p className="text-gray-300 text-sm">
                                 Para una explicación completa del combate con ejemplos narrativos, consulta{' '}
                                 <Link href="/introduccion#combate" className="text-blue-400 hover:text-blue-300 underline">
                                     Combate Básico en la Introducción
@@ -416,24 +416,24 @@ export default function ReglasBasicasPage() {
                             </p>
                         </div>
 
-                        <div className="bg-dungeon-900/50 border border-dungeon-700 rounded-lg p-4">
+                        <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
                             <h4 className="font-bold text-red-400 mb-3">Mecánica técnica:</h4>
                             <div className="space-y-2 text-sm">
                                 <div className="flex gap-2">
                                     <span className="text-gold-400 font-bold">1.</span>
-                                    <span className="text-dungeon-200">Tirada de iniciativa (1d20 + modificador de Destreza)</span>
+                                    <span className="text-gray-200">Tirada de iniciativa (1d20 + modificador de Destreza)</span>
                                 </div>
                                 <div className="flex gap-2">
                                     <span className="text-gold-400 font-bold">2.</span>
-                                    <span className="text-dungeon-200">Orden descendente de iniciativa (mayor a menor)</span>
+                                    <span className="text-gray-200">Orden descendente de iniciativa (mayor a menor)</span>
                                 </div>
                                 <div className="flex gap-2">
                                     <span className="text-gold-400 font-bold">3.</span>
-                                    <span className="text-dungeon-200">Cada asalto = 6 segundos de tiempo del juego</span>
+                                    <span className="text-gray-200">Cada asalto = 6 segundos de tiempo del juego</span>
                                 </div>
                                 <div className="flex gap-2">
                                     <span className="text-gold-400 font-bold">4.</span>
-                                    <span className="text-dungeon-200">En tu turno: acción estándar + acción de movimiento (o 2 movimientos, o asalto completo)</span>
+                                    <span className="text-gray-200">En tu turno: acción estándar + acción de movimiento (o 2 movimientos, o asalto completo)</span>
                                 </div>
                             </div>
                         </div>
@@ -451,7 +451,7 @@ export default function ReglasBasicasPage() {
                     <CardContent className="p-8 space-y-4">
                         <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
                             <h4 className="font-bold text-red-400 mb-3">Golpe crítico:</h4>
-                            <ul className="space-y-2 text-sm text-dungeon-200">
+                            <ul className="space-y-2 text-sm text-gray-200">
                                 <li className="flex gap-2">
                                     <span className="text-yellow-400">•</span>
                                     <span>Natural 20 en tirada de ataque = amenaza de crítico</span>
@@ -471,16 +471,16 @@ export default function ReglasBasicasPage() {
                             </ul>
                         </div>
 
-                        <div className="bg-dungeon-900/50 border border-dungeon-700 rounded-lg p-4">
+                        <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
                             <h4 className="font-bold text-gold-400 mb-3">Ejemplo técnico:</h4>
-                            <p className="text-sm text-dungeon-300">
+                            <p className="text-sm text-gray-300">
                                 Espada larga (crítico 19-20/×2): Si sacas 19 o 20 natural, tiras de nuevo.
                                 Si la segunda tirada impacta, multiplicas el daño base por 2.
                             </p>
                         </div>
 
                         <div className="bg-blue-900/20 border-l-4 border-blue-400 p-4 rounded">
-                            <p className="text-dungeon-300 text-sm">
+                            <p className="text-gray-300 text-sm">
                                 Para explicación de Puntos de Golpe (PG) y estados (consciente, inconsciente, muriendo, muerto), consulta{' '}
                                 <Link href="/introduccion#combate" className="text-blue-400 hover:text-blue-300 underline">
                                     la Introducción
@@ -502,35 +502,35 @@ export default function ReglasBasicasPage() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div className="bg-red-900/10 border border-red-500/30 rounded-lg p-4 hover:bg-red-900/20 transition-colors">
                                 <div className="font-bold text-red-400 mb-1">Características</div>
-                                <div className="text-sm text-dungeon-400">Fue, Des, Con, Int, Sab, Car</div>
-                                <div className="text-xs text-dungeon-500 mt-1 font-mono">(Puntuación - 10) / 2</div>
+                                <div className="text-sm text-gray-400">Fue, Des, Con, Int, Sab, Car</div>
+                                <div className="text-xs text-gray-500 mt-1 font-mono">(Puntuación - 10) / 2</div>
                             </div>
                             <div className="bg-green-900/10 border border-green-500/30 rounded-lg p-4 hover:bg-green-900/20 transition-colors">
                                 <div className="font-bold text-green-400 mb-1">Rangos de habilidad</div>
-                                <div className="text-sm text-dungeon-400">Entrenamiento específico</div>
+                                <div className="text-sm text-gray-400">Entrenamiento específico</div>
                             </div>
                             <div className="bg-blue-900/10 border border-blue-500/30 rounded-lg p-4 hover:bg-blue-900/20 transition-colors">
                                 <div className="font-bold text-blue-400 mb-1">Dotes</div>
-                                <div className="text-sm text-dungeon-400">Talentos especiales</div>
+                                <div className="text-sm text-gray-400">Talentos especiales</div>
                             </div>
                             <div className="bg-purple-900/10 border border-purple-500/30 rounded-lg p-4 hover:bg-purple-900/20 transition-colors">
                                 <div className="font-bold text-purple-400 mb-1">Objetos mágicos</div>
-                                <div className="text-sm text-dungeon-400">Bonificadores de equipo</div>
+                                <div className="text-sm text-gray-400">Bonificadores de equipo</div>
                             </div>
                             <div className="bg-cyan-900/10 border border-cyan-500/30 rounded-lg p-4 hover:bg-cyan-900/20 transition-colors">
                                 <div className="font-bold text-cyan-400 mb-1">Conjuros</div>
-                                <div className="text-sm text-dungeon-400">Efectos temporales</div>
+                                <div className="text-sm text-gray-400">Efectos temporales</div>
                             </div>
                             <div className="bg-yellow-900/10 border border-yellow-500/30 rounded-lg p-4 hover:bg-yellow-900/20 transition-colors">
                                 <div className="font-bold text-yellow-400 mb-1">Circunstancias</div>
-                                <div className="text-sm text-dungeon-400">Situacionales</div>
+                                <div className="text-sm text-gray-400">Situacionales</div>
                             </div>
                         </div>
                         <div className="mt-6 bg-gold-900/20 border-2 border-gold-500/50 rounded-lg p-4 text-center">
                             <p className="text-gold-300 font-bold text-lg">
                                 ⚠️ Regla importante: bonificadores del mismo tipo NO se acumulan
                             </p>
-                            <p className="text-sm text-dungeon-300 mt-2">
+                            <p className="text-sm text-gray-300 mt-2">
                                 Solo aplicas el bonificador mayor de cada tipo.
                             </p>
                         </div>

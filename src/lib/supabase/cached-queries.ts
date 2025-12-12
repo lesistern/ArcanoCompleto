@@ -277,23 +277,7 @@ export const getSpellBySlug = cache(async (slug: string) => {
   return data;
 });
 
-/**
- * Obtiene solo los slugs de todos los conjuros
- * Útil para generateStaticParams()
- */
-export const getAllSpellSlugs = cache(async () => {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('spells')
-    .select('slug');
 
-  if (error) {
-    console.error('Error fetching spell slugs:', error);
-    return [];
-  }
-
-  return data || [];
-});
 
 /**
  * Obtiene conjuros por escuela
@@ -447,18 +431,58 @@ export const getAllBooks = cache(async () => {
  * Obtiene un libro por su slug
  * @param slug - Slug único del libro (ej: 'player-handbook', 'monster-manual')
  */
-export const getBookBySlug = cache(async (slug: string) => {
+
+/**
+ * Obtiene solo los slugs de todos los conjuros
+ * Útil para sitemap.ts
+ */
+export const getAllSpellSlugs = cache(async () => {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from('books')
-    .select('*')
-    .eq('slug', slug)
-    .single();
+    .from('srd_spells')
+    .select('slug');
 
   if (error) {
-    console.error(`Error fetching book ${slug}:`, error);
-    return null;
+    console.error('Error fetching spell slugs:', error);
+    return [];
   }
 
-  return data;
+  return data || [];
 });
+
+/**
+ * Obtiene solo los slugs de todos los objetos
+ * Útil para sitemap.ts
+ */
+export const getAllItemSlugs = cache(async () => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('srd_items')
+    .select('slug');
+
+  if (error) {
+    console.error('Error fetching item slugs:', error);
+    return [];
+  }
+
+  return data || [];
+});
+
+/**
+ * Obtiene solo los slugs de todos los monstruos
+ * Útil para sitemap.ts
+ */
+export const getAllMonsterSlugs = cache(async () => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('monsters')
+    .select('slug');
+
+  if (error) {
+    console.error('Error fetching monster slugs:', error);
+    return [];
+  }
+
+  return data || [];
+});
+
